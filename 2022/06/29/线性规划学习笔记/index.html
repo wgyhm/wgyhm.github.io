@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="线性规划学习笔记〇、前言本文是我对线性规划的一个整理。 主要参考了 zzq的博客 ，2016年国家集训队的两篇论文。 一、定义1. 标准型线性规划最大化 ： $$\sum\limits_{i&#x3D;1}^nc_ix_i$$ $$s.t. \sum\limits_{i&#x3D;1}^n a_{j,i}x_i\le b_j,1\le j\le m$$ $$x_i\ge 0,1\le i\le n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性规划学习笔记">
+<meta property="og:url" content="http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="线性规划学习笔记〇、前言本文是我对线性规划的一个整理。 主要参考了 zzq的博客 ，2016年国家集训队的两篇论文。 一、定义1. 标准型线性规划最大化 ： $$\sum\limits_{i&#x3D;1}^nc_ix_i$$ $$s.t. \sum\limits_{i&#x3D;1}^n a_{j,i}x_i\le b_j,1\le j\le m$$ $$x_i\ge 0,1\le i\le n">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/awc4atz6.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/22hg3cwk.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/8uux4okk.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/gwwdbe9i.png">
+<meta property="article:published_time" content="2022-06-29T11:13:23.000Z">
+<meta property="article:modified_time" content="2022-06-29T11:13:58.016Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="线性规划">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/awc4atz6.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>线性规划学习笔记</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-1/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-6/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&text=线性规划学习笔记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&is_video=false&description=线性规划学习笔记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=线性规划学习笔记&body=Check out this article: http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&name=线性规划学习笔记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&t=线性规划学习笔记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">线性规划学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%87%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">〇、前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">一、定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A0%87%E5%87%86%E5%9E%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 标准型线性规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9D%BE%E5%BC%9B%E5%9E%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 松弛型线性规划</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B1%82%E8%A7%A3%E2%80%94%E2%80%94%E5%8D%95%E7%BA%AF%E5%BD%A2%E7%AE%97%E6%B3%95-Simplex-algorithm"><span class="toc-number">1.3.</span> <span class="toc-text">二、求解——单纯形算法(Simplex algorithm)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 算法概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pivot"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">Pivot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simplex"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">Simplex</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 初始化过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.</span> <span class="toc-text">三、实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">四、对偶问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BE%8B%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">五、例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NOI2008-%E5%BF%97%E6%84%BF%E8%80%85%E6%8B%9B%E5%8B%9F"><span class="toc-number">1.6.1.</span> <span class="toc-text">[NOI2008] 志愿者招募</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZJOI2013-%E9%98%B2%E5%AE%88%E6%88%98%E7%BA%BF"><span class="toc-number">1.6.2.</span> <span class="toc-text">[ZJOI2013]防守战线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SHOI2004-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">1.6.3.</span> <span class="toc-text">[SHOI2004]最小生成树</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        线性规划学习笔记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-06-29T11:13:23.000Z" itemprop="datePublished">2022-06-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>, <a class="tag-link-link" href="/tags/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" rel="tag">线性规划</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="线性规划学习笔记"><a href="#线性规划学习笔记" class="headerlink" title="线性规划学习笔记"></a>线性规划学习笔记</h1><h2 id="〇、前言"><a href="#〇、前言" class="headerlink" title="〇、前言"></a>〇、前言</h2><p>本文是我对线性规划的一个整理。</p>
+<p>主要参考了 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzqsblog/p/5457091.html">zzq的博客</a> ，2016年国家集训队的两篇论文。</p>
+<h2 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h2><h3 id="1-标准型线性规划"><a href="#1-标准型线性规划" class="headerlink" title="1. 标准型线性规划"></a>1. 标准型线性规划</h3><p>最大化 ：</p>
+<p>$$<br>\sum\limits_{i&#x3D;1}^nc_ix_i<br>$$</p>
+<p>$$<br>s.t. \sum\limits_{i&#x3D;1}^n a_{j,i}x_i\le b_j,1\le j\le m<br>$$</p>
+<p>$$<br>x_i\ge 0,1\le i\le n<br>$$</p>
+<p>为了避免在求解过程中由于正负号带来的变换不等号问题，于是有了另一种表示方式——松弛型。</p>
+<h3 id="2-松弛型线性规划"><a href="#2-松弛型线性规划" class="headerlink" title="2. 松弛型线性规划"></a>2. 松弛型线性规划</h3><p>最大化</p>
+<p>$$<br>\sum\limits_{i&#x3D;1}^nc_ix_i<br>$$</p>
+<p>$$<br>s.t. x_{i+n}&#x3D;b_i-\sum\limits_{j&#x3D;1}^n a_{i,j}x_j,1\le i\le m<br>$$</p>
+<p>$$<br>x_j\ge 0,1\le j\le n+m<br>$$</p>
+<h2 id="二、求解——单纯形算法-Simplex-algorithm"><a href="#二、求解——单纯形算法-Simplex-algorithm" class="headerlink" title="二、求解——单纯形算法(Simplex algorithm)"></a>二、求解——单纯形算法(Simplex algorithm)</h2><p><strong>求解范围：$b_i\ge0$</strong></p>
+<h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><ul>
+<li><p>在松弛型等式左侧的变量我们成为 <strong>基变量</strong>。</p>
+</li>
+<li><p>在松弛型等式右侧的变量我们称为 <strong>非基变量</strong>。</p>
+</li>
+</ul>
+<p>线性规划中每一组限制都隐藏这一组<strong>基本解</strong>，对于 $x_{i+n}&#x3D;b_i-\sum\limits_{j&#x3D;1}^n a_{i,j}x_j,1\le i\le m$，有基本解 $x_{i+n}&#x3D;b_i,x_j&#x3D;0$。</p>
+<h3 id="2-算法概述"><a href="#2-算法概述" class="headerlink" title="2. 算法概述"></a>2. 算法概述</h3><p>单纯形算法有两个基本的操作 —— <strong>转轴操作（Pivot）</strong> 和 **求解过程 (Simplex)**。</p>
+<h4 id="Pivot"><a href="#Pivot" class="headerlink" title="Pivot"></a>Pivot</h4><p>转轴操作是对于一组限制中一个基变量 $x_A$ 和一个非基变量 $x_B$ 代换的操作。</p>
+<p>我们称 $x_A$ 为<strong>换入变量</strong>，$x_B$ 为<strong>换出变量</strong>。</p>
+<p>具体的说：</p>
+<p>$$<br>x_{A}&#x3D;b_i-\sum\limits_{j&#x3D;1}^n a_{i,j}x_j<br>$$<br>把 $x_B$ 代换到等式左边，得：</p>
+<p>$$<br>x_B&#x3D;\dfrac{b_i-x_A-\sum\limits_{j&#x3D;1,j\not &#x3D; B}^na_{i,j}x_j}{a_{i,B}}<br>$$<br> 当然在选择的时候要确保 $a_{i,B}\not&#x3D; 0$。</p>
+<p>用这条等式代替原等式，然后<strong>将这条等式依次带入其他等式和要优化的结果</strong>。</p>
+<h4 id="Simplex"><a href="#Simplex" class="headerlink" title="Simplex"></a>Simplex</h4><p>Simplex 就是单纯形算法的主过程，从一个基本解出发，经过一系列的转轴操作，达到最优解。通过选择特定的换入变量和换出变量，使每一次转轴操作都能使目标函数增大，直到达到全局最优解。</p>
+<p><strong>基本过程：</strong></p>
+<ul>
+<li>选择一个满足 $c_e \ge 0$ 的非基变量 $x_e$。</li>
+<li>找到那个满足 $a_{l,e} &gt; 0$ 且 $\dfrac{b_l}{a_{l,e}}$ 最小的基变量 $x_{n+l}$。</li>
+<li>执行 $pivot(l,e)$ 然后回到第一步。</li>
+</ul>
+<p>每次选择一个增大后可以使当前状态变优的变量，将其增加到有一个基变量变成 $0$ 位置，然后互换他们的位置。</p>
+<p>第二步取最小的目的是一个<strong>贪心优化</strong>，可以使 $pivot$ 的<strong>次数降低许多</strong>。</p>
+<p>该过程在一下两种情况下会终止：</p>
+<ul>
+<li>找不到一个合法的 $e$ ，显然现在已经找到了<strong>最优解</strong>。可以手模一组数据。</li>
+<li>找不到一个合法的 $l$ ，此时的<strong>最优解是</strong> $\infty$ 。</li>
+</ul>
+<p>可能还是有点懵，我们拿论文里的例子模拟一下。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/awc4atz6.png"></p>
+<p>至于为什么是负号。如果看的仔细的话，前面线性规划的式子，每个 $a_{i,j}$ 之前都有个负号。</p>
+<p>对于 $x_1$ ，显然在第三个限制 $\dfrac{b_3}{a_{3,1}}$ 最小。所以 $x_1$ 和 $x_6$ 互换位置，有了下边：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/22hg3cwk.png"></p>
+<p>再对于 $x_3$ ，对于第 $2$ 条限制最小，$x_3$ 和 $x_5$ 互换位置。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/8uux4okk.png"></p>
+<p>对于 $x_2$ 也是同理。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/gwwdbe9i.png"></p>
+<p>现在，由于 $c_i&lt; 0,1\le i\le n，x_i\ge 0$ ，显然 $x_3&#x3D;x_5&#x3D;x_6&#x3D;0$ 原式有最大值。最大值就是 $28$。基变量的值就是 $b_i$ 。此时的最优解就是 $x&#x3D;{8,4,0,18,0,0}$。</p>
+<p>单纯形算法的核心思想就是这样，把 $c_i\le 0$ ，使得所有的非基变量都为 $0$ 。这就解释了为什么只能把 $b_i$ 全部搞成正的，负的反而会使答案边小。</p>
+<h3 id="3-初始化过程"><a href="#3-初始化过程" class="headerlink" title="3. 初始化过程"></a>3. 初始化过程</h3><p>前文提到了 $Simplex$ 只能在 $b_i\ge 0$ 的时候进行。如果 $b_i&lt;0$ 呢？这时候就要进行初始化。</p>
+<p>具体的，初始化常见的有两种方法：新建一个<strong>辅助线性规划</strong>或者<strong>通过 $pivot$ 进行初始化</strong>。本文只介绍后一种方法。</p>
+<p>根据 $pivot$ 的过程，在 $a_{i,B}&gt;0$ 的情况下，$b_i$ 的正负性并不会被改变。所以当 $b_i$ 为负数时，只需要找到一个 $a_{i,j}&lt;0$ 进行转轴操作即可改变 $b_i$ 的正负性。</p>
+<p>当然，如果 $b_i&lt;0$ 时，并没有找到 $a_{i,j}&lt;0$ ，此时整个线性规划<strong>无解</strong>。  </p>
+<h2 id="三、实现"><a href="#三、实现" class="headerlink" title="三、实现"></a>三、实现</h2><p>代码细节比较多。</p>
+<p><strong>对于我这种写法，$a_{i,j},i&gt;0,j&gt;0$ 一定要取相反数！</strong></p>
+<p>其中 $id_i$ 是指取第 $i$ 条限制基变量的原序号。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">double</span> eps=<span class="number">1e-8</span>;</span><br><span class="line"><span class="type">int</span> id[maxn*<span class="number">2</span>];</span><br><span class="line"><span class="type">double</span> a[maxn][maxn],vv[maxn];</span><br><span class="line"><span class="type">int</span> n,m,op;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">dcmp</span><span class="params">(<span class="type">double</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x&gt;eps) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (x&lt;-eps) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Semplex&#123;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Pivot</span><span class="params">(<span class="type">int</span> r,<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    	rg <span class="type">int</span> i,j;<span class="type">double</span> x=-a[r][c];</span><br><span class="line">    	<span class="built_in">swap</span>(id[n+r],id[c]);a[r][c]=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=n;i++) a[r][i]/=x;</span><br><span class="line">    	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=m;i++)&#123;</span><br><span class="line">    		<span class="keyword">if</span> (<span class="built_in">dcmp</span>(a[i][c])&amp;&amp;i!=r)&#123;</span><br><span class="line">    			x=a[i][c];a[i][c]=<span class="number">0</span>;</span><br><span class="line">    			<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) a[i][j]+=x*a[r][j]; </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">init</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">		rg <span class="type">int</span> x,y,i;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) id[i]=i;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>)&#123;</span><br><span class="line">			x=y=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) </span><br><span class="line">			    <span class="keyword">if</span> (<span class="built_in">dcmp</span>(a[i][<span class="number">0</span>])&lt;<span class="number">0</span>&amp;&amp;(!x||<span class="built_in">rand</span>()&amp;<span class="number">1</span>)) x=i;</span><br><span class="line">			<span class="keyword">if</span> (!x) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">			    <span class="keyword">if</span> (<span class="built_in">dcmp</span>(a[x][i])&gt;<span class="number">0</span>&amp;&amp;(!y||<span class="built_in">rand</span>()&amp;<span class="number">1</span>)) &#123;y=i;<span class="keyword">break</span>;&#125;</span><br><span class="line">			<span class="keyword">if</span> (!y) &#123;<span class="built_in">puts</span>(<span class="string">&quot;Infeasible&quot;</span>);<span class="keyword">return</span> <span class="number">0</span>;&#125;</span><br><span class="line">			<span class="built_in">Pivot</span>(x,y);</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Semplex</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">		rg <span class="type">int</span> i,x,y,f;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="built_in">init</span>()) <span class="keyword">return</span>;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>)&#123;</span><br><span class="line">			x=y=<span class="number">0</span>;f=<span class="number">1</span>;rg <span class="type">double</span> w,t;</span><br><span class="line">		    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) </span><br><span class="line">		        <span class="keyword">if</span> (<span class="built_in">dcmp</span>(a[<span class="number">0</span>][i])&gt;<span class="number">0</span>&amp;&amp;(!x||<span class="built_in">rand</span>()&amp;<span class="number">1</span>)) x=i;</span><br><span class="line">		    <span class="keyword">if</span> (!x) <span class="keyword">break</span>;</span><br><span class="line">		    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">		        <span class="keyword">if</span> (<span class="built_in">dcmp</span>(a[i][x])&lt;<span class="number">0</span>&amp;&amp;(w=-a[i][<span class="number">0</span>]/a[i][x],f||t&gt;w)) y=i,f=<span class="number">0</span>,t=w;</span><br><span class="line">		    <span class="keyword">if</span> (!y) &#123;<span class="built_in">puts</span>(<span class="string">&quot;Unbounded&quot;</span>);<span class="keyword">return</span>;&#125;</span><br><span class="line">		    <span class="built_in">Pivot</span>(y,x);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%.9lf\n&quot;</span>,a[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">		<span class="keyword">if</span> (!op) <span class="keyword">return</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) vv[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=n+<span class="number">1</span>;i&lt;=n+m;i++) vv[id[i]]=a[i-n][<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%.9lf &quot;</span>,vv[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    rg <span class="type">int</span> i,j;</span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">read</span>(n);<span class="built_in">read</span>(m);<span class="built_in">read</span>(op);</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;a[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;<span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;a[i][<span class="number">0</span>]),i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;a[i][j]),a[i][j]*=<span class="number">-1</span>;</span><br><span class="line">    Semplex::<span class="built_in">Semplex</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、对偶问题"><a href="#四、对偶问题" class="headerlink" title="四、对偶问题"></a>四、对偶问题</h2><p>给定一个原始线性规划：</p>
+<p>最大化 ：</p>
+<p>$$<br>\sum\limits_{i&#x3D;1}^nc_ix_i<br>$$</p>
+<p>$$<br>s.t. \sum\limits_{i&#x3D;1}^n a_{j,i}x_i\le b_j,1\le j\le m<br>$$</p>
+<p>$$<br>x_i\ge 0,1\le i\le n<br>$$</p>
+<p>定义它的对偶线性规划为：</p>
+<p>最小化：</p>
+<p>$$<br>\sum\limits_{j&#x3D;1}^mb_jy_j<br>$$</p>
+<p>$$<br>s.t.\sum\limits_{j&#x3D;1}^m a_{i,j}y_j\ge c_i,1\le i\le n<br>$$</p>
+<p>$$<br>y_j\ge 0,1\le j\le m<br>$$</p>
+<p>其最优解相同。</p>
+<h2 id="五、例题"><a href="#五、例题" class="headerlink" title="五、例题"></a>五、例题</h2><h3 id="NOI2008-志愿者招募"><a href="#NOI2008-志愿者招募" class="headerlink" title="[NOI2008] 志愿者招募"></a>[NOI2008] 志愿者招募</h3><p>设 $M_{i,j}$ 表示第 $i$ 类志愿者在第 $j$ 天能否工作，$x_i$ 表示第 $i$ 类志愿者的数量。</p>
+<p>易列出原始线性规划：</p>
+<p>最小化</p>
+<p>$$<br>\sum\limits_{i&#x3D;1}^m x_ic_i<br>$$</p>
+<p>$$<br>s.t.\ \sum\limits_{i&#x3D;1}^m M_{j,i}x_i\ge a_j ,1\le j\le m<br>$$</p>
+<p>$$<br>x_i\ge 0,1\le i\le m<br>$$</p>
+<p>转化为其对偶线性规划：</p>
+<p>最大化</p>
+<p>$$<br>\sum\limits_{j&#x3D;1}^n y_ja_j<br>$$</p>
+<p>$$<br>s.t.\ \sum\limits_{j&#x3D;1}^n M_{i,j}y_j\le c_i,1\le i\le m<br>$$</p>
+<p>$$<br>y_j\ge 0,1\le j\le n<br>$$</p>
+<p>$Code:$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    rg <span class="type">int</span> i,j,l,r;</span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">read</span>(n);<span class="built_in">read</span>(m);</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;a[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">    	<span class="built_in">read</span>(l);<span class="built_in">read</span>(r);<span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;a[i][<span class="number">0</span>]);</span><br><span class="line">    	<span class="keyword">for</span> (j=l;j&lt;=r;j++) a[i][j]=<span class="number">-1.0</span>;<span class="comment">//一定要取负号！！！！！！</span></span><br><span class="line">	&#125;</span><br><span class="line">    Semplex::<span class="built_in">Semplex</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ZJOI2013-防守战线"><a href="#ZJOI2013-防守战线" class="headerlink" title="[ZJOI2013]防守战线"></a>[ZJOI2013]防守战线</h3><p>板子</p>
+<h3 id="SHOI2004-最小生成树"><a href="#SHOI2004-最小生成树" class="headerlink" title="[SHOI2004]最小生成树"></a>[SHOI2004]最小生成树</h3><p>非常显然，树边不增，非树边不减。</p>
+<p>考虑到非树边一定大于等于在最小生成树的路径上的边权，所以直接列约束条件。</p>
+<p>注意到线性规划的一列只有两个非零值，非常浪费空间，所以用 $map$ 代替。</p>
+<p>$$<br>d+\sum\limits_{i&#x3D;1}^nc_ix_{id_i},id_i\in [1,n+m],c_i&lt; 0<br>$$</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">线性规划学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%87%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">〇、前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">一、定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A0%87%E5%87%86%E5%9E%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 标准型线性规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9D%BE%E5%BC%9B%E5%9E%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 松弛型线性规划</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B1%82%E8%A7%A3%E2%80%94%E2%80%94%E5%8D%95%E7%BA%AF%E5%BD%A2%E7%AE%97%E6%B3%95-Simplex-algorithm"><span class="toc-number">1.3.</span> <span class="toc-text">二、求解——单纯形算法(Simplex algorithm)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 算法概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pivot"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">Pivot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simplex"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">Simplex</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 初始化过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.</span> <span class="toc-text">三、实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">四、对偶问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BE%8B%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">五、例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NOI2008-%E5%BF%97%E6%84%BF%E8%80%85%E6%8B%9B%E5%8B%9F"><span class="toc-number">1.6.1.</span> <span class="toc-text">[NOI2008] 志愿者招募</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZJOI2013-%E9%98%B2%E5%AE%88%E6%88%98%E7%BA%BF"><span class="toc-number">1.6.2.</span> <span class="toc-text">[ZJOI2013]防守战线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SHOI2004-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">1.6.3.</span> <span class="toc-text">[SHOI2004]最小生成树</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&text=线性规划学习笔记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&is_video=false&description=线性规划学习笔记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=线性规划学习笔记&body=Check out this article: http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=线性规划学习笔记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&name=线性规划学习笔记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/06/29/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&t=线性规划学习笔记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

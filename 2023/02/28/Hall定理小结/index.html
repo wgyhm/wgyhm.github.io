@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Hall 定理小结Hall 定理对于二分图 $G&#x3D;(V,E)$ ，令 $N(v)$ 表示与点 $v$ 相邻的点集，则关于最大匹配，我们有如下结论： 设二分图 $G$ 的两部分 $X,Y$，且 $|X|\le |Y|$ ，则 $|X|$ 存在完美匹配（存在一个大小为 $|X|$ 的匹配）当且仅当 $\forall S\subseteq X$，都有 $S\le |N(S)|$。 证明网上很多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hall定理小结">
+<meta property="og:url" content="http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="Hall 定理小结Hall 定理对于二分图 $G&#x3D;(V,E)$ ，令 $N(v)$ 表示与点 $v$ 相邻的点集，则关于最大匹配，我们有如下结论： 设二分图 $G$ 的两部分 $X,Y$，且 $|X|\le |Y|$ ，则 $|X|$ 存在完美匹配（存在一个大小为 $|X|$ 的匹配）当且仅当 $\forall S\subseteq X$，都有 $S\le |N(S)|$。 证明网上很多">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-28T11:47:47.000Z">
+<meta property="article:modified_time" content="2023-02-28T11:48:16.303Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="Hall定理">
+<meta property="article:tag" content="二分图">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Hall定理小结</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/02/28/P8321%E3%80%8EJROI-4%E3%80%8F%E6%B2%88%E9%98%B3%E5%A4%A7%E8%A1%97-2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/02/03/%E6%A0%91%E5%90%8C%E6%9E%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&text=Hall定理小结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&is_video=false&description=Hall定理小结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hall定理小结&body=Check out this article: http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&name=Hall定理小结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&t=Hall定理小结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hall-%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">Hall 定理小结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hall-%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">Hall 定理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA1"><span class="toc-number">1.1.1.</span> <span class="toc-text">推论1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA2"><span class="toc-number">1.1.2.</span> <span class="toc-text">推论2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CF1373F-Network-Coverage"><span class="toc-number">1.1.3.</span> <span class="toc-text">CF1373F Network Coverage</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">题意：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%81%9A%E6%B3%95"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">做法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CODE"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">CODE</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA3"><span class="toc-number">1.1.4.</span> <span class="toc-text">推论3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARC076F"><span class="toc-number">1.1.5.</span> <span class="toc-text">ARC076F</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">解法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CF338E"><span class="toc-number">1.1.6.</span> <span class="toc-text">CF338E</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95-1"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">解法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E4%BE%8B%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">可能的例题</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Hall定理小结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-02-28T11:47:47.000Z" itemprop="datePublished">2023-02-28</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Hall%E5%AE%9A%E7%90%86/" rel="tag">Hall定理</a>, <a class="tag-link-link" href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" rel="tag">二分图</a>, <a class="tag-link-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Hall-定理小结"><a href="#Hall-定理小结" class="headerlink" title="Hall 定理小结"></a>Hall 定理小结</h2><h3 id="Hall-定理"><a href="#Hall-定理" class="headerlink" title="Hall 定理"></a>Hall 定理</h3><p>对于二分图 $G&#x3D;(V,E)$ ，令 $N(v)$ 表示与点 $v$ 相邻的点集，则关于最大匹配，我们有如下结论：</p>
+<p>设二分图 $G$ 的两部分 $X,Y$，且 $|X|\le |Y|$ ，则 $|X|$ 存在完美匹配（存在一个大小为 $|X|$ 的匹配）当且仅当 $\forall S\subseteq X$，都有 $S\le |N(S)|$。</p>
+<p>证明网上很多，这里不再赘述。</p>
+<h4 id="推论1"><a href="#推论1" class="headerlink" title="推论1"></a>推论1</h4><p>如果一个无向图的每个点度数都为 $k$，则成为其为 $k$ 正则图。</p>
+<p>那么左右点数相等的 $k$ 正则二分图必有完美匹配。$k\ge 1$</p>
+<p>证明：</p>
+<blockquote>
+<p>若不然，考虑一个左部点集 $L$，则存在 $R&#x3D;N(L),|R|&lt;|L|$。考虑到 $|R|$ 的所有点的度数和不小于 $|L|\times k$ ，但是 $|R|&lt;|L|$，这与每个点的度数都为 $k$ 矛盾。</p>
+</blockquote>
+<h4 id="推论2"><a href="#推论2" class="headerlink" title="推论2"></a>推论2</h4><p>Hall 定理可以用于点有权值的情况。左部点 $i$ 需要匹配 $a_i$ 个右部点，右部点 $i$ 需要匹配 $b_i$ 个左部点。<strong>匹配是可重复的。</strong>只需要将定理改写一下。其有完美匹配的充要条件为：<br>$$<br>\forall S\subseteq X,|\sum\limits_{x\in S}a_x|\le |\sum\limits_{y\in N(S)}b_y|<br>$$<br>证明可以将左部点 $i$ 拆成 $a_i$ 个点，右部点同样。发现此条件和原本的 Hall 定理是等价的。</p>
+<h4 id="CF1373F-Network-Coverage"><a href="#CF1373F-Network-Coverage" class="headerlink" title="CF1373F Network Coverage"></a>CF1373F Network Coverage</h4><h5 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h5><p> $n$ 个城市，这 $n$个城市首尾相接形成一个环。每个城市需要 $a_i$ 个网络数量。$n$ 个网络基站，第 $i$ 个网络基站有 $b_i$ 的网络数量，可以给 $i$ 和 $i+1$ 提供 网络。（第 $n$ 个网络基站可以给第 $n$ 座城市和第 $1$ 座城市提供网络）。</p>
+<p>判断能否使得所有的家庭都获得网络。</p>
+<p>$n\le 10^6$</p>
+<h5 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h5><p>显然是个带权二分图求完美匹配的题。</p>
+<p>考虑枚举城市的集合 $L$，如果 $L$ 不是一个连续的区间，判断其是否合法，与其中每个连续的区间分别同时满足判定的条件是等价的。</p>
+<p>转化为对于任意区间 $[l,r]$ ，$\sum\limits_{i&#x3D;l}^r a_i\le \sum\limits_{i&#x3D;l-1}^rb_i$ 都成立。</p>
+<p>前缀和+后缀最大值即可。题目要求为环的情况，断环为链。</p>
+<h5 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[maxn],b[maxn],n,d[maxn],suf[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">solve</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i,sum1=<span class="number">0</span>,sum2=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(b[i]),d[i]=a[i]-b[i],sum1+=d[i];</span><br><span class="line">	<span class="keyword">if</span> (sum1&gt;<span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) a[i+n]=a[i],b[i+n]=b[i];</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n*<span class="number">2</span>;i++) d[i]=d[i<span class="number">-1</span>]+b[i]-a[i];</span><br><span class="line">	<span class="keyword">for</span> (suf[n*<span class="number">2</span>+<span class="number">1</span>]=<span class="number">1e18</span>,i=n*<span class="number">2</span>;i&gt;=<span class="number">1</span>;i--) suf[i]=<span class="built_in">min</span>(suf[i+<span class="number">1</span>],d[i]);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (suf[i+<span class="number">1</span>]-d[i]+b[i]&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="推论3"><a href="#推论3" class="headerlink" title="推论3"></a>推论3</h4><p>设二分图 $G$ 的两部分分别为 $X,Y$，则最大匹配为 $|X|-\max\limits_{S\subseteq X}(|S|-|N(S)|)$</p>
+<p>证明不再赘述。<del>主要是不会</del></p>
+<h4 id="ARC076F"><a href="#ARC076F" class="headerlink" title="ARC076F"></a>ARC076F</h4><h5 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h5><p>第 $i$ 个人可以与第 $[1,l_i]\bigcup[r_i,m]$ 的凳子相连。求最大匹配。</p>
+<p>$n,m\le 2\times10^5$</p>
+<h5 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h5><p>考虑按 $l_i$ 升序排序。 当前枚举到 $i$。必须去 $i$ ，则：<br>$$<br>|X|-\max_{S\subseteq}(|S|-|N(S)|)<br>&#x3D;|X|-\max_{S\subseteq X}(|S|+m-\bigcup_{j\in S}(l_i,r_i)<br>$$<br> 枚举并集，不妨枚举的区间为 $(l_i,k),k&gt;l_i$<br>$$<br>n+m-\max_{S\subseteq X}{(\sum\limits_{j\le i}1[l_j\le l_i][k\le r_j]+k-l_i-1})<br>$$<br>用线段树维护 $r_j$ 即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">#define ll long long</span><br><span class="line">#define ull unsigned long long</span><br><span class="line">#define maxn 200005</span><br><span class="line">#define put() putchar(&#x27;\n&#x27;)</span><br><span class="line">#define Tp template&lt;typename Ty&gt;</span><br><span class="line">#define Ts template&lt;typename Ty,typename... Ar&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">inline void read(int &amp;x)&#123;</span><br><span class="line">    int f=1;x=0;char c=getchar();</span><br><span class="line">    while (c&lt;&#x27;0&#x27;||c&gt;&#x27;9&#x27;) &#123;if (c==&#x27;-&#x27;) f=-1;c=getchar();&#125;</span><br><span class="line">    while (c&gt;=&#x27;0&#x27;&amp;&amp;c&lt;=&#x27;9&#x27;) &#123;x=x*10+c-&#x27;0&#x27;;c=getchar();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line">namespace Debug&#123;</span><br><span class="line">	Tp void _debug(char* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;&#x27;=&#x27;&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts void _debug(char* f,Ty x,Ar... y)&#123;while(*f!=&#x27;,&#x27;) cerr&lt;&lt;*f++;cerr&lt;&lt;&#x27;=&#x27;&lt;&lt;x&lt;&lt;&quot;,&quot;;_debug(f+1,y...);&#125;</span><br><span class="line">	Tp ostream&amp; operator&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;&quot;[&quot;;for(auto&amp; vv:V) os&lt;&lt;vv&lt;&lt;&quot;,&quot;;os&lt;&lt;&quot;]&quot;;return os;&#125;</span><br><span class="line">	#define gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span><br><span class="line">&#125;using namespace Debug;</span><br><span class="line">struct node&#123;</span><br><span class="line">	int l,r;</span><br><span class="line">&#125;g[maxn];</span><br><span class="line">inline bool cmp(node x,node y) &#123;return x.l&lt;y.l;&#125;</span><br><span class="line">int n,m;</span><br><span class="line">namespace Seg&#123;</span><br><span class="line">	struct yyy&#123;</span><br><span class="line">		int Max,lazy;</span><br><span class="line">	&#125;f[maxn&lt;&lt;2];</span><br><span class="line">	inline void Pushup(int rt) &#123;f[rt].Max=max(f[rt&lt;&lt;1].Max,f[rt&lt;&lt;1|1].Max);&#125;</span><br><span class="line">	inline void Pushdown(int l,int r,int rt) &#123;</span><br><span class="line">		if (f[rt].lazy) &#123;</span><br><span class="line">			int mid=l+r&gt;&gt;1,k=f[rt].lazy;f[rt].lazy=0;</span><br><span class="line">			f[rt&lt;&lt;1].Max+=k,f[rt&lt;&lt;1|1].Max+=k;</span><br><span class="line">			f[rt&lt;&lt;1].lazy+=k,f[rt&lt;&lt;1|1].lazy+=k;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	inline void Update(int l,int r,int rt,int head,int tail,int k) &#123;</span><br><span class="line">		if (head&lt;=l&amp;&amp;r&lt;=tail) return f[rt].Max+=k,f[rt].lazy+=k,void();</span><br><span class="line">		int mid=l+r&gt;&gt;1;Pushdown(l,r,rt);</span><br><span class="line">		if (head&lt;=mid) Update(l,mid,rt&lt;&lt;1,head,tail,k);</span><br><span class="line">		if (tail&gt;mid)  Update(mid+1,r,rt&lt;&lt;1|1,head,tail,k);</span><br><span class="line">		Pushup(rt); </span><br><span class="line">	&#125;</span><br><span class="line">	inline int Query(int l,int r,int rt,int head,int tail) &#123;</span><br><span class="line">		if (head&lt;=l&amp;&amp;r&lt;=tail) return f[rt].Max;</span><br><span class="line">		int mid=l+r&gt;&gt;1,tmp1=0,tmp2=0;Pushdown(l,r,rt);</span><br><span class="line">		if (head&lt;=mid) tmp1=Query(l,mid,rt&lt;&lt;1,head,tail);</span><br><span class="line">		if (tail&gt;mid)  tmp2=Query(mid+1,r,rt&lt;&lt;1|1,head,tail);</span><br><span class="line">		return max(tmp1,tmp2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">using Seg::Update;</span><br><span class="line">using Seg::Query;</span><br><span class="line">signed main(void)&#123;</span><br><span class="line">	int i,ans=0; </span><br><span class="line">	read(n);read(m);</span><br><span class="line">	for (i=1;i&lt;=n;i++) read(g[i].l),read(g[i].r); </span><br><span class="line">	sort(g+1,g+1+n,cmp);m++;</span><br><span class="line">	for (i=0;i&lt;=m;i++) Update(0,m,1,i,i,i);</span><br><span class="line">	for (i=1;i&lt;=n;i++) &#123;</span><br><span class="line">		Update(0,m,1,0,g[i].r,1);</span><br><span class="line">		ans=max(ans,Query(0,m,1,g[i].l,m)-g[i].l);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d&quot;,max(max(0,n-m+1),ans-m));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="CF338E"><a href="#CF338E" class="headerlink" title="CF338E"></a>CF338E</h4><h5 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h5><p>$A$ 的长度为 $n$，$B$ 的长度为 $m$。</p>
+<p>求 $A$ 有多少长度为 $m$ 的区间中的数和 $B$ 中的数完美匹配。</p>
+<p>两个数匹配当且仅当其和不小于 $h$。 (区间必须连续)</p>
+<p>$n,m\le 1.5\times 10^5$</p>
+<h5 id="解法-1"><a href="#解法-1" class="headerlink" title="解法"></a>解法</h5><p>顺序与连边无关。考虑将 $B$ 先从大到小排序。那么对于 $a_i$ ，其向 $B$ 连边的节点一定为区间 $[1,l_i]$ 。这是容易计算的。</p>
+<p>考虑 Hall 定理。枚举 $N(S)&#x3D;[1,j]$，则有：<br>$$<br>\text{最大匹配}&#x3D;|X|-\max_{S\subseteq X}(|S|-|N(S)|)&#x3D;|X|-\max_{S\subseteq X}(\sum\limits 1[l_i\le j]-j)<br>$$<br>线段树维护 $l_i$ 即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 200005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f+<span class="number">1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="type">int</span> n,m,K;</span><br><span class="line"><span class="type">int</span> a[maxn],b[maxn],r[maxn],g[maxn];</span><br><span class="line"><span class="keyword">namespace</span> Seg&#123;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">yyy</span>&#123;</span><br><span class="line">		<span class="type">int</span> lazy,Max; </span><br><span class="line">	&#125;f[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Pushup</span><span class="params">(<span class="type">int</span> rt)</span> </span>&#123;f[rt].Max=<span class="built_in">max</span>(f[rt&lt;&lt;<span class="number">1</span>].Max,f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].Max);&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Pushdown</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (f[rt].lazy) &#123;</span><br><span class="line">			<span class="type">int</span> k=f[rt].lazy;f[rt].lazy=<span class="number">0</span>;</span><br><span class="line">			f[rt&lt;&lt;<span class="number">1</span>].Max+=k,f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].Max+=k;</span><br><span class="line">			f[rt&lt;&lt;<span class="number">1</span>].lazy+=k,f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].lazy+=k;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Update</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt,<span class="type">int</span> head,<span class="type">int</span> tail,<span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (head&lt;=l&amp;&amp;r&lt;=tail) <span class="keyword">return</span> f[rt].lazy+=k,f[rt].Max+=k,<span class="built_in">void</span>();</span><br><span class="line">		<span class="built_in">Pushdown</span>(l,r,rt);<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (head&lt;=mid) <span class="built_in">Update</span>(l,mid,rt&lt;&lt;<span class="number">1</span>,head,tail,k);</span><br><span class="line">		<span class="keyword">if</span> (tail&gt;mid)  <span class="built_in">Update</span>(mid+<span class="number">1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,head,tail,k);</span><br><span class="line">		<span class="built_in">Pushup</span>(rt);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> Seg::Update;</span><br><span class="line"><span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);<span class="built_in">read</span>(K);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) <span class="built_in">read</span>(b[i]);<span class="built_in">sort</span>(b+<span class="number">1</span>,b+<span class="number">1</span>+m),<span class="built_in">reverse</span>(b+<span class="number">1</span>,b+<span class="number">1</span>+m);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) g[i]=K-b[i];</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="built_in">read</span>(a[i]);</span><br><span class="line">		<span class="keyword">if</span> (a[i]&gt;=g[<span class="number">1</span>]) r[i]=<span class="built_in">lower_bound</span>(g+<span class="number">1</span>,g+<span class="number">1</span>+m,a[i]+<span class="number">1</span>)-g<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=m;i++) <span class="built_in">Update</span>(<span class="number">0</span>,m,<span class="number">1</span>,i,i,-i);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (i&gt;m) &#123;</span><br><span class="line">			<span class="built_in">Update</span>(<span class="number">0</span>,m,<span class="number">1</span>,r[i-m],m,<span class="number">-1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">Update</span>(<span class="number">0</span>,m,<span class="number">1</span>,r[i],m,<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span> (i&gt;=m) &#123;</span><br><span class="line">			<span class="keyword">if</span> (Seg::f[<span class="number">1</span>].Max==<span class="number">0</span>) ans++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="可能的例题"><a href="#可能的例题" class="headerlink" title="可能的例题"></a>可能的例题</h3><ul>
+<li>CF1373G</li>
+<li>CF1718D</li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hall-%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">Hall 定理小结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hall-%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">Hall 定理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA1"><span class="toc-number">1.1.1.</span> <span class="toc-text">推论1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA2"><span class="toc-number">1.1.2.</span> <span class="toc-text">推论2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CF1373F-Network-Coverage"><span class="toc-number">1.1.3.</span> <span class="toc-text">CF1373F Network Coverage</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">题意：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%81%9A%E6%B3%95"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">做法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CODE"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">CODE</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA3"><span class="toc-number">1.1.4.</span> <span class="toc-text">推论3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARC076F"><span class="toc-number">1.1.5.</span> <span class="toc-text">ARC076F</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">解法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CF338E"><span class="toc-number">1.1.6.</span> <span class="toc-text">CF338E</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">题意</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95-1"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">解法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E4%BE%8B%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">可能的例题</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&text=Hall定理小结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&is_video=false&description=Hall定理小结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hall定理小结&body=Check out this article: http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&title=Hall定理小结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&name=Hall定理小结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/02/28/Hall%E5%AE%9A%E7%90%86%E5%B0%8F%E7%BB%93/&t=Hall定理小结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

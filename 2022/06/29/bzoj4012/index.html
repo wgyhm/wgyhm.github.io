@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="点分树两个关键的性质：  点分树最大深度是 $\log$ 级别的  点分树上两点的 $lca$ 在原树上两点之间的路径上   Solution前情提要：那个每个点的度数小于等于三是用来卡常的。 首先假设没有 $l,r$ 的限制，询问某个点到其他所有点的距离之和，我们用点分树去做该如何做。 $sum[x][0]$ 表示点分树上$x$子树的所有点到 $x$ 的距离和 $sum[x][1]$ 表示点分树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bzoj4012">
+<meta property="og:url" content="http://example.com/2022/06/29/bzoj4012/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="点分树两个关键的性质：  点分树最大深度是 $\log$ 级别的  点分树上两点的 $lca$ 在原树上两点之间的路径上   Solution前情提要：那个每个点的度数小于等于三是用来卡常的。 首先假设没有 $l,r$ 的限制，询问某个点到其他所有点的距离之和，我们用点分树去做该如何做。 $sum[x][0]$ 表示点分树上$x$子树的所有点到 $x$ 的距离和 $sum[x][1]$ 表示点分树">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-29T10:58:54.000Z">
+<meta property="article:modified_time" content="2022-06-29T11:06:45.899Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="bzoj">
+<meta property="article:tag" content="点分治">
+<meta property="article:tag" content="点分树">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>bzoj4012</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/06/29/bzoj4036/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/06/29/bzoj1513/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/06/29/bzoj4012/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/06/29/bzoj4012/&text=bzoj4012"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/06/29/bzoj4012/&is_video=false&description=bzoj4012"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=bzoj4012&body=Check out this article: http://example.com/2022/06/29/bzoj4012/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/06/29/bzoj4012/&name=bzoj4012&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/06/29/bzoj4012/&t=bzoj4012"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#code"><span class="toc-number">2.</span> <span class="toc-text">code</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        bzoj4012
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-06-29T10:58:54.000Z" itemprop="datePublished">2022-06-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="tag-link-link" href="/tags/%E7%82%B9%E5%88%86%E6%A0%91/" rel="tag">点分树</a>, <a class="tag-link-link" href="/tags/%E7%82%B9%E5%88%86%E6%B2%BB/" rel="tag">点分治</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>点分树两个关键的性质：</p>
+<ul>
+<li><p>点分树最大深度是 $\log$ 级别的</p>
+</li>
+<li><p>点分树上两点的 $lca$ 在原树上两点之间的路径上</p>
+</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>前情提要：那个每个点的度数小于等于三是用来卡常的。</p>
+<p>首先假设没有 $l,r$ 的限制，询问某个点到其他所有点的距离之和，我们用点分树去做该如何做。</p>
+<p>$sum[x][0]$ 表示点分树上$x$子树的所有点到 $x$ 的距离和</p>
+<p>$sum[x][1]$ 表示点分树上 $x$ 子树的所有点到 $x$ 点分树上父亲的距离和</p>
+<p>$size_x$ 表示点分树上 $x$ 子树大小</p>
+<p>显然对于询问的点 $x$，我们跳点分树上的父亲即可，初始时 $ans$ 设为也就 $sum[x][0]$ 是点分树 $x$ 子树下方的贡献和。</p>
+<p>跳点分树父亲时，当前跳到点 $i$（点 $i$ 要有父亲），$ans +&#x3D; sum[fa_i][0] - sum[i][1] + (siz_{fa_i} - siz_i) * Dis(x, fa_i)$</p>
+<p>其中的减法是减去多算的。</p>
+<p>加上 $l,r$ 的限制，只要把每个节点的在点分树上子树的点全存在一个 $vector$ 里，排个序然后前缀和+二分即可。</p>
+<p><strong>解决路径相关而与树的形态不想关的题目，考虑点分治或者点分树。</strong></p>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">#define ll long long </span><br><span class="line">#define maxn 200005</span><br><span class="line">#define put() putchar(&#x27;\n&#x27;)</span><br><span class="line">using namespace std;</span><br><span class="line">struct FastIO&#123;</span><br><span class="line">	static const int S=1048576;</span><br><span class="line">	char buf[S],*L,*R;int stk[20],Top;~FastIO()&#123;clear();&#125;</span><br><span class="line">	inline char nc()&#123;return L==R&amp;&amp;(R=(L=buf)+fread(buf,1,S,stdin),L==R)?EOF:*L++;&#125;inline void clear()&#123;fwrite(buf,1,Top,stdout);Top=0;&#125;</span><br><span class="line">	inline void pc(char ch)&#123;Top==S&amp;&amp;(clear(),0);buf[Top++]=ch;&#125;inline void endl()&#123;pc(&#x27;\n&#x27;);&#125;</span><br><span class="line">	FastIO&amp; operator &gt;&gt; (char&amp;ch)&#123;while(ch=nc(),ch==&#x27; &#x27;||ch==&#x27;\n&#x27;);return *this;&#125;</span><br><span class="line">	template&lt;typename T&gt;FastIO&amp; operator &gt;&gt; (T&amp;ret)&#123;</span><br><span class="line">		ret=0;int f=1;char ch=nc();while(ch&lt;&#x27;0&#x27;||ch&gt;&#x27;9&#x27;)&#123;if(ch==&#x27;-&#x27;)f=-f;ch=nc();&#125;</span><br><span class="line">		while(ch&gt;=&#x27;0&#x27;&amp;&amp;ch&lt;=&#x27;9&#x27;)&#123;ret=ret*10+ch-&#x27;0&#x27;;ch=nc();&#125;ret*=f;return *this;</span><br><span class="line">	&#125;</span><br><span class="line">	FastIO&amp; operator &gt;&gt; (char* s)&#123;int Len=0;char ch=nc();while(ch!=&#x27;\n&#x27;)&#123;*(s+Len)=ch;Len++;ch=nc();&#125;&#125;</span><br><span class="line">	template&lt;typename T&gt;FastIO&amp; operator &lt;&lt; (T x)&#123;</span><br><span class="line">		if(x&lt;0)&#123;pc(&#x27;-&#x27;);x=-x;&#125;do&#123;stk[++stk[0]]=x%10;x/=10;&#125;while(x);</span><br><span class="line">		while(stk[0]) pc(&#x27;0&#x27;+stk[stk[0]--]);return *this;</span><br><span class="line">	&#125;</span><br><span class="line">	FastIO&amp; operator &lt;&lt; (char ch)&#123;pc(ch);return *this;&#125;</span><br><span class="line">	FastIO&amp; operator &lt;&lt; (string str)&#123;int Len=str.size()-1;for(stk[0]=0;Len&gt;=0;Len--) stk[++stk[0]]=str[Len];while(stk[0]) pc(stk[stk[0]--]);return *this;&#125;</span><br><span class="line">&#125;fin,fout;</span><br><span class="line">const int inf=1e9;</span><br><span class="line">int h[maxn],head=1,lg[maxn],n,m;</span><br><span class="line">int w[maxn],fa[maxn],size[maxn],Max[maxn];</span><br><span class="line">ll dis[maxn];</span><br><span class="line">struct yyy&#123;</span><br><span class="line">	ll sum;int id;</span><br><span class="line">	yyy(int a=0,ll b=0) &#123;id=a;sum=b;&#125;</span><br><span class="line">	bool operator &lt;(const yyy &amp;x) const &#123;return id&lt;x.id;&#125; </span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;yyy&gt;t[maxn][2];</span><br><span class="line">bitset&lt;maxn&gt; vis;</span><br><span class="line">struct node&#123;</span><br><span class="line">	int to,z,w;</span><br><span class="line">	inline void add(int x,int y,int val)&#123;</span><br><span class="line">		to=y;z=h[x];h[x]=head;w=val;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;a[maxn*2];</span><br><span class="line">namespace lca&#123;</span><br><span class="line">	int fa[maxn][21],deep[maxn];</span><br><span class="line">	inline void dfs(int x,int pre)&#123;</span><br><span class="line">		int i;deep[x]=deep[pre]+1;fa[x][0]=pre;</span><br><span class="line">		for (i=1;i&lt;=lg[deep[x]];i++) fa[x][i]=fa[fa[x][i-1]][i-1];</span><br><span class="line">		for (i=h[x];i;i=a[i].z) if (a[i].to^pre) dis[a[i].to]=dis[x]+a[i].w,dfs(a[i].to,x);</span><br><span class="line">	&#125;</span><br><span class="line">	inline int query(int x,int y)&#123;</span><br><span class="line">		int i;</span><br><span class="line">		if (deep[x]&lt;deep[y]) swap(x,y);</span><br><span class="line">		while (deep[x]&gt;deep[y]) x=fa[x][lg[deep[x]-deep[y]]];</span><br><span class="line">		if (x==y) return x;</span><br><span class="line">		for (i=lg[deep[x]];i&gt;=0;i--) if (fa[x][i]!=fa[y][i]) x=fa[x][i],y=fa[y][i];</span><br><span class="line">		return fa[x][0];</span><br><span class="line">	&#125;</span><br><span class="line">	inline ll d(int x,int y)&#123;</span><br><span class="line">		return dis[x]+dis[y]-2*dis[query(x,y)];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int root,Size,maxroot;</span><br><span class="line">inline void dfs(int x,int pre)&#123;</span><br><span class="line">	int i;size[x]=1;</span><br><span class="line">//	t[root][0].push_back(yyy(w[x],lca::d(x,root)));</span><br><span class="line">//	if (fa[root]) t[root][1].push_back(yyy(w[x],lca::d(x,fa[root])));</span><br><span class="line">	for (i=h[x];i;i=a[i].z) </span><br><span class="line">	    if (a[i].to!=pre&amp;&amp;!vis[a[i].to]) </span><br><span class="line">		    dfs(a[i].to,x),size[x]+=size[a[i].to];</span><br><span class="line">&#125;</span><br><span class="line">inline void getroot(int x,int pre) &#123;</span><br><span class="line">	int i,maxs=0;size[x]=1;</span><br><span class="line">	for (i=h[x];i;i=a[i].z)</span><br><span class="line">	    if (a[i].to!=pre&amp;&amp;!vis[a[i].to]) &#123;</span><br><span class="line">	    	getroot(a[i].to,x);</span><br><span class="line">	        size[x]+=size[a[i].to];</span><br><span class="line">	        maxs=max(maxs,size[a[i].to]);</span><br><span class="line">		&#125;</span><br><span class="line">	maxs=max(maxs,Size-size[x]);</span><br><span class="line">	if (maxroot&gt;maxs) root=x,maxroot=maxs;</span><br><span class="line">&#125;</span><br><span class="line">inline void solve(int x,int pre) &#123;</span><br><span class="line">	int i;</span><br><span class="line">	vis[x]=1;dfs(x,0);</span><br><span class="line">	for (i=h[x];i;i=a[i].z)</span><br><span class="line">	    if (!vis[a[i].to]) &#123;</span><br><span class="line">	    	maxroot=inf;Size=size[a[i].to];getroot(a[i].to,x);</span><br><span class="line">	    	fa[root]=x;solve(root,x);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">inline ll query(int op,int x,int l,int r,ll &amp;size) &#123;</span><br><span class="line">	int lef=lower_bound(t[x][op].begin(),t[x][op].end(),yyy(l,0))-t[x][op].begin()-1;</span><br><span class="line">	int rig=upper_bound(t[x][op].begin(),t[x][op].end(),yyy(r,0))-t[x][op].begin()-1;</span><br><span class="line">	size=rig-lef;</span><br><span class="line">	ll ans=0;</span><br><span class="line">	if (rig&gt;=0&amp;&amp;rig&lt;t[x][op].size()) ans+=t[x][op][rig].sum;</span><br><span class="line">	if (lef&gt;=0&amp;&amp;lef&lt;t[x][op].size()) ans-=t[x][op][lef].sum;</span><br><span class="line">	return ans;</span><br><span class="line">&#125;</span><br><span class="line">ll lastans;</span><br><span class="line">signed main()&#123;</span><br><span class="line">    int i,x,y,z,j,A,len;</span><br><span class="line">    int l,r;</span><br><span class="line">    fin&gt;&gt;n&gt;&gt;m&gt;&gt;A;</span><br><span class="line">    for (i=1;i&lt;=n;i++) fin&gt;&gt;w[i];</span><br><span class="line">    for (i=1;i&lt;n;i++) &#123;</span><br><span class="line">    	fin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">    	a[++head].add(x,y,z);</span><br><span class="line">    	a[++head].add(y,x,z);</span><br><span class="line">	&#125;</span><br><span class="line">	for (i=2;i&lt;=n;i++) lg[i]=lg[i/2]+1;</span><br><span class="line">	lca::dfs(1,0);</span><br><span class="line">	Size=n;maxroot=inf;</span><br><span class="line">	getroot(1,0);</span><br><span class="line">	solve(root,0);</span><br><span class="line">	for (i=1;i&lt;=n;i++) &#123;</span><br><span class="line">		for (j=i;j;j=fa[j]) &#123;</span><br><span class="line">			t[j][0].push_back(yyy(w[i],lca::d(i,j)));</span><br><span class="line">			if (fa[j]) t[j][1].push_back(yyy(w[i],lca::d(i,fa[j])));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (i=1;i&lt;=n;i++) &#123;</span><br><span class="line">		sort(t[i][0].begin(),t[i][0].end());</span><br><span class="line">		sort(t[i][1].begin(),t[i][1].end());</span><br><span class="line">		len=t[i][0].size();for (j=1;j&lt;len;j++) t[i][0][j].sum+=t[i][0][j-1].sum;</span><br><span class="line">		len=t[i][1].size();for (j=1;j&lt;len;j++) t[i][1][j].sum+=t[i][1][j-1].sum;</span><br><span class="line">	&#125;</span><br><span class="line">	while (m--)&#123;</span><br><span class="line">		fin&gt;&gt;x&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		l=(lastans+l)%A;r=(lastans+r)%A;</span><br><span class="line">		if (l&gt;r) swap(l,r);</span><br><span class="line">		ll sum1=0,sum2=0;</span><br><span class="line">		lastans=query(0,x,l,r,sum1);</span><br><span class="line">		for (i=x;fa[i];i=fa[i]) &#123;</span><br><span class="line">			lastans+=query(0,fa[i],l,r,sum2)-query(1,i,l,r,sum1);</span><br><span class="line">			lastans+=(sum2-sum1)*lca::d(x,fa[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%lld\n&quot;,lastans);</span><br><span class="line">	&#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#code"><span class="toc-number">2.</span> <span class="toc-text">code</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/06/29/bzoj4012/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/06/29/bzoj4012/&text=bzoj4012"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/06/29/bzoj4012/&is_video=false&description=bzoj4012"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=bzoj4012&body=Check out this article: http://example.com/2022/06/29/bzoj4012/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/06/29/bzoj4012/&title=bzoj4012"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/06/29/bzoj4012/&name=bzoj4012&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/06/29/bzoj4012/&t=bzoj4012"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

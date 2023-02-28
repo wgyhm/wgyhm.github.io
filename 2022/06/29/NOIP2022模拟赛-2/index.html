@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="T1令 $n&#x3D;\prod p_i^{q_i}$$$ans&#x3D;8(\prod p_i^{\left\lfloor\frac{q_i}{2}\right\rfloor} -1)$$ 1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;bits&#x2F;stdc++.h&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP2022模拟赛 2">
+<meta property="og:url" content="http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="T1令 $n&#x3D;\prod p_i^{q_i}$$$ans&#x3D;8(\prod p_i^{\left\lfloor\frac{q_i}{2}\right\rfloor} -1)$$ 1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;bits&#x2F;stdc++.h&gt;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-29T11:40:50.000Z">
+<meta property="article:modified_time" content="2022-06-29T11:41:19.036Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="构造">
+<meta property="article:tag" content="NOIP模拟赛">
+<meta property="article:tag" content="树的直径">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>NOIP2022模拟赛 2</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/06/30/bzoj2084/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&text=NOIP2022模拟赛 2"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&is_video=false&description=NOIP2022模拟赛 2"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NOIP2022模拟赛 2&body=Check out this article: http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&name=NOIP2022模拟赛 2&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&t=NOIP2022模拟赛 2"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#T1"><span class="toc-number">1.</span> <span class="toc-text">T1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T2"><span class="toc-number">2.</span> <span class="toc-text">T2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T3"><span class="toc-number">3.</span> <span class="toc-text">T3</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NOIP2022模拟赛 2
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-06-29T11:40:50.000Z" itemprop="datePublished">2022-06-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B/" rel="tag">NOIP模拟赛</a>, <a class="tag-link-link" href="/tags/%E6%9E%84%E9%80%A0/" rel="tag">构造</a>, <a class="tag-link-link" href="/tags/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/" rel="tag">树的直径</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>令 $n&#x3D;\prod p_i^{q_i}$<br>$$<br>ans&#x3D;8(\prod p_i^{\left\lfloor\frac{q_i}{2}\right\rfloor} -1)<br>$$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">div</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123; </span><br><span class="line">	<span class="type">int</span> i,n,x;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">while</span> (n) &#123;</span><br><span class="line">		<span class="type">int</span> ans=<span class="number">0</span>,x=n,sum=<span class="number">1</span>,tmp=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">2</span>;i*i&lt;=n;i++) &#123;</span><br><span class="line">			<span class="type">int</span> tot=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (x%i==<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">while</span> (x%i==<span class="number">0</span>) &#123;</span><br><span class="line">					tot++;</span><br><span class="line">					<span class="keyword">if</span> (tot%<span class="number">2</span>==<span class="number">1</span>) sum*=i;</span><br><span class="line">					x/=i;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (tot==<span class="number">1</span>) tmp*=i;</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (x) sum*=x,tmp*=x;</span><br><span class="line">	<span class="comment">//	printf(&quot;%lld\n&quot;,sum);</span></span><br><span class="line">		<span class="keyword">for</span> (i=sum;i&lt;n;i+=sum) &#123;</span><br><span class="line">			<span class="type">int</span> x=tmp*(i/sum)*(i/sum)+tmp*((n-i)/sum)*((n-i)/sum);</span><br><span class="line">			<span class="keyword">if</span> ((x+n)%<span class="number">2</span>==<span class="number">0</span>) ans++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans*<span class="number">8</span>);</span><br><span class="line">		<span class="built_in">read</span>(n);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>先将权值从大到小排序。</p>
+<p>每次加入一条边，连接两棵树。</p>
+<p>新树的直径的两个端点在原来两棵树的四个直径端点之中。更新即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 200005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> h[maxn],head=<span class="number">1</span>,n,m,d[maxn];</span><br><span class="line"><span class="type">int</span> fa[maxn][<span class="number">21</span>],deep[maxn],dis[maxn],lg[maxn],id[maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">yyy</span>&#123;</span><br><span class="line">	<span class="type">int</span> to,z,w;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">		to=y;z=h[x];h[x]=head;w=val;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;a[maxn*<span class="number">2</span>];</span><br><span class="line">__int128 ans,pus;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">ins</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> z)</span> </span>&#123;</span><br><span class="line">	a[++head].<span class="built_in">add</span>(x,y,z);</span><br><span class="line">	a[++head].<span class="built_in">add</span>(y,x,z);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> pre)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i;deep[x]=deep[pre]+<span class="number">1</span>;fa[x][<span class="number">0</span>]=pre;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=lg[deep[x]];i++) fa[x][i]=fa[fa[x][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">for</span> (i=h[x];i;i=a[i].z) <span class="keyword">if</span> (a[i].to^pre) dis[a[i].to]=dis[x]+a[i].w,<span class="built_in">dfs</span>(a[i].to,x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">lca</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="keyword">if</span> (deep[x]&lt;deep[y]) <span class="built_in">swap</span>(x,y);</span><br><span class="line">	<span class="keyword">while</span> (deep[x]&gt;deep[y]) x=fa[x][lg[deep[x]-deep[y]]];</span><br><span class="line">	<span class="keyword">if</span> (x==y) <span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">for</span> (i=lg[deep[x]];i&gt;=<span class="number">0</span>;i--) <span class="keyword">if</span> (fa[x][i]^fa[y][i]) x=fa[x][i],y=fa[y][i];</span><br><span class="line">	<span class="keyword">return</span> fa[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">D</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> dis[x]+dis[y]<span class="number">-2</span>*dis[<span class="built_in">lca</span>(x,y)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> f[maxn],u[maxn],v[maxn],w[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getfa</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x==f[x]?x:f[x]=<span class="built_in">getfa</span>(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> d[x]&gt;d[y];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//printf(&quot;%lld %lld  &quot;,x,y);</span></span><br><span class="line">	x=<span class="built_in">getfa</span>(x),y=<span class="built_in">getfa</span>(y);f[x]=y;</span><br><span class="line">	<span class="comment">//printf(&quot;%lld %lld\n&quot;,x,y);</span></span><br><span class="line">	<span class="type">int</span> tmp1=<span class="built_in">D</span>(u[x],u[y]),tmp2=<span class="built_in">D</span>(v[x],u[y]),tmp3=<span class="built_in">D</span>(u[x],v[y]),tmp4=<span class="built_in">D</span>(v[x],v[y]);</span><br><span class="line">	<span class="type">int</span> Max=<span class="built_in">max</span>(tmp1,<span class="built_in">max</span>(tmp2,<span class="built_in">max</span>(tmp3,<span class="built_in">max</span>(tmp4,<span class="built_in">max</span>(w[x],w[y])))));</span><br><span class="line">	<span class="type">int</span> ans1=<span class="number">0</span>,ans2=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (w[y]==Max) ans1=u[y],ans2=v[y];</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (w[x]==Max) ans1=u[x],ans2=v[x];</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (tmp1==Max) ans1=u[x],ans2=u[y];</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (tmp2==Max) ans1=v[x],ans2=u[y];</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (tmp3==Max) ans1=u[x],ans2=v[y];</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (tmp4==Max) ans1=v[x],ans2=v[y]; </span><br><span class="line">	u[y]=ans1,v[y]=ans2;w[y]=Max;</span><br><span class="line">	pus=k;pus=pus*Max;</span><br><span class="line">	ans=<span class="built_in">max</span>(ans,pus);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(__int128 x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x&gt;=<span class="number">10</span>) <span class="built_in">write</span>(x/<span class="number">10</span>);</span><br><span class="line">	<span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i,x,y,z,j;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(d[i]),id[i]=i;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">2</span>;i&lt;=n;i++) lg[i]=lg[i/<span class="number">2</span>]+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">		<span class="built_in">read</span>(x);<span class="built_in">read</span>(y);<span class="built_in">read</span>(z);</span><br><span class="line">		<span class="built_in">ins</span>(x,y,z);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">sort</span>(id+<span class="number">1</span>,id+<span class="number">1</span>+n,cmp);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) f[i]=u[i]=v[i]=i;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="type">int</span> x=id[i];</span><br><span class="line">		<span class="comment">//printf(&quot;case %lld\n&quot;,id[i]);</span></span><br><span class="line">		<span class="keyword">for</span> (j=h[x];j;j=a[j].z) &#123;</span><br><span class="line">		<span class="comment">//	printf(&quot;%lld %lld\n&quot;,a[j].to,d[a[j].to]);</span></span><br><span class="line">			<span class="keyword">if</span> (d[a[j].to]&gt;=d[x]) <span class="built_in">merge</span>(x,a[j].to,d[x]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">write</span>(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>EJOI 2017 骆驼</p>
+<p>不会</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#T1"><span class="toc-number">1.</span> <span class="toc-text">T1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T2"><span class="toc-number">2.</span> <span class="toc-text">T2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T3"><span class="toc-number">3.</span> <span class="toc-text">T3</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&text=NOIP2022模拟赛 2"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&is_video=false&description=NOIP2022模拟赛 2"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NOIP2022模拟赛 2&body=Check out this article: http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&title=NOIP2022模拟赛 2"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&name=NOIP2022模拟赛 2&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/06/29/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B-2/&t=NOIP2022模拟赛 2"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
