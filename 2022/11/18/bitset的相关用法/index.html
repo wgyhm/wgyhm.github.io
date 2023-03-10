@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="今天碰到了 bitset 题，基本操作想了好久，索性记录一下。 内置函数 s.set() $s$ 中的所有都赋值为 $1$ s.reset() $s$ 中的所有都复制为 $0$ s.count() $s$ 中 $1$ 的个数  基本操作截取出 $s$ 的 $[l,r]$ 这一段。 A&#x3D;(s&gt;&gt;(r+1))&lt;&lt;(r+1); A 表示 $s$ 的 $[r+1,+\infty)$">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bitset的相关用法">
+<meta property="og:title" content="Bitset的相关用法">
 <meta property="og:url" content="http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="今天碰到了 bitset 题，基本操作想了好久，索性记录一下。 内置函数 s.set() $s$ 中的所有都赋值为 $1$ s.reset() $s$ 中的所有都复制为 $0$ s.count() $s$ 中 $1$ 的个数  基本操作截取出 $s$ 的 $[l,r]$ 这一段。 A&#x3D;(s&gt;&gt;(r+1))&lt;&lt;(r+1); A 表示 $s$ 的 $[r+1,+\infty)$">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>bitset的相关用法</title>
+    <title>Bitset的相关用法</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -105,16 +105,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&text=bitset的相关用法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&is_video=false&description=bitset的相关用法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bitset的相关用法&body=Check out this article: http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&name=bitset的相关用法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&t=bitset的相关用法"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&text=Bitset的相关用法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&is_video=false&description=Bitset的相关用法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bitset的相关用法&body=Check out this article: http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&name=Bitset的相关用法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&t=Bitset的相关用法"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -131,7 +131,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        bitset的相关用法
+        Bitset的相关用法
     </h1>
 
 
@@ -216,16 +216,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&text=bitset的相关用法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&is_video=false&description=bitset的相关用法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bitset的相关用法&body=Check out this article: http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=bitset的相关用法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&name=bitset的相关用法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&t=bitset的相关用法"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&text=Bitset的相关用法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&is_video=false&description=Bitset的相关用法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bitset的相关用法&body=Check out this article: http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&title=Bitset的相关用法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&name=Bitset的相关用法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/11/18/bitset%E7%9A%84%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/&t=Bitset的相关用法"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
