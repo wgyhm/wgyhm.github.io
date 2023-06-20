@@ -9,7 +9,7 @@
     <meta name="description" content="[JLOI2013] 卡牌游戏最近想刷点真题。感觉基础不够（体现在这题都需要看一眼题解），所以从简单一点的开始。 Solution正难则反，倒序考虑。 不考虑序号，假设我们已经知道第 $i+1$ 轮的情况，其中钦定第一个为庄，$f[i+1][j]$ 表示 $j$ 获胜的概率。 考虑转移，在第 $i$ 轮中，以第 $1$ 个人为庄，使用第 $j$ 张卡牌以后是第 $x$ 个人，则可以从第 $i+1$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JLOI2013 卡牌游戏">
-<meta property="og:url" content="http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/index.html">
+<meta property="og:url" content="http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="[JLOI2013] 卡牌游戏最近想刷点真题。感觉基础不够（体现在这题都需要看一眼题解），所以从简单一点的开始。 Solution正难则反，倒序考虑。 不考虑序号，假设我们已经知道第 $i+1$ 轮的情况，其中钦定第一个为庄，$f[i+1][j]$ 表示 $j$ 获胜的概率。 考虑转移，在第 $i$ 轮中，以第 $1$ 个人为庄，使用第 $j$ 张卡牌以后是第 $x$ 个人，则可以从第 $i+1$">
 <meta property="og:locale" content="en_US">
@@ -103,17 +103,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&text=JLOI2013 卡牌游戏"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&is_video=false&description=JLOI2013 卡牌游戏"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JLOI2013 卡牌游戏&body=Check out this article: http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&name=JLOI2013 卡牌游戏&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&t=JLOI2013 卡牌游戏"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&text=JLOI2013 卡牌游戏"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&is_video=false&description=JLOI2013 卡牌游戏"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JLOI2013 卡牌游戏&body=Check out this article: http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&name=JLOI2013 卡牌游戏&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&t=JLOI2013 卡牌游戏"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -206,17 +206,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&text=JLOI2013 卡牌游戏"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&is_video=false&description=JLOI2013 卡牌游戏"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JLOI2013 卡牌游戏&body=Check out this article: http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&name=JLOI2013 卡牌游戏&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&t=JLOI2013 卡牌游戏"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&text=JLOI2013 卡牌游戏"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&is_video=false&description=JLOI2013 卡牌游戏"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JLOI2013 卡牌游戏&body=Check out this article: http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&title=JLOI2013 卡牌游戏"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&name=JLOI2013 卡牌游戏&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/03/13/JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F/&t=JLOI2013 卡牌游戏"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

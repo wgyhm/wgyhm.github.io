@@ -9,7 +9,7 @@
     <meta name="description" content="一种 dp trick 常常在算贡献时，与排列相邻两个数的相对大小有关。这时候我们将排列从小到大插入，状态为有几个连着的“块”。分新建块，插入块头快尾，合并块。 常常要讨论转移的合法性。 [CEOI2016] kangaroo令 $f[i][j]$ 表示已经插入前 $i$ 个数，共有 $j$ 个块。 先不考虑头尾的限制。  新建块，可以建在 $j$ 个空隙中，$f[i][j]+&#x3D;f[i-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="插入Dp">
-<meta property="og:url" content="http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/index.html">
+<meta property="og:url" content="http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="一种 dp trick 常常在算贡献时，与排列相邻两个数的相对大小有关。这时候我们将排列从小到大插入，状态为有几个连着的“块”。分新建块，插入块头快尾，合并块。 常常要讨论转移的合法性。 [CEOI2016] kangaroo令 $f[i][j]$ 表示已经插入前 $i$ 个数，共有 $j$ 个块。 先不考虑头尾的限制。  新建块，可以建在 $j$ 个空隙中，$f[i][j]+&#x3D;f[i-">
 <meta property="og:locale" content="en_US">
@@ -104,17 +104,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&text=插入Dp"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&is_video=false&description=插入Dp"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=插入Dp&body=Check out this article: http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&name=插入Dp&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&t=插入Dp"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&text=插入Dp"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&is_video=false&description=插入Dp"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=插入Dp&body=Check out this article: http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&name=插入Dp&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&t=插入Dp"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -218,17 +218,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&text=插入Dp"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&is_video=false&description=插入Dp"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=插入Dp&body=Check out this article: http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&name=插入Dp&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/09/22/%E6%8F%92%E5%85%A5dp/&t=插入Dp"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&text=插入Dp"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&is_video=false&description=插入Dp"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=插入Dp&body=Check out this article: http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&title=插入Dp"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&name=插入Dp&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/&t=插入Dp"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
