@@ -14,7 +14,7 @@
 <meta property="og:description" content="CF1707D Partial Virtual TreesDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1707D Solution学到容斥了，感觉妙妙。 感觉这个 $S_i\not &#x3D; S_{i+1}$ 很烦，考虑容斥，令 $g_i$ 表示答案序列，$f_i$ 表示不考虑 $S_i\not &#x3D; S_{i+1}$ 的限制，结尾为 $">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-30T08:59:51.000Z">
-<meta property="article:modified_time" content="2023-08-30T09:00:10.645Z">
+<meta property="article:modified_time" content="2023-08-30T10:13:27.786Z">
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="容斥">
@@ -170,10 +170,10 @@
 <p>分两种情况考虑：</p>
 <ul>
 <li><p>$i$ 在集合中</p>
-<p>则子树的内可以任意选。<br>$$<br>f_{i,j}&#x3D;\prod\limits_{y\in son_i} \sum\limits_{k\le j} f_{y,j}<br>$$<br>令 $s_{y,j}&#x3D;\sum\limits <em>{k\le j} f</em>{y,k}$，前缀和优化一下是简单的。</p>
+<p>则子树的内可以任意选。<br>$$<br>f_{i,j}&#x3D;\prod\limits_{y\in son_i} \sum\limits_{k\le j} f_{y,j}<br>$$<br>令 $s_{y,j}&#x3D;\sum\limits_{k\le j} f_{y,k}$，前缀和优化一下是简单的。</p>
 </li>
 <li><p>$i$ 不在集合中</p>
-<p>则枚举 $i$ 在 $p$ 到 $p+1$ 的时间熄灭。<br>$$<br>f_{i,j}&#x3D;\sum_{p&lt;j}\sum <em>{x\in son_i} f</em>{x,j}\prod <em>{y\in son_i,y\not &#x3D; x} s</em>{y,p}<br>$$<br>预处理一些东西，前后缀积什么的，可以做到全局 $O(n^2)$。</p>
+<p>则枚举 $i$ 在 $p$ 到 $p+1$ 的时间熄灭。<br>$$<br>f_{i,j}&#x3D;\sum_{p&lt;j}\sum_{x\in son_i} f_{x,j}\prod_{y\in son_i,y\not &#x3D; x} s_{y,p}<br>$$<br>预处理一些东西，前后缀积什么的，可以做到全局 $O(n^2)$。</p>
 </li>
 </ul>
 <p>注意最后一个集合一定为 ${1}$。需要特判一下。</p>
