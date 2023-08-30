@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="CF1707D Partial Virtual TreesDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1707D Solution学到容斥了，感觉妙妙。 感觉这个 $S_i\not &#x3D; S_{i+1}$ 很烦，考虑容斥，令 $g_i$ 表示答案序列，$f_i$ 表示不考虑 $S_i\not &#x3D; S_{i+1}$ 的限制，结尾为 $">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF1707D Partial Virtual Tree">
+<meta property="og:url" content="http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="CF1707D Partial Virtual TreesDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1707D Solution学到容斥了，感觉妙妙。 感觉这个 $S_i\not &#x3D; S_{i+1}$ 很烦，考虑容斥，令 $g_i$ 表示答案序列，$f_i$ 表示不考虑 $S_i\not &#x3D; S_{i+1}$ 的限制，结尾为 $">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-30T08:59:51.000Z">
+<meta property="article:modified_time" content="2023-08-30T09:00:10.645Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="容斥">
+<meta property="article:tag" content="计数">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>CF1707D Partial Virtual Tree</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&text=CF1707D Partial Virtual Tree"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&is_video=false&description=CF1707D Partial Virtual Tree"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1707D Partial Virtual Tree&body=Check out this article: http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&name=CF1707D Partial Virtual Tree&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&t=CF1707D Partial Virtual Tree"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CF1707D-Partial-Virtual-Trees"><span class="toc-number">1.</span> <span class="toc-text">CF1707D Partial Virtual Trees</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">1.3.</span> <span class="toc-text">Code</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CF1707D Partial Virtual Tree
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-30T08:59:51.000Z" itemprop="datePublished">2023-08-30</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/dp/" rel="tag">dp</a>, <a class="tag-link-link" href="/tags/%E5%AE%B9%E6%96%A5/" rel="tag">容斥</a>, <a class="tag-link-link" href="/tags/%E8%AE%A1%E6%95%B0/" rel="tag">计数</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="CF1707D-Partial-Virtual-Trees"><a href="#CF1707D-Partial-Virtual-Trees" class="headerlink" title="CF1707D Partial Virtual Trees"></a>CF1707D Partial Virtual Trees</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1707D">https://www.luogu.com.cn/problem/CF1707D</a></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>学到容斥了，感觉妙妙。</p>
+<p>感觉这个 $S_i\not &#x3D; S_{i+1}$ 很烦，考虑容斥，令 $g_i$ 表示答案序列，$f_i$ 表示不考虑 $S_i\not &#x3D; S_{i+1}$ 的限制，结尾为 ${1}$，且满足题目限制的方案数。</p>
+<p>有 $f_i&#x3D;\sum\limits_{j\le i} \dbinom{i}{j} g_j$，根据二项式反演，有 $g_i&#x3D;\sum\limits_{j\le i} (-1)^{i-j}\dbinom{i}{j}f_i$ 。只需要求出 $f$ 即可。</p>
+<p>令 $f_{i,j}$ 表示时刻 $j$ 在 $i$ 的子树中仍然有点被选中的方案数。如果一个点有至少两个互不相同的子树中存在被选中的点，那么这个点一定要被选中。否则随便。</p>
+<p>分两种情况考虑：</p>
+<ul>
+<li><p>$i$ 在集合中</p>
+<p>则子树的内可以任意选。<br>$$<br>f_{i,j}&#x3D;\prod\limits_{y\in son_i} \sum\limits_{k\le j} f_{y,j}<br>$$<br>令 $s_{y,j}&#x3D;\sum\limits <em>{k\le j} f</em>{y,k}$，前缀和优化一下是简单的。</p>
+</li>
+<li><p>$i$ 不在集合中</p>
+<p>则枚举 $i$ 在 $p$ 到 $p+1$ 的时间熄灭。<br>$$<br>f_{i,j}&#x3D;\sum_{p&lt;j}\sum <em>{x\in son_i} f</em>{x,j}\prod <em>{y\in son_i,y\not &#x3D; x} s</em>{y,p}<br>$$<br>预处理一些东西，前后缀积什么的，可以做到全局 $O(n^2)$。</p>
+</li>
+</ul>
+<p>注意最后一个集合一定为 ${1}$。需要特判一下。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 2005</span></span><br><span class="line"><span class="type">int</span> mod;</span><br><span class="line"><span class="type">int</span> c[maxn][maxn];</span><br><span class="line"><span class="type">int</span> n,dp[maxn][maxn],s[maxn][maxn],fs[maxn][maxn],fp[maxn][maxn],ft[maxn],g[maxn],o[maxn];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;to[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;x,<span class="type">int</span> y)</span> </span>&#123;x=(x+y)%mod;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> id=<span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> pre)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i,j,y;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> y:to[x]) <span class="keyword">if</span> (y^pre) <span class="built_in">solve</span>(y,x);</span><br><span class="line">	<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) dp[x][j]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (x!=id) &#123;</span><br><span class="line">		<span class="type">int</span> nums=to[x].<span class="built_in">size</span>(),tot=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;nums;i++) </span><br><span class="line">			<span class="keyword">if</span> ((y=to[x][i])^pre) &#123;</span><br><span class="line">				o[y]=++tot;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) dp[x][j]=dp[x][j]*s[y][j]%mod;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (tot&gt;<span class="number">0</span>) fs[tot][j]=fs[tot<span class="number">-1</span>][j]*s[y][j]%mod;</span><br><span class="line">					<span class="keyword">else</span> fs[tot][j]=s[y][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">for</span> (i=nums<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) <span class="keyword">if</span> ((y=to[x][i])^pre) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) </span><br><span class="line">				<span class="keyword">if</span> (o[y]&lt;tot) fp[o[y]][j]=fp[o[y]+<span class="number">1</span>][j]*s[y][j]%mod;</span><br><span class="line">				<span class="keyword">else</span> fp[o[y]][j]=s[y][j]; </span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> y:to[x]) <span class="keyword">if</span> (y^pre) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) ft[j]=(o[y]?fs[o[y]<span class="number">-1</span>][j]:<span class="number">1</span>)*(o[y]&lt;tot?fp[o[y]+<span class="number">1</span>][j]:<span class="number">1</span>)%mod;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">add</span>(ft[j],ft[j<span class="number">-1</span>]),<span class="built_in">add</span>(dp[x][j],dp[y][j]*ft[j<span class="number">-1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> y:to[x]) <span class="keyword">if</span> (y^pre) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) dp[x][j]=dp[x][j]*s[y][j<span class="number">-1</span>]%mod;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	s[x][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">add</span>(s[x][j],s[x][j<span class="number">-1</span>]+dp[x][j]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	<span class="type">int</span> i,j,x,y;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(mod);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		c[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=i;j++) c[i][j]=(c[i<span class="number">-1</span>][j<span class="number">-1</span>]+c[i<span class="number">-1</span>][j])%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) dp[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">		<span class="built_in">read</span>(x),<span class="built_in">read</span>(y);</span><br><span class="line">		to[x].<span class="built_in">push_back</span>(y);</span><br><span class="line">		to[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">solve</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=i;j++) &#123;</span><br><span class="line">			<span class="type">int</span> sum=c[i][j]*dp[id][j]%mod;</span><br><span class="line">			<span class="keyword">if</span> ((i-j)%<span class="number">2</span>==<span class="number">0</span>) <span class="built_in">add</span>(g[i],sum);</span><br><span class="line">			<span class="keyword">else</span> <span class="built_in">add</span>(g[i],mod-sum);</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%lld &quot;</span>,g[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CF1707D-Partial-Virtual-Trees"><span class="toc-number">1.</span> <span class="toc-text">CF1707D Partial Virtual Trees</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">1.3.</span> <span class="toc-text">Code</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&text=CF1707D Partial Virtual Tree"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&is_video=false&description=CF1707D Partial Virtual Tree"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1707D Partial Virtual Tree&body=Check out this article: http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&name=CF1707D Partial Virtual Tree&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&t=CF1707D Partial Virtual Tree"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
