@@ -500,9 +500,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> dp </tag>
-            
             <tag> 倍增 </tag>
+            
+            <tag> dp </tag>
             
             <tag> 容斥 </tag>
             
@@ -678,9 +678,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 凸包 </tag>
-            
             <tag> dp </tag>
+            
+            <tag> 凸包 </tag>
             
         </tags>
       
@@ -701,11 +701,11 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 凸包 </tag>
+            <tag> 倍增 </tag>
             
             <tag> dp </tag>
             
-            <tag> 倍增 </tag>
+            <tag> 凸包 </tag>
             
             <tag> tarjan </tag>
             
@@ -1288,9 +1288,9 @@
       
         <tags>
             
-            <tag> Floyd </tag>
-            
             <tag> 倍增 </tag>
+            
+            <tag> Floyd </tag>
             
             <tag> bzoj </tag>
             
@@ -1968,9 +1968,9 @@
       
         <tags>
             
-            <tag> bzoj </tag>
-            
             <tag> manacher </tag>
+            
+            <tag> bzoj </tag>
             
         </tags>
       
