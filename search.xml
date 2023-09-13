@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>CF1267G Game Relics</title>
+      <link href="/2023/09/13/CF1267G-Game-Relics/"/>
+      <url>/2023/09/13/CF1267G-Game-Relics/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Game-Relics"><a href="#Game-Relics" class="headerlink" title="Game Relics"></a>Game Relics</h1><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>真的好退役了&#x2F;kk</p><p>抽的期望价值是递增的。所以一个简单的策略是先抽后买。那么这些操作肯定有一个分界点。</p><p>令已经有了 $i$ 个物品，已有的物品买的价值和 $j$，考虑选下一个。抽的权值为 $\dfrac{x}{2}(\dfrac{n}{n-i}+1)$，买的平均价值为 $\dfrac{sum-j}{n-i}$。如果买的平均价值小于抽的期望价值，则开始买。观察到两者只与 $i$ 和权值和 $j$ 有关。令 $f_{i,j}$ 为到这个状态的概率。转化为求方案数，做背包，总方案数为 $\dbinom{n}{i}$ 。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 105</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f+<span class="number">1</span>,y...);&#125;</span><br><span class="line">Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line"><span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (y) &#123;</span><br><span class="line"><span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n,m,a[maxn],sum;</span><br><span class="line"><span class="type">double</span> c[maxn][maxn], f[maxn][maxn*maxn],ans;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line"><span class="comment">//freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="type">int</span> i,j,k;</span><br><span class="line"><span class="built_in">read</span>(n);<span class="built_in">read</span>(m);</span><br><span class="line">c[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">c[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=i;j++) c[i][j]=c[i<span class="number">-1</span>][j]+c[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line">f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line"><span class="built_in">read</span>(a[i]);sum+=a[i];</span><br><span class="line"><span class="keyword">for</span> (k=i;k&gt;=<span class="number">1</span>;k--)</span><br><span class="line"><span class="keyword">for</span> (j=a[i];j&lt;=sum;j++)</span><br><span class="line">f[k][j]+=f[k<span class="number">-1</span>][j-a[i]];</span><br><span class="line">&#125;        </span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line"><span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=sum;j++) &#123;</span><br><span class="line">ans+=<span class="built_in">min</span>(<span class="number">1.0</span>*(sum-j)/(n-i),<span class="number">1.0</span>*m/<span class="number">2</span>*(<span class="number">1.0</span>*n/(n-i)+<span class="number">1</span>))*f[i][j]/c[n][i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%.10lf&quot;</span>,ans);                                                                             </span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> dp </tag>
+            
+            <tag> 贡献 </tag>
+            
+            <tag> 期望 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>P2221 [HAOI2012] 高速公路</title>
       <link href="/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"/>
       <url>/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/</url>
@@ -14,9 +37,9 @@
       
         <tags>
             
-            <tag> 线段树 </tag>
-            
             <tag> 贡献 </tag>
+            
+            <tag> 线段树 </tag>
             
         </tags>
       
@@ -586,11 +609,11 @@
             
             <tag> dp </tag>
             
-            <tag> 倍增 </tag>
-            
             <tag> 容斥 </tag>
             
             <tag> 平面图欧拉定理 </tag>
+            
+            <tag> 倍增 </tag>
             
         </tags>
       
@@ -762,9 +785,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 凸包 </tag>
-            
             <tag> dp </tag>
+            
+            <tag> 凸包 </tag>
             
         </tags>
       
@@ -785,11 +808,11 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 凸包 </tag>
-            
             <tag> dp </tag>
             
             <tag> 倍增 </tag>
+            
+            <tag> 凸包 </tag>
             
             <tag> tarjan </tag>
             
@@ -812,9 +835,9 @@
             
             <tag> 倍增 </tag>
             
-            <tag> NOIP 模拟赛 </tag>
-            
             <tag> 期望 </tag>
+            
+            <tag> NOIP 模拟赛 </tag>
             
             <tag> 平面图 </tag>
             
@@ -1372,9 +1395,9 @@
       
         <tags>
             
-            <tag> 倍增 </tag>
-            
             <tag> Floyd </tag>
+            
+            <tag> 倍增 </tag>
             
             <tag> bzoj </tag>
             
@@ -2211,9 +2234,9 @@
             
             <tag> dp </tag>
             
-            <tag> 计数 </tag>
-            
             <tag> 长链剖分 </tag>
+            
+            <tag> 计数 </tag>
             
             <tag> bzoj </tag>
             
