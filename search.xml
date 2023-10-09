@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>Qoj6354 4</title>
+      <link href="/2023/10/09/qoj6354-4/"/>
+      <url>/2023/10/09/qoj6354-4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="K-4"><a href="#K-4" class="headerlink" title="K. 4"></a>K. 4</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>求 $n$ 个店 $m$ 条边的无向图的四元团个数。</p><p>$n,m\le 10^5$，1s 512MB</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>先考虑求出 $O(m\sqrt m)$ 求出三元团。根据三元团建图的性质，每个点的出度都是 $O(\sqrt m)$ 的。</p><p>如果直接将三个点的相邻点用 <code>bitset</code> 与起来，复杂度是 $O(\dfrac{m^{2.5}}{w})$ ，感觉不太可接受。</p><p>观察到每个点的出度很小。所以第四个点应该最多只有 $O(\sqrt m )$ 种标号。重新标号即可。复杂度 $O(\dfrac{m^2}{w})$。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f+<span class="number">1</span>,y...);&#125;</span><br><span class="line">Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line"><span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (y) &#123;</span><br><span class="line"><span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> d[maxn],n,m,ans,in[maxn],vis[maxn];</span><br><span class="line">pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;e[maxn];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;to[maxn];</span><br><span class="line">bitset&lt;405&gt;t[maxn];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;1.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line"><span class="type">int</span> i,x,y;</span><br><span class="line"><span class="built_in">read</span>(n);<span class="built_in">read</span>(m);</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) &#123;</span><br><span class="line"><span class="built_in">read</span>(x),<span class="built_in">read</span>(y);</span><br><span class="line">e[i]=<span class="built_in">mk</span>(x,y);</span><br><span class="line">in[x]++,in[y]++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) &#123;</span><br><span class="line">x=e[i].fi,y=e[i].se;</span><br><span class="line"><span class="keyword">if</span> (in[x]&gt;in[y]||(in[x]==in[y]&amp;&amp;x&gt;y)) <span class="built_in">swap</span>(x,y);</span><br><span class="line">to[x].<span class="built_in">push_back</span>(y);</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line"><span class="type">int</span> nums=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> j:to[i]) vis[j]=++nums;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> j:to[i]) &#123;</span><br><span class="line">t[j].<span class="built_in">reset</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> k:to[j]) <span class="keyword">if</span> (vis[k]) t[j][vis[k]]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> j:to[i]) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> k:to[j]) <span class="keyword">if</span> (vis[k]) &#123;</span><br><span class="line">ans+=(t[j]&amp;t[k]).<span class="built_in">count</span>();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> j:to[i]) vis[j]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> bitset </tag>
+            
+            <tag> 三元环计数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>对顶栈学习笔</title>
       <link href="/2023/10/05/%E5%AF%B9%E9%A1%B6%E6%A0%88%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>/2023/10/05/%E5%AF%B9%E9%A1%B6%E6%A0%88%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
@@ -845,9 +866,9 @@
             
             <tag> 容斥 </tag>
             
-            <tag> 倍增 </tag>
-            
             <tag> 平面图欧拉定理 </tag>
+            
+            <tag> 倍增 </tag>
             
         </tags>
       
@@ -1044,9 +1065,9 @@
             
             <tag> dp </tag>
             
-            <tag> 倍增 </tag>
-            
             <tag> 凸包 </tag>
+            
+            <tag> 倍增 </tag>
             
             <tag> tarjan </tag>
             
@@ -1069,9 +1090,9 @@
             
             <tag> 倍增 </tag>
             
-            <tag> NOIP 模拟赛 </tag>
-            
             <tag> 期望 </tag>
+            
+            <tag> NOIP 模拟赛 </tag>
             
             <tag> 平面图 </tag>
             
@@ -2309,9 +2330,9 @@
       
         <tags>
             
-            <tag> manacher </tag>
-            
             <tag> bzoj </tag>
+            
+            <tag> manacher </tag>
             
         </tags>
       
