@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[SDOI2017] 序列计数https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3702 Solution一种很简单的做法是全部的减去不包含质数的，用矩阵乘法维护，在这里不赘述，除去筛质数的复杂度是 $O(p^3\log n)$ 的。 观察我们的矩阵，发现是 $w_0,w_1,..,w_{p-1}$ 每次向右移动一位，移动 $p$ 次构成的矩阵。这个矩阵很特殊，再找性质。 回到最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bzoj4818 [SDOI2017] 序列计数">
+<meta property="og:url" content="http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="[SDOI2017] 序列计数https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3702 Solution一种很简单的做法是全部的减去不包含质数的，用矩阵乘法维护，在这里不赘述，除去筛质数的复杂度是 $O(p^3\log n)$ 的。 观察我们的矩阵，发现是 $w_0,w_1,..,w_{p-1}$ 每次向右移动一位，移动 $p$ 次构成的矩阵。这个矩阵很特殊，再找性质。 回到最">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-10T10:43:13.000Z">
+<meta property="article:modified_time" content="2023-10-10T10:43:41.455Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="矩阵乘法">
+<meta property="article:tag" content="卷积">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Bzoj4818 [SDOI2017] 序列计数</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/10/10/bzoj2339-HNOI2011-%E5%8D%A1%E5%86%9C/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&text=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&is_video=false&description=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bzoj4818 [SDOI2017] 序列计数&body=Check out this article: http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&name=Bzoj4818 [SDOI2017] 序列计数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&t=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">[SDOI2017] 序列计数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.1.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Bzoj4818 [SDOI2017] 序列计数
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-10-10T10:43:13.000Z" itemprop="datePublished">2023-10-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/dp/" rel="tag">dp</a>, <a class="tag-link-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a>, <a class="tag-link-link" href="/tags/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95/" rel="tag">矩阵乘法</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="SDOI2017-序列计数"><a href="#SDOI2017-序列计数" class="headerlink" title="[SDOI2017] 序列计数"></a>[SDOI2017] 序列计数</h1><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3702">https://www.luogu.com.cn/problem/P3702</a></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>一种很简单的做法是全部的减去不包含质数的，用矩阵乘法维护，在这里不赘述，除去筛质数的复杂度是 $O(p^3\log n)$ 的。</p>
+<p>观察我们的矩阵，发现是 $w_0,w_1,..,w_{p-1}$ 每次向右移动一位，移动 $p$ 次构成的矩阵。这个矩阵很特殊，再找性质。</p>
+<p>回到最初始的 dp，$f_{i,j}\times w_k \to f_{i+1,(j+k)% p}$，可以看成 $f_{i,j}\times f_{1,k} \to f_{i+1,(j+k)% p}$，进而，可以看成 $f_{i,j}\times f_{k,l}\to f_{i+j,(k+l)% p}$。</p>
+<p>这个东西显然有结合律，就像矩阵一样。所以也可以快速幂。直接做是 $O(p^2\log n)$ 的。</p>
+<p>而且这个是卷积的形式，也可以做到 $O(p\log p\log n)$ 的复杂度。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 205</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f+<span class="number">1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">20170408</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n,m,p;</span><br><span class="line"><span class="type">int</span> f[maxn],g[maxn],F[maxn],G[maxn];</span><br><span class="line">bitset&lt;20000005&gt;vis;</span><br><span class="line"><span class="type">int</span> c[maxn],prime[<span class="number">5000005</span>],cnt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mul</span><span class="params">(<span class="type">int</span> *a,<span class="type">int</span> *b)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i,j;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;p;i++) c[i]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;p;i++)</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;p;j++)</span><br><span class="line">			c[(i+j)%p]=(c[(i+j)%p]+a[i]*b[j])%mod;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;p;i++) a[i]=c[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i,j;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);<span class="built_in">read</span>(p);</span><br><span class="line">	vis[<span class="number">1</span>]=<span class="number">1</span>;f[<span class="number">1</span>]++,g[<span class="number">1</span>]++;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">2</span>;i&lt;=m;i++) &#123;</span><br><span class="line">		f[i%p]++;</span><br><span class="line">		<span class="keyword">if</span> (!vis[i]) prime[++cnt]=i;</span><br><span class="line">		<span class="keyword">else</span> g[i%p]++;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=cnt&amp;&amp;prime[j]*i&lt;=m;j++) &#123;</span><br><span class="line">			vis[i*prime[j]]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (i%prime[j]==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="comment">//		gdb(i,vis[i]);</span></span><br><span class="line">	&#125;</span><br><span class="line">	F[<span class="number">0</span>]=G[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (n&amp;<span class="number">1</span>) <span class="built_in">mul</span>(F,f),<span class="built_in">mul</span>(G,g);</span><br><span class="line">		<span class="built_in">mul</span>(f,f),<span class="built_in">mul</span>(g,g),n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,(F[<span class="number">0</span>]-G[<span class="number">0</span>]+mod)%mod);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">[SDOI2017] 序列计数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.1.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&text=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&is_video=false&description=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bzoj4818 [SDOI2017] 序列计数&body=Check out this article: http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&name=Bzoj4818 [SDOI2017] 序列计数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&t=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
