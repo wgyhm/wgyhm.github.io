@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="这里基本只给结论，不给严格证明。 T1ARC132C 看到 $d$ 很小，很自然的想到维护 $i$ 可选的值的集合。一个位置 $i$ 最多可以选 $2d+1$ 个值。状压即可。 复杂度 $O(n2^{2d+1}d)$。 T2ARC132D 手玩以后发现，令第 $i$ 个 $1$ 在 $s,t$ 中的位置小的那一个为 $l_i$，大的那一个为 $r_i$。 一段连续段 $1$ 的对答案贡献是：  开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10.10 模拟赛 by ZYQ">
+<meta property="og:url" content="http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="这里基本只给结论，不给严格证明。 T1ARC132C 看到 $d$ 很小，很自然的想到维护 $i$ 可选的值的集合。一个位置 $i$ 最多可以选 $2d+1$ 个值。状压即可。 复杂度 $O(n2^{2d+1}d)$。 T2ARC132D 手玩以后发现，令第 $i$ 个 $1$ 在 $s,t$ 中的位置小的那一个为 $l_i$，大的那一个为 $r_i$。 一段连续段 $1$ 的对答案贡献是：  开">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-10T13:11:07.000Z">
+<meta property="article:modified_time" content="2023-10-10T13:11:47.041Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="NOIP模拟赛">
+<meta property="article:tag" content="状压">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="最小生成树">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="计数">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>10.10 模拟赛 by ZYQ</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&text=10.10 模拟赛 by ZYQ"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&is_video=false&description=10.10 模拟赛 by ZYQ"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=10.10 模拟赛 by ZYQ&body=Check out this article: http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&name=10.10 模拟赛 by ZYQ&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&t=10.10 模拟赛 by ZYQ"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1"><span class="toc-number">1.</span> <span class="toc-text">T1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2"><span class="toc-number">2.</span> <span class="toc-text">T2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3"><span class="toc-number">3.</span> <span class="toc-text">T3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T4"><span class="toc-number">4.</span> <span class="toc-text">T4</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        10.10 模拟赛 by ZYQ
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-10-10T13:11:07.000Z" itemprop="datePublished">2023-10-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B/" rel="tag">NOIP模拟赛</a>, <a class="tag-link-link" href="/tags/dp/" rel="tag">dp</a>, <a class="tag-link-link" href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag">最小生成树</a>, <a class="tag-link-link" href="/tags/%E7%8A%B6%E5%8E%8B/" rel="tag">状压</a>, <a class="tag-link-link" href="/tags/%E8%AE%A1%E6%95%B0/" rel="tag">计数</a>, <a class="tag-link-link" href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag">贪心</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>这里基本只给结论，不给严格证明。</p>
+<h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><p>ARC132C</p>
+<p>看到 $d$ 很小，很自然的想到维护 $i$ 可选的值的集合。一个位置 $i$ 最多可以选 $2d+1$ 个值。状压即可。</p>
+<p>复杂度 $O(n2^{2d+1}d)$。</p>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p>ARC132D</p>
+<p>手玩以后发现，令第 $i$ 个 $1$ 在 $s,t$ 中的位置小的那一个为 $l_i$，大的那一个为 $r_i$。</p>
+<p>一段连续段 $1$ 的对答案贡献是：</p>
+<ul>
+<li>开头或结尾，$1$。</li>
+<li>其他情况，$2$。</li>
+</ul>
+<p>我们需要这样的贡献最小。</p>
+<p>如果都是其他情况，则直接贪心即可。</p>
+<p>否则，再钦定第一个选开头，然后贪心。两种情况取最大的。</p>
+<p>复杂度 $O(n)$。</p>
+<h2 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h2><p>ARC132E</p>
+<p>如果单独算贡献每个点或者说每一段的贡献，其实是很难算的。我们需要别的性质。</p>
+<p>观察到最后答案的形式一定是形如 <code>&lt;&lt;&lt;&lt;===&gt;&gt;&gt;&gt;</code>，其中 <code>=</code> 代表这个地方没走过。中间没走过一定是两个洞之间（也可能是两端）。</p>
+<p>证明的话反证一下。？</p>
+<p>只需要算不经过每一段的概率。左右独立，也就是算一遍再组合数合并一下。</p>
+<p>令 $f_i$ 为向左第 $i$ 个洞，不经过右边那一段的方案数。</p>
+<ul>
+<li>向左，$f_i\gets f_{i-1}\times i$。</li>
+<li>向右，$f_i\gets f_{i-1}\times(i-1)$。</li>
+</ul>
+<p>复杂度 $O(n)$。</p>
+<h2 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h2><p>CCC2023 S4</p>
+<p>考虑不存在重边的情况。</p>
+<p>对于一对起点和终点 $s,t$，如果 $s,t$ 中只有一条最短路径，那么是肯定要选的。</p>
+<p>否则，令 $s,t$ 的一条当前最优最短路径的边集为 $p_1,p_2,…,p_k$，观察到如果存在一条边 $p_i$，令其两个端点为 $a,b$，$a,b$ 之前存在另外一条长度相同的最短路径，则替换。这样的操作次数是有限的。最后，每条边 $p_i$ 都是两个端点之间的最短路径。显然这样的边是一定要取的。</p>
+<p>有重边判一下就好。</p>
+<p>具体实现上，第一关键字为长度，第二关键字为价值升序排序。这样保证最先选到的是两个端点之间的最短路径。如果这两个点不连通则直接加入这条边，否则判断当前的最短路如果大于这条边的长度则加入（等于没有加入的必要，上一段说明了这一点）。</p>
+<p>抛开重边的情况来看，这道题的其实并不太是最小化题目，选哪些边是确定的。</p>
+<p>复杂度 $O(nm\log m)$。</p>
+<p>Update：好像做法很多，排序的方式也很多。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1"><span class="toc-number">1.</span> <span class="toc-text">T1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2"><span class="toc-number">2.</span> <span class="toc-text">T2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3"><span class="toc-number">3.</span> <span class="toc-text">T3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T4"><span class="toc-number">4.</span> <span class="toc-text">T4</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&text=10.10 模拟赛 by ZYQ"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&is_video=false&description=10.10 模拟赛 by ZYQ"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=10.10 模拟赛 by ZYQ&body=Check out this article: http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&name=10.10 模拟赛 by ZYQ&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&t=10.10 模拟赛 by ZYQ"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
