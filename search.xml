@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Qoj7562 Except One</title>
+      <link href="/2023/10/19/qoj7562-Except-One/"/>
+      <url>/2023/10/19/qoj7562-Except-One/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Except-One"><a href="#Except-One" class="headerlink" title="Except One"></a>Except One</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a href="https://contest.ucup.ac/contest/1382/problem/7562">https://contest.ucup.ac/contest/1382/problem/7562</a></p><p>给定 $p,k,t$，定义集合 $S&#x3D;{x|1\le x\le p-1,x\not &#x3D; k }$。求恰好包含 $t$ 个数的子集的乘积和。答案对 $p$ 取模。</p><p>$p\le 10^9$</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>非常喵喵啊。</p><p>观察到无论 $t$ 是多少，如果去掉 $k$ 的限制模 $p$ 后答案一定是 $0$。令 $f_t$ 表示恰好包含 $t$ 个数的答案，则在模 $p$ 意义下，有转移 $f_t&#x3D;-k\times f_{t-1}$。</p><p>然后发现不仅是 $f_t$ ，$f_{t-1},f_{t-2}\dots$ 也可以从前面递推过来。</p><p>答案就是 $(-k)^t$ 在模 $p$ 意义下的值。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span>(mod);<span class="built_in">read</span>(k);<span class="built_in">read</span>(t);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,<span class="built_in">power</span>(mod-k,t));</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 计数 </tag>
+            
+            <tag> 思维 </tag>
+            
+            <tag> 递推 </tag>
+            
+            <tag> qoj </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>P4372 [USACO18OPEN] Out of Sorts P</title>
       <link href="/2023/10/19/P4372-USACO18OPEN-Out-of-Sorts-P/"/>
       <url>/2023/10/19/P4372-USACO18OPEN-Out-of-Sorts-P/</url>
@@ -179,9 +204,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> 思维 </tag>
             
@@ -277,9 +302,9 @@
             
             <tag> dp </tag>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> NOIP 模拟赛 </tag>
             
@@ -348,11 +373,11 @@
             
             <tag> dp </tag>
             
-            <tag> 计数 </tag>
-            
             <tag> 单调栈 </tag>
             
             <tag> 构造 </tag>
+            
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -398,11 +423,11 @@
             
             <tag> dp </tag>
             
+            <tag> 计数 </tag>
+            
             <tag> 最小生成树 </tag>
             
             <tag> 贪心 </tag>
-            
-            <tag> 计数 </tag>
             
         </tags>
       
@@ -490,11 +515,11 @@
       
         <tags>
             
+            <tag> 点分树 </tag>
+            
             <tag> dp </tag>
             
             <tag> 贪心 </tag>
-            
-            <tag> 点分树 </tag>
             
             <tag> 思维 </tag>
             
@@ -1199,11 +1224,11 @@
       
         <tags>
             
-            <tag> 计数 </tag>
-            
             <tag> 线段树 </tag>
             
             <tag> 单调栈 </tag>
+            
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -1612,9 +1637,9 @@
             
             <tag> dp </tag>
             
-            <tag> 凸包 </tag>
-            
             <tag> 倍增 </tag>
+            
+            <tag> 凸包 </tag>
             
             <tag> tarjan </tag>
             
@@ -2109,9 +2134,9 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> bzoj </tag>
             
@@ -2613,9 +2638,9 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> prufer序列 </tag>
             
@@ -2965,9 +2990,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> dp </tag>
-            
             <tag> 线段树 </tag>
+            
+            <tag> dp </tag>
             
             <tag> manacher </tag>
             
@@ -3013,9 +3038,9 @@
             
             <tag> 构造 </tag>
             
-            <tag> CF </tag>
-            
             <tag> 二分图 </tag>
+            
+            <tag> CF </tag>
             
         </tags>
       
