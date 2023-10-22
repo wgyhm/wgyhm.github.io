@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>CSP2023游记</title>
+      <link href="/2023/10/22/CSP2023%E6%B8%B8%E8%AE%B0/"/>
+      <url>/2023/10/22/CSP2023%E6%B8%B8%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<p>真实感受！</p><h2 id="初赛日-1"><a href="#初赛日-1" class="headerlink" title="初赛日 -1"></a>初赛日 -1</h2><p>最后一年了，准备开始写游记。</p><h2 id="初赛日"><a href="#初赛日" class="headerlink" title="初赛日"></a>初赛日</h2><p>上午在机房摆。在灯控室农了一把，门锁住以后差点没出来。感觉下午要寄。</p><p>初赛是在兴华。可能就没有奖励名额了。所有人看上去都很慌，至少嘴上是这样说的。</p><p>考试的时候就没看懂阅读程序T2在搞什么，还有一个编译命令没用过。其他感觉还是简单的。</p><p>出来对了答案，fls接近k了，火乐和czh完型错一半，默哀。我感觉85出头，中规中矩。能过就好。</p><p>考完开摆，巅峰两连跪。</p><h2 id="CSP-前"><a href="#CSP-前" class="headerlink" title="CSP 前"></a>CSP 前</h2><h3 id="09-17"><a href="#09-17" class="headerlink" title="09.17"></a>09.17</h3><p>算是第一次打认真打 ARC（好像同时也是第一次认真打 AT），感觉这场题目质量挺不错，赛时只写出了 ABC，赛后来了点提示就订正了 DE。</p><h3 id="09-20"><a href="#09-20" class="headerlink" title="09.20"></a>09.20</h3><p>今天是某位故人的生日。</p><hr><p>今天去上了金央的公开课，浪费了大量内卷时间。但是学习了micro:bit。</p><h3 id="09-21"><a href="#09-21" class="headerlink" title="09.21"></a>09.21</h3><p>不知道刷什么题目好，最近比赛比较少。突然想起来老叶之前的 bzoj 刷题计划。现在做感觉简单了很多。</p><h3 id="10-07"><a href="#10-07" class="headerlink" title="10.07"></a>10.07</h3><p>跟裘说停课，斡旋了半天终于同意了。</p><h3 id="10-09"><a href="#10-09" class="headerlink" title="10.09"></a>10.09</h3><p>昨天去风华讲题，看见赖老师了，还是好看&#x2F;se。</p><h3 id="10-10"><a href="#10-10" class="headerlink" title="10.10"></a>10.10</h3><p>今天晚上考我的模拟赛。</p><p>感觉没多难啊，前三题我都自己做出来的为什么T3没人过T1一半都没有呢。</p><p>。。。</p><h3 id="10-12"><a href="#10-12" class="headerlink" title="10.12"></a>10.12</h3><p>今天是狗哥模拟赛，点了疯狂星期四。</p><p>败于 T4 计数，被高一薄杀。</p><p>为什么概率要转计数算呢，zyq你是傻逼吧。</p><h3 id="10-14"><a href="#10-14" class="headerlink" title="10.14"></a>10.14</h3><p>今天难受，什么题没做出来。</p><p>早上信友队感觉有点套路+恶心人，下午云斗tmdT2开始就不会做，T6倒是差不多糊出来正解了。。。</p><p>科技树有点歪。</p><p>晚上出去克己。</p><h3 id="10-15"><a href="#10-15" class="headerlink" title="10.15"></a>10.15</h3><p>今天难受，早上 pjudge T1好像不太会。</p><p>倒是 T2T3 做出来了。T4 是构造。</p><p>重开了。</p><h3 id="10-20"><a href="#10-20" class="headerlink" title="10.20"></a>10.20</h3><p>什么都不想写。摆到前一天，才发现已经要出发了。</p><p>下午是传统大巴。大巴上农了九把，中间存在五连跪，感觉 rp++。</p><p>本来说好是晚上去大学城那边逛一圈，jy 查挺严的，也就罢了。倒是因为给初中搬了一些题目，就让 xjz 请几个人吃火锅。</p><p>再晚点就农。晚上睡不着。</p><p>噩梦。</p><h3 id="10-21"><a href="#10-21" class="headerlink" title="10.21"></a>10.21</h3><p>上午和火乐出去逛了一圈。江边的公园，骑过去不远。旁边草地很多，里面有老人唱歌下棋钓鱼，适合养老。</p><p>中午看了眼 J 组题目，有些题没一眼，要退役的节奏。</p><p>然后在群里发了点经典套路：</p><p><img src="https://s2.loli.net/2023/10/22/DmB21EXdrOA6TiU.png" alt="image-20231022123701301"></p><p>哈希没说是因为去年考了，但是 fxt 提到了:</p><p><img src="https://s2.loli.net/2023/10/22/OUuFWKxN7LMEeyS.png" alt="image-20231022123739379"></p><p>再之后摆了一下就去考场了。</p><p>离进去还有很久，czh 说要 citywalk，校园其实不是很好。</p><p>考前经典拉肚子。</p><h2 id="CSP-S"><a href="#CSP-S" class="headerlink" title="CSP-S"></a>CSP-S</h2><p>监考老师挺烦的，感觉能力不行态度不好，机房里几个键盘坏的小朋友也挺可怜的，有个就在我对面。万一是我我心态直接炸了。</p><p>开题目，感觉 T1 很签到，就快读写完以后直接写了。</p><p>T2 不太会做，看 T3 是个大模拟，直接看 T4 好像二分以后直接贪心就好了。</p><p>然后回去想 T2，看见 2log 有 85 啊，直接想了下分治就随便搞了。写完发现模数开小了哈希冲突挺严重，就开 $10^{18}+3$ 然后随便过了。</p><p>T4 写了半个小时就差不多了，2log 其中还有一个线段树，一个 1e9，感觉不是很能过。大样例跑了 1.8，稍微卡了一下就 1.5s。</p><p>然后开始写模拟，一个小时就过了大样例。过完才发现有形式化题面。重开了。</p><p>中间头很晕，感觉有点感冒的症状。</p><p>最后开始疯狂检查，T2 拍了一下感觉没什么问题。T4 有点悬。不想管了。</p><h2 id="出考场"><a href="#出考场" class="headerlink" title="出考场"></a>出考场</h2><p>倒是出来的时候想起来卡常把 <code>#define int long long </code> 删了，想起来照理来说快读我都是用 <code>int</code> 的，然后 FXT 说大样例很水。感觉要重开。</p><p>又是经典肯德基，然后农了几把。</p><p>最后一次 CSP 了。</p><hr><h2 id="自测"><a href="#自测" class="headerlink" title="自测"></a>自测</h2><p>大概是 100+85+100+[35,100]</p><p>T4 完全看数据强度和少爷机速度。</p><p>刚才花了 5 分钟订正 AK 了，有点难受。</p><hr><p>可能也不是真实感受。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 游记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Qoj7562 Except One</title>
       <link href="/2023/10/19/qoj7562-Except-One/"/>
       <url>/2023/10/19/qoj7562-Except-One/</url>
@@ -204,9 +223,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> 思维 </tag>
             
@@ -302,9 +321,9 @@
             
             <tag> dp </tag>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> NOIP 模拟赛 </tag>
             
@@ -325,9 +344,9 @@
       
         <tags>
             
-            <tag> 博弈论 </tag>
-            
             <tag> 优化建图 </tag>
+            
+            <tag> 博弈论 </tag>
             
         </tags>
       
@@ -373,11 +392,11 @@
             
             <tag> dp </tag>
             
+            <tag> 计数 </tag>
+            
             <tag> 单调栈 </tag>
             
             <tag> 构造 </tag>
-            
-            <tag> 计数 </tag>
             
         </tags>
       
@@ -423,11 +442,11 @@
             
             <tag> dp </tag>
             
-            <tag> 计数 </tag>
-            
             <tag> 最小生成树 </tag>
             
             <tag> 贪心 </tag>
+            
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -1226,9 +1245,9 @@
             
             <tag> 线段树 </tag>
             
-            <tag> 单调栈 </tag>
-            
             <tag> 计数 </tag>
+            
+            <tag> 单调栈 </tag>
             
         </tags>
       
@@ -1660,13 +1679,13 @@
       
         <tags>
             
+            <tag> 倍增 </tag>
+            
             <tag> NOIP 模拟赛 </tag>
             
             <tag> 期望 </tag>
             
             <tag> 平面图 </tag>
-            
-            <tag> 倍增 </tag>
             
         </tags>
       
@@ -2134,9 +2153,9 @@
       
         <tags>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> bzoj </tag>
             
@@ -2638,9 +2657,9 @@
       
         <tags>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> prufer序列 </tag>
             
@@ -2902,9 +2921,9 @@
       
         <tags>
             
-            <tag> manacher </tag>
-            
             <tag> bzoj </tag>
+            
+            <tag> manacher </tag>
             
         </tags>
       
@@ -3038,9 +3057,9 @@
             
             <tag> 构造 </tag>
             
-            <tag> 二分图 </tag>
-            
             <tag> CF </tag>
+            
+            <tag> 二分图 </tag>
             
         </tags>
       
