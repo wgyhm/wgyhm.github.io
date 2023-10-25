@@ -8,17 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3161 Solution显然如果只有一个订单，把提高生产力的时间都放在前面更优。 观察到数据范围 $n\le 15$，用 $O(2^n)$ 枚举订单来判断全部做完是否可行。 考虑现在处理到第 $i$ 个订单，有两种定性的决策：  多学一点，这样之后做就会更优。但是如果第 $i+1$ 个订单离第 $i$ 个订">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bzoj2667  [CQOI2012] 模拟工厂">
-<meta property="og:url" content="http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/index.html">
+<meta property="og:title" content="wgyhm">
+<meta property="og:url" content="http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3161 Solution显然如果只有一个订单，把提高生产力的时间都放在前面更优。 观察到数据范围 $n\le 15$，用 $O(2^n)$ 枚举订单来判断全部做完是否可行。 考虑现在处理到第 $i$ 个订单，有两种定性的决策：  多学一点，这样之后做就会更优。但是如果第 $i+1$ 个订单离第 $i$ 个订">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-25T06:09:10.000Z">
-<meta property="article:modified_time" content="2023-10-25T06:09:45.746Z">
+<meta property="article:published_time" content="2023-10-25T06:09:55.135Z">
+<meta property="article:modified_time" content="2023-10-25T06:08:49.925Z">
 <meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="贪心">
-<meta property="article:tag" content="bzoj">
-<meta property="article:tag" content="枚举">
 <meta name="twitter:card" content="summary">
     
     
@@ -39,7 +36,7 @@
       
     
     <!-- title -->
-    <title>Bzoj2667  [CQOI2012] 模拟工厂</title>
+    <title>wgyhm</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -89,10 +86,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2023/10/25/bzoj2667%20%20%5BCQOI2012%5D%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/10/24/bzoj2318-game-with-probability-Problem/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -105,17 +100,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&text=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&is_video=false&description=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bzoj2667  [CQOI2012] 模拟工厂&body=Check out this article: http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&name=Bzoj2667  [CQOI2012] 模拟工厂&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&t=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -132,7 +127,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Bzoj2667  [CQOI2012] 模拟工厂
+        
     </h1>
 
 
@@ -144,7 +139,7 @@
       
     <div class="postdate">
       
-        <time datetime="2023-10-25T06:09:10.000Z" itemprop="datePublished">2023-10-25</time>
+        <time datetime="2023-10-25T06:09:55.135Z" itemprop="datePublished">2023-10-25</time>
         
       
     </div>
@@ -153,11 +148,6 @@
       
 
       
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="tag-link-link" href="/tags/%E6%9E%9A%E4%B8%BE/" rel="tag">枚举</a>, <a class="tag-link-link" href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag">贪心</a>
-    </div>
-
 
     </div>
   </header>
@@ -172,7 +162,7 @@
 <li>多学一点，这样之后做就会更优。但是如果第 $i+1$ 个订单离第 $i$ 个订单很近，就不太行。</li>
 <li>多做一点，留一点商品放到后面直接用。但是如果后面有充分的时间生产这样也不太优。</li>
 </ul>
-<p>可以对之后的所有任务分别解一次方程，取有解的右端点，这样对这个任务肯定最优。然后为了bao’zheng都有解，对所有右端点取个 min。</p>
+<p>可以对之后的所有任务分别解一次方程，取有解的右端点，这样对这个任务肯定最优。然后为了所有都游街，对所有右端点取个 min。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f+<span class="number">1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">yyy</span> &#123;</span><br><span class="line">	<span class="type">int</span> t,x,w;</span><br><span class="line">&#125;a[<span class="number">25</span>],s[<span class="number">25</span>];</span><br><span class="line"><span class="type">int</span> ans=<span class="number">0</span>,n,tot;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(yyy x,yyy y)</span> </span>&#123;<span class="keyword">return</span> x.t&lt;y.t;&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> c)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> delta=b*b<span class="number">-4</span>*a*c;</span><br><span class="line">	<span class="keyword">if</span> (delta&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">floor</span>((-b+<span class="number">1.0</span>*<span class="built_in">sqrtl</span>(delta))/<span class="number">2.0</span>/a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">calc</span><span class="params">(<span class="type">int</span> S)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i,j,sum=<span class="number">0</span>;tot=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++) <span class="keyword">if</span> ((S&gt;&gt;i)&amp;<span class="number">1</span>) s[++tot]=a[i+<span class="number">1</span>],sum+=s[tot].w;</span><br><span class="line">	<span class="type">int</span> p=<span class="number">1</span>,res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=tot;i++) &#123;</span><br><span class="line">		<span class="type">int</span> d=<span class="number">0</span>,t=s[i].t-s[i<span class="number">-1</span>].t,nums=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (j=i;j&lt;=tot;j++) &#123;</span><br><span class="line">			d+=s[j].t-s[j<span class="number">-1</span>].t;</span><br><span class="line">			nums+=s[j].x;</span><br><span class="line">			<span class="keyword">if</span> (nums&gt;=res) t=<span class="built_in">min</span>(t,<span class="built_in">get</span>(<span class="number">1</span>,p-d,nums-res-p*d));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (t&lt;<span class="number">0</span>) <span class="keyword">return</span> ;</span><br><span class="line">		p+=t;</span><br><span class="line">		res+=(s[i].t-s[i<span class="number">-1</span>].t-t)*p-s[i].x;</span><br><span class="line">	&#125;</span><br><span class="line">	ans=<span class="built_in">max</span>(ans,sum);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(a[i].t),<span class="built_in">read</span>(a[i].x),<span class="built_in">read</span>(a[i].w);</span><br><span class="line">	<span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,cmp);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;n);i++) <span class="built_in">calc</span>(i);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -215,17 +205,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&text=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&is_video=false&description=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bzoj2667  [CQOI2012] 模拟工厂&body=Check out this article: http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&name=Bzoj2667  [CQOI2012] 模拟工厂&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/25/bzoj2667-CQOI2012-%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&t=Bzoj2667  [CQOI2012] 模拟工厂"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/25/bzoj2667%20%20[CQOI2012]%20%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%8E%82/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
