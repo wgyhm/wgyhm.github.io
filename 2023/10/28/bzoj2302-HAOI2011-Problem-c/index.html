@@ -6,19 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P2523 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1386 双倍经验 水题没做出来，警戒。 Solution重要性质：每个人的顺序其实并没有关系。 考虑先判断一下无解的情况。 感性理解一下或者根据 Hall 定理，编号 $\ge x$ 的个数都小于等于 $n-x+1$ 则一定有解。">
+    <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P2523 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1386 双倍经验 水题没做出来，警戒。 Solution重要性质：每个人的顺序其实并没有关系。入典。 考虑先判断一下无解的情况。 感性理解一下或者根据 Hall 定理，编号 $\ge x$ 的个数都小于等于 $n-x+1$ 则一定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bzoj2302 [HAOI2011] Problem C">
 <meta property="og:url" content="http://wgyhm.top/2023/10/28/bzoj2302-HAOI2011-Problem-c/index.html">
 <meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P2523 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1386 双倍经验 水题没做出来，警戒。 Solution重要性质：每个人的顺序其实并没有关系。 考虑先判断一下无解的情况。 感性理解一下或者根据 Hall 定理，编号 $\ge x$ 的个数都小于等于 $n-x+1$ 则一定有解。">
+<meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P2523 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1386 双倍经验 水题没做出来，警戒。 Solution重要性质：每个人的顺序其实并没有关系。入典。 考虑先判断一下无解的情况。 感性理解一下或者根据 Hall 定理，编号 $\ge x$ 的个数都小于等于 $n-x+1$ 则一定">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-28T05:27:55.000Z">
-<meta property="article:modified_time" content="2023-10-28T05:28:30.056Z">
+<meta property="article:modified_time" content="2023-10-31T01:34:02.275Z">
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="组合">
 <meta property="article:tag" content="Hall定理">
+<meta property="article:tag" content="典">
 <meta property="article:tag" content="bzoj">
 <meta name="twitter:card" content="summary">
     
@@ -156,7 +157,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Hall%E5%AE%9A%E7%90%86/" rel="tag">Hall定理</a>, <a class="tag-link-link" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="tag-link-link" href="/tags/dp/" rel="tag">dp</a>, <a class="tag-link-link" href="/tags/%E7%BB%84%E5%90%88/" rel="tag">组合</a>
+        <a class="tag-link-link" href="/tags/Hall%E5%AE%9A%E7%90%86/" rel="tag">Hall定理</a>, <a class="tag-link-link" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="tag-link-link" href="/tags/dp/" rel="tag">dp</a>, <a class="tag-link-link" href="/tags/%E5%85%B8/" rel="tag">典</a>, <a class="tag-link-link" href="/tags/%E7%BB%84%E5%90%88/" rel="tag">组合</a>
     </div>
 
 
@@ -169,7 +170,7 @@
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1386">https://www.luogu.com.cn/problem/P1386</a></p>
 <p>双倍经验</p>
 <p>水题没做出来，警戒。</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>重要性质：每个人的顺序其实并没有关系。</strong></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>重要性质：每个人的顺序其实并没有关系。</strong>入典。</p>
 <p>考虑先判断一下无解的情况。</p>
 <p>感性理解一下或者根据 Hall 定理，编号 $\ge x$ 的个数都小于等于 $n-x+1$ 则一定有解。否则一定无解。</p>
 <p>那么只需要知道每个编号分别有多少，然后组合分配一下即可。</p>
