@@ -14,7 +14,7 @@
 <meta property="og:description" content="前言今天临时起意想清一下自己的刷题计划。就发现了一道很典但是我不会的 kmp，所以就想写一下我对 kmp 的理解。所以基本上是自己在乱 B。 联赛前应该不会再 kmp 了。 如果退役了的话，这辈子都不会 kmp 了。 kmpkmp 的 $nex_i$ 本质上是在维护以 $i$ 结尾的 border 集合中最大的 border。因为 border 集合中 border 都是依次被更大的包含，所以也只">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-03T01:53:23.000Z">
-<meta property="article:modified_time" content="2023-11-03T01:53:49.325Z">
+<meta property="article:modified_time" content="2023-11-03T10:24:04.355Z">
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="kmp">
 <meta property="article:tag" content="学习笔记">
@@ -87,6 +87,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/11/03/CF1734F-Zeros-and-Ones/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2023/11/03/CF1286E-Fedya-the-Potter-Strikes-Back/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -168,6 +170,7 @@
 <p>复杂度来看，每次最多只会加入一个 border，不管删除多少，所以复杂度是<strong>均摊</strong> $O(n)$。</p>
 <h2 id="失配树"><a href="#失配树" class="headerlink" title="失配树"></a>失配树</h2><p>这个板题就是把 border 建一棵树，公共 border 就是他们的共同祖先。最大的就是最近公共祖先。</p>
 <p>不太懂和失配什么关系。</p>
+<p>例题：[POI2005] SZA-Template</p>
 <h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>一般来说，kmp 的删除是隐性的，因为我们只需要最大的 border，所以根本不用管删除那些小的 border。</p>
 <p>但如果我们想要维护这个 border 集合，就要快速找到要删除的 border。具体维护看下面的例题。</p>
 <p><a href="https://wgyhm.top/2023/11/03/CF1286E-Fedya-the-Potter-Strikes-Back/">CF1286E Fedya the Potter Strikes Back</a>。</p>
