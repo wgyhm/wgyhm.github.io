@@ -18,9 +18,9 @@
             
             <tag> dp </tag>
             
-            <tag> 线段树 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 线段树 </tag>
             
             <tag> 数位dp </tag>
             
@@ -1257,11 +1257,11 @@
             
             <tag> dp </tag>
             
-            <tag> 计数 </tag>
-            
             <tag> 单调栈 </tag>
             
             <tag> 构造 </tag>
+            
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -1307,11 +1307,11 @@
             
             <tag> dp </tag>
             
-            <tag> 最小生成树 </tag>
-            
             <tag> 贪心 </tag>
             
             <tag> 计数 </tag>
+            
+            <tag> 最小生成树 </tag>
             
         </tags>
       
@@ -1401,9 +1401,9 @@
             
             <tag> dp </tag>
             
-            <tag> 点分树 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 点分树 </tag>
             
             <tag> 思维 </tag>
             
@@ -2114,9 +2114,9 @@
             
             <tag> 线段树 </tag>
             
-            <tag> 计数 </tag>
-            
             <tag> 单调栈 </tag>
+            
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -2324,9 +2324,9 @@
             
             <tag> dp </tag>
             
-            <tag> 容斥 </tag>
-            
             <tag> 倍增 </tag>
+            
+            <tag> 容斥 </tag>
             
             <tag> 平面图欧拉定理 </tag>
             
@@ -3790,9 +3790,9 @@
       
         <tags>
             
-            <tag> bzoj </tag>
-            
             <tag> manacher </tag>
+            
+            <tag> bzoj </tag>
             
         </tags>
       
