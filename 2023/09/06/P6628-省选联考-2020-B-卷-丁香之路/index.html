@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[省选联考 2020 B 卷] 丁香之路Solution感觉有点妙妙的题目。 首先显然是要求一个欧拉路径（起点和终点相同的情况是欧拉回路）。满足必须经过给定的边。有除了起点和终点度数为奇数外，其余点都是偶数。 我们把不满足读数要求的点称为坏点。 考虑把相邻的坏点连一条边。看上去这图就满足欧拉回路了。 但是手玩一下样例发现没有考虑不连通的情况。 只需要把在不同连通块的点做一个最小生成树。实现上，按照">
+    <meta name="description" content="[省选联考 2020 B 卷] 丁香之路Solution感觉有点妙妙的题目。 首先显然是要求一个欧拉路径（起点和终点相同的情况是欧拉回路）。满足必须经过给定的边。有除了起点和终点度数为奇数外，其余点都是偶数。 我们把不满足度数要求的点称为坏点。 考虑把相邻的坏点连一条边。看上去这图就满足欧拉回路了。 但是手玩一下样例发现没有考虑不连通的情况。 只需要把在不同连通块的点做一个最小生成树。实现上，按照">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P6628 [省选联考 2020 B 卷] 丁香之路">
 <meta property="og:url" content="http://wgyhm.top/2023/09/06/P6628-%E7%9C%81%E9%80%89%E8%81%94%E8%80%83-2020-B-%E5%8D%B7-%E4%B8%81%E9%A6%99%E4%B9%8B%E8%B7%AF/index.html">
 <meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="[省选联考 2020 B 卷] 丁香之路Solution感觉有点妙妙的题目。 首先显然是要求一个欧拉路径（起点和终点相同的情况是欧拉回路）。满足必须经过给定的边。有除了起点和终点度数为奇数外，其余点都是偶数。 我们把不满足读数要求的点称为坏点。 考虑把相邻的坏点连一条边。看上去这图就满足欧拉回路了。 但是手玩一下样例发现没有考虑不连通的情况。 只需要把在不同连通块的点做一个最小生成树。实现上，按照">
+<meta property="og:description" content="[省选联考 2020 B 卷] 丁香之路Solution感觉有点妙妙的题目。 首先显然是要求一个欧拉路径（起点和终点相同的情况是欧拉回路）。满足必须经过给定的边。有除了起点和终点度数为奇数外，其余点都是偶数。 我们把不满足度数要求的点称为坏点。 考虑把相邻的坏点连一条边。看上去这图就满足欧拉回路了。 但是手玩一下样例发现没有考虑不连通的情况。 只需要把在不同连通块的点做一个最小生成树。实现上，按照">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-06T12:01:02.000Z">
-<meta property="article:modified_time" content="2023-09-06T12:01:23.249Z">
+<meta property="article:modified_time" content="2023-11-17T07:16:12.618Z">
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="最小生成树">
 <meta property="article:tag" content="欧拉回路">
@@ -165,7 +165,7 @@
   <div class="content" itemprop="articleBody">
     <h1 id="省选联考-2020-B-卷-丁香之路"><a href="#省选联考-2020-B-卷-丁香之路" class="headerlink" title="[省选联考 2020 B 卷] 丁香之路"></a>[省选联考 2020 B 卷] 丁香之路</h1><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>感觉有点妙妙的题目。</p>
 <p>首先显然是要求一个欧拉路径（起点和终点相同的情况是欧拉回路）。满足必须经过给定的边。有除了起点和终点度数为奇数外，其余点都是偶数。</p>
-<p>我们把不满足读数要求的点称为坏点。</p>
+<p>我们把不满足度数要求的点称为坏点。</p>
 <p>考虑把相邻的坏点连一条边。看上去这图就满足欧拉回路了。</p>
 <p>但是手玩一下样例发现没有考虑不连通的情况。</p>
 <p>只需要把在不同连通块的点做一个最小生成树。实现上，按照权值顺序枚举相邻点，如果两个点不在一个连通块就连起来。</p>
