@@ -357,9 +357,9 @@
             
             <tag> dp </tag>
             
-            <tag> 贪心 </tag>
-            
             <tag> 线段树 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> 数位dp </tag>
             
@@ -432,9 +432,9 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
         </tags>
       
@@ -474,9 +474,9 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
         </tags>
       
@@ -662,9 +662,9 @@
             
             <tag> dp </tag>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> tarjan </tag>
             
@@ -752,9 +752,9 @@
             
             <tag> 单调栈 </tag>
             
-            <tag> 典 </tag>
-            
             <tag> kmp </tag>
+            
+            <tag> 典 </tag>
             
         </tags>
       
@@ -840,9 +840,9 @@
             
             <tag> dp </tag>
             
-            <tag> 思维 </tag>
-            
             <tag> 容斥 </tag>
+            
+            <tag> 思维 </tag>
             
         </tags>
       
@@ -1074,11 +1074,11 @@
             
             <tag> 计数 </tag>
             
+            <tag> 容斥 </tag>
+            
             <tag> 典 </tag>
             
             <tag> 莫比乌斯反演 </tag>
-            
-            <tag> 容斥 </tag>
             
         </tags>
       
@@ -1427,9 +1427,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> 思维 </tag>
             
@@ -1525,9 +1525,9 @@
             
             <tag> dp </tag>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> NOIP 模拟赛 </tag>
             
@@ -1596,11 +1596,11 @@
             
             <tag> dp </tag>
             
-            <tag> 计数 </tag>
-            
             <tag> 单调栈 </tag>
             
             <tag> 构造 </tag>
+            
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -1646,11 +1646,11 @@
             
             <tag> dp </tag>
             
-            <tag> 最小生成树 </tag>
+            <tag> 计数 </tag>
             
             <tag> 贪心 </tag>
             
-            <tag> 计数 </tag>
+            <tag> 最小生成树 </tag>
             
         </tags>
       
@@ -1694,9 +1694,9 @@
             
             <tag> dp </tag>
             
-            <tag> 组合 </tag>
-            
             <tag> 容斥 </tag>
+            
+            <tag> 组合 </tag>
             
         </tags>
       
@@ -1740,11 +1740,11 @@
             
             <tag> dp </tag>
             
-            <tag> 贪心 </tag>
+            <tag> 点分树 </tag>
             
             <tag> 构造 </tag>
             
-            <tag> 点分树 </tag>
+            <tag> 贪心 </tag>
             
             <tag> 思维 </tag>
             
@@ -1882,9 +1882,9 @@
             
             <tag> dp </tag>
             
-            <tag> 组合 </tag>
-            
             <tag> 容斥 </tag>
+            
+            <tag> 组合 </tag>
             
         </tags>
       
@@ -1905,11 +1905,11 @@
             
             <tag> NOIP模拟赛 </tag>
             
+            <tag> 对顶栈 </tag>
+            
             <tag> 状压 </tag>
             
             <tag> dp </tag>
-            
-            <tag> 对顶栈 </tag>
             
             <tag> 决策单调性 </tag>
             
@@ -2317,11 +2317,11 @@
             
             <tag> 计数 </tag>
             
+            <tag> 容斥 </tag>
+            
             <tag> 组合 </tag>
             
             <tag> 典 </tag>
-            
-            <tag> 容斥 </tag>
             
         </tags>
       
@@ -2453,11 +2453,11 @@
       
         <tags>
             
-            <tag> 计数 </tag>
+            <tag> 线段树 </tag>
             
             <tag> 单调栈 </tag>
             
-            <tag> 线段树 </tag>
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -2667,9 +2667,9 @@
             
             <tag> dp </tag>
             
-            <tag> 倍增 </tag>
-            
             <tag> 容斥 </tag>
+            
+            <tag> 倍增 </tag>
             
             <tag> 平面图欧拉定理 </tag>
             
@@ -2870,9 +2870,9 @@
             
             <tag> tarjan </tag>
             
-            <tag> 凸包 </tag>
-            
             <tag> 倍增 </tag>
+            
+            <tag> 凸包 </tag>
             
         </tags>
       
@@ -2891,13 +2891,13 @@
       
         <tags>
             
-            <tag> 倍增 </tag>
-            
             <tag> NOIP 模拟赛 </tag>
             
             <tag> 期望 </tag>
             
             <tag> 平面图 </tag>
+            
+            <tag> 倍增 </tag>
             
         </tags>
       
@@ -3365,9 +3365,9 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> bzoj </tag>
             
@@ -3869,9 +3869,9 @@
       
         <tags>
             
-            <tag> 贪心 </tag>
-            
             <tag> 构造 </tag>
+            
+            <tag> 贪心 </tag>
             
             <tag> prufer序列 </tag>
             
@@ -4070,9 +4070,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 构造 </tag>
-            
             <tag> 线段树 </tag>
+            
+            <tag> 构造 </tag>
             
         </tags>
       
