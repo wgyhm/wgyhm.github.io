@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1641D Solution有一个根号分治的 bitset 做法，感觉有点丑陋，就不说了。 考虑怎么优雅的判两个集合的交集。 考虑容斥。取两个集合的所有子集，如果相同且子集大小奇数就 $+1$，偶数就 $-1$。这样如果集合有交集则为 $1$，否则为 $0$。 记两个集合的交集为 $s$，则贡献是 $\su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF1641D Two Arrays">
+<meta property="og:url" content="http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1641D Solution有一个根号分治的 bitset 做法，感觉有点丑陋，就不说了。 考虑怎么优雅的判两个集合的交集。 考虑容斥。取两个集合的所有子集，如果相同且子集大小奇数就 $+1$，偶数就 $-1$。这样如果集合有交集则为 $1$，否则为 $0$。 记两个集合的交集为 $s$，则贡献是 $\su">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-07T11:16:53.000Z">
+<meta property="article:modified_time" content="2023-12-07T11:20:01.073Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="容斥">
+<meta property="article:tag" content="思维">
+<meta property="article:tag" content="双指针">
+<meta property="article:tag" content="哈希">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>CF1641D Two Arrays</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/12/07/P4688-Ynoi2016-%E6%8E%89%E8%BF%9B%E5%85%94%E5%AD%90%E6%B4%9E/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/12/07/CF1239E-Turtle/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&text=CF1641D Two Arrays"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&is_video=false&description=CF1641D Two Arrays"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1641D Two Arrays&body=Check out this article: http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&name=CF1641D Two Arrays&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&t=CF1641D Two Arrays"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CF1641D Two Arrays
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-07T11:16:53.000Z" itemprop="datePublished">2023-12-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a>, <a class="tag-link-link" href="/tags/%E5%93%88%E5%B8%8C/" rel="tag">哈希</a>, <a class="tag-link-link" href="/tags/%E5%AE%B9%E6%96%A5/" rel="tag">容斥</a>, <a class="tag-link-link" href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag">思维</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1641D">https://www.luogu.com.cn/problem/CF1641D</a></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>有一个根号分治的 bitset 做法，感觉有点丑陋，就不说了。</p>
+<p>考虑怎么优雅的判两个集合的交集。</p>
+<p>考虑容斥。取两个集合的所有子集，如果相同且子集大小奇数就 $+1$，偶数就 $-1$。这样如果集合有交集则为 $1$，否则为 $0$。</p>
+<p>记两个集合的交集为 $s$，则贡献是 $\sum (-1)^{i+1}\dbinom{s}{i}$，由二项式定理可以推出来。</p>
+<p>有了这个东西就可以 $O(2^mm)$ 做一个集合的前缀有多少个无交。</p>
+<p>然后先将 $w$ 排个序，在对于每个右指针，找到最近的左指针使得无交。然后更新答案。</p>
+<p>观察到如果要对答案有贡献，右指针向右单调时，左指针也必须向左边单调。所以两个指针的移动是 $O(n)$ 的。</p>
+<p>最后复杂度是 $O(n2^mm)$，判相同这里用的哈希表 <code>gp_hash_table</code>，感觉远快于 <code>unordered_map</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">#include&lt;ext/pb_ds/assoc_container.hpp&gt;</span><br><span class="line">#include&lt;ext/pb_ds/hash_policy.hpp&gt;</span><br><span class="line">#define int unsigned long long</span><br><span class="line">#define ull unsigned long long</span><br><span class="line">#define maxn 100005</span><br><span class="line">#define put() putchar(&#x27;\n&#x27;)</span><br><span class="line">#define LL __int128</span><br><span class="line">#define Tp template&lt;typename T&gt;</span><br><span class="line">#define Ts template&lt;typename T,typename... Ar&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">Tp void read(T &amp;x)&#123;</span><br><span class="line">    int f=1;x=0;char c=getchar();</span><br><span class="line">    while (c&lt;&#x27;0&#x27;||c&gt;&#x27;9&#x27;) &#123;if (c==&#x27;-&#x27;) f=-1;c=getchar();&#125;</span><br><span class="line">    while (c&gt;=&#x27;0&#x27;&amp;&amp;c&lt;=&#x27;9&#x27;) &#123;x=x*10+c-&#x27;0&#x27;;c=getchar();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line">namespace Debug&#123;</span><br><span class="line">	Tp void _debug(char* f,T t)&#123;cerr&lt;&lt;f&lt;&lt;&#x27;=&#x27;&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts void _debug(char* f,T x,Ar... y)&#123;while(*f!=&#x27;,&#x27;) cerr&lt;&lt;*f++;cerr&lt;&lt;&#x27;=&#x27;&lt;&lt;x&lt;&lt;&quot;,&quot;;_debug(f+1,y...);&#125;</span><br><span class="line">	#define gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span><br><span class="line">&#125;using namespace Debug;</span><br><span class="line">#define fi first</span><br><span class="line">#define se second</span><br><span class="line">#define mk make_pair</span><br><span class="line">int n,m;</span><br><span class="line">const int inf=2e9,base=1e9+7,base2=998244353;</span><br><span class="line">int a[maxn][6],w[maxn],id[maxn];</span><br><span class="line"></span><br><span class="line">int ans=2e9+5;</span><br><span class="line">__gnu_pbds::gp_hash_table&lt;ull, int&gt; mp;</span><br><span class="line">// map&lt;ull,int&gt;mp;</span><br><span class="line">bool cmp(int x,int y) &#123;return w[x]&lt;w[y];&#125;</span><br><span class="line">void add(int id,int flag) &#123;</span><br><span class="line">	int i,j;</span><br><span class="line">	for (i=1;i&lt;(1&lt;&lt;m);i++) &#123;</span><br><span class="line">		int cnt=0;</span><br><span class="line">		ull res=0,res2=0;</span><br><span class="line">		for (j=0;j&lt;m;j++) if ((i&gt;&gt;j)&amp;1) &#123;</span><br><span class="line">			res=(1ll*res*base+a[id][j]);</span><br><span class="line">			res2=(1ll*res*base2+a[id][j]);</span><br><span class="line">			cnt++;</span><br><span class="line">		&#125; </span><br><span class="line">		if ((flag==1)==(cnt&amp;1)) mp[res*res2]+=1;</span><br><span class="line">		else mp[res*res2]-=1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int query(int id) &#123;</span><br><span class="line">	int i,j,ans=0;</span><br><span class="line">	for (i=1;i&lt;(1&lt;&lt;m);i++) &#123;</span><br><span class="line">		int cnt=0;</span><br><span class="line">		ull res=0,res2=0;</span><br><span class="line">		for (j=0;j&lt;m;j++) if ((i&gt;&gt;j)&amp;1) &#123;</span><br><span class="line">			res=(1ll*res*base+a[id][j]);</span><br><span class="line">			res2=(1ll*res*base2+a[id][j]);</span><br><span class="line">			cnt++;</span><br><span class="line">		&#125; </span><br><span class="line">		ans=ans+mp[res*res2];</span><br><span class="line">	&#125;</span><br><span class="line">	return ans;</span><br><span class="line">&#125;</span><br><span class="line">signed main(void)&#123;</span><br><span class="line">	int i,j;</span><br><span class="line">	read(n);read(m);</span><br><span class="line">	for (i=1;i&lt;=n;i++) &#123;</span><br><span class="line">		for (j=0;j&lt;m;j++) read(a[i][j]);</span><br><span class="line">		sort(a[i],a[i]+m);</span><br><span class="line">		read(w[i]);id[i]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(id+1,id+1+n,cmp);</span><br><span class="line">	for (i=1;i&lt;n;i++) assert(w[id[i]]&lt;=w[id[i+1]]);</span><br><span class="line">	int r=1;</span><br><span class="line">	while (r&lt;=n) &#123;</span><br><span class="line">		if (query(id[r])==r-1) add(id[r],1),r++;</span><br><span class="line">		else break;</span><br><span class="line">	&#125; </span><br><span class="line">	if (r==n+1) return puts(&quot;-1&quot;),0;</span><br><span class="line">	int l=r-1;</span><br><span class="line">	for (;r&lt;=n;r++) &#123;</span><br><span class="line">		if (!l) break;</span><br><span class="line">		if (query(id[r])==l) continue;</span><br><span class="line">		while (l&amp;&amp;query(id[r])&lt;l) add(id[l],-1),l--;</span><br><span class="line">		ans=min(ans,w[id[r]]+w[id[l+1]]);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%llu\n&quot;,ans);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">//i=begin &amp;&amp; g++ $i.cpp -o $i -std=c++14 &amp;&amp; ./$i</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&text=CF1641D Two Arrays"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&is_video=false&description=CF1641D Two Arrays"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1641D Two Arrays&body=Check out this article: http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&name=CF1641D Two Arrays&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&t=CF1641D Two Arrays"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

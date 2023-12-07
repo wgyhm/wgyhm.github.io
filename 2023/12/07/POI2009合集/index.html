@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="2023.12.06～2023.12.07 没和 08 接上是因为去做了写 bitset 和 dp 题目锻炼一下科技和马力。 感觉 bitset 很有前途啊！  有一道计算几何，其他都是没什么人做的，有这时间不如做点典题。 P3479 [POI2009] GAS-Fire Extinguishers注意到一个位置可以放多个灭火器。 考虑贪心，放在深度更小的地方更优。如果当前子树中存在深度为 $k$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POI2009合集">
+<meta property="og:url" content="http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="2023.12.06～2023.12.07 没和 08 接上是因为去做了写 bitset 和 dp 题目锻炼一下科技和马力。 感觉 bitset 很有前途啊！  有一道计算几何，其他都是没什么人做的，有这时间不如做点典题。 P3479 [POI2009] GAS-Fire Extinguishers注意到一个位置可以放多个灭火器。 考虑贪心，放在深度更小的地方更优。如果当前子树中存在深度为 $k$">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-07T11:17:44.000Z">
+<meta property="article:modified_time" content="2023-12-07T11:21:11.088Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="POI">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>POI2009合集</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/12/07/POI2008%E5%90%88%E9%9B%86/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&text=POI2009合集"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&is_video=false&description=POI2009合集"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=POI2009合集&body=Check out this article: http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&name=POI2009合集&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&t=POI2009合集"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P3479-POI2009-GAS-Fire-Extinguishers"><span class="toc-number">1.</span> <span class="toc-text">P3479 [POI2009] GAS-Fire Extinguishers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3480-POI2009-KAM-Pebbles"><span class="toc-number">2.</span> <span class="toc-text">P3480 [POI2009] KAM-Pebbles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3482-POI2009-SLO-Elephants"><span class="toc-number">3.</span> <span class="toc-text">P3482 [POI2009] SLO-Elephants</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3485-POI2009-BAJ-The-Walk-of-Bytie-boy"><span class="toc-number">4.</span> <span class="toc-text">P3485 [POI2009] BAJ-The Walk of Bytie-boy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3486-POI2009-KON-Ticket-Inspector"><span class="toc-number">5.</span> <span class="toc-text">P3486 [POI2009] KON-Ticket Inspector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3487-POI2009-ARC-Architects"><span class="toc-number">6.</span> <span class="toc-text">P3487 [POI2009] ARC-Architects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3488-POI2009-LYZ-Ice-Skates"><span class="toc-number">7.</span> <span class="toc-text">P3488 [POI2009] LYZ-Ice Skates</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3489-POI2009-WIE-Hexer"><span class="toc-number">8.</span> <span class="toc-text">P3489 [POI2009] WIE-Hexer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3492-POI2009-TAB-Arrays"><span class="toc-number">9.</span> <span class="toc-text">P3492 [POI2009] TAB-Arrays</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        POI2009合集
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-07T11:17:44.000Z" itemprop="datePublished">2023-12-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/POI/" rel="tag">POI</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>2023.12.06～2023.12.07</p>
+<p>没和 08 接上是因为去做了写 bitset 和 dp 题目锻炼一下科技和马力。</p>
+<p>感觉 bitset 很有前途啊！</p>
+<hr>
+<p>有一道计算几何，其他都是没什么人做的，有这时间不如做点典题。</p>
+<h3 id="P3479-POI2009-GAS-Fire-Extinguishers"><a href="#P3479-POI2009-GAS-Fire-Extinguishers" class="headerlink" title="P3479 [POI2009] GAS-Fire Extinguishers"></a>P3479 [POI2009] GAS-Fire Extinguishers</h3><p>注意到一个位置可以放多个灭火器。</p>
+<p>考虑贪心，放在深度更小的地方更优。如果当前子树中存在深度为 $k$ 没被覆盖就在这个点放若干个灭火器。</p>
+<p>记 $f_{x,i}$ 表示 $x$ 的子树内深度为 $i$ 需要灭火器的个数，$g_{x,i}$ 表示 $x$ 的子树深度为 $i$ 内放灭火器且还没有覆盖过别的点的可以灭火的个数。</p>
+<p>然后还要记得转移自己作为 lca，子树间的。</p>
+<p>注意到每次转移一定要贪心的转移距离为 $k$ 的，不然会出错。复杂度 $O(nk)$。</p>
+<h3 id="P3480-POI2009-KAM-Pebbles"><a href="#P3480-POI2009-KAM-Pebbles" class="headerlink" title="P3480 [POI2009] KAM-Pebbles"></a>P3480 [POI2009] KAM-Pebbles</h3><p>5 分钟快速丹砂，感觉是最会博弈论的一集。</p>
+<p>看到单调递增考虑差分，也就是保证差分数组始终 $&gt;0$。</p>
+<p>考虑一个位置 $i$ 减少 $x$，放在差分数组上就是 $i$ 到 $i+1$ 移动 $x$ 个。这就是阶梯 nim 博弈了。</p>
+<p>差点被数据范围诈骗。复杂度 $O(n)$。</p>
+<h3 id="P3482-POI2009-SLO-Elephants"><a href="#P3482-POI2009-SLO-Elephants" class="headerlink" title="P3482 [POI2009] SLO-Elephants"></a>P3482 [POI2009] SLO-Elephants</h3><p>之前做的。经典套路 $(i,p_i)$ 连边看成一堆环。然后分类讨论。复杂度 $O(n)$。</p>
+<h3 id="P3485-POI2009-BAJ-The-Walk-of-Bytie-boy"><a href="#P3485-POI2009-BAJ-The-Walk-of-Bytie-boy" class="headerlink" title="P3485 [POI2009] BAJ-The Walk of Bytie-boy"></a>P3485 [POI2009] BAJ-The Walk of Bytie-boy</h3><p>序列上怎么做？抛开在图上不太可行的 manacher，考虑区间 dp。</p>
+<p>令 $f_{x,y}$ 表示从 $x\to y$ 的最短回文路径。转移枚举 $l\to x,y\to r$，如果经过同样的字母，就 $f_{l,r}\gets\min f_{x,y}+2$。</p>
+<p>但是这样复杂度应该是 $O(m^2)$ 的，没有前途。</p>
+<p>考虑转移拆成两部分，令 $f_{x,y}$ 还是表示 $x\to y$ 的最短回文路径，$g_{x,y,c}$ 表示 $x\to z\xrightarrow{c} y$ 且 $x\to z$ 是回文路径的最短路径。</p>
+<p>有转移：</p>
+<ul>
+<li><p>$f_{z,y}\gets \min{ g_{x,y,c}}+1,z\xrightarrow{c}x$。</p>
+</li>
+<li><p>$g_{x,z,c}\gets \min {f_{x,y}},y\xrightarrow{c}z$。</p>
+</li>
+</ul>
+<p>用 bfs，且实现的好的话，每个状态只会被转移一次。复杂度 $O(nm+26n^2)$。</p>
+<p>为了保证复杂度正确，最好对每条边的起点和边权存终点，减少转移的冗余。</p>
+<h3 id="P3486-POI2009-KON-Ticket-Inspector"><a href="#P3486-POI2009-KON-Ticket-Inspector" class="headerlink" title="P3486 [POI2009] KON-Ticket Inspector"></a>P3486 [POI2009] KON-Ticket Inspector</h3><p>转化成最少检不到的人数。然后令 $f_{i,j}$ 表示上一个检查在 $i$ ，检查了 $j$ 个，暴力枚举转移点，转移的价值用二维前缀和预处理一下即可。复杂度 $O(n^2k)$。</p>
+<h3 id="P3487-POI2009-ARC-Architects"><a href="#P3487-POI2009-ARC-Architects" class="headerlink" title="P3487 [POI2009] ARC-Architects"></a>P3487 [POI2009] ARC-Architects</h3><p>第 $i$ 个数为在 $[b_{i-1}+1,n-i+1]$ 中最大的数。</p>
+<p>发现可以单调队列。复杂度 $O(n)$。注意别开 O2。</p>
+<h3 id="P3488-POI2009-LYZ-Ice-Skates"><a href="#P3488-POI2009-LYZ-Ice-Skates" class="headerlink" title="P3488 [POI2009] LYZ-Ice Skates"></a>P3488 [POI2009] LYZ-Ice Skates</h3><p>丹砂！虽然好像很水。</p>
+<p>Hall 定理，对于任意的集合，后面忘了。</p>
+<p>但是其实集合的限制不如区间，因为任意区间满足了任意集合一定满足（把集合空的补满的限制更强），转化为 $\forall l\le r,\sum\limits _{i&#x3D;l}^r a_i\le (r-l+1+d)\cdot k$，移项有 $\sum a_i-k\le d\cdot k$，也就是求最大字段和。</p>
+<p>线段树维护即可，复杂度 $O((n+m)\log n)$。</p>
+<h3 id="P3489-POI2009-WIE-Hexer"><a href="#P3489-POI2009-WIE-Hexer" class="headerlink" title="P3489 [POI2009] WIE-Hexer"></a>P3489 [POI2009] WIE-Hexer</h3><p>观察到 $p$ 很小，直接状态压缩。然后跑 dj 。</p>
+<p>复杂度 $O((n+m)2^pp\log (n+m))$，反证能过。</p>
+<h3 id="P3492-POI2009-TAB-Arrays"><a href="#P3492-POI2009-TAB-Arrays" class="headerlink" title="P3492 [POI2009] TAB-Arrays"></a>P3492 [POI2009] TAB-Arrays</h3><p>观察到每一行&#x2F;列的元素集合组成不变。</p>
+<p>每个数不同，所以随便判一下就好了。复杂度 $O(n)$。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P3479-POI2009-GAS-Fire-Extinguishers"><span class="toc-number">1.</span> <span class="toc-text">P3479 [POI2009] GAS-Fire Extinguishers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3480-POI2009-KAM-Pebbles"><span class="toc-number">2.</span> <span class="toc-text">P3480 [POI2009] KAM-Pebbles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3482-POI2009-SLO-Elephants"><span class="toc-number">3.</span> <span class="toc-text">P3482 [POI2009] SLO-Elephants</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3485-POI2009-BAJ-The-Walk-of-Bytie-boy"><span class="toc-number">4.</span> <span class="toc-text">P3485 [POI2009] BAJ-The Walk of Bytie-boy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3486-POI2009-KON-Ticket-Inspector"><span class="toc-number">5.</span> <span class="toc-text">P3486 [POI2009] KON-Ticket Inspector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3487-POI2009-ARC-Architects"><span class="toc-number">6.</span> <span class="toc-text">P3487 [POI2009] ARC-Architects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3488-POI2009-LYZ-Ice-Skates"><span class="toc-number">7.</span> <span class="toc-text">P3488 [POI2009] LYZ-Ice Skates</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3489-POI2009-WIE-Hexer"><span class="toc-number">8.</span> <span class="toc-text">P3489 [POI2009] WIE-Hexer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3492-POI2009-TAB-Arrays"><span class="toc-number">9.</span> <span class="toc-text">P3492 [POI2009] TAB-Arrays</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&text=POI2009合集"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&is_video=false&description=POI2009合集"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=POI2009合集&body=Check out this article: http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&title=POI2009合集"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&name=POI2009合集&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/07/POI2009%E5%90%88%E9%9B%86/&t=POI2009合集"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
