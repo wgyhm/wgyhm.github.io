@@ -816,9 +816,9 @@
             
             <tag> dp </tag>
             
-            <tag> 线段树 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 线段树 </tag>
             
             <tag> 数位dp </tag>
             
@@ -891,9 +891,9 @@
       
         <tags>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
         </tags>
       
@@ -933,9 +933,9 @@
       
         <tags>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
         </tags>
       
@@ -1121,9 +1121,9 @@
             
             <tag> dp </tag>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> tarjan </tag>
             
@@ -1886,9 +1886,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> trick </tag>
             
@@ -1984,9 +1984,9 @@
             
             <tag> dp </tag>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> NOIP 模拟赛 </tag>
             
@@ -2055,11 +2055,11 @@
             
             <tag> dp </tag>
             
+            <tag> 计数 </tag>
+            
             <tag> 单调栈 </tag>
             
             <tag> 构造 </tag>
-            
-            <tag> 计数 </tag>
             
         </tags>
       
@@ -2105,11 +2105,11 @@
             
             <tag> dp </tag>
             
-            <tag> 计数 </tag>
+            <tag> 最小生成树 </tag>
             
             <tag> 贪心 </tag>
             
-            <tag> 最小生成树 </tag>
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -2199,11 +2199,11 @@
             
             <tag> dp </tag>
             
+            <tag> 贪心 </tag>
+            
             <tag> 点分树 </tag>
             
             <tag> 构造 </tag>
-            
-            <tag> 贪心 </tag>
             
             <tag> 思维 </tag>
             
@@ -2912,11 +2912,11 @@
       
         <tags>
             
+            <tag> 计数 </tag>
+            
             <tag> 线段树 </tag>
             
             <tag> 单调栈 </tag>
-            
-            <tag> 计数 </tag>
             
         </tags>
       
@@ -3824,9 +3824,9 @@
       
         <tags>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> bzoj </tag>
             
@@ -4328,9 +4328,9 @@
       
         <tags>
             
-            <tag> 构造 </tag>
-            
             <tag> 贪心 </tag>
+            
+            <tag> 构造 </tag>
             
             <tag> prufer序列 </tag>
             
