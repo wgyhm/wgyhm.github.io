@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>POI2010合集</title>
+      <link href="/2023/12/08/POI2010%E5%90%88%E9%9B%86/"/>
+      <url>/2023/12/08/POI2010%E5%90%88%E9%9B%86/</url>
+      
+        <content type="html"><![CDATA[<p>2023.12.07～2023.12.08</p><p>这年感觉有点简单啊。除了一个 Pollard-Rho 用了点科技。</p><p>有两个没人做的题目就不写了。</p><h3 id="P3496-POI2010-GIL-Guilds"><a href="#P3496-POI2010-GIL-Guilds" class="headerlink" title="P3496 [POI2010] GIL-Guilds"></a>P3496 [POI2010] GIL-Guilds</h3><p>发现灰色是没有用的，于是贪心就好了。</p><h3 id="P3497-POI2010-KOL-Railway"><a href="#P3497-POI2010-KOL-Railway" class="headerlink" title="P3497 [POI2010] KOL-Railway"></a>P3497 [POI2010] KOL-Railway</h3><p>双栈排序。记 $s_i&#x3D;\min\limits_{j&#x3D;i}^n a_i$。</p><p>发现如果 $i&lt;j$ 且 $s_{j+1}&lt;a_i&lt;a_j$ 那么 $i,j$ 不在一个栈中。这启发我们对不合法的 $(i,j)$ 建边，最后贪心的染色判断是否是二分图。</p><p>但是建边是 $O(n^2)$ 的，考虑能不能建出来一片森林，先给每个点染上一个颜色，然后在做答案的时候判断合法性。</p><p>观察到 $s_{j+1}$ 是不降的，考虑维护每个连通块内的最小值大于 $s_{j+1}$ 的最小值和那个点。找到 $&lt; a_i$ 的连通块，然后连边合并。这样我们只会连 $O(n)$ 条边。</p><p>我们需要的支持的操作有，弹出最小值，找到最小值，合并两个连通块，考虑可并堆。复杂度 $O(n\log n)$。</p><h3 id="P3498-POI2010-KOR-Beads"><a href="#P3498-POI2010-KOR-Beads" class="headerlink" title="P3498 [POI2010] KOR-Beads"></a>P3498 [POI2010] KOR-Beads</h3><p>发现串的个数是 $O(n\ln n)$ 的，于是我们可以暴力哈希，拿 map 判重。</p><p>写完以后感觉可以字典树，似乎更好一点。复杂度 $O(n\log ^2n)&#x2F;O(n\log n)$。</p><h3 id="P3499-POI2010-NAJ-Divine-Divisor"><a href="#P3499-POI2010-NAJ-Divine-Divisor" class="headerlink" title="P3499 [POI2010] NAJ-Divine Divisor"></a>P3499 [POI2010] NAJ-Divine Divisor</h3><p>Pollard-Rho 直接干。</p><p>注意到 $2^k$ 可能会爆，所以用 long double 以后转 string。</p><h3 id="P3500-POI2010-TES-Intelligence-Test"><a href="#P3500-POI2010-TES-Intelligence-Test" class="headerlink" title="P3500 [POI2010] TES-Intelligence Test"></a>P3500 [POI2010] TES-Intelligence Test</h3><p>模拟。</p><h3 id="P3501-POI2010-ANT-Antisymmetry"><a href="#P3501-POI2010-ANT-Antisymmetry" class="headerlink" title="P3501 [POI2010] ANT-Antisymmetry"></a>P3501 [POI2010] ANT-Antisymmetry</h3><p>mancher。或者暴力哈希，但是感觉哈希没有前途。</p><h3 id="P3502-POI2010-CHO-Hamsters"><a href="#P3502-POI2010-CHO-Hamsters" class="headerlink" title="P3502 [POI2010] CHO-Hamsters"></a>P3502 [POI2010] CHO-Hamsters</h3><p>KMP 搞一下两两后缀和前缀的最长相同的，然后矩阵优化转移，复杂度 $O(n|S|+n^3\log m)$。</p><h3 id="P3503-POI2010-KLO-Blocks"><a href="#P3503-POI2010-KLO-Blocks" class="headerlink" title="P3503 [POI2010] KLO-Blocks"></a>P3503 [POI2010] KLO-Blocks</h3><p>观察到就是让我们求满足 $[l,r],\sum\limits _{i&#x3D;l}^r a_i-k\ge 0$ 的最大区间。</p><p>先预处理出 $a_i-k$ 的前缀和。发现对于升序左端点 $l$，它满足的右端点一定是单调的才能对答案有贡献。预处理后缀最大值之后双指针。</p><p>复杂度 $O(nm)$。</p><h3 id="P3504-POI2010-OWC-Sheep"><a href="#P3504-POI2010-OWC-Sheep" class="headerlink" title="P3504 [POI2010] OWC-Sheep"></a>P3504 [POI2010] OWC-Sheep</h3><p>预处理出在 $i,j$ 逆时针上的点的个数。具体参考 <a href="https://wgyhm.top/2023/12/01/bzoj1518-POI2006-Naj-The-Invasion/">[POI2006]Naj-the Invasion</a>。复杂度 $O(nm\log n+n^2)$。</p><p>然后区间 dp 就好了，条件是转移的三角形内部的偶数且三角形的边上没有点。</p><p>复杂度 $O(nm\log n+n^3)$。</p><h3 id="P3505-POI2010-TEL-Teleportation"><a href="#P3505-POI2010-TEL-Teleportation" class="headerlink" title="P3505 [POI2010] TEL-Teleportation"></a>P3505 [POI2010] TEL-Teleportation</h3><p>转化成分层图，然后贪心。</p><h3 id="P3506-POI2010-MOT-Monotonicity-2"><a href="#P3506-POI2010-MOT-Monotonicity-2" class="headerlink" title="P3506 [POI2010] MOT-Monotonicity 2"></a>P3506 [POI2010] MOT-Monotonicity 2</h3><p>同 <a href="https://wgyhm.top/2023/11/14/P8277-USACO22OPEN-Up-Down-Subsequence-P/%E3%80%82">https://wgyhm.top/2023/11/14/P8277-USACO22OPEN-Up-Down-Subsequence-P/。</a></p><p>但是要输出方案，还是用线段树好写一点。复杂度 $O(n\log w)$。</p><h3 id="P3509-POI2010-ZAB-Frog"><a href="#P3509-POI2010-ZAB-Frog" class="headerlink" title="P3509 [POI2010] ZAB-Frog"></a>P3509 [POI2010] ZAB-Frog</h3><p>单调队列预处理出每个点跳一步跳到的点，然后类似快速幂一样倍增过去。</p><p>复杂度 $O(n\log m)$。</p><h3 id="P3511-POI2010-MOS-Bridges"><a href="#P3511-POI2010-MOS-Bridges" class="headerlink" title="P3511 [POI2010] MOS-Bridges"></a>P3511 [POI2010] MOS-Bridges</h3><p>显然先二分答案，转化为判断可行性问题。</p><p>如果一张有向图存在欧拉路径，其充要条件为联通且每个点的入度等于其出度。先判断如果一个点的度数为奇数则无解，否则其出度和入读就要等于它的度数除以 $2$。</p><p>这样就很网络流了！对于每条边新建一个节点 $e$，连边 $(S,e,1)$ 来限制流量。如果 $l\le mid$，连边 $(e,y,1)$；如果 $p\le mid$，连边 $(e,x,1)$。最后对于每个点，连边 $(i,T,\dfrac{deg_i}{2})$。如果跑满则存在一组解。</p><p>最后跑欧拉回路就好了。注意欧拉回路的 dfs 过程是要先搜再入栈，最后倒着输出。</p><p>复杂度 $O(m\sqrt m\log v)$，由于是网络流则显然跑不满。</p><h3 id="P3512-POI2010-PIL-Pilots"><a href="#P3512-POI2010-PIL-Pilots" class="headerlink" title="P3512 [POI2010] PIL-Pilots"></a>P3512 [POI2010] PIL-Pilots</h3><p>发现黄题也很难啊。</p><p>双指针，最大值最小值用单调队列维护。</p><p>感觉 POI 很喜欢考奇怪的线性数据结构，而且都是我不太熟练的。前面的单调队列和单调栈，还有前两年的神秘带权并查集。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> POI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>POI2009合集</title>
       <link href="/2023/12/07/POI2009%E5%90%88%E9%9B%86/"/>
       <url>/2023/12/07/POI2009%E5%90%88%E9%9B%86/</url>
@@ -182,7 +201,7 @@
     
     
     <entry>
-      <title>Bzoj1132 [POI2008] KUP-Plot Purchase</title>
+      <title>Bzoj1127 [POI2008] KUP-Plot Purchase</title>
       <link href="/2023/12/04/bzoj1132-POI2008-KUP-Plot-purchase/"/>
       <url>/2023/12/04/bzoj1132-POI2008-KUP-Plot-purchase/</url>
       
@@ -764,9 +783,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> dp </tag>
-            
             <tag> 线段树 </tag>
+            
+            <tag> dp </tag>
             
             <tag> 差分 </tag>
             
@@ -814,11 +833,11 @@
             
             <tag> NOIP模拟赛 </tag>
             
+            <tag> 线段树 </tag>
+            
             <tag> dp </tag>
             
             <tag> 贪心 </tag>
-            
-            <tag> 线段树 </tag>
             
             <tag> 数位dp </tag>
             
@@ -864,9 +883,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> dp </tag>
-            
             <tag> 线段树 </tag>
+            
+            <tag> dp </tag>
             
             <tag> 长链剖分 </tag>
             
@@ -975,9 +994,9 @@
             
             <tag> dp </tag>
             
-            <tag> 长链剖分 </tag>
-            
             <tag> 典 </tag>
+            
+            <tag> 长链剖分 </tag>
             
         </tags>
       
@@ -1485,9 +1504,9 @@
             
             <tag> dp </tag>
             
-            <tag> 组合 </tag>
-            
             <tag> 典 </tag>
+            
+            <tag> 组合 </tag>
             
             <tag> Hall定理 </tag>
             
@@ -1890,9 +1909,9 @@
             
             <tag> 构造 </tag>
             
-            <tag> trick </tag>
-            
             <tag> 思维 </tag>
+            
+            <tag> trick </tag>
             
         </tags>
       
@@ -2197,11 +2216,11 @@
       
         <tags>
             
+            <tag> 点分树 </tag>
+            
             <tag> dp </tag>
             
             <tag> 贪心 </tag>
-            
-            <tag> 点分树 </tag>
             
             <tag> 构造 </tag>
             
@@ -2778,9 +2797,9 @@
             
             <tag> 容斥 </tag>
             
-            <tag> 组合 </tag>
-            
             <tag> 典 </tag>
+            
+            <tag> 组合 </tag>
             
         </tags>
       
@@ -2912,9 +2931,9 @@
       
         <tags>
             
-            <tag> 计数 </tag>
-            
             <tag> 线段树 </tag>
+            
+            <tag> 计数 </tag>
             
             <tag> 单调栈 </tag>
             
@@ -3329,9 +3348,9 @@
             
             <tag> tarjan </tag>
             
-            <tag> 凸包 </tag>
-            
             <tag> 倍增 </tag>
+            
+            <tag> 凸包 </tag>
             
         </tags>
       
@@ -4680,9 +4699,9 @@
             
             <tag> NOIP模拟赛 </tag>
             
-            <tag> dp </tag>
-            
             <tag> 线段树 </tag>
+            
+            <tag> dp </tag>
             
             <tag> manacher </tag>
             
