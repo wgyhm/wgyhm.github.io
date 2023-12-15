@@ -14,7 +14,7 @@
 <meta property="og:description" content="2023.12.06～2023.12.07 没和 08 接上是因为去做了写 bitset 和 dp 题目锻炼一下科技和马力。 感觉 bitset 很有前途啊！  有一道计算几何，其他都是没什么人做的，有这时间不如做点典题。 P3479 [POI2009] GAS-Fire Extinguishers注意到一个位置可以放多个灭火器。 考虑贪心，放在深度更小的地方更优。如果当前子树中存在深度为 $k$">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-07T11:17:44.000Z">
-<meta property="article:modified_time" content="2023-12-07T11:21:11.088Z">
+<meta property="article:modified_time" content="2023-12-10T12:39:44.068Z">
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="POI">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
 <p>发现可以单调队列。复杂度 $O(n)$。注意别开 O2。</p>
 <h3 id="P3488-POI2009-LYZ-Ice-Skates"><a href="#P3488-POI2009-LYZ-Ice-Skates" class="headerlink" title="P3488 [POI2009] LYZ-Ice Skates"></a>P3488 [POI2009] LYZ-Ice Skates</h3><p>丹砂！虽然好像很水。</p>
 <p>Hall 定理，对于任意的集合，后面忘了。</p>
-<p>但是其实集合的限制不如区间，因为任意区间满足了任意集合一定满足（把集合空的补满的限制更强），转化为 $\forall l\le r,\sum\limits _{i&#x3D;l}^r a_i\le (r-l+1+d)\cdot k$，移项有 $\sum a_i-k\le d\cdot k$，也就是求最大字段和。</p>
+<p>但是其实集合的限制不如区间，因为任意区间满足了任意集合一定满足（把集合空的补满的限制更强），转化为 $\forall l\le r,\sum\limits _{i&#x3D;l}^r a_i\le (r-l+1+d)\cdot k$，移项有 $\sum a_i-k\le d\cdot k$，也就是求最大子段和。</p>
 <p>线段树维护即可，复杂度 $O((n+m)\log n)$。</p>
 <h3 id="P3489-POI2009-WIE-Hexer"><a href="#P3489-POI2009-WIE-Hexer" class="headerlink" title="P3489 [POI2009] WIE-Hexer"></a>P3489 [POI2009] WIE-Hexer</h3><p>观察到 $p$ 很小，直接状态压缩。然后跑 dj 。</p>
 <p>复杂度 $O((n+m)2^pp\log (n+m))$，反证能过。</p>
