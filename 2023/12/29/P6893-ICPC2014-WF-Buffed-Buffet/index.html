@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6893 Solution首先显然把离散和连续拆成两个问题，最后 $O(W)$ 合并求最小值即可。 对于离散的，有 $f_{i,j}&#x3D;\min f_{i-1,j-kw}+F(k)$，$F(k)&#x3D;kt_0+k(k-1)\Delta t$。 可以把 $F(k)$ 看成 $w(i-k+1,i)$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P6893 [ICPC2014 WF] Buffed Buffet">
+<meta property="og:url" content="http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6893 Solution首先显然把离散和连续拆成两个问题，最后 $O(W)$ 合并求最小值即可。 对于离散的，有 $f_{i,j}&#x3D;\min f_{i-1,j-kw}+F(k)$，$F(k)&#x3D;kt_0+k(k-1)\Delta t$。 可以把 $F(k)$ 看成 $w(i-k+1,i)$">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-29T08:00:33.000Z">
+<meta property="article:modified_time" content="2023-12-29T08:01:46.224Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="决策单调性">
+<meta property="article:tag" content="凸包">
+<meta property="article:tag" content="导数">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>P6893 [ICPC2014 WF] Buffed Buffet</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/12/29/P8984-%E5%8C%97%E5%A4%A7%E9%9B%86%E8%AE%AD-2021-%E6%9C%AB%E6%97%A5%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E8%AE%A1%E5%88%92/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/12/29/ABC180F-Unbranched/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&text=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&is_video=false&description=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P6893 [ICPC2014 WF] Buffed Buffet&body=Check out this article: http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&name=P6893 [ICPC2014 WF] Buffed Buffet&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&t=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        P6893 [ICPC2014 WF] Buffed Buffet
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-29T08:00:33.000Z" itemprop="datePublished">2023-12-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/dp/" rel="tag">dp</a>, <a class="tag-link-link" href="/tags/%E5%86%B3%E7%AD%96%E5%8D%95%E8%B0%83%E6%80%A7/" rel="tag">决策单调性</a>, <a class="tag-link-link" href="/tags/%E5%87%B8%E5%8C%85/" rel="tag">凸包</a>, <a class="tag-link-link" href="/tags/%E5%AF%BC%E6%95%B0/" rel="tag">导数</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6893">https://www.luogu.com.cn/problem/P6893</a></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>首先显然把离散和连续拆成两个问题，最后 $O(W)$ 合并求最小值即可。</p>
+<p>对于离散的，有 $f_{i,j}&#x3D;\min f_{i-1,j-kw}+F(k)$，$F(k)&#x3D;kt_0+k(k-1)\Delta t$。</p>
+<p>可以把 $F(k)$ 看成 $w(i-k+1,i)$。显然 $w$ 满足四边形不等式，包含的小于相交的。考虑把 $f$ 分成关于 $w$ 的同余系之后分治做决策单调性即可。复杂度 $O(nW\log W)$。似乎有斜率优化做法，但是分治更好写。</p>
+<p>对于连续的，观察到二次函数是凸的，其实可以看成 $n$ 个凸函数做 $(\max,+)$ 卷积。考虑闵可夫斯基和的过程，把每个函数的导数画出来，每次拿最大的一段，算一下重量为 $j$ 的时候的面积。复杂度 $O(n\log n+W)$，瓶颈在排序。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 10005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename T&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename T,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function">Tp <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,T t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,T x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f+<span class="number">1</span>,y...);&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> cnt1,cnt2;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">	<span class="type">int</span> w,t,dt;</span><br><span class="line">&#125;d[maxn],c[maxn];</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(node x,node y)</span> </span>&#123;<span class="keyword">return</span> x.t&gt;y.t;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> inf=<span class="number">1e16</span>;</span><br><span class="line"><span class="keyword">namespace</span> solve1 &#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	<span class="type">int</span> f[maxn],g[maxn],h[maxn];</span><br><span class="line">	<span class="type">int</span> id;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">F</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (k&lt;<span class="number">0</span>) <span class="keyword">return</span> -inf;</span><br><span class="line">		<span class="keyword">return</span> k*d[i].t-(k*(k<span class="number">-1</span>)/<span class="number">2</span>)*d[i].dt;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> L,<span class="type">int</span> R)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (l&gt;r||L&gt;R) <span class="keyword">return</span> ;</span><br><span class="line">		<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>,p=L,i;</span><br><span class="line">		<span class="keyword">for</span> (i=L;i&lt;=R&amp;&amp;i&lt;=mid;i++) </span><br><span class="line">			<span class="keyword">if</span> (h[mid]&lt;g[i]+<span class="built_in">F</span>(id,mid-i)) h[mid]=g[i]+<span class="built_in">F</span>(id,mid-i),p=i;</span><br><span class="line">		<span class="built_in">solve</span>(l,mid<span class="number">-1</span>,L,p);</span><br><span class="line">		<span class="built_in">solve</span>(mid+<span class="number">1</span>,r,p,R); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">		n=cnt1;</span><br><span class="line">		<span class="type">int</span> i,j,k,cnt;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) f[i]=g[i]=-inf;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">			<span class="type">int</span> w=d[i].w;id=i;</span><br><span class="line">			<span class="keyword">for</span> (k=<span class="number">0</span>;k&lt;w;k++) &#123;</span><br><span class="line">				cnt=<span class="number">0</span>;</span><br><span class="line">				<span class="keyword">for</span> (j=k;j&lt;=m;j+=w) ++cnt,g[cnt]=f[j],h[cnt]=-inf;<span class="comment">//g[0]=-inf;</span></span><br><span class="line">				<span class="built_in">solve</span>(<span class="number">1</span>,cnt,<span class="number">1</span>,cnt);</span><br><span class="line">				<span class="keyword">for</span> (j=k;j&lt;=m;j+=w) f[j]=h[(j-k)/w+<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> solve2 &#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	<span class="type">double</span> f[maxn];</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">		n=cnt2;</span><br><span class="line">		<span class="type">int</span> i,j=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">sort</span>(c+<span class="number">1</span>,c+<span class="number">1</span>+n,cmp);</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) f[i]=-inf;f[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">		c[n+<span class="number">1</span>].t=<span class="number">0</span>;</span><br><span class="line">		<span class="type">double</span> las=<span class="number">0</span>,now,sii=<span class="number">0</span>,si=<span class="number">0</span>,res=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">			<span class="type">double</span> k=c[i+<span class="number">1</span>].t;</span><br><span class="line">			<span class="keyword">if</span> (c[i].dt!=<span class="number">0</span>) &#123;</span><br><span class="line">				sii+=<span class="number">1.0</span>*c[i].t*c[i].t/c[i].dt;</span><br><span class="line">				si+=<span class="number">1.0</span>*c[i].t/c[i].dt;</span><br><span class="line">				res+=<span class="number">1.0</span>/c[i].dt;</span><br><span class="line">				now=si-k*res;</span><br><span class="line">				now=<span class="built_in">min</span>(now,(<span class="type">double</span>)m);</span><br><span class="line">				<span class="keyword">if</span> (i==n) now=m;</span><br><span class="line">				<span class="keyword">for</span> (;j&lt;=now;j++) &#123;</span><br><span class="line">					<span class="type">double</span> k=<span class="number">1.0</span>*(si-j)/res;</span><br><span class="line">					f[j]=<span class="number">0.5</span>*(sii-k*k*res);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				now=m;</span><br><span class="line">				<span class="keyword">for</span> (;j&lt;=now;j++) &#123;</span><br><span class="line">					<span class="type">double</span> k=c[i].t,l=<span class="number">1.0</span>*si-k*res;</span><br><span class="line">					f[j]=<span class="number">0.5</span>*(sii<span class="number">-1.0</span>*k*k*res)+(j-l)*c[i].t;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;<span class="comment">//特判</span></span><br><span class="line">			<span class="keyword">if</span> (now&gt;=m) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">char</span> ch;<span class="type">int</span> i;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		cin&gt;&gt;ch;</span><br><span class="line">		<span class="keyword">if</span> (ch==<span class="string">&#x27;D&#x27;</span>) ++cnt1,<span class="built_in">read</span>(d[cnt1].w),<span class="built_in">read</span>(d[cnt1].t),<span class="built_in">read</span>(d[cnt1].dt);</span><br><span class="line">		<span class="keyword">else</span> ++cnt2,<span class="built_in">read</span>(c[cnt2].t),<span class="built_in">read</span>(c[cnt2].dt);</span><br><span class="line">	&#125;</span><br><span class="line">	solve1::<span class="built_in">main</span>();</span><br><span class="line">	solve2::<span class="built_in">main</span>();</span><br><span class="line">	<span class="type">double</span> ans=-inf;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=m;i++) ans=<span class="built_in">max</span>(solve1::f[i]+solve2::f[m-i],ans);</span><br><span class="line">	<span class="keyword">if</span> (ans&lt;<span class="number">-1e14</span>) <span class="built_in">puts</span>(<span class="string">&quot;impossible&quot;</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%.10lf\n&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//i=begin &amp;&amp; g++ $i.cpp -o $i -std=c++14 &amp;&amp; ./$i</span></span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&text=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&is_video=false&description=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P6893 [ICPC2014 WF] Buffed Buffet&body=Check out this article: http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&title=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&name=P6893 [ICPC2014 WF] Buffed Buffet&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/29/P6893-ICPC2014-WF-Buffed-Buffet/&t=P6893 [ICPC2014 WF] Buffed Buffet"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
