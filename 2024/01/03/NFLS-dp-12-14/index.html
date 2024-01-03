@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="来源于 12.14 dp 训练。 如果没自己做出来会打星号。 暂时还没有补完。——last update 2024.1.3 简单 dp我也不知道什么标题。 [AGC034E] Complete Compresshttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;AT_agc034_e 枚举根 $r$。记 $x$ 为 $r$ 的儿子。$d_x$ 为所有有标记的点到 $x$ 的距离，记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NFLS Dp 12.14">
+<meta property="og:url" content="http://wgyhm.top/2024/01/03/NFLS-dp-12-14/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="来源于 12.14 dp 训练。 如果没自己做出来会打星号。 暂时还没有补完。——last update 2024.1.3 简单 dp我也不知道什么标题。 [AGC034E] Complete Compresshttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;AT_agc034_e 枚举根 $r$。记 $x$ 为 $r$ 的儿子。$d_x$ 为所有有标记的点到 $x$ 的距离，记">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-03T02:05:20.000Z">
+<meta property="article:modified_time" content="2024-01-03T02:07:00.903Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="笛卡尔树">
+<meta property="article:tag" content="小结">
+<meta property="article:tag" content="NFLS">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>NFLS Dp 12.14</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/01/03/P10027-%E3%80%8CHCOI-R1%E3%80%8D%E6%A2%A6%E5%A2%83%E4%B8%96%E7%95%8C/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&text=NFLS Dp 12.14"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&is_video=false&description=NFLS Dp 12.14"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NFLS Dp 12.14&body=Check out this article: http://wgyhm.top/2024/01/03/NFLS-dp-12-14/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&name=NFLS Dp 12.14&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&t=NFLS Dp 12.14"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-dp"><span class="toc-number">1.</span> <span class="toc-text">简单 dp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AGC034E-Complete-Compress"><span class="toc-number">1.1.</span> <span class="toc-text">[AGC034E] Complete Compress</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF908G-New-Year-and-Original-Order"><span class="toc-number">1.2.</span> <span class="toc-text">*CF908G New Year and Original Order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CTT2017-%E6%9F%90%E4%BD%8D%E6%AD%8C%E5%A7%AC%E7%9A%84%E6%95%85%E4%BA%8B"><span class="toc-number">1.3.</span> <span class="toc-text">*CTT2017 某位歌姬的故事</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91-dp"><span class="toc-number">2.</span> <span class="toc-text">笛卡尔树 dp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BZOJ4380-POI2015-Myjnie"><span class="toc-number">2.1.</span> <span class="toc-text">BZOJ4380 [POI2015] Myjnie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BZOJ2616-PERIODNI"><span class="toc-number">2.2.</span> <span class="toc-text">BZOJ2616 PERIODNI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AGC026D-Histogram-Coloring"><span class="toc-number">2.3.</span> <span class="toc-text">[AGC026D] Histogram Coloring</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JOI-Open-2016-%E6%91%A9%E5%A4%A9%E5%A4%A7%E6%A5%BC"><span class="toc-number">2.4.</span> <span class="toc-text">[JOI Open 2016] 摩天大楼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dp-%E5%A5%97-dp"><span class="toc-number">3.</span> <span class="toc-text">dp 套 dp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BZOJ3864-Hero-meet-devil"><span class="toc-number">3.1.</span> <span class="toc-text">BZOJ3864 Hero meet devil</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NFLS Dp 12.14
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-03T02:05:20.000Z" itemprop="datePublished">2024-01-03</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/NFLS/" rel="tag">NFLS</a>, <a class="tag-link-link" href="/tags/dp/" rel="tag">dp</a>, <a class="tag-link-link" href="/tags/%E5%B0%8F%E7%BB%93/" rel="tag">小结</a>, <a class="tag-link-link" href="/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/" rel="tag">笛卡尔树</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>来源于 12.14 dp 训练。</p>
+<p>如果没自己做出来会打星号。</p>
+<p>暂时还没有补完。——last update 2024.1.3</p>
+<h2 id="简单-dp"><a href="#简单-dp" class="headerlink" title="简单 dp"></a>简单 dp</h2><p>我也不知道什么标题。</p>
+<h3 id="AGC034E-Complete-Compress"><a href="#AGC034E-Complete-Compress" class="headerlink" title="[AGC034E] Complete Compress"></a>[AGC034E] Complete Compress</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_agc034_e">https://www.luogu.com.cn/problem/AT_agc034_e</a></p>
+<p>枚举根 $r$。记 $x$ 为 $r$ 的儿子。$d_x$ 为所有有标记的点到 $x$ 的距离，记 $sum&#x3D;\sum d_x$。如果 $\exist x,2d_x\le sum$，则能全部消掉，否则消不掉。</p>
+<p>观察到如果一个子树内消消到的距离最小值为 $g_x$，最大值也就是不消的距离和为 $f_x$。则 $g_x,f_x$ 奇偶性相同且对于奇偶性相同的在 $[g_x,f_x]$ 的距离都可以构造出来。于是我们想求出 $g_x$。</p>
+<p>考虑从儿子中转移。我们贪心的想使得 $f_x$ 最大的先在子树内消一下，然后再和其他的儿子一起消。如果 $\exist x,g_x+siz_x\le sum-(f_x+sum)$，则 $g_r&#x3D;f_r\bmod 2$，否则 $g_r&#x3D;g_x+siz_x-sum+f_x+suz_x$。</p>
+<p>如果为 $r$ 根合法当且仅当 $g_r&#x3D;0$。复杂度 $O(n^2)$。</p>
+<h3 id="CF908G-New-Year-and-Original-Order"><a href="#CF908G-New-Year-and-Original-Order" class="headerlink" title="*CF908G New Year and Original Order"></a>*CF908G New Year and Original Order</h3><p>记数的位数为 $n$。 </p>
+<p>先讲一下自己想到的 $O(10^2n^2)$ 做法。</p>
+<p>和 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2481">link</a> 一样，将排序以后的数看成若干个 $111\dots 111$ 构成的后缀。</p>
+<p>而在本题中，记 $f(k,i)$ 表示 $k$ 在所有数中<strong>恰好</strong>出现在第 $i$ 位的个数，答案为 $\sum k\sum _{i&#x3D;1}^n 10^{i-1}f(k,i)$。而恰好不好算，考虑一个很经典的竖着算转横着算，计算 $f(k,i)$ 表示 $\ge k$ 的数在所有数中恰好出现在 $i$ 次的个数，答案为 $\sum k \sum _{i&#x3D;1}^n f(k,i)\times w(i)$，其中 $w_i&#x3D;111\dots 1$，总共 $i$ 个 $1$。前面那个东西再记个是否顶到上界。应该好 dp。</p>
+<p>然后看题解的 $O(10^2n)$ 的算贡献做法感觉很高妙啊。</p>
+<p>考虑对每一个数 $d$ 算贡献。记 $f(i,0&#x2F;1)$ 表示算到第 $i$ 位，数 $d$ 对答案的贡献。$g(i,0&#x2F;1)$ 表示算到第 $i$ 位，在第 $i$ 位放 $d$ 对答案的贡献。后面的 $0&#x2F;1$ 表示是否顶到上界。</p>
+<p>然后枚举 $i-1$ 位的数位 $x$。有转移：</p>
+<ul>
+<li>$x&lt;d$，那么 $f(i,0&#x2F;1)\gets f(i-1,0&#x2F;1),g(i,0&#x2F;1)\gets g(i-1,0&#x2F;1)$。</li>
+<li>$x&#x3D;d$，那么 $f(i,0&#x2F;1)\gets 10f(i-1,0&#x2F;1)+g(i-1,0&#x2F;1),g(i,0)\gets g(i-1,0&#x2F;1)$。</li>
+<li>$x&gt;d$，那么 $f(i,0&#x2F;1)\gets 10f(i-1,0&#x2F;1),g(i-1,0&#x2F;1)\gets 10g(i-1,0&#x2F;1)$。</li>
+</ul>
+<p>分别就是看加入一个数对前面是否左移。</p>
+<h3 id="CTT2017-某位歌姬的故事"><a href="#CTT2017-某位歌姬的故事" class="headerlink" title="*CTT2017 某位歌姬的故事"></a>*CTT2017 某位歌姬的故事</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4229">https://www.luogu.com.cn/problem/P4229</a></p>
+<p>先把区间离散化，这样只有 $2q$ 个点。</p>
+<p>区间 $\max$ 为一个数，等价于区间所有数都小于等于 $\max$，且存在一个数等于 $\max$。</p>
+<p>先对每个操作做区间覆盖，则每个点有一个取值上限 $h_i$。</p>
+<p>对于每个点，只可能对 $\max&#x3D;h_i$ 的区间有贡献。考虑把对于每个值把这样的区间拿出来。问题转化为了一个序列，染黑（存在 $h_i$）或者染白，有许多区间限制，每个区间中至少要有一个染黑的，求方案数。</p>
+<p>先转化为所有都染白，然后有些点染黑的方案数。令 $f_i$ 表示钦定 $i$ 为结尾且染黑的方案数，再维护一个左端点表示可以转移的区间，再前缀和搞搞就好了。</p>
+<p>复杂度 $O(q\log q)$。</p>
+<p>加强版：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_abc262_h%E3%80%82">https://www.luogu.com.cn/problem/AT_abc262_h。</a></p>
+<h2 id="笛卡尔树-dp"><a href="#笛卡尔树-dp" class="headerlink" title="笛卡尔树 dp"></a>笛卡尔树 dp</h2><p>结合笛卡尔树做 dp。</p>
+<h3 id="BZOJ4380-POI2015-Myjnie"><a href="#BZOJ4380-POI2015-Myjnie" class="headerlink" title="BZOJ4380 [POI2015] Myjnie"></a>BZOJ4380 [POI2015] Myjnie</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3592">https://www.luogu.com.cn/problem/P3592</a></p>
+<p>观察到只有 $m$ 个有用的取值，先对 $c_i$ 离散化。</p>
+<p>考虑区间 dp。令 $f_{l,r,k}$ 表示区间 ${l,r}$，最小值为 $k$ 的价值最大值。</p>
+<p>转移枚举最小值所在的位置，算贡献预处理后缀和和 dp 数组的后缀最大值。</p>
+<p>复杂度 $O(n^3m)$，有 $1&#x2F;6$ 的区间 dp 常数，可以通过。</p>
+<p><strong>可以理解成把序列构成了一颗笛卡尔树，并且考虑在笛卡尔 树上计算贡献。</strong></p>
+<h3 id="BZOJ2616-PERIODNI"><a href="#BZOJ2616-PERIODNI" class="headerlink" title="BZOJ2616 PERIODNI"></a>BZOJ2616 PERIODNI</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6453">https://www.luogu.com.cn/problem/P6453</a></p>
+<p>观察到小的会影响大的而大的超出的部分不会影响小的，把序列做一个小根笛卡尔树。</p>
+<p>令 $f_{i,j}$ 表示在子树 $i$ 中，已经选了 $j$ 个互不攻击的点的方案数。先把儿子的答案合并。</p>
+<p>然后考虑在点 $i$ 的区间选，也就是宽为 $h_i-h_{fa_i}$，长为 $siz_i$ 的矩形选 $k$ 个点转移。对每个 $f_{i,j}$ 转移即可。</p>
+<p>复杂度 $O(n^3)$。实现的好的话跑不满。</p>
+<h3 id="AGC026D-Histogram-Coloring"><a href="#AGC026D-Histogram-Coloring" class="headerlink" title="[AGC026D] Histogram Coloring"></a>[AGC026D] Histogram Coloring</h3><p>写了一个 $O(n^3)$ 的 dp。后面发现好像可以 $O(n)-O(n\log n)$。具体用小根笛卡尔树，然后计算一个矩形染色的方案数。讨论一些情况。</p>
+<h3 id="JOI-Open-2016-摩天大楼"><a href="#JOI-Open-2016-摩天大楼" class="headerlink" title="[JOI Open 2016] 摩天大楼"></a>[JOI Open 2016] 摩天大楼</h3><p>插入 dp。同 ZJOI 波浪。</p>
+<p>考虑一个把所有元素按照从大到小的顺序放到排列中正确的位置 的过程。那么每次插入一个元素，其所在的连续段就是以其为根在笛卡尔树上的子树。</p>
+<p>这么做最后的值域会很小，但是 dp 中存在加减用到的值域会很大。考虑将 dp 差分，这样每次都是加法。</p>
+<p>细节比较多。</p>
+<h2 id="dp-套-dp"><a href="#dp-套-dp" class="headerlink" title="dp 套 dp"></a>dp 套 dp</h2><p>dp 套 dp 是给定一个 DP 问题 A，用另一个 dp 去计算一种可能的 A 的输入，使得 A 的 dp 结果为 $x$。</p>
+<p>也就是外层的 dp 的状态是另一个 dp 的结果。</p>
+<h3 id="BZOJ3864-Hero-meet-devil"><a href="#BZOJ3864-Hero-meet-devil" class="headerlink" title="BZOJ3864 Hero meet devil"></a>BZOJ3864 Hero meet devil</h3><p><a target="_blank" rel="noopener" href="https://hydro.ac/d/bzoj/p/3864">https://hydro.ac/d/bzoj/p/3864</a></p>
+<p>经典 dp 套 dp。先考虑求 LCS 的 dp。设 $f_{i,j}$ 表示 $t$ 的前 $i$ 位和 $s$ 的前 $j$ 位的 LCS。</p>
+<p>然后把这个第二维状态记录下来。设 $F_{i,S}$ 表示当前考虑 $t$ 的前 $i$ 位，$f_i$ 的状态是 $S$ 的方案数。</p>
+<p>第二维状态看上去是 $|s|^{|s|}$ ，分析发现相邻两个数的值最多只会差 $0&#x2F;1$，状态存其 dp 值的差分数组即可优化为 $2^{|s|}$。状态与状态之间转移预处理出来即可 $O(1)$ 转移。</p>
+<p>dp 复杂度 $O(m2^n)$。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-dp"><span class="toc-number">1.</span> <span class="toc-text">简单 dp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AGC034E-Complete-Compress"><span class="toc-number">1.1.</span> <span class="toc-text">[AGC034E] Complete Compress</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF908G-New-Year-and-Original-Order"><span class="toc-number">1.2.</span> <span class="toc-text">*CF908G New Year and Original Order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CTT2017-%E6%9F%90%E4%BD%8D%E6%AD%8C%E5%A7%AC%E7%9A%84%E6%95%85%E4%BA%8B"><span class="toc-number">1.3.</span> <span class="toc-text">*CTT2017 某位歌姬的故事</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91-dp"><span class="toc-number">2.</span> <span class="toc-text">笛卡尔树 dp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BZOJ4380-POI2015-Myjnie"><span class="toc-number">2.1.</span> <span class="toc-text">BZOJ4380 [POI2015] Myjnie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BZOJ2616-PERIODNI"><span class="toc-number">2.2.</span> <span class="toc-text">BZOJ2616 PERIODNI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AGC026D-Histogram-Coloring"><span class="toc-number">2.3.</span> <span class="toc-text">[AGC026D] Histogram Coloring</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JOI-Open-2016-%E6%91%A9%E5%A4%A9%E5%A4%A7%E6%A5%BC"><span class="toc-number">2.4.</span> <span class="toc-text">[JOI Open 2016] 摩天大楼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dp-%E5%A5%97-dp"><span class="toc-number">3.</span> <span class="toc-text">dp 套 dp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BZOJ3864-Hero-meet-devil"><span class="toc-number">3.1.</span> <span class="toc-text">BZOJ3864 Hero meet devil</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&text=NFLS Dp 12.14"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&is_video=false&description=NFLS Dp 12.14"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NFLS Dp 12.14&body=Check out this article: http://wgyhm.top/2024/01/03/NFLS-dp-12-14/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&title=NFLS Dp 12.14"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&name=NFLS Dp 12.14&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2024/01/03/NFLS-dp-12-14/&t=NFLS Dp 12.14"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2024
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
