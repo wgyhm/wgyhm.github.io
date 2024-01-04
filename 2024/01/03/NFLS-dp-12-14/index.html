@@ -14,7 +14,7 @@
 <meta property="og:description" content="来源于 12.14 dp 训练。 如果没自己做出来会打星号。 暂时还没有补完。——last update 2024.1.3 简单 dp我也不知道什么标题。 [AGC034E] Complete Compresshttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;AT_agc034_e 枚举根 $r$。记 $x$ 为 $r$ 的儿子。$d_x$ 为所有有标记的点到 $x$ 的距离，记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-03T02:05:20.000Z">
-<meta property="article:modified_time" content="2024-01-03T02:07:00.903Z">
+<meta property="article:modified_time" content="2024-01-04T10:36:14.962Z">
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="笛卡尔树">
@@ -170,9 +170,9 @@
 <p>暂时还没有补完。——last update 2024.1.3</p>
 <h2 id="简单-dp"><a href="#简单-dp" class="headerlink" title="简单 dp"></a>简单 dp</h2><p>我也不知道什么标题。</p>
 <h3 id="AGC034E-Complete-Compress"><a href="#AGC034E-Complete-Compress" class="headerlink" title="[AGC034E] Complete Compress"></a>[AGC034E] Complete Compress</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_agc034_e">https://www.luogu.com.cn/problem/AT_agc034_e</a></p>
-<p>枚举根 $r$。记 $x$ 为 $r$ 的儿子。$d_x$ 为所有有标记的点到 $x$ 的距离，记 $sum&#x3D;\sum d_x$。如果 $\exist x,2d_x\le sum$，则能全部消掉，否则消不掉。</p>
+<p>枚举根 $r$。记 $x$ 为 $r$ 的儿子。$d_x$ 为所有有标记的点到 $x$ 的距离，记 $sum&#x3D;\sum d_x$。如果 $\exists x,2d_x\le sum$，则能全部消掉，否则消不掉。</p>
 <p>观察到如果一个子树内消消到的距离最小值为 $g_x$，最大值也就是不消的距离和为 $f_x$。则 $g_x,f_x$ 奇偶性相同且对于奇偶性相同的在 $[g_x,f_x]$ 的距离都可以构造出来。于是我们想求出 $g_x$。</p>
-<p>考虑从儿子中转移。我们贪心的想使得 $f_x$ 最大的先在子树内消一下，然后再和其他的儿子一起消。如果 $\exist x,g_x+siz_x\le sum-(f_x+sum)$，则 $g_r&#x3D;f_r\bmod 2$，否则 $g_r&#x3D;g_x+siz_x-sum+f_x+suz_x$。</p>
+<p>考虑从儿子中转移。我们贪心的想使得 $f_x$ 最大的先在子树内消一下，然后再和其他的儿子一起消。如果 $\exists x,g_x+siz_x\le sum-(f_x+sum)$，则 $g_r&#x3D;f_r\bmod 2$，否则 $g_r&#x3D;g_x+siz_x-sum+f_x+suz_x$。</p>
 <p>如果为 $r$ 根合法当且仅当 $g_r&#x3D;0$。复杂度 $O(n^2)$。</p>
 <h3 id="CF908G-New-Year-and-Original-Order"><a href="#CF908G-New-Year-and-Original-Order" class="headerlink" title="*CF908G New Year and Original Order"></a>*CF908G New Year and Original Order</h3><p>记数的位数为 $n$。 </p>
 <p>先讲一下自己想到的 $O(10^2n^2)$ 做法。</p>
