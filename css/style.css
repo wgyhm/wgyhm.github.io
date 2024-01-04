@@ -339,13 +339,13 @@ body .h2 {
   text-transform: none;
   letter-spacing: normal;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 body h3 {
   color: #eee;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 body h4,
 body h5,
@@ -354,7 +354,7 @@ body h6 {
   text-decoration: none;
   color: #ccc;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
 }
 body h3,
 body h4,
@@ -400,7 +400,7 @@ body abbr {
 body ul,
 body ol,
 body dl {
-  line-height: 1.725;
+  line-height: 1.5;
 }
 body ul ul,
 body ol ul,
@@ -419,7 +419,7 @@ body table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 12px;
+  font-size: 13px;
   overflow: auto;
   display: block;
 }
@@ -428,7 +428,7 @@ body th {
   border-bottom: 1px dashed #908d8d;
   color: #eee;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 14px;
 }
 body td {
   padding: 0 8px;
@@ -484,7 +484,7 @@ body {
   font-weight: 400;
   font-size: medium;
   font-family: "Menlo", "Meslo LG", monospace;
-  line-height: 1.725;
+  line-height: 1.5;
   text-rendering: geometricPrecision;
   flex: 1;
   -moz-osx-font-smoothing: grayscale;
@@ -1413,9 +1413,9 @@ article .content .caption {
   color: #1d1f21;
   font-display: swap;
   font-weight: 400;
-  font-size: 11.200000000000001px;
+  font-size: 12px;
   font-family: "Menlo", "Meslo LG", monospace;
-  line-height: 1.725;
+  line-height: 1.5;
   text-rendering: geometricPrecision;
   text-align: center;
   word-wrap: break-word;
