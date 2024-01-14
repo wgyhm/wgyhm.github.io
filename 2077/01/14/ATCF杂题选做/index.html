@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="看见好多人都在写这个啊。每天挑点题写一写吧。 不过可能不止 ATCF。打星号的是没做出来的。 *ARC096E Everything on It2023.01.04 推了半天一个东西，才发现那个叫第二类斯特林数。 条件不好处理。考虑容斥。 令我们钦定选 $i$ 个不超过 $1$ 的方案数为 $g_i$，恰好选 $i$ 个不超过 $1$ 的方案数。根据二项式反演，有 $f_0&#x3D;\sum (">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ATCF杂题选做">
+<meta property="og:url" content="http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="看见好多人都在写这个啊。每天挑点题写一写吧。 不过可能不止 ATCF。打星号的是没做出来的。 *ARC096E Everything on It2023.01.04 推了半天一个东西，才发现那个叫第二类斯特林数。 条件不好处理。考虑容斥。 令我们钦定选 $i$ 个不超过 $1$ 的方案数为 $g_i$，恰好选 $i$ 个不超过 $1$ 的方案数。根据二项式反演，有 $f_0&#x3D;\sum (">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2077-01-14T06:16:50.000Z">
+<meta property="article:modified_time" content="2024-01-14T06:19:00.662Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="记录">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>ATCF杂题选做</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/01/14/P6835-Cnoi2020-%E7%BA%BF%E5%BD%A2%E7%94%9F%E7%89%A9/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&text=ATCF杂题选做"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&is_video=false&description=ATCF杂题选做"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ATCF杂题选做&body=Check out this article: http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&name=ATCF杂题选做&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&t=ATCF杂题选做"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARC096E-Everything-on-It"><span class="toc-number">1.</span> <span class="toc-text">*ARC096E Everything on It</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF526E-Transmitting-Levels-2400"><span class="toc-number">2.</span> <span class="toc-text">CF526E Transmitting Levels (2400)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF319E-Ping-Pong%EF%BC%883000%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">*CF319E Ping-Pong（3000）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1916D-Mathematical-Problem-1700"><span class="toc-number">4.</span> <span class="toc-text">CF1916D Mathematical Problem (1700)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1919E-Counting-Prefixes%EF%BC%882600%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">CF1919E Counting Prefixes（2600）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1483F-Exam%EF%BC%883400%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">CF1483F Exam（3400）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF468C-Hack-it-%EF%BC%882500%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">*CF468C Hack it!（2500）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1149C-Tree-Generator%E2%84%A2%EF%BC%882700%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">CF1149C Tree Generator™（2700）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AT-2016-Final-Road-of-the-King"><span class="toc-number">9.</span> <span class="toc-text">AT 2016 Final Road of the King</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1768F-Wonderful-Jump%EF%BC%882900%EF%BC%89"><span class="toc-number">10.</span> <span class="toc-text">*CF1768F Wonderful Jump（2900）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1870E-Another-MEX-Problem%EF%BC%882300%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">CF1870E Another MEX Problem（2300）</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ATCF杂题选做
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2077-01-14T06:16:50.000Z" itemprop="datePublished">2077-01-14</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>看见好多人都在写这个啊。每天挑点题写一写吧。</p>
+<p>不过可能不止 ATCF。打星号的是没做出来的。</p>
+<h3 id="ARC096E-Everything-on-It"><a href="#ARC096E-Everything-on-It" class="headerlink" title="*ARC096E Everything on It"></a>*ARC096E Everything on It</h3><p>2023.01.04</p>
+<p>推了半天一个东西，才发现那个叫第二类斯特林数。</p>
+<p>条件不好处理。考虑容斥。</p>
+<p>令我们钦定选 $i$ 个不超过 $1$ 的方案数为 $g_i$，恰好选 $i$ 个不超过 $1$ 的方案数。根据二项式反演，有 $f_0&#x3D;\sum (-1)^j g_j\dbinom{j}{0}&#x3D;\sum (-1)^j g_j$。</p>
+<p>考虑计算 $g_i$。首先其他集合的方案数为 $2^{2^{n-i}}$。选 $t$ 个恰好为 $1$，分成 $j$ 个互不相交的集合的方案数为 $\sum \begin{Bmatrix}t\ j\end{Bmatrix}\dbinom{i}{t}&#x3D;\begin{Bmatrix}i+1\ j+1\end{Bmatrix}$。等式可以理解为添加一个数 $0$，和 $0$ 在一起的当作不选的。最后因为已经保证集合不同，所以直接乘上 $(2^{n-i})^j$ 来算这 $j$ 个集合。</p>
+<p>复杂度 $O(n^2)$。</p>
+<h3 id="CF526E-Transmitting-Levels-2400"><a href="#CF526E-Transmitting-Levels-2400" class="headerlink" title="CF526E Transmitting Levels (2400)"></a>CF526E Transmitting Levels (2400)</h3><p>2023.01.04</p>
+<p>很有趣的题目啊。没想到什么高妙的做法，想到一个乱搞分析一下发现是正确的。</p>
+<p>预处理出每个点跳 $k$ 最远到 $nex_i$。$nex_i$ 一定是不降的。考虑一个块 $[i,nex_i]$，如果有前面的点跳进来，不可能有 $j&lt;i\le nex_i&lt;nex_j$ 的情况。所以我们找任意一个块的每个点作为起点即可考虑到所有情况。</p>
+<p>然后我们想找块长最小的那个感觉跑的快一点，假设块长为 $k$，因为它是最小的，所以每次至少跳 $k$，跳的次数是 $O(\dfrac{n}{k})$，而我们枚举 $k$ 次，复杂度就是 $O(n)$ 的了。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/526/submission/240216796">Submission</a></p>
+<h3 id="CF319E-Ping-Pong（3000）"><a href="#CF319E-Ping-Pong（3000）" class="headerlink" title="*CF319E Ping-Pong（3000）"></a>*CF319E Ping-Pong（3000）</h3><p>2024.01.07</p>
+<p>观察到只有两种边，有交但不包含则无向边，包含则有向边。然后继续发现如果 $a\to b$ 可达，则最多只会经过一条有向边 $a\to x$。</p>
+<p>无向边的连通性考虑用并查集。并查集的维护用线段树，每个线段树上维护一个栈。每次最多只会加入两个点所以复杂度是对的。因为区间长度是递增的，所以从一个端点找过去不会有包含的情况。</p>
+<p>判断的时候，两个点在一个联通块肯定有解，否则看 $y$ 的联通块的最远左端点 $L$ 和 $R$ 是否包含 $x$，包含也存在解。否则无解。</p>
+<p>复杂度 $O(n\log n)$，还有乘上并查集的复杂度。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/319/submission/240670500">Submission</a></p>
+<h3 id="CF1916D-Mathematical-Problem-1700"><a href="#CF1916D-Mathematical-Problem-1700" class="headerlink" title="CF1916D Mathematical Problem (1700)"></a>CF1916D Mathematical Problem (1700)</h3><p>2024.01.08</p>
+<p>本来以为是高妙题。发现只有 1700。</p>
+<p>打标发现<strong>增量构造</strong> $169,196,961$，即可。具体就是后面加两个 $0$，然后再加两个 $100\dots 600\dots9$，$900\dots 600\dots1$。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1916/submission/240802763">Submission</a></p>
+<h3 id="CF1919E-Counting-Prefixes（2600）"><a href="#CF1919E-Counting-Prefixes（2600）" class="headerlink" title="CF1919E Counting Prefixes（2600）"></a>CF1919E Counting Prefixes（2600）</h3><p>2024.01.10</p>
+<p>狗哥推荐题。</p>
+<p>把合法序列画成折线图，把前缀和从小到大看，前缀和 $\le i$ 的分成很多段，而 $i+1$ 要么新建一个段，要么扩展一个段，要么合并两个段。这三种情况，考虑维护段的个数的插入 dp。然后还要记录一下末尾是否确定，判一下开头是否为 $0$ 的情况。</p>
+<p>复杂度 $O(n^2)$。看题解还能 BEST 定理？感觉很牛啊。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1919/submission/240992742">Submission</a></p>
+<h3 id="CF1483F-Exam（3400）"><a href="#CF1483F-Exam（3400）" class="headerlink" title="CF1483F Exam（3400）"></a>CF1483F Exam（3400）</h3><p>2024.01.11 </p>
+<p>没想到还能自己做出来 3400。</p>
+<p>下面默认 $n$ 和 $\sum|S|$ 同阶。</p>
+<p>首先对于一个串 $i$，对于串的每个右端点匹配的最长的串是可能的合法二元组。所以答案个数是 $O(\sum|S|)$ 级别的。每个右端点匹配最长的可以用 AC自动机 $O(n)$ 求出来。</p>
+<p>再用单调栈去掉包含关系的区间。但现在的条件是充分不必要的，考虑一种情况：abcab cab ab，这样子可能会输出 $2$。原因在于一个串可能出现多次。换句话说如果在 fail 树上一个节点子树内有节点被选那么它就不可能选。而子树内存在不可选的它更不可能选。用树状数组维护子树内是否存在被标记过即可。可能还要对 dfs 序从大到小排个序。</p>
+<p>复杂度 $O(n\log n)$。</p>
+<p>这题的关键在于必要不充分条件一步步限制到充要条件。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1483/submission/241112743">Submission</a></p>
+<h3 id="CF468C-Hack-it-（2500）"><a href="#CF468C-Hack-it-（2500）" class="headerlink" title="*CF468C Hack it!（2500）"></a>*CF468C Hack it!（2500）</h3><p>2024.01.11</p>
+<p>构造题真不是人做的。</p>
+<p>观察到当 $x\le 10^{18}$ 时，$f(x+10^{18})&#x3D;f(x)+1$。</p>
+<p>我们想每次增加 $1$，于是构造 $p&#x3D;\sum\limits _{i&#x3D;0}^{r&#x3D;10^{18}-1} f(i)$。这样每次左右端点同时右移就加 $1$。把 $p$ 算出来 $p&#x3D;81\times 10^{18}$ 即可。</p>
+<p>构造题，找不到方法总结了。</p>
+<h3 id="CF1149C-Tree-Generator™（2700）"><a href="#CF1149C-Tree-Generator™（2700）" class="headerlink" title="CF1149C Tree Generator™（2700）"></a>CF1149C Tree Generator™（2700）</h3><p>2024.01.11</p>
+<p>经典套路把左括号看成 $1$，右括号看成 $-1$。这样每个点的深度就是前缀和。</p>
+<p>这个括号序列还相当于欧拉序，欧拉序中 $a,b$ 的 $lca$ 是 $[a,b]$ 区间中深度最小的那个点。这样直径的 $d_{max}&#x3D;\max dep_a+dep_b-2\min_{i&#x3D;a}^b dep_i $。线段树维护最大值，最小值，$\max dep_a-2\min_{i\ge a} dep_i$，以及对应的 $b$，和答案。由于我们要求的是最大值，转移的时候很多不合法的状态都不会统计到答案中。</p>
+<p>修改相当于区间加减，再维护个懒标记即可。时间复杂度 $O(m\log n)$。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1149/submission/241132778">Submission</a></p>
+<h3 id="AT-2016-Final-Road-of-the-King"><a href="#AT-2016-Final-Road-of-the-King" class="headerlink" title="AT 2016 Final Road of the King"></a>AT 2016 Final Road of the King</h3><p>2024.01.11</p>
+<p>先讲讲我的比较愚蠢的做法。</p>
+<p>钦定每次遍历到没走过的点的顺序 $1\to 2\to 3\to \dots\to n$，最后乘上 $(n-1)!$ 即可。</p>
+<p>记 $f_{i,j}$ 表示当前扩展到前 $i$ 个点，连了 $j$ 条额外边，且前 $i$ 个点都和 $1$ 在一个强联通分量的方案数。枚举跳到 $1$ 的强联通分量中的终点 $l$ 和边数 $t$，然后 $[l+1,i-1]$ 之间随便连 $t-k$ 条边，有转移：<br>$$<br>f_{i,j}&#x3D;\sum <em>{l&#x3D;1}^{i-1}\sum <em>{t&#x3D;1}^{j}\sum <em>{k&#x3D;1}^{t} f</em>{l,j-t}\times h</em>{i-l-1,t-k}<br>\times (i^k-(i-l)^k)<br>$$<br>其中 $h</em>{i,j}$ 表示 $i$ 个点连 $j$ 条额外边的方案数。</p>
+<p>发现后面那里都和 $j$ 没关系，于是可以对于每个 $i,l,k$ 预处理出来后面的东西。</p>
+<p>复杂度 $O(n^4)$，但是带 $1&#x2F;32$ 的常数所以可以过。其实可以卷积做到更低的复杂度，但没什么意思。</p>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/cf16-final/submissions/49217193">Submission</a></p>
+<p>其他题解的做法就是基于分成三类，包含 $1$ 的强联通分量，走过但不在 $1$ 的强联通分量之中，没走过的个数。然后如果当前的点走到 $1$ 的强联通分量中就所有点都在 $1$ 的强联通分量之中。复杂度就是 $O(n^3)$ 的了。</p>
+<p>标签：计数</p>
+<h3 id="CF1768F-Wonderful-Jump（2900）"><a href="#CF1768F-Wonderful-Jump（2900）" class="headerlink" title="*CF1768F Wonderful Jump（2900）"></a>*CF1768F Wonderful Jump（2900）</h3><p>2024.01.11</p>
+<p>知道结论了还不会，好菜。还是没有想到根号分治。</p>
+<p>首先考虑放到笛卡尔树上，观察到如果 $j\to i$ 转移但是中间 $\exists k\in (i,j),a_k\le \min(a_i,a_j)$，则 $j\to i$ 一定不如 $j\to k\to i$ 优。所以一个点只会从左子树和祖先转移过来，向右子树和祖先转移过去。</p>
+<p>再观察到值域 $a_i\le n$，记 $[j,i]$ 的最小值为 $x$，如果转移点 $x(j-i)^2\ge n(j-i)$ 那么一定不会转移。有 $j-i\le \dfrac{n}{x}$。</p>
+<p>然后考虑根号分治并结合第一个性质。对于 $x\ge B$ 的直接暴力转移。而对于 $x&lt;B$ 的，因为第一个性质，所以每个相同的 $x$ 的转移区间不交，分析一下是均摊 $O(n\sqrt n)$ 的。</p>
+<p>实现上不需要写单调栈，直接往前转移和往后刷表即可。复杂度 $O(n\sqrt n)$。常数很小。</p>
+<p>标签：优化转移，根号分治</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1768/submission/241163155">Submission</a></p>
+<h3 id="CF1870E-Another-MEX-Problem（2300）"><a href="#CF1870E-Another-MEX-Problem（2300）" class="headerlink" title="CF1870E Another MEX Problem（2300）"></a>CF1870E Another MEX Problem（2300）</h3><p>记 $f_{i,j}$ 表示前 $i$ 个数 $j$ 是否能被异或出来。</p>
+<p>题解有 mex 相同且不被包含的个数只有 $O(n)$ 个的结论。这样可以直接暴力转移了。</p>
+<p>但是我不会，怎么办呢？观察到对于 $f_{i,j}&#x3D;1$，则对于 $\forall k\ge i,f_{k,j}&#x3D;1$，所以设 $g_j$ 表示异或出来 $j$ 的最小右端点。</p>
+<p>然后预处理出 $h_{i,j}$ 表示 $i$ 为左端点 mex 为 $j$ 的最小右端点。然后做个 $O(n^2)$ 的 dj 最短路转移即可。</p>
+<p>标签：优化转移，最短路</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1870/submission/241246784">Submission</a></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARC096E-Everything-on-It"><span class="toc-number">1.</span> <span class="toc-text">*ARC096E Everything on It</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF526E-Transmitting-Levels-2400"><span class="toc-number">2.</span> <span class="toc-text">CF526E Transmitting Levels (2400)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF319E-Ping-Pong%EF%BC%883000%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">*CF319E Ping-Pong（3000）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1916D-Mathematical-Problem-1700"><span class="toc-number">4.</span> <span class="toc-text">CF1916D Mathematical Problem (1700)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1919E-Counting-Prefixes%EF%BC%882600%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">CF1919E Counting Prefixes（2600）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1483F-Exam%EF%BC%883400%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">CF1483F Exam（3400）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF468C-Hack-it-%EF%BC%882500%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">*CF468C Hack it!（2500）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1149C-Tree-Generator%E2%84%A2%EF%BC%882700%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">CF1149C Tree Generator™（2700）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AT-2016-Final-Road-of-the-King"><span class="toc-number">9.</span> <span class="toc-text">AT 2016 Final Road of the King</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1768F-Wonderful-Jump%EF%BC%882900%EF%BC%89"><span class="toc-number">10.</span> <span class="toc-text">*CF1768F Wonderful Jump（2900）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF1870E-Another-MEX-Problem%EF%BC%882300%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">CF1870E Another MEX Problem（2300）</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&text=ATCF杂题选做"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&is_video=false&description=ATCF杂题选做"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ATCF杂题选做&body=Check out this article: http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&title=ATCF杂题选做"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&name=ATCF杂题选做&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/&t=ATCF杂题选做"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2024
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

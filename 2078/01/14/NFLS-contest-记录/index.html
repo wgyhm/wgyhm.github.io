@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="之前本来是想每天每题都写，感觉太唐了不是吗？而且肯定来不及。 现在和别人的差距还很大啊。不能摆了！ 记录每天比赛情况&#x2F;排名，挂分情况，以及订正题目的总结与之后计划。 一 、4题 IOI 赛制cb 想让我们轻松一点，于是一开始是 IOI 赛制？ 12.11 省选训练赛5总结100+15+0+90 rk22 T4 是个放 $O(nk\log ^2n)$ 而不放 $O(nk\log n)$ 正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NFLS Contest 记录">
+<meta property="og:url" content="http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="之前本来是想每天每题都写，感觉太唐了不是吗？而且肯定来不及。 现在和别人的差距还很大啊。不能摆了！ 记录每天比赛情况&#x2F;排名，挂分情况，以及订正题目的总结与之后计划。 一 、4题 IOI 赛制cb 想让我们轻松一点，于是一开始是 IOI 赛制？ 12.11 省选训练赛5总结100+15+0+90 rk22 T4 是个放 $O(nk\log ^2n)$ 而不放 $O(nk\log n)$ 正">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2078-01-14T06:17:02.000Z">
+<meta property="article:modified_time" content="2024-01-14T06:19:20.451Z">
+<meta property="article:author" content="wgyhm">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>NFLS Contest 记录</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&text=NFLS Contest 记录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&is_video=false&description=NFLS Contest 记录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NFLS Contest 记录&body=Check out this article: http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&name=NFLS Contest 记录&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&t=NFLS Contest 记录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E3%80%814%E9%A2%98-IOI-%E8%B5%9B%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">一 、4题 IOI 赛制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-11-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B5"><span class="toc-number">1.1.</span> <span class="toc-text">12.11 省选训练赛5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%A4%B4%E6%96%87%E5%AD%97-O"><span class="toc-number">1.1.2.</span> <span class="toc-text">T2 头文字 O</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E6%85%88%E5%96%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">T3 慈善</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-16-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B-8"><span class="toc-number">1.2.</span> <span class="toc-text">12.16 省选训练赛 8</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-mwhak"><span class="toc-number">1.2.1.</span> <span class="toc-text">T2. mwhak</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">T3. 数据结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-19-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B9"><span class="toc-number">1.3.</span> <span class="toc-text">12.19 省选训练赛9</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E5%9C%86%E5%BC%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">T1 圆弧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E6%95%B4%E9%99%A4"><span class="toc-number">1.3.3.</span> <span class="toc-text">T2 整除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E8%AF%8D%E5%85%B8"><span class="toc-number">1.3.4.</span> <span class="toc-text">T3 词典</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-20-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B10"><span class="toc-number">1.4.</span> <span class="toc-text">12.20 省选训练赛10</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E7%82%AE%E5%A1%94"><span class="toc-number">1.4.2.</span> <span class="toc-text">T1 炮塔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E6%AC%A2%E4%B9%90%E8%B1%86"><span class="toc-number">1.4.3.</span> <span class="toc-text">T3 欢乐豆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T4-Musician"><span class="toc-number">1.4.4.</span> <span class="toc-text">T4 Musician</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-21-%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%BB%83%E4%B9%A0"><span class="toc-number">1.5.</span> <span class="toc-text">12.21 随机化练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-22-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B-11"><span class="toc-number">1.6.</span> <span class="toc-text">12.22 省选训练赛 11</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-3"><span class="toc-number">1.6.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E5%B0%8F%E6%98%8E%E5%8E%BB%E6%97%85%E6%B8%B82"><span class="toc-number">1.6.2.</span> <span class="toc-text">T1 小明去旅游2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E8%B7%AF"><span class="toc-number">1.6.3.</span> <span class="toc-text">T3 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T4-%E4%B8%80%E8%88%AC%E9%9A%BE%E5%BA%A6%E7%9A%84%E6%8E%A8%E5%BC%8F%E5%AD%90%E9%A2%98"><span class="toc-number">1.6.4.</span> <span class="toc-text">T4 一般难度的推式子题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-23-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B-12"><span class="toc-number">1.7.</span> <span class="toc-text">12.23 省选训练赛 12</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%813%E9%A2%98-OI-%E8%B5%9B%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">二、3题 OI 赛制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-25-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B-13"><span class="toc-number">2.1.</span> <span class="toc-text">12.25 省选训练赛 13</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-4"><span class="toc-number">2.1.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-P8984-%E5%8C%97%E5%A4%A7%E9%9B%86%E8%AE%AD-2021-%E6%9C%AB%E6%97%A5%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E8%AE%A1%E5%88%92"><span class="toc-number">2.1.2.</span> <span class="toc-text">T3 P8984 [北大集训 2021] 末日魔法少女计划</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-26-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-14"><span class="toc-number">2.2.</span> <span class="toc-text">12.26 省选模拟赛 14</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-5"><span class="toc-number">2.2.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-998244o5o"><span class="toc-number">2.2.2.</span> <span class="toc-text">T1 998244o5o</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%91%8A%E5%88%AB"><span class="toc-number">2.2.3.</span> <span class="toc-text">T2 告别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E8%A2%AB%E7%8C%AB%E7%8C%AB%E5%85%A5%E4%BE%B5%E7%9A%84%E9%A2%98%E9%9D%A2"><span class="toc-number">2.2.4.</span> <span class="toc-text">T3 被猫猫入侵的题面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-27-12-28"><span class="toc-number">2.3.</span> <span class="toc-text">12.27-12.28</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-29-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-15"><span class="toc-number">2.4.</span> <span class="toc-text">12.29 省选模拟赛 15</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%90%B4%E5%86%AC%E6%8B%94%E5%AF%BB%E5%AE%9D"><span class="toc-number">2.4.1.</span> <span class="toc-text">T2 吴冬拔寻宝</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-30-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-16"><span class="toc-number">2.5.</span> <span class="toc-text">12.30 省选模拟赛 16</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E6%A2%A6%E9%AD%87"><span class="toc-number">2.5.1.</span> <span class="toc-text">T2 梦魇</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-17"><span class="toc-number">2.6.</span> <span class="toc-text">1.1 省选模拟赛 17</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-City"><span class="toc-number">2.6.1.</span> <span class="toc-text">T1 City</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-Beautiful-World"><span class="toc-number">2.6.2.</span> <span class="toc-text">T2 Beautiful World</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-18"><span class="toc-number">2.7.</span> <span class="toc-text">1.2 省选模拟赛 18</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E6%8E%89%E8%90%BD"><span class="toc-number">2.7.1.</span> <span class="toc-text">T1 掉落</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%8E%9F%E7%A5%9E"><span class="toc-number">2.7.2.</span> <span class="toc-text">T2 原神</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E5%8C%BA%E9%97%B4mex%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95"><span class="toc-number">2.7.3.</span> <span class="toc-text">T3 区间mex快速算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-19"><span class="toc-number">2.8.</span> <span class="toc-text">1.5 省选模拟赛 19</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E6%9C%80%E5%B0%8F%E5%9B%9B%E8%B4%AA%E9%82%A3%E6%A0%91"><span class="toc-number">2.8.1.</span> <span class="toc-text">T1 最小四贪那树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E6%95%B0%E4%BD%8D"><span class="toc-number">2.8.2.</span> <span class="toc-text">T2 数位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3"><span class="toc-number">2.8.3.</span> <span class="toc-text">T3</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-20"><span class="toc-number">2.9.</span> <span class="toc-text">1.6 省选模拟赛 20</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-21"><span class="toc-number">2.10.</span> <span class="toc-text">1.8 省选模拟赛 21</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E7%9B%97%E6%A2%A6%E7%A9%BA%E9%97%B4"><span class="toc-number">2.10.1.</span> <span class="toc-text">T1. 盗梦空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%81%B7%E8%97%8F%E5%A5%B3%E8%A3%85"><span class="toc-number">2.10.2.</span> <span class="toc-text">T2. 偷藏女装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E6%A5%BC%E6%A2%AF%E8%B0%83%E5%BA%A6"><span class="toc-number">2.10.3.</span> <span class="toc-text">T3. 楼梯调度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-12-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-23"><span class="toc-number">2.11.</span> <span class="toc-text">1.12 省选模拟赛 23</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E6%98%9F%E9%99%85%E9%80%83%E4%BA%A1"><span class="toc-number">2.11.1.</span> <span class="toc-text">T1. 星际逃亡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%8D%9A%E5%BC%88%E9%97%AE%E9%A2%98"><span class="toc-number">2.11.2.</span> <span class="toc-text">T2. 博弈问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E5%85%94%E5%AD%90%E7%8C%9C%E6%8B%B3"><span class="toc-number">2.11.3.</span> <span class="toc-text">T3. 兔子猜拳</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NFLS Contest 记录
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2078-01-14T06:17:02.000Z" itemprop="datePublished">2078-01-14</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>之前本来是想每天每题都写，感觉太唐了不是吗？而且肯定来不及。</p>
+<p>现在和别人的差距还很大啊。不能摆了！</p>
+<p>记录每天比赛情况&#x2F;排名，挂分情况，以及订正题目的总结与之后计划。</p>
+<h2 id="一-、4题-IOI-赛制"><a href="#一-、4题-IOI-赛制" class="headerlink" title="一 、4题 IOI 赛制"></a>一 、4题 IOI 赛制</h2><p>cb 想让我们轻松一点，于是一开始是 IOI 赛制？</p>
+<h3 id="12-11-省选训练赛5"><a href="#12-11-省选训练赛5" class="headerlink" title="12.11 省选训练赛5"></a>12.11 省选训练赛5</h3><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>100+15+0+90 rk22</p>
+<p>T4 是个放 $O(nk\log ^2n)$ 而不放 $O(nk\log n)$ 正解的傻逼题。T3 是个很妙的数据结构维护 dp。T2 不会反射容斥也认了。</p>
+<h4 id="T2-头文字-O"><a href="#T2-头文字-O" class="headerlink" title="T2 头文字 O"></a>T2 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1082/problem/2">头文字 O</a></h4><p>根据期望的线性性这 $m$ 个规则是独立的，可以独立计算。</p>
+<p>先考虑部分分。部分分去掉了 $s_i$ 的限制，也就是走到 $t_i$ 即可。考虑用总共的减去走不到 $t_i$ 的，观察发现就是给定一个二维网格，不经过 $y&#x3D;t_i$ 这条直线的方案数。这样可以套用一条直线的反射容斥计算。</p>
+<p>部分分会做了，考虑正解。不妨假设 $s_i\le 0\le t_i$ 的情况，其实是和 $(s_i,2s_i-t_i)$ 的情况是一样的，也就是把 $t_i$ 对称过去就不用考虑 $s_i$ 了。就转化成了部分分的情况。</p>
+<p>复杂度 $O(n+m)$。</p>
+<h4 id="T3-慈善"><a href="#T3-慈善" class="headerlink" title="T3 慈善"></a>T3 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1082/problem/3">慈善</a></h4><p> 同 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF856F%E3%80%82">https://www.luogu.com.cn/problem/CF856F。</a></p>
+<p>先离散化成一堆区间。</p>
+<p>考虑维护二元组 $(x,y)$ 表示第一个人选了 $x$ 个，第二个人选了 $x$ 个。如果当前加入的只有一个人选我们贪心的选择加入。否则剩下的情况是两个人一起选。考虑一个反悔操作，把 $x&lt;y-C$ 的区间拿出来 $y\gets x+C$ 以后两个全加，先让 $x$ 增加到 $y-C$ 在一起加，或者 $x,y$ 不在一起玩每次只加一经验。</p>
+<p>容易发现第一种和第二种的操作是本质相同的。但这样每次状态数还是会 $\times 2$。</p>
+<p>继续发现对于 $x&lt;y-C$ 的二元组，选 $x$ 最大的更优，$y&lt;x-C$ 的选 $y$ 最大的。每次只需要新建这两个节点。我们维护以 $x-y$ 为权值的平衡树，要做的操作有区间加上一个数，新建节点，查询 $x&#x2F;y$ 最大的数。用无旋 treap 即可。复杂度 $O(n\log n)$。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/856/submission/236870269">Submisson</a></p>
+<h3 id="12-16-省选训练赛-8"><a href="#12-16-省选训练赛-8" class="headerlink" title="12.16 省选训练赛 8"></a>12.16 省选训练赛 8</h3><p>100+5+70+40 rk17</p>
+<h4 id="T2-mwhak"><a href="#T2-mwhak" class="headerlink" title="T2. mwhak"></a>T2. <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1089/problem/2">mwhak</a></h4><p>是我一直不会的博弈论题，一定补。</p>
+<h4 id="T3-数据结构"><a href="#T3-数据结构" class="headerlink" title="T3. 数据结构"></a>T3. <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1089/problem/3">数据结构</a></h4><p>原题 「ROI 2016 Day2」二指禅。</p>
+<p>考虑一个暴力，设 $f_i$ 表示匹配到 $i$ 的最小花费。建正串和反串放到 trie 树上匹配，每次一个修改一个查询（实际上是刷表和查表），容易实现到 $O(nL)$，其中 $L$ 是最大长度。</p>
+<p>但是这样最大长度大的很多不就寄了吗。</p>
+<h3 id="12-19-省选训练赛9"><a href="#12-19-省选训练赛9" class="headerlink" title="12.19 省选训练赛9"></a>12.19 省选训练赛9</h3><p>昨天学习了 slope trick 和整理了一下凸性 dp 的优化。</p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>100+40+0+50 rk23</p>
+<p>今天感觉 T3 连个 $O(n^2)$ 暴力没搓出来不应该啊！T1 感觉其实还挺难的，但是为什么是个人都切了？T4 是个人类智慧构造，拿满部分分就跑很正确。T2 就差一步正解有点可惜，但是正解还是有点妙妙的。</p>
+<h4 id="T1-圆弧"><a href="#T1-圆弧" class="headerlink" title="T1 圆弧"></a>T1 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1091/problem/1">圆弧</a></h4><p>先考虑枚举颜色为 $1$ 的选的点，只有三种情况，选了就可以把环断成链了。</p>
+<p>然后就是求最大匹配的方案数。我的做法是先求出以 $i$ 结尾的最大匹配。然后根据上一个的转移来求方案数。因为选择同一种颜色的两个区间是相交的，选了一个另外一个一定不会选，所以只需要前缀和前缀最大值搞一搞就好了。</p>
+<p>复杂度 $O(n)$。</p>
+<h4 id="T2-整除"><a href="#T2-整除" class="headerlink" title="T2 整除"></a>T2 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1091/problem/2">整除</a></h4><p>先考虑把右边变成 $\dfrac{x^m-1}{x-1}$，然后左边乘上 $x-1$，这样的形式显然更好一点。</p>
+<p>发现左边做大除法就是对每一项的系数对 $m$ 取模，取模之后柿子的次数最大到 $n-1$。接下来的讨论默认在取模之后的柿子下。</p>
+<p>如果这个式子所有项的系数都是 $0$，那么显然就是有无穷解。否则因为这个式子的最高项数只有 $n-1$，记这个式子为 $F(x)$，容易发现对于充分大的 $x$，有 $F(x)&lt;x^m-1$，因为系数的原因，所以 $x\le 2n&#x3D;O(n)$。</p>
+<p>我们枚举这个 $x$，判断其是否满足 $F(x)&#x3D;k(x^m-1)$。再枚举这个 $k$，容易发现 $k\le \dfrac{n}{x}$，对于一个 $x$，只有一个 $k$ 满足。然后对 $x^0$ 项加上 $k$ ，暴力判断是否满足。</p>
+<p>判断的方法也很巧妙，把它的每个系数看成一个 $x$ 进制数，从 $x^0$ 开始暴力进位。最后是其倍数当且仅当其他项都为 $0$，$x^m$ 这一项的系数为 $k$。</p>
+<p>用 map 维护，复杂度分析一下是 $O(n\log ^2 n)$ 左右的。</p>
+<h4 id="T3-词典"><a href="#T3-词典" class="headerlink" title="T3 词典"></a>T3 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1091/problem/3">词典</a></h4><p>考虑暴力 dp。 </p>
+<h3 id="12-20-省选训练赛10"><a href="#12-20-省选训练赛10" class="headerlink" title="12.20 省选训练赛10"></a>12.20 省选训练赛10</h3><h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><p>80+100+36+0 rk36 创造新低。</p>
+<p>今天因为 T1 一直没找到 hack 自己的数据，再加上误判了 T3 的难度没有想到线段树直接暴力维护，很想拿 T1 的 20 分导致 T1 T3 一个也没拿到。</p>
+<p>发现这种 T1 但是有点细节的，老是想不到一些情况。是不是得加练啊？</p>
+<p>技不如人。</p>
+<h4 id="T1-炮塔"><a href="#T1-炮塔" class="headerlink" title="T1 炮塔"></a>T1 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1094/problem/1">炮塔</a></h4><p>没想到可以往回拿的情况。警戒。</p>
+<p>首先如果有一堆东西挡住，那么假设我们在空地上且手里有 $2$ 个，那么一定可以把前面除了 <code>*##</code> 这种情况以外全部拿完并且回到原来的位置。上面这种情况不拿是不劣的，我们就把它放在这里。</p>
+<p>首先如果已经有两个，可以在走过的地方来回穿梭，<code>.#**</code> 就 <code>*#*</code> 然后过去把右边的那个拿过来同理。如果有连续的两个 #，我们之前已经在那里放了一个利用那个就可以通行。这样回去也同理。</p>
+<p>现在我们考虑什么时候可以只用一个拿到前面的。很显然  <code>*#.*</code> 这样过去再拿回来即可。</p>
+<p>也就是说如果有 <code>*#.#.</code> 这样的挡在这里，那么前面的当且仅当后面手上的拿着的大于等于 $2$ 就可以把前面的全部拿完。</p>
+<p>复杂度 $O(n)$。不需要栈。</p>
+<h4 id="T3-欢乐豆"><a href="#T3-欢乐豆" class="headerlink" title="T3 欢乐豆"></a>T3 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1094/problem/3#">欢乐豆</a></h4><p>T3 是 $m&#x3D;6000,O(m^2\log m)?$，而且还是线段树。感觉没什么意思。线段树模拟 dj 即可。其余的边直接分段覆盖扔进去。</p>
+<p>当时脑子不清醒导致全在想堆才什么都没做出来。警戒。</p>
+<h4 id="T4-Musician"><a href="#T4-Musician" class="headerlink" title="T4 Musician"></a>T4 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1094/problem/4">Musician</a></h4><p>方心童跟我讲多项式分治 NTT 不用会，会个暴力卷积就好了。虽然我这题暴力都没推出来。考试的时候想了一下容斥但是觉得限制太多不好搞。如果脑子清醒的话应该不难吧！ </p>
+<p>先考虑一个暴力。</p>
+<p>令 $f_i$ 为 $s&#x3D;s[1,i]$ 的答案。考虑容斥，每次减去最小 border 的方案数可以做到不重不漏。因为有 $v_i$ 单调递增，所以有每个 $j\le i&#x2F;2$ 必定存在一个方案使得其成为整个串的 border。</p>
+<p>有转移<br>$$<br>f_i&#x3D;\prod\limits_{j&#x3D;1}^n v_j- \sum\limits_{j&#x3D;1}^{n&#x2F;2} f_j\prod_{k&#x3D;j+1}^{i-j} v_k<br>$$<br> 记 $s_i&#x3D;\prod_{j\le i}v_j$ 表示前缀积。重写上面那个式子有：$f_i&#x3D;s_i-\sum_{j\le i&#x2F;2} f_js^{-1}<em>{j}\cdot s</em>{i-j}$，就是一个卷积的形式。记 $r_i&#x3D;f_is^{-1}<em>i,t_i&#x3D;s_i$，对所有 $j\le k$，有贡献 $f</em>{j+k}\gets -r_jt_k$。分治 NTT 即可。有 $1&#x2F;2$ 常数。</p>
+<p>然后发现最后一个包过不去。发现只需要分治到 $n&#x2F;2$，最后算 $f_n$ 手动算一遍即可。复杂度 $O(n\log ^2n )$，常数很小。  </p>
+<h3 id="12-21-随机化练习"><a href="#12-21-随机化练习" class="headerlink" title="12.21 随机化练习"></a>12.21 随机化练习</h3><p><a href="https://wgyhm.top/2023/12/21/NFLS-%E9%9A%8F%E6%9C%BA%E5%8C%96-12-21/">link</a></p>
+<h3 id="12-22-省选训练赛-11"><a href="#12-22-省选训练赛-11" class="headerlink" title="12.22 省选训练赛 11"></a>12.22 省选训练赛 11</h3><h4 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h4><p>90+100+50+0 rk36 持平记录。</p>
+<p>今天赛前本来是想重回前 20 的，但是还是输的很惨。</p>
+<p>今天为什么有 10 个 AK 的呢？</p>
+<p>今天最大的败笔就是 T4 暴力没写，一直在推一个难写的 dp。如果拿到 $O(n^3)$ 的分其实今天排名还是可以看看的。</p>
+<p>害，。我不想被别人看不起。</p>
+<p>这几天最温暖的时候还是老叶说不会的搞懂就好了，慢慢来。</p>
+<p>希望他不是只是不想管我罢了。</p>
+<h4 id="T1-小明去旅游2"><a href="#T1-小明去旅游2" class="headerlink" title="T1 小明去旅游2"></a>T1 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1096/problem/1">小明去旅游2</a></h4><p>树套树被卡常。看来之后有必有学一下 cdq 分治了。</p>
+<h4 id="T3-路"><a href="#T3-路" class="headerlink" title="T3 路"></a>T3 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1096/problem/3">路</a></h4><h4 id="T4-一般难度的推式子题"><a href="#T4-一般难度的推式子题" class="headerlink" title="T4 一般难度的推式子题"></a>T4 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1096/problem/4">一般难度的推式子题</a></h4><p>EI 题。暴力没写出来，警戒。想到组合意义了但是没有任何思路，警戒！！！</p>
+<p>那就先讲一下暴力吧。令 $f_{i,j}$ 表示子树大小为 $i$，高度 $\le j$ 的方案数。</p>
+<p>正解其实和 dp 没有太大关系。考虑一个严格弱的问题，树大小为 $x$ 的方案为多少。推一推发现是卡特兰数。</p>
+<p>所以考虑组合意义求 $f_{i,j}$。回顾卡特兰数的推导，用欧拉序的出栈入栈理解，起点 $(0,0)$，终点 $(n-1,n-1)$，入栈 $y+1$，出栈 $x+1$，不能触碰 $y&#x3D;x-1$ 的方案数。</p>
+<p>加上 $j$ 的限制，也就是又加了一条直线 $y&#x3D;x+(j+1)$ 不能碰。用经典的反射容斥做。$j$ 的反射次数是 $O(\dfrac{n}{j})$，最后复杂度是 $O(n\ln n)$ 的。</p>
+<h3 id="12-23-省选训练赛-12"><a href="#12-23-省选训练赛-12" class="headerlink" title="12.23 省选训练赛 12"></a>12.23 省选训练赛 12</h3><h2 id="二、3题-OI-赛制"><a href="#二、3题-OI-赛制" class="headerlink" title="二、3题 OI 赛制"></a>二、3题 OI 赛制</h2><p>回归 OI 赛制。</p>
+<h3 id="12-25-省选训练赛-13"><a href="#12-25-省选训练赛-13" class="headerlink" title="12.25 省选训练赛 13"></a>12.25 省选训练赛 13</h3><h4 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h4><p>100+0+48 rk20</p>
+<p>T1 是<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6961">原题</a>，联赛前刚做过。T3 是妙妙构造。其实 T2 结论已经被我搞出来了，但是 T3 构造玩了三个多小时没时间写了。再加上要吃饭就没时间了。</p>
+<p>下次要合理分配时间。觉得一道题是乱搞题或者要花费的时间很久的情况下，起码给另外一题搓个暴力出来再写。</p>
+<h4 id="T3-P8984-北大集训-2021-末日魔法少女计划"><a href="#T3-P8984-北大集训-2021-末日魔法少女计划" class="headerlink" title="T3 P8984 [北大集训 2021] 末日魔法少女计划"></a>T3 P8984 [北大集训 2021] 末日魔法少女计划</h4><p>把 $A_{i,j}&#x3D;1$ 的看成 $(i,j)$ 的有向边，一开始给你一个 $1\to 2\to \dots\to n$ 的链。$(A^k)_{i,j}$ 可以理解为 $\forall i&lt;j,i\to j$ 的最短路 $\le k$。我们需要添加的边尽量小。</p>
+<ul>
+<li><p>$k&#x3D;1$，全部连起来。</p>
+</li>
+<li><p>$k&#x3D;2$，考虑分治，$[l,mid)$ 向 $mid$ 连一条边，$mid$ 向 $(mid,r]$ 连一条边。能通过 $k&#x3D;2$ 的点。</p>
+</li>
+<li><p>$k\ge 3$ 的情况，考虑分成 $B+2$ 块的数。有 $B+1$ 个中间点。第 $i$ 个中间点连接第 $i$ 个块和 $i+1$ 个块的每个点。然后对每个块和这 $B+1$ 个点可以归成子问题，递归下去。第 $1$ 个块和最后一个块只连一次边，中间的其他块要连两次。</p>
+</li>
+</ul>
+<p>考虑用 dp 来精细实现这个过程。根据对称性，让两侧大小相等，中间尽量平均，使得边数在不会太劣的情况下减少转移的难度。记 $f_{k,n}$ 表示当前 $n$ 个点加上至少 $f_{k,n}$ 使得最多经过 $k$ 条边所有点可以互相到达。</p>
+<p>直接转移是 $O(n^3k)$ 的，考虑根据上面的情况，我们构造中间状态 $g_{k,n}$ 表示 $n$ 个点的中间块最多经过 $k$ 条边使得所有点可以互相到达。</p>
+<p>有转移：<br>$$<br>f_{k,n}&#x3D;\min{2\times (f_{k,i}+i-1)+g_{k,n-2i} }<br>$$</p>
+<p>$$<br>g_{k,n}&#x3D;\min{f_{k-2,j+1}+w1\times (f_{k,w}+2w-3)+w2\times (f_{k,w+1}+2w+2-3))}<br>$$</p>
+<p>其中 $j$ 表示枚举的中间块的个数，$w&#x3D;\dfrac{(i-j-1)}{j}$ 表示块的长度，$w1&#x3D;j-(i-j-1)\bmod j$ 表示中间长度为 $w$ 的块的个数，$w2&#x3D;j-w1$ 表示长度为 $w+1$ 的块的个数。转移体现了中间均分。</p>
+<p>最后记录最优转移点，输出方案。复杂度 $O(n^2k)$。</p>
+<h3 id="12-26-省选模拟赛-14"><a href="#12-26-省选模拟赛-14" class="headerlink" title="12.26 省选模拟赛 14"></a>12.26 省选模拟赛 14</h3><h4 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h4><p>0+10+0 rk41 有分垫底。</p>
+<p>今天算是体会了什么叫做调题调一场。</p>
+<p>T1 感觉是个思维题看了两眼就先跳了。T2 发现只要维护路径交的最小值即可。然后调到 11 点发现复杂度假了。标记永久化没怎么写过再加上没发现修改的性质到最后也没写出来。就交了个复杂度错的东西上去。T1 懒得写直接摆烂。T3 看都没看。</p>
+<p>赛后发现 T2 每一次加入和删除的区间是同一个啊！！！用可删堆维护一下就好了。T1 数据很水赛时随便糊了一个随机化做法应该随便过。T3 是人类智慧看了也不会做。</p>
+<p>今天 T2 还是技不如人。要是写过这种题应该 2h 就过了。</p>
+<h4 id="T1-998244o5o"><a href="#T1-998244o5o" class="headerlink" title="T1 998244o5o"></a>T1 998244o5o</h4><p>因为 $1$ 操作显然是没有用的，就不管他。只有 $2$ 操作就变成了下面这道题：</p>
+<p>CF778D <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF788D">https://www.luogu.com.cn/problem/CF788D</a></p>
+<p>如果问到一个点 $(x_0,y_0)$ 的最小距离为 $0$，则可以用两次随机化操作判断 $y&#x3D;x_0$ 这条直线。$x&#x3D;y_0$ 同理。</p>
+<p>否则，设这个距离为 $d$，则 $(x_0+d,y_0+d)$ 和 $(x_0-d,y_0-d)$ 至少有一个为 $0$，然后递归下去。</p>
+<p>考虑给自己加点条件，在直线 $y&#x3D;x$ 上询问也是等价的，也就是 $x_0&#x3D;y_0$。每次找到一个直线以后，往两边递归下去即可。</p>
+<h4 id="T2-告别"><a href="#T2-告别" class="headerlink" title="T2 告别"></a>T2 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1103/problem/2">告别</a></h4><p>转化为对于每种权值的路径取交以后覆盖，查询一条路径上被覆盖到的最小权值的边。</p>
+<p>取交以后树剖放到线段树上。要维护区间上的每个点加入一个数，一个区间上的点删除一个数，查询一个区间上的最小值三个操作。</p>
+<p>直接做有点难。但是考虑每次取交的时候，如果先把取交之前的区间的贡献删除，这样对于一个权值，相邻两个加入和删除的操作的区间是相同的。用可删堆（两个堆一个维护值一个维护删除的数）做标记永久化即可。复杂度 $O(n\log^3 n)$，但是树剖和堆的常数很小。</p>
+<p>还找到了一个路径取交的好写的姿势：设两条路径的端点分别为 $(a,b),(c,d)$，不同路径的端点两两求 lca，取两个深度最大的点 $x,y$：</p>
+<ul>
+<li>$x\not &#x3D;y$，那么 $(x,y)$ 就是新的路径交。</li>
+<li>$x&#x3D;y$，且 $x$ 的深度小于 $lca(a,b)$ 或者 $lca(c,d)$ 那么就无交。</li>
+<li>否则路径交为 $(x,x)$。</li>
+</ul>
+<h4 id="T3-被猫猫入侵的题面"><a href="#T3-被猫猫入侵的题面" class="headerlink" title="T3 被猫猫入侵的题面"></a>T3 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1103/problem/3">被猫猫入侵的题面</a></h4><p>T3 好像是神仙博弈题目，先放了写点 dp 去。</p>
+<h3 id="12-27-12-28"><a href="#12-27-12-28" class="headerlink" title="12.27-12.28"></a>12.27-12.28</h3><p>神仙凸性优化专题。</p>
+<p>做了快一半了。咕咕。</p>
+<h3 id="12-29-省选模拟赛-15"><a href="#12-29-省选模拟赛-15" class="headerlink" title="12.29 省选模拟赛 15"></a>12.29 省选模拟赛 15</h3><p>100+0+20 rk37</p>
+<p>为什么 T2 充要条件都推出来了还是不会</p>
+<p>为什么 T2 充要条件都推出来了还是不会</p>
+<p>为什么 T2 充要条件都推出来了还是不会</p>
+<p>今天 T2 暴力没搓。现在感觉想 dp 反而不会暴力了。而且正解也不难。</p>
+<p>这几天确实摆的太厉害了。比赛正解没调出来就摆了。感觉要被老叶讲了。</p>
+<p>为了 T3 学了个 LGV 引理。还是感觉很神秘啊还是不太会用。</p>
+<h4 id="T2-吴冬拔寻宝"><a href="#T2-吴冬拔寻宝" class="headerlink" title="T2 吴冬拔寻宝"></a>T2 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1107/problem/2">吴冬拔寻宝</a></h4><p>枚举宝藏的位置。</p>
+<p>先考虑判断一个点集是否已经能找到宝藏。</p>
+<p>令 $d$ 为选择点集的 lca，如果存在 $dis(d,r)&#x3D;dis(d,x)$ 而且 $x$ 不是根也不在子树中，那么仅通过子树中的点还确定不了宝藏。</p>
+<p>否则要所有满足 $dis(d,x)&#x3D;dis(d,r)$ 的 $x$ 所在子树至少要选一个点。而且要保证 lca 在为 $d$。</p>
+<p>总结一下能找到宝藏的条件：</p>
+<ul>
+<li>lca 为 $d$。</li>
+<li>所有满足 $dis(d,x)&#x3D;dis(d,r)$ 的 $x$ 所在子树至少要选一个点。</li>
+<li>不存在 $dis(d,r)&#x3D;dis(d,x)$ 而且 $x$ 不是根也不在子树中。</li>
+</ul>
+<p>考虑计算 $\le i$ 时刻依然不满足的方案数。这样加起来就是总的方案数。只需要确保存在</p>
+<p>令 $f_{i,j,k}$ 表示子树中已经选了 $i$ 个点，选了 $j$ 个不同的子树，是否存在一个要选的子树没选一个点，或者本身就在子树外还存在满足条件的点。</p>
+<p>容易发现 $j$ 的意义是确保 lca 为 $d$。所以 $j$ 最大只需要到 $2$。同样 $k$ 只有 $0&#x2F;1$。</p>
+<p>复杂度 $O(n^3)$。记得特判 $n&#x3D;1$ 时答案为 $0$。</p>
+<h3 id="12-30-省选模拟赛-16"><a href="#12-30-省选模拟赛-16" class="headerlink" title="12.30 省选模拟赛 16"></a>12.30 省选模拟赛 16</h3><p>100+55+0&#x3D;155 rk15</p>
+<p>T3 保龄是因为要去美食节。今天打的算好了，T1 的性质推出来了，T2 的反射容斥，莫队做组合数和 NTT 合并都看出来了。这种学有所成的感觉真不错。</p>
+<h4 id="T2-梦魇"><a href="#T2-梦魇" class="headerlink" title="T2 梦魇"></a>T2 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1110/problem/2">梦魇</a></h4><h3 id="1-1-省选模拟赛-17"><a href="#1-1-省选模拟赛-17" class="headerlink" title="1.1 省选模拟赛 17"></a>1.1 省选模拟赛 17</h3><p>0+10+5 rk34</p>
+<p>元旦还要早八&#x2F;fn 早上一来头很晕。</p>
+<p>T1 是想到结论以后题目就搞错了。T2 是到后面发现是凸包的叉积 $&lt;$ 改成 $\le$ 就过了。</p>
+<h4 id="T1-City"><a href="#T1-City" class="headerlink" title="T1 City"></a>T1 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1111/problem/1">City</a></h4><p>观察到 $m&#x3D;1$ 时，取三个数中出现次数最大的那个至少有 $\dfrac{n^2}{9}$ 的价值，所以有 $m&lt;9$ 。</p>
+<p>然后再推一推发现有 $m\le 6$。继续发现循环节中如果一个字母出现了 $3$ 次及以上则不如全取这个字母。所以有效循环节状态很少。然后暴力匹配即可。</p>
+<h4 id="T2-Beautiful-World"><a href="#T2-Beautiful-World" class="headerlink" title="T2 Beautiful World"></a>T2 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1111/problem/2">Beautiful World</a></h4><p>赛时大样例过了。赛后把凸包的叉积从 $&lt;$ 改成 $\le$ 就过了。莫名其妙。</p>
+<p>首先看这样的题目就像凸包合并。</p>
+<p>具体做法就是把装备看成一条边，把装备栏看成一个点。然后如果合法每个联通块要么是树要么是基环树。然后把一个联通块的所有情况都找出来，树的情况是 $O(n)$ 的，基环树的情况是 $O(1)$ 的。做出凸包以后闵可夫斯基合并即可。复杂度 $O(n\log n)$。</p>
+<h3 id="1-2-省选模拟赛-18"><a href="#1-2-省选模拟赛-18" class="headerlink" title="1.2 省选模拟赛 18"></a>1.2 省选模拟赛 18</h3><p>65+36+25 rk33</p>
+<p>数据结构专场，T1 inf 开小挂分，T3 update 的时候忘记 pushup 样例都过不去。T2 没看出来直径。属实是重开了。</p>
+<h4 id="T1-掉落"><a href="#T1-掉落" class="headerlink" title="T1 掉落"></a>T1 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1113/problem/1">掉落</a></h4><p>显然有个树套树做法。</p>
+<p>然后发现线段树的每个节点维护一个栈，每次找到高度最小的弹一弹。每次最多加入两个点，复杂度是 $O(n\log n)$ 的。</p>
+<h4 id="T2-原神"><a href="#T2-原神" class="headerlink" title="T2 原神"></a>T2 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1113/problem/2">原神</a></h4><h4 id="T3-区间mex快速算法"><a href="#T3-区间mex快速算法" class="headerlink" title="T3 区间mex快速算法"></a>T3 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1113/problem/3">区间mex快速算法</a></h4><p>还是之前那个对顶堆套路，先通过 set 维护区间搞一下转化为相邻的加入操作和删除操作都是一个区间。</p>
+<p>题目的 $4$ 操作很明显后面那个东西是诈骗。$3$ 操作的本质是找给区间的 $mex$ 的最小值的位置加上一个数。</p>
+<p>上面的操作本质是标记永久化。如果一个标记打在区间上且是这个区间的最小值，则整个区间都要加一个数。否则加东西的标记转移到子区间的较小区间上。</p>
+<p>注意到为了防止 update 的时候影响 pushdown，在每次 update 到具体区间的时候，要额外在之前再 pushdown 一次。这样就保证之前的 pushdown 不会建立在新的节点上判断下传了。</p>
+<p><a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/submission/542683">Submission</a></p>
+<h3 id="1-5-省选模拟赛-19"><a href="#1-5-省选模拟赛-19" class="headerlink" title="1.5 省选模拟赛 19"></a>1.5 省选模拟赛 19</h3><p>这是我们搬的。所以就没有成绩。</p>
+<h4 id="T1-最小四贪那树"><a href="#T1-最小四贪那树" class="headerlink" title="T1 最小四贪那树"></a>T1 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1116/problem/1">最小四贪那树</a></h4><p>直接预处理状压 dp，然后做个 SOSdp 即可。复杂度 $O(2^nn)$。</p>
+<h4 id="T2-数位"><a href="#T2-数位" class="headerlink" title="T2 数位"></a>T2 <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1116/problem/2">数位</a></h4><p>每次必须要知道哪几个数是要进位的。考虑现在在第 $i$ 位。</p>
+<p>则观察到如果 $i-1$ 位为 $x$ 的没进位，则为 $x-1$ 的必定不会进位。然后再想一下就会发现知道了有几个进位的，就知道是哪些进位的。</p>
+<p>基数排序一下即可。复杂度 $O(10n^2)$。</p>
+<h4 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h4><p>T3 待补。 </p>
+<h3 id="1-6-省选模拟赛-20"><a href="#1-6-省选模拟赛-20" class="headerlink" title="1.6 省选模拟赛 20"></a>1.6 省选模拟赛 20</h3><p>今天学考，待补。</p>
+<h3 id="1-8-省选模拟赛-21"><a href="#1-8-省选模拟赛-21" class="headerlink" title="1.8 省选模拟赛 21"></a>1.8 省选模拟赛 21</h3><p>今天时间从 5h 改到 4.5h 没交上去，警戒！！！</p>
+<h4 id="T1-盗梦空间"><a href="#T1-盗梦空间" class="headerlink" title="T1. 盗梦空间"></a>T1. <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1120/problem/1">盗梦空间</a></h4><p>虚树套路题？但是我第一次写虚树。&#x2F;kk</p>
+<p>先建虚树。虚树有三种类型的点：</p>
+<ul>
+<li>虚树本身的节点。</li>
+<li>虚树节点边上的点，这样的点只连着两个点。</li>
+<li>空子树的点。</li>
+</ul>
+<p>第一个是好处理的，第二个预处理出 $g_x$ 表示 $fa_x$ 不包括 $x$ 的子树内深度最大。一段链上可以倍增。第三个可以先排序，给第二类的点打上标记，这样遍历到第一个没有标记的点就是最大的且合法的。</p>
+<p>复杂度 $O((n+\sum k)\log n)$。 </p>
+<p>Update：做了虚树几道板题以后发现这是基本套路啊。不会虚树算我技不如人了。</p>
+<h4 id="T2-偷藏女装"><a href="#T2-偷藏女装" class="headerlink" title="T2. 偷藏女装"></a>T2. <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1120/problem/2">偷藏女装</a></h4><p>弱化版 [ARC068F] Solitaire。</p>
+<p>待补，还没看这个结论怎么推出来的。</p>
+<h4 id="T3-楼梯调度"><a href="#T3-楼梯调度" class="headerlink" title="T3. 楼梯调度"></a>T3. <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1120/problem/3">楼梯调度</a></h4><p>感觉是很好的题目啊，一定补。</p>
+<h3 id="1-12-省选模拟赛-23"><a href="#1-12-省选模拟赛-23" class="headerlink" title="1.12 省选模拟赛 23"></a>1.12 省选模拟赛 23</h3><p>56+100+10&#x3D;166 rk26</p>
+<p>今天终于做出来一道自己思考出来的题了。T1 暴力没调出来有点小唐。希望一切都能变好。</p>
+<h4 id="T1-星际逃亡"><a href="#T1-星际逃亡" class="headerlink" title="T1. 星际逃亡"></a>T1. <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1125/problem/1">星际逃亡</a></h4><p>考虑二分。预处理出 $i\to j$ 合法的时间段 $[l(i,j),r(i,j)]$。</p>
+<p>然后把 $r\gets r+S$，如果两个边 $i\to j\to k$ 的时间段有交那么就可以连一条边。然后记录 $d(i,j)$ 表示最早到 $(i,j)$ 的时间，跑最短路即可。复杂度 $O(n^3\log n)$ 大概，spfa 跑的很快。</p>
+<p>然后考虑把 $i$ 的所有出边时间段算出来 $[s_1,t_1],[s_2,t_2],\dots$，如果两个边时间有交就合并。这样就缩成一些段。这样我们仅可以记录到达这一段的最早时间，段里的每个边的时间都是这个时间。</p>
+<p>然后这样的优势在于，如果每次加入的时间递增，那么每条边只会被更新一次。之前的情况一条边可能会被有交的边会被更新好多次所以是 $O(n^3\log n)$ 的或者复杂度更大，现在是 $O(n^2\log ^2n)$。然后细节很多，赛后调了三个小时拍了无数次才过去。</p>
+<p><a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/submission/550604">Submission</a></p>
+<h4 id="T2-博弈问题"><a href="#T2-博弈问题" class="headerlink" title="T2. 博弈问题"></a>T2. <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1125/problem/2">博弈问题</a></h4><p>显然遇到这种问题考虑 trie 树（其实本质是线段树）。</p>
+<p>一开始的想法是树上启发式合并，但是因为无法通过 $y$ 来转移 $x$。</p>
+<p>考虑从全局的角度出发，如果一个节点的左子树只有一个节点，右子树有很多，则左边这个节点的最大值一定在右子树中。</p>
+<p>考虑线段树合并，每次合并的过程中如果遇到左子树有一个节点，右子树节点就暴力更新左子树的答案。而由于线段树合并均摊 $O(n\log w)$ 的优秀性质，只会最多更新 $O(n\log w)$ 次。所以复杂度是 $O(n\log ^2w)$ 的。</p>
+<p><a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/submission/549646">Submission</a></p>
+<h4 id="T3-兔子猜拳"><a href="#T3-兔子猜拳" class="headerlink" title="T3. 兔子猜拳"></a>T3. <a target="_blank" rel="noopener" href="http://www.nfls.com.cn:10611/contest/1125/problem/3">兔子猜拳</a></h4><p>弱化版 [<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_agc022_f">AGC022F] Checkers</a>。</p>
+<p>感觉是很好的 dp 题目啊。前几步转化都想到了但就是不知道怎么计数。一定补。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E3%80%814%E9%A2%98-IOI-%E8%B5%9B%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">一 、4题 IOI 赛制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-11-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B5"><span class="toc-number">1.1.</span> <span class="toc-text">12.11 省选训练赛5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%A4%B4%E6%96%87%E5%AD%97-O"><span class="toc-number">1.1.2.</span> <span class="toc-text">T2 头文字 O</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E6%85%88%E5%96%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">T3 慈善</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-16-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B-8"><span class="toc-number">1.2.</span> <span class="toc-text">12.16 省选训练赛 8</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-mwhak"><span class="toc-number">1.2.1.</span> <span class="toc-text">T2. mwhak</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">T3. 数据结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-19-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B9"><span class="toc-number">1.3.</span> <span class="toc-text">12.19 省选训练赛9</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E5%9C%86%E5%BC%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">T1 圆弧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E6%95%B4%E9%99%A4"><span class="toc-number">1.3.3.</span> <span class="toc-text">T2 整除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E8%AF%8D%E5%85%B8"><span class="toc-number">1.3.4.</span> <span class="toc-text">T3 词典</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-20-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B10"><span class="toc-number">1.4.</span> <span class="toc-text">12.20 省选训练赛10</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E7%82%AE%E5%A1%94"><span class="toc-number">1.4.2.</span> <span class="toc-text">T1 炮塔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E6%AC%A2%E4%B9%90%E8%B1%86"><span class="toc-number">1.4.3.</span> <span class="toc-text">T3 欢乐豆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T4-Musician"><span class="toc-number">1.4.4.</span> <span class="toc-text">T4 Musician</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-21-%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%BB%83%E4%B9%A0"><span class="toc-number">1.5.</span> <span class="toc-text">12.21 随机化练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-22-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B-11"><span class="toc-number">1.6.</span> <span class="toc-text">12.22 省选训练赛 11</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-3"><span class="toc-number">1.6.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E5%B0%8F%E6%98%8E%E5%8E%BB%E6%97%85%E6%B8%B82"><span class="toc-number">1.6.2.</span> <span class="toc-text">T1 小明去旅游2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E8%B7%AF"><span class="toc-number">1.6.3.</span> <span class="toc-text">T3 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T4-%E4%B8%80%E8%88%AC%E9%9A%BE%E5%BA%A6%E7%9A%84%E6%8E%A8%E5%BC%8F%E5%AD%90%E9%A2%98"><span class="toc-number">1.6.4.</span> <span class="toc-text">T4 一般难度的推式子题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-23-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B-12"><span class="toc-number">1.7.</span> <span class="toc-text">12.23 省选训练赛 12</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%813%E9%A2%98-OI-%E8%B5%9B%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">二、3题 OI 赛制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-25-%E7%9C%81%E9%80%89%E8%AE%AD%E7%BB%83%E8%B5%9B-13"><span class="toc-number">2.1.</span> <span class="toc-text">12.25 省选训练赛 13</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-4"><span class="toc-number">2.1.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-P8984-%E5%8C%97%E5%A4%A7%E9%9B%86%E8%AE%AD-2021-%E6%9C%AB%E6%97%A5%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E8%AE%A1%E5%88%92"><span class="toc-number">2.1.2.</span> <span class="toc-text">T3 P8984 [北大集训 2021] 末日魔法少女计划</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-26-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-14"><span class="toc-number">2.2.</span> <span class="toc-text">12.26 省选模拟赛 14</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-5"><span class="toc-number">2.2.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-998244o5o"><span class="toc-number">2.2.2.</span> <span class="toc-text">T1 998244o5o</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%91%8A%E5%88%AB"><span class="toc-number">2.2.3.</span> <span class="toc-text">T2 告别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E8%A2%AB%E7%8C%AB%E7%8C%AB%E5%85%A5%E4%BE%B5%E7%9A%84%E9%A2%98%E9%9D%A2"><span class="toc-number">2.2.4.</span> <span class="toc-text">T3 被猫猫入侵的题面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-27-12-28"><span class="toc-number">2.3.</span> <span class="toc-text">12.27-12.28</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-29-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-15"><span class="toc-number">2.4.</span> <span class="toc-text">12.29 省选模拟赛 15</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%90%B4%E5%86%AC%E6%8B%94%E5%AF%BB%E5%AE%9D"><span class="toc-number">2.4.1.</span> <span class="toc-text">T2 吴冬拔寻宝</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-30-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-16"><span class="toc-number">2.5.</span> <span class="toc-text">12.30 省选模拟赛 16</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E6%A2%A6%E9%AD%87"><span class="toc-number">2.5.1.</span> <span class="toc-text">T2 梦魇</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-17"><span class="toc-number">2.6.</span> <span class="toc-text">1.1 省选模拟赛 17</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-City"><span class="toc-number">2.6.1.</span> <span class="toc-text">T1 City</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-Beautiful-World"><span class="toc-number">2.6.2.</span> <span class="toc-text">T2 Beautiful World</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-18"><span class="toc-number">2.7.</span> <span class="toc-text">1.2 省选模拟赛 18</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E6%8E%89%E8%90%BD"><span class="toc-number">2.7.1.</span> <span class="toc-text">T1 掉落</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%8E%9F%E7%A5%9E"><span class="toc-number">2.7.2.</span> <span class="toc-text">T2 原神</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E5%8C%BA%E9%97%B4mex%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95"><span class="toc-number">2.7.3.</span> <span class="toc-text">T3 区间mex快速算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-19"><span class="toc-number">2.8.</span> <span class="toc-text">1.5 省选模拟赛 19</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E6%9C%80%E5%B0%8F%E5%9B%9B%E8%B4%AA%E9%82%A3%E6%A0%91"><span class="toc-number">2.8.1.</span> <span class="toc-text">T1 最小四贪那树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E6%95%B0%E4%BD%8D"><span class="toc-number">2.8.2.</span> <span class="toc-text">T2 数位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3"><span class="toc-number">2.8.3.</span> <span class="toc-text">T3</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-20"><span class="toc-number">2.9.</span> <span class="toc-text">1.6 省选模拟赛 20</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-21"><span class="toc-number">2.10.</span> <span class="toc-text">1.8 省选模拟赛 21</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E7%9B%97%E6%A2%A6%E7%A9%BA%E9%97%B4"><span class="toc-number">2.10.1.</span> <span class="toc-text">T1. 盗梦空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%81%B7%E8%97%8F%E5%A5%B3%E8%A3%85"><span class="toc-number">2.10.2.</span> <span class="toc-text">T2. 偷藏女装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E6%A5%BC%E6%A2%AF%E8%B0%83%E5%BA%A6"><span class="toc-number">2.10.3.</span> <span class="toc-text">T3. 楼梯调度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-12-%E7%9C%81%E9%80%89%E6%A8%A1%E6%8B%9F%E8%B5%9B-23"><span class="toc-number">2.11.</span> <span class="toc-text">1.12 省选模拟赛 23</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#T1-%E6%98%9F%E9%99%85%E9%80%83%E4%BA%A1"><span class="toc-number">2.11.1.</span> <span class="toc-text">T1. 星际逃亡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T2-%E5%8D%9A%E5%BC%88%E9%97%AE%E9%A2%98"><span class="toc-number">2.11.2.</span> <span class="toc-text">T2. 博弈问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T3-%E5%85%94%E5%AD%90%E7%8C%9C%E6%8B%B3"><span class="toc-number">2.11.3.</span> <span class="toc-text">T3. 兔子猜拳</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&text=NFLS Contest 记录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&is_video=false&description=NFLS Contest 记录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NFLS Contest 记录&body=Check out this article: http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&title=NFLS Contest 记录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&name=NFLS Contest 记录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2078/01/14/NFLS-contest-%E8%AE%B0%E5%BD%95/&t=NFLS Contest 记录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2024
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wgyhm';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
