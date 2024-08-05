@@ -9,7 +9,7 @@
     <meta name="description" content="AGC009D UninityDescription给定一棵树，求点分树的最小层数。 $n\le 10^5$ Solution令 $x$ 在点分树上的深度为 $d_x$。 原树上的两个点，如果 $x,y$ 满足 $d_x&#x3D;d_y$，则一定满足 $x\to y$ 的路径上有一个点 $z,d_z&gt;d_x$。 令 $f_{x,i}$ 表示是否存在 $x$ 与深度为 $i$ 的点之间没有一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AGC009D Uninity">
-<meta property="og:url" content="http://wgyhm.top/2023/10/10/AGC009D-Uninity/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/10/10/AGC009D-Uninity/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="AGC009D UninityDescription给定一棵树，求点分树的最小层数。 $n\le 10^5$ Solution令 $x$ 在点分树上的深度为 $d_x$。 原树上的两个点，如果 $x,y$ 满足 $d_x&#x3D;d_y$，则一定满足 $x\to y$ 的路径上有一个点 $z,d_z&gt;d_x$。 令 $f_{x,i}$ 表示是否存在 $x$ 与深度为 $i$ 的点之间没有一">
 <meta property="og:locale" content="en_US">
@@ -18,8 +18,8 @@
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="点分树">
-<meta property="article:tag" content="构造">
 <meta property="article:tag" content="贪心">
+<meta property="article:tag" content="构造">
 <meta property="article:tag" content="思维">
 <meta name="twitter:card" content="summary">
     
@@ -107,17 +107,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/AGC009D-Uninity/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&text=AGC009D Uninity"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&is_video=false&description=AGC009D Uninity"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=AGC009D Uninity&body=Check out this article: http://wgyhm.top/2023/10/10/AGC009D-Uninity/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&name=AGC009D Uninity&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&t=AGC009D Uninity"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/10/AGC009D-Uninity/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&text=AGC009D Uninity"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&is_video=false&description=AGC009D Uninity"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AGC009D Uninity&body=Check out this article: http://原神高中.top/2023/10/10/AGC009D-Uninity/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&name=AGC009D Uninity&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/10/AGC009D-Uninity/&t=AGC009D Uninity"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -215,17 +215,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/AGC009D-Uninity/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&text=AGC009D Uninity"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&is_video=false&description=AGC009D Uninity"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=AGC009D Uninity&body=Check out this article: http://wgyhm.top/2023/10/10/AGC009D-Uninity/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&name=AGC009D Uninity&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/AGC009D-Uninity/&t=AGC009D Uninity"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/10/AGC009D-Uninity/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&text=AGC009D Uninity"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&is_video=false&description=AGC009D Uninity"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AGC009D Uninity&body=Check out this article: http://原神高中.top/2023/10/10/AGC009D-Uninity/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&title=AGC009D Uninity"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/10/AGC009D-Uninity/&name=AGC009D Uninity&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/10/AGC009D-Uninity/&t=AGC009D Uninity"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

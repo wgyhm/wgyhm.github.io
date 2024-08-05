@@ -9,7 +9,7 @@
     <meta name="description" content="怎么这种吊题都要想很久。果然是要退役了&#x2F;kk 考虑算每条道路的贡献，先把边的数值放到前一个点上，然后默认 $r\gets r-1$ ，要求的就是：$$\sum_{i&#x3D;l}^r a_i(r-i+1)(i-l+1)$$整理后，有：$$(r-l+1-rl)\sum a_i+(r+l)\sum a_i\times i-\sum a_i\times i^2$$线段树跑一跑就好了： 123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P2221 [HAOI2012] 高速公路">
-<meta property="og:url" content="http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="怎么这种吊题都要想很久。果然是要退役了&#x2F;kk 考虑算每条道路的贡献，先把边的数值放到前一个点上，然后默认 $r\gets r-1$ ，要求的就是：$$\sum_{i&#x3D;l}^r a_i(r-i+1)(i-l+1)$$整理后，有：$$(r-l+1-rl)\sum a_i+(r+l)\sum a_i\times i-\sum a_i\times i^2$$线段树跑一跑就好了： 123">
 <meta property="og:locale" content="en_US">
@@ -104,17 +104,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&text=P2221 [HAOI2012] 高速公路"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&is_video=false&description=P2221 [HAOI2012] 高速公路"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P2221 [HAOI2012] 高速公路&body=Check out this article: http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&name=P2221 [HAOI2012] 高速公路&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&t=P2221 [HAOI2012] 高速公路"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&text=P2221 [HAOI2012] 高速公路"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&is_video=false&description=P2221 [HAOI2012] 高速公路"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P2221 [HAOI2012] 高速公路&body=Check out this article: http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&name=P2221 [HAOI2012] 高速公路&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&t=P2221 [HAOI2012] 高速公路"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -205,17 +205,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&text=P2221 [HAOI2012] 高速公路"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&is_video=false&description=P2221 [HAOI2012] 高速公路"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P2221 [HAOI2012] 高速公路&body=Check out this article: http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&name=P2221 [HAOI2012] 高速公路&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&t=P2221 [HAOI2012] 高速公路"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&text=P2221 [HAOI2012] 高速公路"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&is_video=false&description=P2221 [HAOI2012] 高速公路"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P2221 [HAOI2012] 高速公路&body=Check out this article: http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&name=P2221 [HAOI2012] 高速公路&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&t=P2221 [HAOI2012] 高速公路"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

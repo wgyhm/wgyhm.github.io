@@ -9,7 +9,7 @@
     <meta name="description" content="Floyd-WarshallDescription Solution考虑从小往大枚举起点。 钦定终点大于起点。那么一条最短路径是合法的，当且仅当除了最后一段连续上升的子串，没有连续的 $&gt;s$ 的节点。 比如 1 3 2 4 是合法的，而 2 4 3 1 5  不是。 这样跑出最短路后，建出最短路径的 DAG，然后跑 dp 即可。 如果终点小于起点，当且仅当除了最前面一段连续下降的子串，没有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PA2019 Final Floyd-Warshall">
-<meta property="og:url" content="http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="Floyd-WarshallDescription Solution考虑从小往大枚举起点。 钦定终点大于起点。那么一条最短路径是合法的，当且仅当除了最后一段连续上升的子串，没有连续的 $&gt;s$ 的节点。 比如 1 3 2 4 是合法的，而 2 4 3 1 5  不是。 这样跑出最短路后，建出最短路径的 DAG，然后跑 dp 即可。 如果终点小于起点，当且仅当除了最前面一段连续下降的子串，没有">
 <meta property="og:locale" content="en_US">
@@ -108,17 +108,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&text=PA2019 Final Floyd-Warshall"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&is_video=false&description=PA2019 Final Floyd-Warshall"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=PA2019 Final Floyd-Warshall&body=Check out this article: http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&name=PA2019 Final Floyd-Warshall&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&t=PA2019 Final Floyd-Warshall"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&text=PA2019 Final Floyd-Warshall"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&is_video=false&description=PA2019 Final Floyd-Warshall"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PA2019 Final Floyd-Warshall&body=Check out this article: http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&name=PA2019 Final Floyd-Warshall&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&t=PA2019 Final Floyd-Warshall"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -215,17 +215,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&text=PA2019 Final Floyd-Warshall"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&is_video=false&description=PA2019 Final Floyd-Warshall"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=PA2019 Final Floyd-Warshall&body=Check out this article: http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&name=PA2019 Final Floyd-Warshall&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/17/PA2019-final-Floyd-Warshall/&t=PA2019 Final Floyd-Warshall"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&text=PA2019 Final Floyd-Warshall"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&is_video=false&description=PA2019 Final Floyd-Warshall"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PA2019 Final Floyd-Warshall&body=Check out this article: http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&title=PA2019 Final Floyd-Warshall"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&name=PA2019 Final Floyd-Warshall&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/17/PA2019-final-Floyd-Warshall/&t=PA2019 Final Floyd-Warshall"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

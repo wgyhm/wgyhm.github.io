@@ -9,7 +9,7 @@
     <meta name="description" content="[AGC010E] RearrangingDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;AT_agc010_e Solution后手交换相邻的互质的数，也就是说如果序列已经确定，那么两个不互质的数的相对顺序不改变。 假设序列已经确定，那么把 $i&lt;j,(a_i,a_j)\not &#x3D; 1$ 的点对 $(i,j)$ 连边，连出来一定是个 DAG">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AGC010E Rearranging">
-<meta property="og:url" content="http://wgyhm.top/2023/10/17/AGC010E-Rearranging/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/10/17/AGC010E-Rearranging/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="[AGC010E] RearrangingDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;AT_agc010_e Solution后手交换相邻的互质的数，也就是说如果序列已经确定，那么两个不互质的数的相对顺序不改变。 假设序列已经确定，那么把 $i&lt;j,(a_i,a_j)\not &#x3D; 1$ 的点对 $(i,j)$ 连边，连出来一定是个 DAG">
 <meta property="og:locale" content="en_US">
@@ -17,8 +17,8 @@
 <meta property="article:modified_time" content="2023-10-17T12:51:25.981Z">
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="NOIP模拟赛">
-<meta property="article:tag" content="构造">
 <meta property="article:tag" content="贪心">
+<meta property="article:tag" content="构造">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="trick">
 <meta name="twitter:card" content="summary">
@@ -107,17 +107,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&text=AGC010E Rearranging"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&is_video=false&description=AGC010E Rearranging"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=AGC010E Rearranging&body=Check out this article: http://wgyhm.top/2023/10/17/AGC010E-Rearranging/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&name=AGC010E Rearranging&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&t=AGC010E Rearranging"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/17/AGC010E-Rearranging/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&text=AGC010E Rearranging"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&is_video=false&description=AGC010E Rearranging"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AGC010E Rearranging&body=Check out this article: http://原神高中.top/2023/10/17/AGC010E-Rearranging/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&name=AGC010E Rearranging&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&t=AGC010E Rearranging"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -212,17 +212,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&text=AGC010E Rearranging"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&is_video=false&description=AGC010E Rearranging"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=AGC010E Rearranging&body=Check out this article: http://wgyhm.top/2023/10/17/AGC010E-Rearranging/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&name=AGC010E Rearranging&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/17/AGC010E-Rearranging/&t=AGC010E Rearranging"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/17/AGC010E-Rearranging/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&text=AGC010E Rearranging"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&is_video=false&description=AGC010E Rearranging"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AGC010E Rearranging&body=Check out this article: http://原神高中.top/2023/10/17/AGC010E-Rearranging/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&title=AGC010E Rearranging"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&name=AGC010E Rearranging&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/17/AGC010E-Rearranging/&t=AGC010E Rearranging"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

@@ -9,7 +9,7 @@
     <meta name="description" content="[SDOI2017] 序列计数https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3702 Solution一种很简单的做法是全部的减去不包含质数的，用矩阵乘法维护，在这里不赘述，除去筛质数的复杂度是 $O(p^3\log n)$ 的。 观察我们的矩阵，发现是 $w_0,w_1,..,w_{p-1}$ 每次向右移动一位，移动 $p$ 次构成的矩阵。这个矩阵很特殊，再找性质。 回到最">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bzoj4818 [SDOI2017] 序列计数">
-<meta property="og:url" content="http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="[SDOI2017] 序列计数https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3702 Solution一种很简单的做法是全部的减去不包含质数的，用矩阵乘法维护，在这里不赘述，除去筛质数的复杂度是 $O(p^3\log n)$ 的。 观察我们的矩阵，发现是 $w_0,w_1,..,w_{p-1}$ 每次向右移动一位，移动 $p$ 次构成的矩阵。这个矩阵很特殊，再找性质。 回到最">
 <meta property="og:locale" content="en_US">
@@ -105,17 +105,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&text=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&is_video=false&description=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bzoj4818 [SDOI2017] 序列计数&body=Check out this article: http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&name=Bzoj4818 [SDOI2017] 序列计数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&t=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&text=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&is_video=false&description=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bzoj4818 [SDOI2017] 序列计数&body=Check out this article: http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&name=Bzoj4818 [SDOI2017] 序列计数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&t=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -210,17 +210,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&text=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&is_video=false&description=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bzoj4818 [SDOI2017] 序列计数&body=Check out this article: http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&name=Bzoj4818 [SDOI2017] 序列计数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&t=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&text=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&is_video=false&description=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bzoj4818 [SDOI2017] 序列计数&body=Check out this article: http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&title=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&name=Bzoj4818 [SDOI2017] 序列计数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/10/bzoj4818-SDOI2017-%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0/&t=Bzoj4818 [SDOI2017] 序列计数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

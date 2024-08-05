@@ -9,7 +9,7 @@
     <meta name="description" content="这里基本只给结论，不给严格证明。 T1ARC132C 看到 $d$ 很小，很自然的想到维护 $i$ 可选的值的集合。一个位置 $i$ 最多可以选 $2d+1$ 个值。状压即可。 复杂度 $O(n2^{2d+1}d)$。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10.10 模拟赛 by ZYQ">
-<meta property="og:url" content="http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="这里基本只给结论，不给严格证明。 T1ARC132C 看到 $d$ 很小，很自然的想到维护 $i$ 可选的值的集合。一个位置 $i$ 最多可以选 $2d+1$ 个值。状压即可。 复杂度 $O(n2^{2d+1}d)$。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495">
 <meta property="og:locale" content="en_US">
@@ -19,9 +19,9 @@
 <meta property="article:tag" content="NOIP模拟赛">
 <meta property="article:tag" content="状压">
 <meta property="article:tag" content="dp">
-<meta property="article:tag" content="计数">
 <meta property="article:tag" content="最小生成树">
 <meta property="article:tag" content="贪心">
+<meta property="article:tag" content="计数">
 <meta name="twitter:card" content="summary">
     
     
@@ -108,17 +108,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&text=10.10 模拟赛 by ZYQ"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&is_video=false&description=10.10 模拟赛 by ZYQ"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=10.10 模拟赛 by ZYQ&body=Check out this article: http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&name=10.10 模拟赛 by ZYQ&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&t=10.10 模拟赛 by ZYQ"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&text=10.10 模拟赛 by ZYQ"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&is_video=false&description=10.10 模拟赛 by ZYQ"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=10.10 模拟赛 by ZYQ&body=Check out this article: http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&name=10.10 模拟赛 by ZYQ&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&t=10.10 模拟赛 by ZYQ"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -254,17 +254,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&text=10.10 模拟赛 by ZYQ"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&is_video=false&description=10.10 模拟赛 by ZYQ"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=10.10 模拟赛 by ZYQ&body=Check out this article: http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&name=10.10 模拟赛 by ZYQ&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&t=10.10 模拟赛 by ZYQ"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&text=10.10 模拟赛 by ZYQ"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&is_video=false&description=10.10 模拟赛 by ZYQ"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=10.10 模拟赛 by ZYQ&body=Check out this article: http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&title=10.10 模拟赛 by ZYQ"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&name=10.10 模拟赛 by ZYQ&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/10/10-10-%E6%A8%A1%E6%8B%9F%E8%B5%9B-by-ZYQ/&t=10.10 模拟赛 by ZYQ"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

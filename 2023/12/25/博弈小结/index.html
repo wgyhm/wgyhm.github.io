@@ -9,7 +9,7 @@
     <meta name="description" content="感觉各种让我推策略的题目都不太会。一点思路都没有。所以记录一下。 这种题目一般和贪心或者 dp 结合，也有时候会跟 sg 函数的博弈论相关。 P3554 [POI2013] LUK-Triumphal arch很久没有自己做出来带点博弈策略的题目了。虽然这道题真的不难。 先考虑二分。$k$ 为每次可以选的点数。B 每次只会往深的地方走，所以每次染色只往当前的子树中染肯定不劣。令 $f_i$ 表示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博弈小结">
-<meta property="og:url" content="http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="感觉各种让我推策略的题目都不太会。一点思路都没有。所以记录一下。 这种题目一般和贪心或者 dp 结合，也有时候会跟 sg 函数的博弈论相关。 P3554 [POI2013] LUK-Triumphal arch很久没有自己做出来带点博弈策略的题目了。虽然这道题真的不难。 先考虑二分。$k$ 为每次可以选的点数。B 每次只会往深的地方走，所以每次染色只往当前的子树中染肯定不劣。令 $f_i$ 表示">
 <meta property="og:locale" content="en_US">
@@ -106,17 +106,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&text=博弈小结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&is_video=false&description=博弈小结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=博弈小结&body=Check out this article: http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&name=博弈小结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&t=博弈小结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&text=博弈小结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&is_video=false&description=博弈小结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=博弈小结&body=Check out this article: http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&name=博弈小结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&t=博弈小结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -223,17 +223,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&text=博弈小结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&is_video=false&description=博弈小结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=博弈小结&body=Check out this article: http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&name=博弈小结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&t=博弈小结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&text=博弈小结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&is_video=false&description=博弈小结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=博弈小结&body=Check out this article: http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&title=博弈小结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&name=博弈小结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/12/25/%E5%8D%9A%E5%BC%88%E5%B0%8F%E7%BB%93/&t=博弈小结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

@@ -9,7 +9,7 @@
     <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3731 Solution联赛之后的第一道题！ 给出的图显然是二分图啊，我们先黑白染色一下，然后我们要找到所有边是的删去这条边二分图的最大团变大，也就是必经边。 如果用常规做这道题目的话，发现根本没有必选边，因为 $(s,i)$ 一定可以选，所以很不行啊。 考虑开创一下，发现如果一条边在残余网络上有环则不是必">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P3731 [HAOI2017] 新型城市化">
-<meta property="og:url" content="http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3731 Solution联赛之后的第一道题！ 给出的图显然是二分图啊，我们先黑白染色一下，然后我们要找到所有边是的删去这条边二分图的最大团变大，也就是必经边。 如果用常规做这道题目的话，发现根本没有必选边，因为 $(s,i)$ 一定可以选，所以很不行啊。 考虑开创一下，发现如果一条边在残余网络上有环则不是必">
 <meta property="og:locale" content="en_US">
@@ -104,17 +104,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&text=P3731 [HAOI2017] 新型城市化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&is_video=false&description=P3731 [HAOI2017] 新型城市化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P3731 [HAOI2017] 新型城市化&body=Check out this article: http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&name=P3731 [HAOI2017] 新型城市化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&t=P3731 [HAOI2017] 新型城市化"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&text=P3731 [HAOI2017] 新型城市化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&is_video=false&description=P3731 [HAOI2017] 新型城市化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P3731 [HAOI2017] 新型城市化&body=Check out this article: http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&name=P3731 [HAOI2017] 新型城市化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&t=P3731 [HAOI2017] 新型城市化"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -209,17 +209,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&text=P3731 [HAOI2017] 新型城市化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&is_video=false&description=P3731 [HAOI2017] 新型城市化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P3731 [HAOI2017] 新型城市化&body=Check out this article: http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&name=P3731 [HAOI2017] 新型城市化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&t=P3731 [HAOI2017] 新型城市化"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&text=P3731 [HAOI2017] 新型城市化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&is_video=false&description=P3731 [HAOI2017] 新型城市化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P3731 [HAOI2017] 新型城市化&body=Check out this article: http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&title=P3731 [HAOI2017] 新型城市化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&name=P3731 [HAOI2017] 新型城市化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/&t=P3731 [HAOI2017] 新型城市化"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

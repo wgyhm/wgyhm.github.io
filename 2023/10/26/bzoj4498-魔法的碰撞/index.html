@@ -9,7 +9,7 @@
     <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;hydro.ac&#x2F;d&#x2F;bzoj&#x2F;p&#x2F;4498 Solution考虑一个排列紧密的布阵方案，令长度为 $k$ ，把其 $L-k$ 的盒子中，插入 $n$ 个板，方案为 $\dbinom{L-k+n}{n}$。 现在要 dp 出所有的长度为 $k$ 的紧密排列的方案数。发现是很典的插入dp。但是这样写的话需要维护左右端点是否被选，细节很多。讲一下从指导那里学来的做">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bzoj4498 魔法的碰撞">
-<meta property="og:url" content="http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;hydro.ac&#x2F;d&#x2F;bzoj&#x2F;p&#x2F;4498 Solution考虑一个排列紧密的布阵方案，令长度为 $k$ ，把其 $L-k$ 的盒子中，插入 $n$ 个板，方案为 $\dbinom{L-k+n}{n}$。 现在要 dp 出所有的长度为 $k$ 的紧密排列的方案数。发现是很典的插入dp。但是这样写的话需要维护左右端点是否被选，细节很多。讲一下从指导那里学来的做">
 <meta property="og:locale" content="en_US">
@@ -106,17 +106,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&text=Bzoj4498 魔法的碰撞"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&is_video=false&description=Bzoj4498 魔法的碰撞"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bzoj4498 魔法的碰撞&body=Check out this article: http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&name=Bzoj4498 魔法的碰撞&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&t=Bzoj4498 魔法的碰撞"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&text=Bzoj4498 魔法的碰撞"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&is_video=false&description=Bzoj4498 魔法的碰撞"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bzoj4498 魔法的碰撞&body=Check out this article: http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&name=Bzoj4498 魔法的碰撞&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&t=Bzoj4498 魔法的碰撞"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -167,7 +167,7 @@
   <div class="content" itemprop="articleBody">
     <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://hydro.ac/d/bzoj/p/4498">https://hydro.ac/d/bzoj/p/4498</a></p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>考虑一个<strong>排列紧密</strong>的布阵方案，令长度为 $k$ ，把其 $L-k$ 的盒子中，插入 $n$ 个板，方案为 $\dbinom{L-k+n}{n}$。</p>
-<p>现在要 dp 出所有的长度为 $k$ 的紧密排列的方案数。发现是很典的<a href="https://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/">插入dp</a>。但是这样写的话需要维护左右端点是否被选，细节很多。讲一下从指导那里学来的做法。</p>
+<p>现在要 dp 出所有的长度为 $k$ 的紧密排列的方案数。发现是很典的<a target="_blank" rel="noopener" href="https://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/">插入dp</a>。但是这样写的话需要维护左右端点是否被选，细节很多。讲一下从指导那里学来的做法。</p>
 <p>同样是从大到小选，令 $f_{i,j,k}$ 表示选了前 $i$ 个大的魔法师，预留了 $j$ 个位置，占了 $k$ 个格子。答案就是 $f_{n,0,k}$。讨论第 $i$ 个魔法师旁边预留 0&#x2F;1&#x2F;2 个位置。</p>
 <ul>
 <li>预留 $0$ 个位置，$f_{i,j,k}\gets f_{i-1,j+1,k}\times (j+1)$</li>
@@ -215,17 +215,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&text=Bzoj4498 魔法的碰撞"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&is_video=false&description=Bzoj4498 魔法的碰撞"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bzoj4498 魔法的碰撞&body=Check out this article: http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&name=Bzoj4498 魔法的碰撞&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&t=Bzoj4498 魔法的碰撞"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&text=Bzoj4498 魔法的碰撞"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&is_video=false&description=Bzoj4498 魔法的碰撞"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bzoj4498 魔法的碰撞&body=Check out this article: http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=Bzoj4498 魔法的碰撞"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&name=Bzoj4498 魔法的碰撞&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&t=Bzoj4498 魔法的碰撞"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

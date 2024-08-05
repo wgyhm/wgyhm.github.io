@@ -9,7 +9,7 @@
     <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1641D Solution有一个根号分治的 bitset 做法，感觉有点丑陋，就不说了。 考虑怎么优雅的判两个集合的交集。 考虑容斥。取两个集合的所有子集，如果相同且子集大小奇数就 $+1$，偶数就 $-1$。这样如果集合有交集则为 $1$，否则为 $0$。 记两个集合的交集为 $s$，则贡献是 $\su">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF1641D Two Arrays">
-<meta property="og:url" content="http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/index.html">
+<meta property="og:url" content="http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1641D Solution有一个根号分治的 bitset 做法，感觉有点丑陋，就不说了。 考虑怎么优雅的判两个集合的交集。 考虑容斥。取两个集合的所有子集，如果相同且子集大小奇数就 $+1$，偶数就 $-1$。这样如果集合有交集则为 $1$，否则为 $0$。 记两个集合的交集为 $s$，则贡献是 $\su">
 <meta property="og:locale" content="en_US">
@@ -106,17 +106,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&text=CF1641D Two Arrays"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&is_video=false&description=CF1641D Two Arrays"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CF1641D Two Arrays&body=Check out this article: http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&name=CF1641D Two Arrays&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&t=CF1641D Two Arrays"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&text=CF1641D Two Arrays"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&is_video=false&description=CF1641D Two Arrays"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1641D Two Arrays&body=Check out this article: http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&name=CF1641D Two Arrays&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&t=CF1641D Two Arrays"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -214,17 +214,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&text=CF1641D Two Arrays"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&is_video=false&description=CF1641D Two Arrays"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CF1641D Two Arrays&body=Check out this article: http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&name=CF1641D Two Arrays&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://wgyhm.top/2023/12/07/CF1641D-Two-Arrays/&t=CF1641D Two Arrays"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&text=CF1641D Two Arrays"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&is_video=false&description=CF1641D Two Arrays"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1641D Two Arrays&body=Check out this article: http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&title=CF1641D Two Arrays"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&name=CF1641D Two Arrays&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/12/07/CF1641D-Two-Arrays/&t=CF1641D Two Arrays"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
