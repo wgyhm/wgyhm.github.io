@@ -9,7 +9,7 @@
     <meta name="description" content="前言感觉这场全力打了三个小时，T4 的暴力没想出来有点可惜，然后 T3 确实难，但是自己数组开小也很 dinner 啊。 T1Description $n\le 2000$。 Solution很典的树上背包啊。记录 $x$ 子树内产生贡献的点个数 $j$，$x$ 的状态：没被选也没有产生贡献，没被选但是被儿子产生贡献，选了。然后转移一下就好了。 复杂度 $O(n^2)$。 123456789101">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOIP模拟赛 11.05 by FXT and ZJ">
-<meta property="og:url" content="http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/index.html">
+<meta property="og:url" content="https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="前言感觉这场全力打了三个小时，T4 的暴力没想出来有点可惜，然后 T3 确实难，但是自己数组开小也很 dinner 啊。 T1Description $n\le 2000$。 Solution很典的树上背包啊。记录 $x$ 子树内产生贡献的点个数 $j$，$x$ 的状态：没被选也没有产生贡献，没被选但是被儿子产生贡献，选了。然后转移一下就好了。 复杂度 $O(n^2)$。 123456789101">
 <meta property="og:locale" content="en_US">
@@ -19,9 +19,9 @@
 <meta property="article:modified_time" content="2023-11-05T11:57:14.383Z">
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="NOIP模拟赛">
+<meta property="article:tag" content="构造">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="贪心">
-<meta property="article:tag" content="构造">
 <meta property="article:tag" content="tarjan">
 <meta property="article:tag" content="典">
 <meta name="twitter:card" content="summary">
@@ -111,17 +111,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&text=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&is_video=false&description=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=NOIP模拟赛 11.05 by FXT and ZJ&body=Check out this article: http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&name=NOIP模拟赛 11.05 by FXT and ZJ&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&t=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&text=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&is_video=false&description=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NOIP模拟赛 11.05 by FXT and ZJ&body=Check out this article: https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&name=NOIP模拟赛 11.05 by FXT and ZJ&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&t=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -241,17 +241,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&text=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&is_video=false&description=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=NOIP模拟赛 11.05 by FXT and ZJ&body=Check out this article: http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&name=NOIP模拟赛 11.05 by FXT and ZJ&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&t=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&text=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&is_video=false&description=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NOIP模拟赛 11.05 by FXT and ZJ&body=Check out this article: https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&title=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&name=NOIP模拟赛 11.05 by FXT and ZJ&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/11/05/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-11-05-by-FXT-and-ZJ/&t=NOIP模拟赛 11.05 by FXT and ZJ"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -272,7 +272,7 @@
     Copyright &copy;
     
     
-    2022-2024
+    2022-2025
     wgyhm
   </div>
   <div class="footer-right">

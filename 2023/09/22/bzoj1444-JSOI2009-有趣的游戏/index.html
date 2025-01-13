@@ -9,7 +9,7 @@
     <meta name="description" content="[JSOI2009] 有趣的游戏https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6125 Solution首先，问题等价于建出 AC 自动机之后，从 $0$ 开始随机走，如果走到一个字符串的末节点则停止。求每个末节点为停止节点的概率。 一种天真的想法是求到每个节点的概率。但是由根节点的概率一定是 $1$，但是其他节点可以转移到根节点而矛盾。（实际上这样定义的问题很多）。 对于末">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bzoj1444  [JSOI2009] 有趣的游戏">
-<meta property="og:url" content="http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/index.html">
+<meta property="og:url" content="https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="[JSOI2009] 有趣的游戏https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6125 Solution首先，问题等价于建出 AC 自动机之后，从 $0$ 开始随机走，如果走到一个字符串的末节点则停止。求每个末节点为停止节点的概率。 一种天真的想法是求到每个节点的概率。但是由根节点的概率一定是 $1$，但是其他节点可以转移到根节点而矛盾。（实际上这样定义的问题很多）。 对于末">
 <meta property="og:locale" content="en_US">
@@ -106,17 +106,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&text=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&is_video=false&description=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bzoj1444  [JSOI2009] 有趣的游戏&body=Check out this article: http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&name=Bzoj1444  [JSOI2009] 有趣的游戏&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&t=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&text=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&is_video=false&description=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bzoj1444  [JSOI2009] 有趣的游戏&body=Check out this article: https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&name=Bzoj1444  [JSOI2009] 有趣的游戏&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&t=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -211,17 +211,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&text=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&is_video=false&description=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bzoj1444  [JSOI2009] 有趣的游戏&body=Check out this article: http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&name=Bzoj1444  [JSOI2009] 有趣的游戏&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&t=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&text=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&is_video=false&description=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bzoj1444  [JSOI2009] 有趣的游戏&body=Check out this article: https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&title=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&name=Bzoj1444  [JSOI2009] 有趣的游戏&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/09/22/bzoj1444-JSOI2009-%E6%9C%89%E8%B6%A3%E7%9A%84%E6%B8%B8%E6%88%8F/&t=Bzoj1444  [JSOI2009] 有趣的游戏"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -242,7 +242,7 @@
     Copyright &copy;
     
     
-    2022-2024
+    2022-2025
     wgyhm
   </div>
   <div class="footer-right">

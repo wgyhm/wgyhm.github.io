@@ -9,7 +9,7 @@
     <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3343 Solution相当妙妙的题目啊。 根据提示，就直接把第 $k$ 大权值设为 $\dfrac{k}{m+1}$。 考虑恰好选 $k$ 条边使图联通的概率 $g_k$，则答案为 $\sum\limits_{i&#x3D;1}^m \dfrac{ig_i}{m+1}$。 恰好是不好做的，转化为选 $k$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P3343 [ZJOI2015] 地震后的幻想乡">
-<meta property="og:url" content="http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/index.html">
+<meta property="og:url" content="https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3343 Solution相当妙妙的题目啊。 根据提示，就直接把第 $k$ 大权值设为 $\dfrac{k}{m+1}$。 考虑恰好选 $k$ 条边使图联通的概率 $g_k$，则答案为 $\sum\limits_{i&#x3D;1}^m \dfrac{ig_i}{m+1}$。 恰好是不好做的，转化为选 $k$">
 <meta property="og:locale" content="en_US">
@@ -18,8 +18,8 @@
 <meta property="article:author" content="wgyhm">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="计数">
-<meta property="article:tag" content="容斥">
 <meta property="article:tag" content="典">
+<meta property="article:tag" content="容斥">
 <meta property="article:tag" content="组合">
 <meta name="twitter:card" content="summary">
     
@@ -107,17 +107,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&text=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&is_video=false&description=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P3343 [ZJOI2015] 地震后的幻想乡&body=Check out this article: http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&name=P3343 [ZJOI2015] 地震后的幻想乡&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&t=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&text=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&is_video=false&description=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P3343 [ZJOI2015] 地震后的幻想乡&body=Check out this article: https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&name=P3343 [ZJOI2015] 地震后的幻想乡&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&t=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -212,17 +212,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&text=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&is_video=false&description=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P3343 [ZJOI2015] 地震后的幻想乡&body=Check out this article: http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&name=P3343 [ZJOI2015] 地震后的幻想乡&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&t=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&text=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&is_video=false&description=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P3343 [ZJOI2015] 地震后的幻想乡&body=Check out this article: https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&title=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&name=P3343 [ZJOI2015] 地震后的幻想乡&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/&t=P3343 [ZJOI2015] 地震后的幻想乡"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -243,7 +243,7 @@
     Copyright &copy;
     
     
-    2022-2024
+    2022-2025
     wgyhm
   </div>
   <div class="footer-right">

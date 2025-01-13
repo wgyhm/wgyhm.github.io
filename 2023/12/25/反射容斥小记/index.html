@@ -9,7 +9,7 @@
     <meta name="description" content="〇、前言两个星期模拟赛出现了两次。正好两次都没做出来。 ZJ 说这个套路已经要烂了。可是我才刚入门啊&#x2F;kk。 不过这东西本身很简单，关键在于是否能推出一个 dp，然后找到 dp 的组合意义是这样再优化。 一、思想讲解这东西我都不愿意称之为算法。 考虑一个二维平面，只能向右边或者上面走。从 $(0,0)$ 走到 $(n,m)$ 的方案数是 $\dbinom{n+m}{n}$。 而假设我们现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="反射容斥小记">
-<meta property="og:url" content="http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/index.html">
+<meta property="og:url" content="https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="〇、前言两个星期模拟赛出现了两次。正好两次都没做出来。 ZJ 说这个套路已经要烂了。可是我才刚入门啊&#x2F;kk。 不过这东西本身很简单，关键在于是否能推出一个 dp，然后找到 dp 的组合意义是这样再优化。 一、思想讲解这东西我都不愿意称之为算法。 考虑一个二维平面，只能向右边或者上面走。从 $(0,0)$ 走到 $(n,m)$ 的方案数是 $\dbinom{n+m}{n}$。 而假设我们现">
 <meta property="og:locale" content="en_US">
@@ -111,17 +111,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&text=反射容斥小记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&is_video=false&description=反射容斥小记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=反射容斥小记&body=Check out this article: http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&name=反射容斥小记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&t=反射容斥小记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&text=反射容斥小记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&is_video=false&description=反射容斥小记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=反射容斥小记&body=Check out this article: https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&name=反射容斥小记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&t=反射容斥小记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -247,17 +247,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&text=反射容斥小记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&is_video=false&description=反射容斥小记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=反射容斥小记&body=Check out this article: http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&name=反射容斥小记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&t=反射容斥小记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&text=反射容斥小记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&is_video=false&description=反射容斥小记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=反射容斥小记&body=Check out this article: https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&title=反射容斥小记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&name=反射容斥小记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/12/25/%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5%E5%B0%8F%E8%AE%B0/&t=反射容斥小记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -278,7 +278,7 @@
     Copyright &copy;
     
     
-    2022-2024
+    2022-2025
     wgyhm
   </div>
   <div class="footer-right">

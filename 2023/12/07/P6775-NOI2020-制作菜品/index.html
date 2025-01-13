@@ -9,15 +9,15 @@
     <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6775 总结先总结一下为什么一点没思路。 没看到关键的数据范围，不然起码 $m&#x3D;n-1$ 能想出来。 看数据范围！！！OI 原题还要注意特殊性质的性质！！！ Solution如上面所说，先考虑 $m&#x3D;n-1$。 不妨先把 $d$ 升序排个序。 显然 $n&#x3D;2$ 时有解。 观察到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P6775 [NOI2020] 制作菜品">
-<meta property="og:url" content="http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/index.html">
+<meta property="og:url" content="https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/index.html">
 <meta property="og:site_name" content="wgyhm">
 <meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6775 总结先总结一下为什么一点没思路。 没看到关键的数据范围，不然起码 $m&#x3D;n-1$ 能想出来。 看数据范围！！！OI 原题还要注意特殊性质的性质！！！ Solution如上面所说，先考虑 $m&#x3D;n-1$。 不妨先把 $d$ 升序排个序。 显然 $n&#x3D;2$ 时有解。 观察到">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-07T11:17:32.000Z">
 <meta property="article:modified_time" content="2023-12-07T11:20:29.083Z">
 <meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="dp">
 <meta property="article:tag" content="构造">
+<meta property="article:tag" content="dp">
 <meta property="article:tag" content="bitset">
 <meta name="twitter:card" content="summary">
     
@@ -105,17 +105,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&text=P6775 [NOI2020] 制作菜品"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&is_video=false&description=P6775 [NOI2020] 制作菜品"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P6775 [NOI2020] 制作菜品&body=Check out this article: http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&name=P6775 [NOI2020] 制作菜品&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&t=P6775 [NOI2020] 制作菜品"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&text=P6775 [NOI2020] 制作菜品"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&is_video=false&description=P6775 [NOI2020] 制作菜品"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P6775 [NOI2020] 制作菜品&body=Check out this article: https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&name=P6775 [NOI2020] 制作菜品&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&t=P6775 [NOI2020] 制作菜品"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -217,17 +217,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&text=P6775 [NOI2020] 制作菜品"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&is_video=false&description=P6775 [NOI2020] 制作菜品"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P6775 [NOI2020] 制作菜品&body=Check out this article: http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&name=P6775 [NOI2020] 制作菜品&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://原神高中.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&t=P6775 [NOI2020] 制作菜品"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&text=P6775 [NOI2020] 制作菜品"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&is_video=false&description=P6775 [NOI2020] 制作菜品"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P6775 [NOI2020] 制作菜品&body=Check out this article: https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&title=P6775 [NOI2020] 制作菜品"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&name=P6775 [NOI2020] 制作菜品&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.wgyhm.top/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/&t=P6775 [NOI2020] 制作菜品"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -248,7 +248,7 @@
     Copyright &copy;
     
     
-    2022-2024
+    2022-2025
     wgyhm
   </div>
   <div class="footer-right">
