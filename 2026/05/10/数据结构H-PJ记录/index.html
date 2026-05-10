@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="PJlab1V1 swiss_tabledesign philosophy:  我干不过现有的库  跑起来被同学代码薄纱，且有抄袭原有库的可能。 自己不怎么看得懂代码，codex写出来的代码有很多冗余，优化空间比较小。 V2 朴素手写开放寻址design philosophy:  我要掌握自己的代码，我要手写 开放寻址，优化空间主要在于哈希函数  problem：指令集用处不大（？） V2_1de">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构H PJ记录">
+<meta property="og:url" content="http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="PJlab1V1 swiss_tabledesign philosophy:  我干不过现有的库  跑起来被同学代码薄纱，且有抄袭原有库的可能。 自己不怎么看得懂代码，codex写出来的代码有很多冗余，优化空间比较小。 V2 朴素手写开放寻址design philosophy:  我要掌握自己的代码，我要手写 开放寻址，优化空间主要在于哈希函数  problem：指令集用处不大（？） V2_1de">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-10T03:40:24.000Z">
+<meta property="article:modified_time" content="2026-05-10T03:41:09.724Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="大学课程">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>数据结构H PJ记录</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2077/01/14/ATCF%E6%9D%82%E9%A2%98%E9%80%89%E5%81%9A/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/05/07/20260507-%E6%88%96%E8%AE%B8%E6%88%91%E8%AF%A5%E5%8E%BB%E5%81%9A%E5%AD%A6%E5%B7%A5%E7%9A%84/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&text=数据结构H PJ记录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&is_video=false&description=数据结构H PJ记录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=数据结构H PJ记录&body=Check out this article: http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&name=数据结构H PJ记录&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&t=数据结构H PJ记录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PJ"><span class="toc-number">1.</span> <span class="toc-text">PJ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lab1"><span class="toc-number">1.1.</span> <span class="toc-text">lab1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#V1-swiss-table"><span class="toc-number">1.1.1.</span> <span class="toc-text">V1 swiss_table</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V2-%E6%9C%B4%E7%B4%A0%E6%89%8B%E5%86%99%E5%BC%80%E6%94%BE%E5%AF%BB%E5%9D%80"><span class="toc-number">1.1.2.</span> <span class="toc-text">V2 朴素手写开放寻址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V2-1"><span class="toc-number">1.1.3.</span> <span class="toc-text">V2_1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V3"><span class="toc-number">1.1.4.</span> <span class="toc-text">V3</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lab2"><span class="toc-number">1.2.</span> <span class="toc-text">lab2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%80%A7%E7%B4%A2%E5%BC%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">学习性索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V1"><span class="toc-number">1.2.2.</span> <span class="toc-text">V1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V1-2"><span class="toc-number">1.2.3.</span> <span class="toc-text">V1_2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V2"><span class="toc-number">1.2.4.</span> <span class="toc-text">V2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%B4%A2%E5%BC%95-B-Tree"><span class="toc-number">1.2.5.</span> <span class="toc-text">传统索引 - B+Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V3-1"><span class="toc-number">1.2.6.</span> <span class="toc-text">V3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V3-1"><span class="toc-number">1.2.7.</span> <span class="toc-text">V3_1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V4"><span class="toc-number">1.2.8.</span> <span class="toc-text">V4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V4-1"><span class="toc-number">1.2.9.</span> <span class="toc-text">V4_1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V4-2"><span class="toc-number">1.2.10.</span> <span class="toc-text">V4_2</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        数据结构H PJ记录
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-05-10T03:40:24.000Z" class="dt-published" itemprop="datePublished">2026-05-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" rel="tag">大学课程</a>, <a class="p-category" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="PJ"><a href="#PJ" class="headerlink" title="PJ"></a>PJ</h2><h3 id="lab1"><a href="#lab1" class="headerlink" title="lab1"></a>lab1</h3><h4 id="V1-swiss-table"><a href="#V1-swiss-table" class="headerlink" title="V1 swiss_table"></a>V1 swiss_table</h4><p>design philosophy:</p>
+<ul>
+<li>我干不过现有的库</li>
+</ul>
+<p>跑起来被同学代码薄纱，且有抄袭原有库的可能。</p>
+<p>自己不怎么看得懂代码，codex写出来的代码有很多冗余，优化空间比较小。</p>
+<h4 id="V2-朴素手写开放寻址"><a href="#V2-朴素手写开放寻址" class="headerlink" title="V2 朴素手写开放寻址"></a>V2 朴素手写开放寻址</h4><p>design philosophy:</p>
+<ul>
+<li>我要掌握自己的代码，我要手写</li>
+<li>开放寻址，优化空间主要在于哈希函数</li>
+</ul>
+<p>problem：指令集用处不大（？）</p>
+<h4 id="V2-1"><a href="#V2-1" class="headerlink" title="V2_1"></a>V2_1</h4><p>design philosophy:</p>
+<ul>
+<li>没有其他方法，尝试优化空间</li>
+<li>如果空间开到不是 2 的幂次方呢？</li>
+</ul>
+<p>如果一组在 $[0,2^{64})$ 的哈希值被认为是均匀分布的，尝试 $(n*key)&gt;&gt;64$，这样也可以认为是均匀分布的。</p>
+<p>problem：还是干不过他们啊。</p>
+<h4 id="V3"><a href="#V3" class="headerlink" title="V3"></a>V3</h4><p>来源于赛后助教下发的PPT。</p>
+<p>design philosophy:</p>
+<ul>
+<li>开放地址法+SIMD指令集进行查找</li>
+<li>节省内存，不使用控制字节，采用所有数据集没有的一个uint64来作为空槽标志（这个做法在 lab2 被 ban 了）</li>
+<li>冲突比较少，哈希函数的效率很重要。哈希函数使用内置的 _mm_crc32_u64。</li>
+<li>申请内存会进行内存对齐，使用 huge page</li>
+<li>对分支预测添加hints来减少分支预测错误导致的bubble。不过我觉得用处不大。</li>
+</ul>
+<h3 id="lab2"><a href="#lab2" class="headerlink" title="lab2"></a>lab2</h3><p>我们需要关注 PJ 条件的特殊性，这是我们能优于现有的库的关键：</p>
+<ul>
+<li>只需要实现动态插入，查询，区间查询，不需要实现删除和更新</li>
+<li>仅支持单线程</li>
+<li>key 和 value 都是 uint64_t 类型，key 互不相同</li>
+<li>bulk load 不算时间</li>
+</ul>
+<p>调研了各种学习性索引，考虑到PJ要求是动态插入，区间查询，单线程，所以排除了一些：</p>
+<p><strong>ART</strong>：最稳妥的传统基线，随机数据和从 0 在线长起来都很稳、点查和插入都强，但区间查找通常不如叶链式结构直接，综合上是“最不容易翻车”的方案。</p>
+<p><strong>B+Tree</strong>：最经典、最均衡、最容易保证正确性的方案，区间查找天然友好、尾延迟稳定，但点查和插入常数通常不如优秀的内存型结构或 learned index 激进。</p>
+<p><strong>ALEX</strong>：对这个题目最对口的 learned index 之一，内部节点模型路由 + 叶子 gap array + 叶链扫描，使它在单线程 mixed workload 且带 range 的场景里很强，但分布不友好时稳定性和 range 局部性会变差。</p>
+<p><strong>HIRE</strong>：如果按“你的题目背景”来选，它是最贴题的新一代 mixed-workload learned index，因为它专门强化了 range、稳定性和尾延迟，但实现复杂度明显高于 ALEX，完整版还强依赖后台重训练机制。需要多线程。</p>
+<p><strong>DILI</strong>：适合做为 ALEX 之后最值得补的 learned index，支持动态插入并试图减少叶内最后一步搜索，对点查和插入很有潜力，但论文对 range 的系统性证据不如 ALEX&#x2F;HIRE 充分。</p>
+<p><strong>LIPP</strong>：点查和插入都可能很猛，因为它追求精确位置、几乎不做叶内纠错，但它为了这个牺牲了数据局部性和叶链式连续扫描，所以对你这种带区间查找的题目通常不合适。不能区间查询。</p>
+<p><strong>PGM &#x2F; DPGM</strong>：更适合读多或纯写更重的模式，尤其 DPGM 对持续插入很友好，但它们的缓冲&#x2F;多层合并会让 range 和 mixed workload 的综合表现吃亏，不是你这个题的主选。慢。</p>
+<p><strong>MAB+tree</strong>：属于能做、也能支持 range 的中间路线，整体思路比 ALEX 更保守，但在你这个随机数据 + mixed workload 的设定下，通常没有 ALEX 那么值得优先投入。慢。</p>
+<p><strong>LiBox</strong>：如果硬件有 AVX-512，它在 mixed workload 下可能很强，但它对指令集条件比较挑，而且论文自己也承认 range 上没有特别稳定的明显优势，所以更像“高风险高收益的后手”。区间查询慢。</p>
+<p>学习性索引：ALEX ，HYPER</p>
+<p>传统索引：B+Tree</p>
+<h4 id="学习性索引"><a href="#学习性索引" class="headerlink" title="学习性索引"></a>学习性索引</h4><h4 id="V1"><a href="#V1" class="headerlink" title="V1"></a>V1</h4><p>design philosophy:</p>
+<ul>
+<li>codex 很牛</li>
+<li>Alex 很牛</li>
+</ul>
+<p>带着 codex 读了一下论文，让他写点东西，效果略逊 B+Tree。</p>
+<p>problem:</p>
+<ul>
+<li>codex 没有那么牛</li>
+<li>Alex 的库函数实现包括了很多细节，比如计算需要 expand 还是 split 的 cost 函数，fanout 取多少…</li>
+</ul>
+<h4 id="V1-2"><a href="#V1-2" class="headerlink" title="V1_2"></a>V1_2</h4><p>design philosophy:</p>
+<ul>
+<li>codex 不牛，我需要看懂思路，自己写一个出来</li>
+<li>阅读 alex 核心库</li>
+</ul>
+<p>尝试阅读原库，过于工程，且总代码有 6k 多行，烧 token 巨快。放弃实现。</p>
+<h4 id="V2"><a href="#V2" class="headerlink" title="V2"></a>V2</h4><p>design philosophy:</p>
+<ul>
+<li>尝试实现 HYPER?</li>
+</ul>
+<p>或许性价比不高，已经不想卷了。</p>
+<h4 id="传统索引-B-Tree"><a href="#传统索引-B-Tree" class="headerlink" title="传统索引 - B+Tree"></a>传统索引 - B+Tree</h4><h4 id="V3-1"><a href="#V3-1" class="headerlink" title="V3"></a>V3</h4><p>design philosophy:</p>
+<ul>
+<li>参考 PJ1，需要自己掌握代码，我要看懂代码，最好能自己写出来</li>
+<li>分析库函数的 B+ 树效率欠佳的原因，考虑优化方向：<ul>
+<li>完全不考虑 delete 操作，减少代码复杂度并优化内存</li>
+<li>牺牲一点空间，进行节点内存预分配</li>
+<li>针对内存排布优化（leaf&#x2F;internal 分离优化内存，key&#x2F;value 分离优化SIMD)</li>
+<li>分叉数</li>
+<li>对于查找时，可以分析线性查找&#x2F;SIMD（AVX2&#x2F;AVX512)&#x2F;二分&#x2F;SIMD结合别的效果</li>
+<li>64B 对齐，优化 cache miss</li>
+<li>huge page 优化 TLP miss</li>
+<li><code>memmove</code> 处理插入移动</li>
+<li>CSB+Tree 风格 child 连续分配（待求证），child group 连续分配等</li>
+</ul>
+</li>
+</ul>
+<h4 id="V3-1"><a href="#V3-1" class="headerlink" title="V3_1"></a>V3_1</h4><p>problem:</p>
+<ul>
+<li><code>keys[]</code> 没有真正 64B 对齐 -&gt; 舍弃一点点内存</li>
+<li>bulkload 叶子填满效率不高，可以考虑变成 70 到 90 填充</li>
+<li>internal _max 可以和 leaf_max 不一样，例如 32&#x2F;64， 64&#x2F;96&#x2F;128 的组合</li>
+<li>内存池管理写的非常丑陋-&gt; 尝试去掉 mmap</li>
+<li>parent 可以用 path</li>
+<li>指针可以用内存池下标优化</li>
+</ul>
+<p>接下来先尝试加 AVX2 ，去掉 mmap-&gt; 去掉 mmap 和 huge page之后，效率下降。</p>
+<p>AVX2 效果比 AVX512 好的多。</p>
+<h4 id="V4"><a href="#V4" class="headerlink" title="V4"></a>V4</h4><p>read_cnt&#x3D;0, insert_cnt&#x3D;0, update_cnt&#x3D;0, scan_cnt&#x3D;999257, lower_bound_cnt&#x3D;99000743, delete_cnt&#x3D;0</p>
+<p>read_cnt&#x3D;0, insert_cnt&#x3D;0, update_cnt&#x3D;0, scan_cnt&#x3D;20000000, lower_bound_cnt&#x3D;0, delete_cnt&#x3D;0</p>
+<p>read_cnt&#x3D;23748912, insert_cnt&#x3D;99999060, update_cnt&#x3D;0, scan_cnt&#x3D;1252028, lower_bound_cnt&#x3D;0, delete_cnt&#x3D;0</p>
+<p>read_cnt&#x3D;95004975, insert_cnt&#x3D;99997714, update_cnt&#x3D;0, scan_cnt&#x3D;4997311, lower_bound_cnt&#x3D;0, delete_cnt&#x3D;0</p>
+<p>read_cnt&#x3D;379947315, insert_cnt&#x3D;100000000, update_cnt&#x3D;0, scan_cnt&#x3D;19991264, lower_bound_cnt&#x3D;0, delete_cnt&#x3D;0</p>
+<p>read_cnt&#x3D;0, insert_cnt&#x3D;98999063, update_cnt&#x3D;0, scan_cnt&#x3D;1000937, lower_bound_cnt&#x3D;0, delete_cnt&#x3D;0</p>
+<p>design philosophy:</p>
+<ul>
+<li>单 b 树没有前途，尝试多数据结构结合？</li>
+<li>对于 workload1，没有插入，考虑优化静态建树（bulk_load)</li>
+<li>对于 workload3,4,5，考虑 hash, 并且是要在有 insert 的时候做。</li>
+</ul>
+<h4 id="V4-1"><a href="#V4-1" class="headerlink" title="V4_1"></a>V4_1</h4><p>design philosophy:</p>
+<p>先优化静态建树，考虑 CSB+Tree 风格，让 children 连续。</p>
+<ol>
+<li>先修 <strong>find_leaf</strong> 单叶&#x2F;空树边界：<strong>if (cur-&gt;is_leaf) return static_cast&lt;LeafNode*&gt;(cur);</strong>。这是正确性优化，不改布局。</li>
+<li>不要在插入开始就关闭静态模式；至少推迟到第一次 <strong>split_leaf&#x2F;split_internal</strong>。只要没有 split，物理连续性仍然成立。</li>
+<li>更进一步可以做“静态上层 + 动态下层”的 hybrid：叶子 split 后只禁用最后一跳 CSB，根和高层仍用 <strong>children[0] + pos</strong>。这对混合 workload 比全局 <strong>is_static&#x3D;false</strong> 更有价值，也不改节点布局。</li>
+</ol>
+<p>此外，考虑 prefetch B+Tree 风格:</p>
+<ol>
+<li><p>在 find_leaf 和 scan 中预取 internal_node 和 next_leaf。</p>
+</li>
+<li><p>scan 里可以预取 <strong>next_leaf-&gt;keys, next_leaf-&gt;values</strong>，而不只是 <strong>next_leaf</strong> 指针本身；<strong>scan_num&#x3D;100</strong> 时这类小优化能吃到。</p>
+</li>
+</ol>
+<p>method:</p>
+<ol>
+<li>bulk_load 时候将每一层连续排布，children 连续排布，吃到 CSB+Tree 风格的收益。加了 children_base 字段，并且提前 prefetch。在节点静态时候取代 children[pos] 直接转跳，减小 cache miss.</li>
+<li>find_leaf 中 prefetch_internal 提前预取 children_base, keys, values</li>
+<li>scan 中 prefetch values, keys, next_leaf</li>
+</ol>
+<p>observation:</p>
+<ol>
+<li>prefetch 只有在之后一段时间之后<strong>要用到</strong>的操作才有效果，不然可能是负优化</li>
+<li>prefetch_internal 把所有 cache 的 key 都取进来效果并不好</li>
+<li>scan 的 next_leaf 的 cache miss 是主要瓶颈，考虑到 leaf_max&#x3D;128 但是 scan_num 最大只有 100，提前预取 1 个即可</li>
+</ol>
+<h4 id="V4-2"><a href="#V4-2" class="headerlink" title="V4_2"></a>V4_2</h4><p>祝老师指出，可以尝试拟合数据集，并给AI充足的上下文来高效 vibe coding。</p>
+<p>observation:</p>
+<p>尝试发掘数据集构造的方式，并由此来做一些优化：</p>
+<ol>
+<li>动态 workload 中 <code>init_table_ratio=0.5</code>，但这 50% 是从全量 key 打乱后取样，所以近似是全量分布的随机样本。</li>
+<li>后续 insert 来自剩余 50% key，key 不重复。</li>
+<li>bulk_load 中，w1&#x2F;2 的 num 大约 200M 左右，w3456 大约 100M 左右</li>
+</ol>
+<p>design philosophy:</p>
+<ol>
+<li>用 AI 尝试数据结构的加成<ol>
+<li>静态采用线性数组，做 delta b+tree</li>
+<li>上层学习性索引，下层 b+tree</li>
+</ol>
+</li>
+<li>根据 bulkload 来判断是 workload:<ol>
+<li>如果是 bulkload 前面，则把 bulk_load_leaf &#x3D; leaf_max，起码可以降空间和降树高</li>
+<li>否则调整因子大小</li>
+</ol>
+</li>
+</ol>
+<p>method:</p>
+<ol>
+<li>线性数组的 lower_bound 还没有我的 b+tree 快。可能 cache miss 过多，跨度过大。</li>
+<li>太累了。放弃调教 AI.</li>
+<li>调整 leaf_max 和 internal_max 收益不如波动，所以选择空间比较小的配置</li>
+<li>如果 bulkload 是动态，即使根据“后续插入的大小是 bulkload 的大小，且分布近似随机” 这一特性，负载因子调整到 0.4~0.6 除了空间变大没有任何优点。</li>
+</ol>
+<p>final:</p>
+<ol>
+<li>根据 bulk_load_num 来区分 workload，相应调整分配空间和负载因子</li>
+<li>leaf_max&#x3D;128, internal_max&#x3D;64</li>
+<li>负载因子依旧 0.85~0.9，换取空间</li>
+</ol>
+<p>reference:</p>
+<ul>
+<li>Effect of Node Size on the Performance of Cache-Conscious B+-trees</li>
+<li>Improving Index Performance through Prefetching</li>
+</ul>
+<p>感想：</p>
+<ul>
+<li>上下文还是很重要，虽然真很浪费 token。</li>
+<li>AI 在具体实现上可能不如人工精细（比如 prefetch &#x2F; 指令集会乱用），但是如果提出新的结构，将是很厉害。</li>
+<li>要成为最会使用 AI 的人。</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PJ"><span class="toc-number">1.</span> <span class="toc-text">PJ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lab1"><span class="toc-number">1.1.</span> <span class="toc-text">lab1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#V1-swiss-table"><span class="toc-number">1.1.1.</span> <span class="toc-text">V1 swiss_table</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V2-%E6%9C%B4%E7%B4%A0%E6%89%8B%E5%86%99%E5%BC%80%E6%94%BE%E5%AF%BB%E5%9D%80"><span class="toc-number">1.1.2.</span> <span class="toc-text">V2 朴素手写开放寻址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V2-1"><span class="toc-number">1.1.3.</span> <span class="toc-text">V2_1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V3"><span class="toc-number">1.1.4.</span> <span class="toc-text">V3</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lab2"><span class="toc-number">1.2.</span> <span class="toc-text">lab2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%80%A7%E7%B4%A2%E5%BC%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">学习性索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V1"><span class="toc-number">1.2.2.</span> <span class="toc-text">V1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V1-2"><span class="toc-number">1.2.3.</span> <span class="toc-text">V1_2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V2"><span class="toc-number">1.2.4.</span> <span class="toc-text">V2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%B4%A2%E5%BC%95-B-Tree"><span class="toc-number">1.2.5.</span> <span class="toc-text">传统索引 - B+Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V3-1"><span class="toc-number">1.2.6.</span> <span class="toc-text">V3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V3-1"><span class="toc-number">1.2.7.</span> <span class="toc-text">V3_1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V4"><span class="toc-number">1.2.8.</span> <span class="toc-text">V4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V4-1"><span class="toc-number">1.2.9.</span> <span class="toc-text">V4_1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#V4-2"><span class="toc-number">1.2.10.</span> <span class="toc-text">V4_2</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&text=数据结构H PJ记录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&is_video=false&description=数据结构H PJ记录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=数据结构H PJ记录&body=Check out this article: http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&title=数据结构H PJ记录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&name=数据结构H PJ记录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/&t=数据结构H PJ记录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2026
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+ 
+  <link
+    rel="preload"
+    href="/lib/font-awesome/css/all.min.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript
+    ><link
+      rel="stylesheet"
+      href="/lib/font-awesome/css/all.min.css"
+  /></noscript>
+
+
+    <!-- jquery -->
+
+  
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+
+
+
+<!-- clipboard -->
+
+  
+    
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
