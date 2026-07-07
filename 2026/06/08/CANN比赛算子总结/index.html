@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="t1: Addcmul t2: ClipByValue t3: Lerp 做题与优化过程总结1. 开发方式在 tutorial 中发现有内置的 skills，因此我主要采用 Codex SSH 远程主机 的方式来实现代码。  2. 基础实现情况整体来看，基础实现并不困难。 其中，第一题需要特别处理两个问题：  Broadcast int8 类型及溢出模拟  我的做题顺序是：  T2 → T3 →">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CANN比赛算子总结">
+<meta property="og:url" content="http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="wgyhm">
+<meta property="og:description" content="t1: Addcmul t2: ClipByValue t3: Lerp 做题与优化过程总结1. 开发方式在 tutorial 中发现有内置的 skills，因此我主要采用 Codex SSH 远程主机 的方式来实现代码。  2. 基础实现情况整体来看，基础实现并不困难。 其中，第一题需要特别处理两个问题：  Broadcast int8 类型及溢出模拟  我的做题顺序是：  T2 → T3 →">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-06-08T07:19:16.000Z">
+<meta property="article:modified_time" content="2026-06-08T07:22:11.066Z">
+<meta property="article:author" content="wgyhm">
+<meta property="article:tag" content="CANN">
+<meta property="article:tag" content="比赛记录">
+<meta property="article:tag" content="算子">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>CANN比赛算子总结</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2026/07/07/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/05/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84H-PJ%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&text=CANN比赛算子总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&is_video=false&description=CANN比赛算子总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CANN比赛算子总结&body=Check out this article: http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&name=CANN比赛算子总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&t=CANN比赛算子总结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9A%E9%A2%98%E4%B8%8E%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">做题与优化过程总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">1. 开发方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E7%A1%80%E5%AE%9E%E7%8E%B0%E6%83%85%E5%86%B5"><span class="toc-number">1.2.</span> <span class="toc-text">2. 基础实现情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9D%E5%A7%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">3. 初始优化思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BC%98%E5%8C%96-Skill-%E7%9A%84%E6%95%B4%E7%90%86%E4%B8%8E%E5%B0%9D%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">4. 优化 Skill 的整理与尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-Tiling-%E7%AD%96%E7%95%A5"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 Tiling 策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E5%A4%B4%E5%B0%BE%E5%BC%80%E9%94%80%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 头尾开销优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E6%B5%81%E6%B0%B4%E7%BC%96%E6%8E%92"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 流水编排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4 内存访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-%E7%9F%A2%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.5 矢量计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-msProf-%E8%B0%83%E8%AF%95%E4%B8%8E%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.6.</span> <span class="toc-text">4.6 msProf 调试与优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AF%B9%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%8D%E6%80%9D"><span class="toc-number">1.5.</span> <span class="toc-text">5. 对优化方法的反思</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Tiling-%E6%96%B9%E9%9D%A2"><span class="toc-number">1.6.</span> <span class="toc-text">6. Tiling 方面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%A0%B8%E6%95%B0%E9%80%89%E6%8B%A9"><span class="toc-number">1.7.</span> <span class="toc-text">7. 核数选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E6%80%A7%E8%B4%A8%E6%8C%96%E6%8E%98"><span class="toc-number">1.8.</span> <span class="toc-text">8. 特殊数据性质挖掘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E6%9C%80%E5%90%8E%E7%9A%84%E8%B0%83%E5%8F%82%E6%96%B9%E5%BC%8F"><span class="toc-number">1.9.</span> <span class="toc-text">9. 最后的调参方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        CANN比赛算子总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">wgyhm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-06-08T07:19:16.000Z" class="dt-published" itemprop="datePublished">2026-06-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/CANN/" rel="tag">CANN</a>, <a class="p-category" href="/tags/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/" rel="tag">比赛记录</a>, <a class="p-category" href="/tags/%E7%AE%97%E5%AD%90/" rel="tag">算子</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>t1: Addcmul</p>
+<p>t2: ClipByValue</p>
+<p>t3: Lerp</p>
+<h2 id="做题与优化过程总结"><a href="#做题与优化过程总结" class="headerlink" title="做题与优化过程总结"></a>做题与优化过程总结</h2><h3 id="1-开发方式"><a href="#1-开发方式" class="headerlink" title="1. 开发方式"></a>1. 开发方式</h3><p>在 tutorial 中发现有内置的 skills，因此我主要采用 <strong>Codex SSH 远程主机</strong> 的方式来实现代码。</p>
+<hr>
+<h3 id="2-基础实现情况"><a href="#2-基础实现情况" class="headerlink" title="2. 基础实现情况"></a>2. 基础实现情况</h3><p>整体来看，基础实现并不困难。</p>
+<p>其中，第一题需要特别处理两个问题：</p>
+<ol>
+<li><strong>Broadcast</strong></li>
+<li><strong>int8 类型及溢出模拟</strong></li>
+</ol>
+<p>我的做题顺序是：</p>
+<blockquote>
+<p><strong>T2 → T3 → T1</strong></p>
+</blockquote>
+<p>这也对应了我主观认为的题目复杂度顺序。</p>
+<hr>
+<h3 id="3-初始优化思路"><a href="#3-初始优化思路" class="headerlink" title="3. 初始优化思路"></a>3. 初始优化思路</h3><p>一开始，我的优化方向主要集中在：</p>
+<ol>
+<li>针对不同数据范围决定开多少核；</li>
+<li>选择合适的 tiling 大小；</li>
+<li>研究如何进行数据切分。</li>
+</ol>
+<p>我做了一天的矩阵实验，但始终没有明显优化效果。</p>
+<p>后来我开始尝试套取实际数据范围，尤其是发现 <strong>T3 的所有测试点都小于 256KB</strong>，并且 <strong>6&#x2F;7 个测试点小于 16KB</strong>。这和我原本预想的数据范围差距非常大，也改变了后续的优化方向。</p>
+<hr>
+<h3 id="4-优化-Skill-的整理与尝试"><a href="#4-优化-Skill-的整理与尝试" class="headerlink" title="4. 优化 Skill 的整理与尝试"></a>4. 优化 Skill 的整理与尝试</h3><p>另一个方向是参考网上已有经验，整理并 distill 出一个优化 skill。</p>
+<h4 id="4-1-Tiling-策略"><a href="#4-1-Tiling-策略" class="headerlink" title="4.1 Tiling 策略"></a>4.1 Tiling 策略</h4><p>由于大多数数据都不到 <strong>128MB</strong>，实际上每个 AI Core 中通常只需要做一次计算，因此复杂 tiling 的优化意义很小。</p>
+<h4 id="4-2-头尾开销优化"><a href="#4-2-头尾开销优化" class="headerlink" title="4.2 头尾开销优化"></a>4.2 头尾开销优化</h4><p>在头尾开销方面，比较值得优化的是：</p>
+<ol>
+<li>设置合适的核数；</li>
+<li>限制 <code>TilingData</code> 结构大小。</li>
+</ol>
+<p>除此之外，其他方向的收益似乎并不明显。</p>
+<h4 id="4-3-流水编排"><a href="#4-3-流水编排" class="headerlink" title="4.3 流水编排"></a>4.3 流水编排</h4><p>考虑到 AI Core 大多数情况下只需要执行一次，<code>double buffer</code> 在大部分情况下反而是负优化。</p>
+<p>只有在数据较大的时候，<code>double buffer</code> 才可能带来一定收益。但这个收益往往小于评测机本身的波动。因此，我只在部分题目中实现了 <code>double buffer</code>。</p>
+<h4 id="4-4-内存访问"><a href="#4-4-内存访问" class="headerlink" title="4.4 内存访问"></a>4.4 内存访问</h4><p>在内存访问方面，我主要做了以下处理：</p>
+<ol>
+<li>将 UB 使用量开到 <code>ub_limit</code> 的 80% 左右；</li>
+<li>GM 地址按照 512B 对齐；</li>
+<li>尽量减少搬运次数和无效搬运。</li>
+</ol>
+<p>由于数据规模较小，L2 Cache 切分没有必要。实际测试中，命中 L2 Cache 似乎也可能是负优化。</p>
+<h4 id="4-5-矢量计算"><a href="#4-5-矢量计算" class="headerlink" title="4.5 矢量计算"></a>4.5 矢量计算</h4><p>在矢量计算方面，<strong>Unified Buffer 内融合</strong> 是比较基础也比较必要的优化。</p>
+<h4 id="4-6-msProf-调试与优化"><a href="#4-6-msProf-调试与优化" class="headerlink" title="4.6 msProf 调试与优化"></a>4.6 msProf 调试与优化</h4><p>之后，我参考了一些优秀实践，用 <code>msProf</code> 进行实验，并 distill 了一个 <strong>msProf 调试 + 优化 skill</strong>。</p>
+<hr>
+<h3 id="5-对优化方法的反思"><a href="#5-对优化方法的反思" class="headerlink" title="5. 对优化方法的反思"></a>5. 对优化方法的反思</h3><p>上述 skill 在最后的优化中帮助并不大，尤其是考虑到评测机波动等因素。</p>
+<p>我认为真正最有用的还是：</p>
+<ol>
+<li>根据实际数据范围确定核数；</li>
+<li>根据数据范围设计 tiling 方案；</li>
+<li>挖掘测试数据的特殊性质。</li>
+</ol>
+<hr>
+<h3 id="6-Tiling-方面"><a href="#6-Tiling-方面" class="headerlink" title="6. Tiling 方面"></a>6. Tiling 方面</h3><p>Tiling 的核心思路是结合实际数据范围进行设计，而不是只根据理论上的大数据场景进行优化。</p>
+<p>由于很多测试点数据量较小，过于复杂的 tiling 反而可能带来额外开销。因此，tiling 策略应尽量保持简单，并减少无效切分。</p>
+<hr>
+<h3 id="7-核数选择"><a href="#7-核数选择" class="headerlink" title="7. 核数选择"></a>7. 核数选择</h3><p>核数方面，我采用了：</p>
+<ol>
+<li>本地矩阵实验；</li>
+<li>OJ 提交测试。</li>
+</ol>
+<p>本地测试环境是 A3，和云端芯片并不完全一致，再加上一些其他因素，本地实验结果和云端结果很难完全对应。</p>
+<p>因此，最终还是以 <strong>OJ 上的直接提交结果</strong> 更为权威。</p>
+<hr>
+<h3 id="8-特殊数据性质挖掘"><a href="#8-特殊数据性质挖掘" class="headerlink" title="8. 特殊数据性质挖掘"></a>8. 特殊数据性质挖掘</h3><p>在 T1 中，我全面实现了 broadcast。随后通过分析特殊数据，发现了一些重要性质：</p>
+<ol>
+<li><code>dimensions &lt;= 5</code>；</li>
+<li>大部分数据不会进入 broadcast 分支；</li>
+<li>只有两个测试点需要实现 int8；</li>
+<li>其中一个 int8 测试点还需要模拟 int8 溢出。</li>
+</ol>
+<p>根据这些性质，我最终舍弃了其中一个测试点，但优化了 shape 判断和 tiling 结构，取得了比较高的收益。</p>
+<hr>
+<h3 id="9-最后的调参方式"><a href="#9-最后的调参方式" class="headerlink" title="9. 最后的调参方式"></a>9. 最后的调参方式</h3><p>后期开始进行数据拟合，主要通过直觉调整核数。</p>
+<p>一般来说，我会在本地实验结果的基础上，把核数往更大的方向调一些，然后多次提交 OJ，寻找评测效果较好的配置。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整体来看，这次优化中最重要的经验是：</p>
+<blockquote>
+<p>不要一开始就陷入通用优化模板，而是要先弄清楚真实数据范围和测试点特征。</p>
+</blockquote>
+<p>在数据量较小、评测波动明显的情况下，复杂的流水、L2 Cache 切分、double buffer 等优化不一定有效，甚至可能带来负收益。</p>
+<p>最终真正有效的优化主要来自：</p>
+<ol>
+<li>数据范围分析；</li>
+<li>核数选择；</li>
+<li>tiling 结构简化；</li>
+<li>特殊测试点性质挖掘；</li>
+<li>多次 OJ 提交拟合评测结果。</li>
+</ol>
+<p>最后拿下 rk1，可能是参加的人比较少吧。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9A%E9%A2%98%E4%B8%8E%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">做题与优化过程总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">1. 开发方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E7%A1%80%E5%AE%9E%E7%8E%B0%E6%83%85%E5%86%B5"><span class="toc-number">1.2.</span> <span class="toc-text">2. 基础实现情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9D%E5%A7%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">3. 初始优化思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BC%98%E5%8C%96-Skill-%E7%9A%84%E6%95%B4%E7%90%86%E4%B8%8E%E5%B0%9D%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">4. 优化 Skill 的整理与尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-Tiling-%E7%AD%96%E7%95%A5"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 Tiling 策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E5%A4%B4%E5%B0%BE%E5%BC%80%E9%94%80%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 头尾开销优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E6%B5%81%E6%B0%B4%E7%BC%96%E6%8E%92"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 流水编排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4 内存访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-%E7%9F%A2%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.5 矢量计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-msProf-%E8%B0%83%E8%AF%95%E4%B8%8E%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.6.</span> <span class="toc-text">4.6 msProf 调试与优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AF%B9%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%8D%E6%80%9D"><span class="toc-number">1.5.</span> <span class="toc-text">5. 对优化方法的反思</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Tiling-%E6%96%B9%E9%9D%A2"><span class="toc-number">1.6.</span> <span class="toc-text">6. Tiling 方面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%A0%B8%E6%95%B0%E9%80%89%E6%8B%A9"><span class="toc-number">1.7.</span> <span class="toc-text">7. 核数选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E6%80%A7%E8%B4%A8%E6%8C%96%E6%8E%98"><span class="toc-number">1.8.</span> <span class="toc-text">8. 特殊数据性质挖掘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E6%9C%80%E5%90%8E%E7%9A%84%E8%B0%83%E5%8F%82%E6%96%B9%E5%BC%8F"><span class="toc-number">1.9.</span> <span class="toc-text">9. 最后的调参方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&text=CANN比赛算子总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&is_video=false&description=CANN比赛算子总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CANN比赛算子总结&body=Check out this article: http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&title=CANN比赛算子总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&name=CANN比赛算子总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2026/06/08/CANN%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/&t=CANN比赛算子总结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2026
+    wgyhm
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+ 
+  <link
+    rel="preload"
+    href="/lib/font-awesome/css/all.min.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript
+    ><link
+      rel="stylesheet"
+      href="/lib/font-awesome/css/all.min.css"
+  /></noscript>
+
+
+    <!-- jquery -->
+
+  
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+
+
+
+<!-- clipboard -->
+
+  
+    
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+</body>
+</html>
