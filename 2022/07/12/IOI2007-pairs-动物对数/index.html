@@ -1,347 +1,116 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="曼哈顿距离转切比雪夫距离。 B&#x3D;1排序直接搞。 123456789101112131415int n,d,m;namespace Solve1&#123;	int a[100005];ll ans;	inline void main(void) &#123;		int i;		for (i&#x3D;1;i&lt;&#x3D;n;i++) read(a[i]);		sort(a+1,a+1+n);		int">
-<meta property="og:type" content="article">
-<meta property="og:title" content="IOI2007 pairs 动物对数">
-<meta property="og:url" content="http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="曼哈顿距离转切比雪夫距离。 B&#x3D;1排序直接搞。 123456789101112131415int n,d,m;namespace Solve1&#123;	int a[100005];ll ans;	inline void main(void) &#123;		int i;		for (i&#x3D;1;i&lt;&#x3D;n;i++) read(a[i]);		sort(a+1,a+1+n);		int">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-07-12T10:06:50.000Z">
-<meta property="article:modified_time" content="2022-07-12T10:07:26.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="IOI">
-<meta property="article:tag" content="数据结构">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>IOI2007 pairs 动物对数</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2022/07/14/CF402E/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2022/07/06/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B2-3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&text=IOI2007 pairs 动物对数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&is_video=false&description=IOI2007 pairs 动物对数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=IOI2007 pairs 动物对数&body=Check out this article: http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&name=IOI2007 pairs 动物对数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&t=IOI2007 pairs 动物对数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#B-1"><span class="toc-number">1.</span> <span class="toc-text">B&#x3D;1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#B-2"><span class="toc-number">1.1.</span> <span class="toc-text">B&#x3D;2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-3"><span class="toc-number">1.2.</span> <span class="toc-text">B&#x3D;3</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        IOI2007 pairs 动物对数
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-07-12T10:06:50.000Z" class="dt-published" itemprop="datePublished">2022-07-12</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/IOI/" rel="tag">IOI</a>, <a class="p-category" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <p>曼哈顿距离转切比雪夫距离。</p>
-<h2 id="B-1"><a href="#B-1" class="headerlink" title="B&#x3D;1"></a>B&#x3D;1</h2><p>排序直接搞。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n,d,m;</span><br><span class="line"><span class="keyword">namespace</span> Solve1&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">100005</span>];ll ans;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> i;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(a[i]);</span><br><span class="line">		<span class="built_in">sort</span>(a<span class="number">+1</span>,a<span class="number">+1</span>+n);</span><br><span class="line">		<span class="type">int</span> now=<span class="number">0</span>,tot=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">			<span class="keyword">while</span> (now&lt;n&amp;&amp;a[now<span class="number">+1</span>]+d&lt;a[i]) now++,tot--;</span><br><span class="line">			ans+=tot;tot++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="B-2"><a href="#B-2" class="headerlink" title="B&#x3D;2"></a>B&#x3D;2</h3><p>对于所有点 $(x,y)$ ，变换为 $(x+y,x-y)$ 。变换前的曼哈顿距离等于变换后的切比雪夫距离。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="IOI2007 pairs 动物对数"><link rel="canonical" href="https://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>IOI2007 pairs 动物对数 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>IOI2007 pairs 动物对数</h1><div class="article-meta"><time datetime="2022-07-12">2022.07.12</time><span>·</span><span>4 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a><a class="chip" href="/tags/IOI/">#IOI</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#b1">B=1</a></li><li><a href="#b2">B=2</a></li><li><a href="#b3">B=3</a></li></ul></details><div class="prose" data-post-body><p>曼哈顿距离转切比雪夫距离。</p>
+<span id="B-1" class="legacy-anchor" aria-hidden="true"></span><h2 id="b1">B=1</h2>
+<p>排序直接搞。</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>int</span><span> n,d,m;</span></span>
+<span class="line"><span>namespace</span><span> Solve1</span><span>{</span></span>
+<span class="line"><span>	int</span><span> a[</span><span>100005</span><span>];ll ans;</span></span>
+<span class="line"><span>	inline</span><span> void</span><span> main</span><span>(</span><span>void</span><span>) {</span></span>
+<span class="line"><span>		int</span><span> i;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(a[i]);</span></span>
+<span class="line"><span>		sort</span><span>(a</span><span>+</span><span>1</span><span>,a</span><span>+</span><span>1</span><span>+</span><span>n);</span></span>
+<span class="line"><span>		int</span><span> now</span><span>=</span><span>0</span><span>,tot</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			while</span><span> (now</span><span>&#x3C;</span><span>n</span><span>&#x26;&#x26;</span><span>a[now</span><span>+</span><span>1</span><span>]</span><span>+</span><span>d</span><span>&#x3C;</span><span>a[i]) now</span><span>++</span><span>,tot</span><span>--</span><span>;</span></span>
+<span class="line"><span>			ans</span><span>+=</span><span>tot;tot</span><span>++</span><span>;</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		printf</span><span>(</span><span>"</span><span>%lld</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<span id="B-2" class="legacy-anchor" aria-hidden="true"></span><h3 id="b2">B=2</h3>
+<p>对于所有点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span></span></span></span> ，变换为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo separator="true">,</mo><mi>x</mi><mo>−</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x+y,x-y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span></span></span></span> 。变换前的曼哈顿距离等于变换后的切比雪夫距离。</p>
 <p>然后就是二维偏序。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> Solve2&#123;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">yyy</span>&#123;</span><br><span class="line">	<span class="type">int</span> x,y;</span><br><span class="line">	&#125;a[maxn];</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(yyy x,yyy y)</span> </span>&#123;<span class="keyword">return</span> x.x==y.x?x.y&lt;y.y:x.x&lt;y.x;&#125;</span><br><span class="line">	<span class="type">int</span> root,cnt;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">		<span class="type">int</span> ls,rs,size;</span><br><span class="line">	&#125;f[maxn*<span class="number">30</span>];</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Update</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> &amp;rt,<span class="type">int</span> head,<span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!rt) rt=++cnt;f[rt].size+=k;</span><br><span class="line">		<span class="keyword">if</span> (l==r) <span class="keyword">return</span> ;</span><br><span class="line">		<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (head&lt;=mid) <span class="built_in">Update</span>(l,mid,f[rt].ls,head,k);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">Update</span>(mid<span class="number">+1</span>,r,f[rt].rs,head,k);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Query</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt,<span class="type">int</span> head,<span class="type">int</span> tail)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!rt) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (head&lt;=l&amp;&amp;r&lt;=tail) <span class="keyword">return</span> f[rt].size;</span><br><span class="line">		<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>,sum=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (head&lt;=mid) sum+=<span class="built_in">Query</span>(l,mid,f[rt].ls,head,tail);</span><br><span class="line">		<span class="keyword">if</span> (tail&gt;mid) sum+=<span class="built_in">Query</span>(mid<span class="number">+1</span>,r,f[rt].rs,head,tail);</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">	ll ans;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> i,x,y;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(x),<span class="built_in">read</span>(y),a[i].x=x+y,a[i].y=x-y;</span><br><span class="line">		<span class="built_in">sort</span>(a<span class="number">+1</span>,a<span class="number">+1</span>+n,cmp);</span><br><span class="line">		<span class="type">int</span> now=<span class="number">0</span>,tot=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">			<span class="keyword">while</span> (now&lt;n&amp;&amp;a[now<span class="number">+1</span>].x+d&lt;a[i].x) now++,<span class="built_in">Update</span>(-m,m*<span class="number">2</span>,root,a[now].y,<span class="number">-1</span>);</span><br><span class="line">			ans+=<span class="built_in">Query</span>(-m,m*<span class="number">2</span>,root,<span class="built_in">max</span>(-m,a[i].y-d),<span class="built_in">min</span>(<span class="number">2</span>*m,a[i].y+d));</span><br><span class="line">			<span class="built_in">Update</span>(-m,<span class="number">2</span>*m,root,a[i].y,<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="B-3"><a href="#B-3" class="headerlink" title="B&#x3D;3"></a>B&#x3D;3</h3><p>同样的，$(x,y,z)$ 变换为 $(x+y+z,x+y-z,x-y+z,-x+y+z)$</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>namespace</span><span> Solve2</span><span>{</span></span>
+<span class="line"><span>	struct</span><span> yyy</span><span>{</span></span>
+<span class="line"><span>	int</span><span> x,y;</span></span>
+<span class="line"><span>	}a[maxn];</span></span>
+<span class="line"><span>	inline</span><span> bool</span><span> cmp</span><span>(</span><span>yyy</span><span> x</span><span>,</span><span>yyy</span><span> y</span><span>) {</span><span>return</span><span> x.x</span><span>==</span><span>y.x</span><span>?</span><span>x.y</span><span>&#x3C;</span><span>y.y</span><span>:</span><span>x.x</span><span>&#x3C;</span><span>y.x;}</span></span>
+<span class="line"><span>	int</span><span> root,cnt;</span></span>
+<span class="line"><span>	struct</span><span> node</span><span>{</span></span>
+<span class="line"><span>		int</span><span> ls,rs,size;</span></span>
+<span class="line"><span>	}f[maxn</span><span>*</span><span>30</span><span>];</span></span>
+<span class="line"><span>	inline</span><span> void</span><span> Update</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> &#x26;</span><span>rt</span><span>,</span><span>int</span><span> head</span><span>,</span><span>int</span><span> k</span><span>) {</span></span>
+<span class="line"><span>		if</span><span> (</span><span>!</span><span>rt) rt</span><span>=++</span><span>cnt;f[rt].size</span><span>+=</span><span>k;</span></span>
+<span class="line"><span>		if</span><span> (l</span><span>==</span><span>r) </span><span>return</span><span> ;</span></span>
+<span class="line"><span>		int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (head</span><span>&#x3C;=</span><span>mid) </span><span>Update</span><span>(l,mid,f[rt].ls,head,k);</span></span>
+<span class="line"><span>		else</span><span> Update</span><span>(mid</span><span>+</span><span>1</span><span>,r,f[rt].rs,head,k);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	inline</span><span> int</span><span> Query</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> rt</span><span>,</span><span>int</span><span> head</span><span>,</span><span>int</span><span> tail</span><span>) {</span></span>
+<span class="line"><span>		if</span><span> (</span><span>!</span><span>rt) </span><span>return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (head</span><span>&#x3C;=</span><span>l</span><span>&#x26;&#x26;</span><span>r</span><span>&#x3C;=</span><span>tail) </span><span>return</span><span> f[rt].size;</span></span>
+<span class="line"><span>		int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>,sum</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (head</span><span>&#x3C;=</span><span>mid) sum</span><span>+=</span><span>Query</span><span>(l,mid,f[rt].ls,head,tail);</span></span>
+<span class="line"><span>		if</span><span> (tail</span><span>></span><span>mid) sum</span><span>+=</span><span>Query</span><span>(mid</span><span>+</span><span>1</span><span>,r,f[rt].rs,head,tail);</span></span>
+<span class="line"><span>		return</span><span> sum;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	ll ans;</span></span>
+<span class="line"><span>	inline</span><span> void</span><span> main</span><span>(</span><span>void</span><span>) {</span></span>
+<span class="line"><span>		int</span><span> i,x,y;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(x),</span><span>read</span><span>(y),a[i].x</span><span>=</span><span>x</span><span>+</span><span>y,a[i].y</span><span>=</span><span>x</span><span>-</span><span>y;</span></span>
+<span class="line"><span>		sort</span><span>(a</span><span>+</span><span>1</span><span>,a</span><span>+</span><span>1</span><span>+</span><span>n,cmp);</span></span>
+<span class="line"><span>		int</span><span> now</span><span>=</span><span>0</span><span>,tot</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			while</span><span> (now</span><span>&#x3C;</span><span>n</span><span>&#x26;&#x26;</span><span>a[now</span><span>+</span><span>1</span><span>].x</span><span>+</span><span>d</span><span>&#x3C;</span><span>a[i].x) now</span><span>++</span><span>,</span><span>Update</span><span>(</span><span>-</span><span>m,m</span><span>*</span><span>2</span><span>,root,a[now].y,</span><span>-</span><span>1</span><span>);</span></span>
+<span class="line"><span>			ans</span><span>+=</span><span>Query</span><span>(</span><span>-</span><span>m,m</span><span>*</span><span>2</span><span>,root,</span><span>max</span><span>(</span><span>-</span><span>m,a[i].y</span><span>-</span><span>d),</span><span>min</span><span>(</span><span>2</span><span>*</span><span>m,a[i].y</span><span>+</span><span>d));</span></span>
+<span class="line"><span>			Update</span><span>(</span><span>-</span><span>m,</span><span>2</span><span>*</span><span>m,root,a[i].y,</span><span>1</span><span>);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		printf</span><span>(</span><span>"</span><span>%lld</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<span id="B-3" class="legacy-anchor" aria-hidden="true"></span><h3 id="b3">B=3</h3>
+<p>同样的，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo separator="true">,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y,z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mclose">)</span></span></span></span> 变换为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo separator="true">,</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>−</mo><mi>z</mi><mo separator="true">,</mo><mi>x</mi><mo>−</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo separator="true">,</mo><mo>−</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x+y+z,x+y-z,x-y+z,-x+y+z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mclose">)</span></span></span></span></p>
 <p>四维偏序，支持点的增加与删除。排序去掉一维以后用三维树状数组维护。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> Solve3&#123;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">yyy</span>&#123;</span><br><span class="line">		<span class="type">int</span> x,y,z,w;</span><br><span class="line">	&#125;a[maxn];</span><br><span class="line">	ll ans;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> lowbit(x) ((x)&amp;(-x))</span></span><br><span class="line">	<span class="type">int</span> f[<span class="number">250</span>][<span class="number">250</span>][<span class="number">250</span>];</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> z,<span class="type">int</span> w)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> i,j,k;</span><br><span class="line">		<span class="keyword">for</span> (i=x;i&lt;=m;i+=<span class="built_in">lowbit</span>(i))</span><br><span class="line">			<span class="keyword">for</span> (j=y;j&lt;=m;j+=<span class="built_in">lowbit</span>(j))</span><br><span class="line">				<span class="keyword">for</span> (k=z;k&lt;=m;k+=<span class="built_in">lowbit</span>(k))</span><br><span class="line">					f[i][j][k]+=w;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> z)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> i,j,k,sum=<span class="number">0</span>;<span class="comment">//printf(&quot;%d %d %d &quot;,x,y,z);</span></span><br><span class="line">		<span class="keyword">for</span> (i=x;i;i-=<span class="built_in">lowbit</span>(i))</span><br><span class="line">			<span class="keyword">for</span> (j=y;j;j-=<span class="built_in">lowbit</span>(j))</span><br><span class="line">				<span class="keyword">for</span> (k=z;k;k-=<span class="built_in">lowbit</span>(k))</span><br><span class="line">					sum+=f[i][j][k];	</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(yyy x,yyy y)</span></span>&#123;<span class="keyword">return</span> x.w&lt;y.w;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="type">int</span> i,j,k,l,x,y,z;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">			<span class="built_in">read</span>(x);<span class="built_in">read</span>(y);<span class="built_in">read</span>(z);</span><br><span class="line">			a[i].w=x+y+z+m;</span><br><span class="line">			a[i].x=x+y-z+m;</span><br><span class="line">			a[i].y=x-y+z+m;</span><br><span class="line">			a[i].z=y+z-x+m;</span><br><span class="line">	<span class="comment">//		printf(&quot;%d %d %d\n&quot;,a[i].x,a[i].y,a[i].z);</span></span><br><span class="line">		&#125;</span><br><span class="line">		m*=<span class="number">3</span>;</span><br><span class="line">		<span class="built_in">sort</span>(a<span class="number">+1</span>,a<span class="number">+1</span>+n,cmp);</span><br><span class="line">		<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">			<span class="keyword">while</span> (now&lt;n&amp;&amp;a[now<span class="number">+1</span>].w+d&lt;a[i].w) now++,<span class="built_in">add</span>(a[now].x,a[now].y,a[now].z,<span class="number">-1</span>);</span><br><span class="line">			<span class="type">int</span> rx=<span class="built_in">min</span>(m,a[i].x+d),ry=<span class="built_in">min</span>(m,a[i].y+d),rz=<span class="built_in">min</span>(m,a[i].z+d);</span><br><span class="line">			<span class="type">int</span> lx=<span class="built_in">max</span>(<span class="number">0</span>,a[i].x-d<span class="number">-1</span>),ly=<span class="built_in">max</span>(<span class="number">0</span>,a[i].y-d<span class="number">-1</span>),lz=<span class="built_in">max</span>(<span class="number">0</span>,a[i].z-d<span class="number">-1</span>);</span><br><span class="line">			ans+=<span class="built_in">query</span>(rx,ry,rz)</span><br><span class="line">			-<span class="built_in">query</span>(lx,ry,rz)-<span class="built_in">query</span>(rx,ly,rz)-<span class="built_in">query</span>(rx,ry,lz)</span><br><span class="line">			+<span class="built_in">query</span>(lx,ly,rz)+<span class="built_in">query</span>(lx,ry,lz)+<span class="built_in">query</span>(rx,ly,lz)</span><br><span class="line">			-<span class="built_in">query</span>(lx,ly,lz);			</span><br><span class="line">			<span class="built_in">add</span>(a[i].x,a[i].y,a[i].z,<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#B-1"><span class="toc-number">1.</span> <span class="toc-text">B&#x3D;1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#B-2"><span class="toc-number">1.1.</span> <span class="toc-text">B&#x3D;2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-3"><span class="toc-number">1.2.</span> <span class="toc-text">B&#x3D;3</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&text=IOI2007 pairs 动物对数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&is_video=false&description=IOI2007 pairs 动物对数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=IOI2007 pairs 动物对数&body=Check out this article: http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&title=IOI2007 pairs 动物对数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&name=IOI2007 pairs 动物对数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2022/07/12/IOI2007-pairs-%E5%8A%A8%E7%89%A9%E5%AF%B9%E6%95%B0/&t=IOI2007 pairs 动物对数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>namespace</span><span> Solve3</span><span>{</span></span>
+<span class="line"><span>	struct</span><span> yyy</span><span>{</span></span>
+<span class="line"><span>		int</span><span> x,y,z,w;</span></span>
+<span class="line"><span>	}a[maxn];</span></span>
+<span class="line"><span>	ll ans;</span></span>
+<span class="line"><span>	#define</span><span> lowbit</span><span>(</span><span>x</span><span>) ((x)</span><span>&#x26;</span><span>(</span><span>-</span><span>x))</span></span>
+<span class="line"><span>	int</span><span> f[</span><span>250</span><span>][</span><span>250</span><span>][</span><span>250</span><span>];</span></span>
+<span class="line"><span>	inline</span><span> void</span><span> add</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>,</span><span>int</span><span> z</span><span>,</span><span>int</span><span> w</span><span>) {</span></span>
+<span class="line"><span>		int</span><span> i,j,k;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>x;i</span><span>&#x3C;=</span><span>m;i</span><span>+=</span><span>lowbit</span><span>(i))</span></span>
+<span class="line"><span>			for</span><span> (j</span><span>=</span><span>y;j</span><span>&#x3C;=</span><span>m;j</span><span>+=</span><span>lowbit</span><span>(j))</span></span>
+<span class="line"><span>				for</span><span> (k</span><span>=</span><span>z;k</span><span>&#x3C;=</span><span>m;k</span><span>+=</span><span>lowbit</span><span>(k))</span></span>
+<span class="line"><span>					f[i][j][k]</span><span>+=</span><span>w;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	inline</span><span> int</span><span> query</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>,</span><span>int</span><span> z</span><span>) {</span></span>
+<span class="line"><span>		int</span><span> i,j,k,sum</span><span>=</span><span>0</span><span>;</span><span>//printf("%d %d %d ",x,y,z);</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>x;i;i</span><span>-=</span><span>lowbit</span><span>(i))</span></span>
+<span class="line"><span>			for</span><span> (j</span><span>=</span><span>y;j;j</span><span>-=</span><span>lowbit</span><span>(j))</span></span>
+<span class="line"><span>				for</span><span> (k</span><span>=</span><span>z;k;k</span><span>-=</span><span>lowbit</span><span>(k))</span></span>
+<span class="line"><span>					sum</span><span>+=</span><span>f[i][j][k];	</span></span>
+<span class="line"><span>		return</span><span> sum;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	inline</span><span> bool</span><span> cmp</span><span>(</span><span>yyy</span><span> x</span><span>,</span><span>yyy</span><span> y</span><span>){</span><span>return</span><span> x.w</span><span>&#x3C;</span><span>y.w;}</span></span>
+<span class="line"><span>	inline</span><span> void</span><span> main</span><span>(){</span></span>
+<span class="line"><span>		int</span><span> i,j,k,l,x,y,z;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			read</span><span>(x);</span><span>read</span><span>(y);</span><span>read</span><span>(z);</span></span>
+<span class="line"><span>			a[i].w</span><span>=</span><span>x</span><span>+</span><span>y</span><span>+</span><span>z</span><span>+</span><span>m;</span></span>
+<span class="line"><span>			a[i].x</span><span>=</span><span>x</span><span>+</span><span>y</span><span>-</span><span>z</span><span>+</span><span>m;</span></span>
+<span class="line"><span>			a[i].y</span><span>=</span><span>x</span><span>-</span><span>y</span><span>+</span><span>z</span><span>+</span><span>m;</span></span>
+<span class="line"><span>			a[i].z</span><span>=</span><span>y</span><span>+</span><span>z</span><span>-</span><span>x</span><span>+</span><span>m;</span></span>
+<span class="line"><span>	//		printf("%d %d %d\n",a[i].x,a[i].y,a[i].z);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		m</span><span>*=</span><span>3</span><span>;</span></span>
+<span class="line"><span>		sort</span><span>(a</span><span>+</span><span>1</span><span>,a</span><span>+</span><span>1</span><span>+</span><span>n,cmp);</span></span>
+<span class="line"><span>		int</span><span> now</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			while</span><span> (now</span><span>&#x3C;</span><span>n</span><span>&#x26;&#x26;</span><span>a[now</span><span>+</span><span>1</span><span>].w</span><span>+</span><span>d</span><span>&#x3C;</span><span>a[i].w) now</span><span>++</span><span>,</span><span>add</span><span>(a[now].x,a[now].y,a[now].z,</span><span>-</span><span>1</span><span>);</span></span>
+<span class="line"><span>			int</span><span> rx</span><span>=</span><span>min</span><span>(m,a[i].x</span><span>+</span><span>d),ry</span><span>=</span><span>min</span><span>(m,a[i].y</span><span>+</span><span>d),rz</span><span>=</span><span>min</span><span>(m,a[i].z</span><span>+</span><span>d);</span></span>
+<span class="line"><span>			int</span><span> lx</span><span>=</span><span>max</span><span>(</span><span>0</span><span>,a[i].x</span><span>-</span><span>d</span><span>-</span><span>1</span><span>),ly</span><span>=</span><span>max</span><span>(</span><span>0</span><span>,a[i].y</span><span>-</span><span>d</span><span>-</span><span>1</span><span>),lz</span><span>=</span><span>max</span><span>(</span><span>0</span><span>,a[i].z</span><span>-</span><span>d</span><span>-</span><span>1</span><span>);</span></span>
+<span class="line"><span>			ans</span><span>+=</span><span>query</span><span>(rx,ry,rz)</span></span>
+<span class="line"><span>			-</span><span>query</span><span>(lx,ry,rz)</span><span>-</span><span>query</span><span>(rx,ly,rz)</span><span>-</span><span>query</span><span>(rx,ry,lz)</span></span>
+<span class="line"><span>			+</span><span>query</span><span>(lx,ly,rz)</span><span>+</span><span>query</span><span>(lx,ry,lz)</span><span>+</span><span>query</span><span>(rx,ly,lz)</span></span>
+<span class="line"><span>			-</span><span>query</span><span>(lx,ly,lz);			</span></span>
+<span class="line"><span>			add</span><span>(a[i].x,a[i].y,a[i].z,</span><span>1</span><span>);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		printf</span><span>(</span><span>"</span><span>%lld</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2022/07/06/NOIP2022%E6%A8%A1%E6%8B%9F%E8%B5%9B2-1/"><span>← 较早一篇</span><strong>NOIP2022模拟赛2 1</strong></a><a href="/2022/07/14/CF402E/"><span>较新一篇 →</span><strong>CF402E</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#b1">B=1</a></li><li class="indent"><a href="#b2">B=2</a></li><li class="indent"><a href="#b3">B=3</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

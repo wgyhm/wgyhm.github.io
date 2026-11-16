@@ -1,349 +1,77 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;hydro.ac&#x2F;d&#x2F;bzoj&#x2F;p&#x2F;4498 Solution考虑一个排列紧密的布阵方案，令长度为 $k$ ，把其 $L-k$ 的盒子中，插入 $n$ 个板，方案为 $\dbinom{L-k+n}{n}$。 现在要 dp 出所有的长度为 $k$ 的紧密排列的方案数。发现是很典的插入dp。但是这样写的话需要维护左右端点是否被选，细节很多。讲一下从指导那里学来的做">
-<meta property="og:type" content="article">
-<meta property="og:title" content="bzoj4498 魔法的碰撞">
-<meta property="og:url" content="http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;hydro.ac&#x2F;d&#x2F;bzoj&#x2F;p&#x2F;4498 Solution考虑一个排列紧密的布阵方案，令长度为 $k$ ，把其 $L-k$ 的盒子中，插入 $n$ 个板，方案为 $\dbinom{L-k+n}{n}$。 现在要 dp 出所有的长度为 $k$ 的紧密排列的方案数。发现是很典的插入dp。但是这样写的话需要维护左右端点是否被选，细节很多。讲一下从指导那里学来的做">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-26T10:58:51.000Z">
-<meta property="article:modified_time" content="2023-10-26T10:59:12.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="bzoj">
-<meta property="article:tag" content="dp">
-<meta property="article:tag" content="插入dp">
-<meta property="article:tag" content="组合">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>bzoj4498 魔法的碰撞</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/10/27/CF1436F-Sum-Over-Subsets/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/10/26/P6622-%E7%9C%81%E9%80%89%E8%81%94%E8%80%83-2020-AB-%E5%8D%B7-%E4%BF%A1%E5%8F%B7%E4%BC%A0%E9%80%92/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&text=bzoj4498 魔法的碰撞"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&is_video=false&description=bzoj4498 魔法的碰撞"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj4498 魔法的碰撞&body=Check out this article: http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&name=bzoj4498 魔法的碰撞&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&t=bzoj4498 魔法的碰撞"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        bzoj4498 魔法的碰撞
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-10-26T10:58:51.000Z" class="dt-published" itemprop="datePublished">2023-10-26</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="p-category" href="/tags/dp/" rel="tag">dp</a>, <a class="p-category" href="/tags/%E6%8F%92%E5%85%A5dp/" rel="tag">插入dp</a>, <a class="p-category" href="/tags/%E7%BB%84%E5%90%88/" rel="tag">组合</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://hydro.ac/d/bzoj/p/4498">https://hydro.ac/d/bzoj/p/4498</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>考虑一个<strong>排列紧密</strong>的布阵方案，令长度为 $k$ ，把其 $L-k$ 的盒子中，插入 $n$ 个板，方案为 $\dbinom{L-k+n}{n}$。</p>
-<p>现在要 dp 出所有的长度为 $k$ 的紧密排列的方案数。发现是很典的<a target="_blank" rel="noopener" href="https://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/">插入dp</a>。但是这样写的话需要维护左右端点是否被选，细节很多。讲一下从指导那里学来的做法。</p>
-<p>同样是从大到小选，令 $f_{i,j,k}$ 表示选了前 $i$ 个大的魔法师，预留了 $j$ 个位置，占了 $k$ 个格子。答案就是 $f_{n,0,k}$。讨论第 $i$ 个魔法师旁边预留 0&#x2F;1&#x2F;2 个位置。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="bzoj4498 魔法的碰撞"><link rel="canonical" href="https://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>bzoj4498 魔法的碰撞 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>bzoj4498 魔法的碰撞</h1><div class="article-meta"><time datetime="2023-10-26">2023.10.26</time><span>·</span><span>3 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a><a class="chip" href="/tags/bzoj/">#BZOJ</a><a class="chip" href="/tags/%E6%8F%92%E5%85%A5dp/">#插入dp</a><a class="chip" href="/tags/%E7%BB%84%E5%90%88/">#组合</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ul></details><div class="prose" data-post-body><span id="Description" class="legacy-anchor" aria-hidden="true"></span><h2 id="description">Description</h2>
+<p><a href="https://hydro.ac/d/bzoj/p/4498">https://hydro.ac/d/bzoj/p/4498</a></p>
+<span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h2 id="solution">Solution</h2>
+<p>考虑一个<strong>排列紧密</strong>的布阵方案，令长度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> ，把其 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">L-k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 的盒子中，插入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 个板，方案为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mrow><mi>L</mi><mo>−</mo><mi>k</mi><mo>+</mo><mi>n</mi></mrow><mi>n</mi></mfrac><mo fence="true">)</mo></mrow></mstyle></mrow><annotation encoding="application/x-tex">\dbinom{L-k+n}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span>。</p>
+<p>现在要 dp 出所有的长度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 的紧密排列的方案数。发现是很典的<a href="https://wgyhm.top/2022/09/22/%E6%8F%92%E5%85%A5dp/">插入dp</a>。但是这样写的话需要维护左右端点是否被选，细节很多。讲一下从指导那里学来的做法。</p>
+<p>同样是从大到小选，令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> 表示选了前 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 个大的魔法师，预留了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span> 个位置，占了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 个格子。答案就是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>n</mi><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{n,0,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>。讨论第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 个魔法师旁边预留 0/1/2 个位置。</p>
 <ul>
-<li>预留 $0$ 个位置，$f_{i,j,k}\gets f_{i-1,j+1,k}\times (j+1)$</li>
-<li>预留 $1$ 个位置，还要选择预留是左边还是右边的位置，$f_{i,j,k}\gets f_{i-1,j,k-d_i}\times 2j$。</li>
-<li>预留 $2$ 个位置，$f_{i,j,k}\gets f_{i-1,j-1,k-2d_i}\times (j-1)$。</li>
+<li>预留 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> 个位置，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub><mo>←</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi></mrow></msub><mo>×</mo><mo stretchy="false">(</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_{i,j,k}\gets f_{i-1,j+1,k}\times (j+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
+<li>预留 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 个位置，还要选择预留是左边还是右边的位置，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub><mo>←</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo>−</mo><msub><mi>d</mi><mi>i</mi></msub></mrow></msub><mo>×</mo><mn>2</mn><mi>j</mi></mrow><annotation encoding="application/x-tex">f_{i,j,k}\gets f_{i-1,j,k-d_i}\times 2j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span>。</li>
+<li>预留 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 个位置，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub><mo>←</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo>−</mo><mn>2</mn><msub><mi>d</mi><mi>i</mi></msub></mrow></msub><mo>×</mo><mo stretchy="false">(</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_{i,j,k}\gets f_{i-1,j-1,k-2d_i}\times (j-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
 </ul>
 <p>其实和插入dp差不多，就是把维护段变成维护预留的位置。但是更好写。不用特判最左边和最右边端点的情况。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 45</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span><span class="number">+7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> f[maxn][maxn][maxn*maxn];</span><br><span class="line"><span class="type">int</span> d[maxn],n,m,ans;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;<span class="keyword">return</span> x&gt;y;&#125;</span><br><span class="line"><span class="type">int</span> suf[<span class="number">1000005</span>],isuf[<span class="number">1000005</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">C</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;<span class="keyword">return</span> suf[x]*isuf[y]%mod*isuf[x-y]%mod;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;x,<span class="type">int</span> y)</span> </span>&#123;x=(x+y)%mod;&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i,j,k,t;</span><br><span class="line">	<span class="built_in">read</span>(m);<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(d[i]);</span><br><span class="line">	<span class="built_in">sort</span>(d<span class="number">+1</span>,d<span class="number">+1</span>+n,cmp);</span><br><span class="line">	<span class="keyword">for</span> (suf[<span class="number">0</span>]=<span class="number">1</span>,i=<span class="number">1</span>;i&lt;=m;i++) suf[i]=suf[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">	<span class="keyword">for</span> (isuf[m]=<span class="built_in">power</span>(suf[m]),i=m;i&gt;=<span class="number">1</span>;i--) isuf[i<span class="number">-1</span>]=isuf[i]*i%mod;</span><br><span class="line">	f[<span class="number">0</span>][<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> cnt=<span class="built_in">min</span>(<span class="number">40</span>*(<span class="number">40ll</span>),m);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) </span><br><span class="line">			<span class="keyword">for</span> (k=<span class="number">0</span>;k&lt;=cnt;k++) &#123;</span><br><span class="line">				<span class="built_in">add</span>(f[i][j][k],(j<span class="number">+1</span>)*f[i<span class="number">-1</span>][j<span class="number">+1</span>][k]);</span><br><span class="line">				<span class="keyword">if</span> (k&gt;=d[i]&amp;&amp;j) <span class="built_in">add</span>(f[i][j][k],<span class="number">2ll</span>*f[i<span class="number">-1</span>][j][k-d[i]]*j);</span><br><span class="line">				<span class="keyword">if</span> (j&gt;=<span class="number">1</span>&amp;&amp;k&gt;=<span class="number">2</span>*d[i]) <span class="built_in">add</span>(f[i][j][k],(j<span class="number">-1</span>)*f[i<span class="number">-1</span>][j<span class="number">-1</span>][k<span class="number">-2</span>*d[i]]);</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (k=<span class="number">0</span>;k&lt;=cnt;k++) <span class="keyword">if</span> (f[n][<span class="number">0</span>][k]) <span class="built_in">add</span>(ans,f[n][<span class="number">0</span>][k]*<span class="built_in">C</span>(m-k+n,n));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&text=bzoj4498 魔法的碰撞"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&is_video=false&description=bzoj4498 魔法的碰撞"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj4498 魔法的碰撞&body=Check out this article: http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&title=bzoj4498 魔法的碰撞"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&name=bzoj4498 魔法的碰撞&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/10/26/bzoj4498-%E9%AD%94%E6%B3%95%E7%9A%84%E7%A2%B0%E6%92%9E/&t=bzoj4498 魔法的碰撞"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> int</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 45</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>void</span><span> read</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	Tp </span><span>ostream</span><span>&#x26;</span><span> operator</span><span>&#x3C;&#x3C;</span><span>(</span><span>ostream</span><span>&#x26;</span><span> os</span><span>,</span><span>vector</span><span>&#x3C;</span><span>Ty</span><span>></span><span>&#x26;</span><span> V</span><span>){os</span><span>&#x3C;&#x3C;</span><span>"["</span><span>;</span><span>for</span><span>(</span><span>auto&#x26;</span><span> vv:V) os</span><span>&#x3C;&#x3C;</span><span>vv</span><span>&#x3C;&#x3C;</span><span>","</span><span>;os</span><span>&#x3C;&#x3C;</span><span>"]"</span><span>;</span><span>return</span><span> os;}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>const</span><span> int</span><span> mod</span><span>=</span><span>1</span><span>e</span><span>9</span><span>+</span><span>7</span><span>;</span></span>
+<span class="line"><span>int</span><span> power</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>=</span><span>mod</span><span>-</span><span>2</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> sum</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (y) {</span></span>
+<span class="line"><span>		if</span><span> (y</span><span>&#x26;</span><span>1</span><span>) sum</span><span>=</span><span>sum</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		x</span><span>=</span><span>x</span><span>*</span><span>x</span><span>%</span><span>mod;y</span><span>>>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> f[maxn][maxn][maxn</span><span>*</span><span>maxn];</span></span>
+<span class="line"><span>int</span><span> d[maxn],n,m,ans;</span></span>
+<span class="line"><span>bool</span><span> cmp</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>) {</span><span>return</span><span> x</span><span>></span><span>y;}</span></span>
+<span class="line"><span>int</span><span> suf[</span><span>1000005</span><span>],isuf[</span><span>1000005</span><span>];</span></span>
+<span class="line"><span>int</span><span> C</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>) {</span><span>return</span><span> suf[x]</span><span>*</span><span>isuf[y]</span><span>%</span><span>mod</span><span>*</span><span>isuf[x</span><span>-</span><span>y]</span><span>%</span><span>mod;}</span></span>
+<span class="line"><span>void</span><span> add</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>,</span><span>int</span><span> y</span><span>) {x</span><span>=</span><span>(x</span><span>+</span><span>y)</span><span>%</span><span>mod;}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> i,j,k,t;</span></span>
+<span class="line"><span>	read</span><span>(m);</span><span>read</span><span>(n);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(d[i]);</span></span>
+<span class="line"><span>	sort</span><span>(d</span><span>+</span><span>1</span><span>,d</span><span>+</span><span>1</span><span>+</span><span>n,cmp);</span></span>
+<span class="line"><span>	for</span><span> (suf[</span><span>0</span><span>]</span><span>=</span><span>1</span><span>,i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>m;i</span><span>++</span><span>) suf[i]</span><span>=</span><span>suf[i</span><span>-</span><span>1</span><span>]</span><span>*</span><span>i</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>	for</span><span> (isuf[m]</span><span>=</span><span>power</span><span>(suf[m]),i</span><span>=</span><span>m;i</span><span>>=</span><span>1</span><span>;i</span><span>--</span><span>) isuf[i</span><span>-</span><span>1</span><span>]</span><span>=</span><span>isuf[i]</span><span>*</span><span>i</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>	f[</span><span>0</span><span>][</span><span>1</span><span>][</span><span>1</span><span>]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	int</span><span> cnt</span><span>=</span><span>min</span><span>(</span><span>40</span><span>*</span><span>(</span><span>40</span><span>ll</span><span>),m);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>0</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) </span></span>
+<span class="line"><span>			for</span><span> (k</span><span>=</span><span>0</span><span>;k</span><span>&#x3C;=</span><span>cnt;k</span><span>++</span><span>) {</span></span>
+<span class="line"><span>				add</span><span>(f[i][j][k],(j</span><span>+</span><span>1</span><span>)</span><span>*</span><span>f[i</span><span>-</span><span>1</span><span>][j</span><span>+</span><span>1</span><span>][k]);</span></span>
+<span class="line"><span>				if</span><span> (k</span><span>>=</span><span>d[i]</span><span>&#x26;&#x26;</span><span>j) </span><span>add</span><span>(f[i][j][k],</span><span>2</span><span>ll*</span><span>f[i</span><span>-</span><span>1</span><span>][j][k</span><span>-</span><span>d[i]]</span><span>*</span><span>j);</span></span>
+<span class="line"><span>				if</span><span> (j</span><span>>=</span><span>1</span><span>&#x26;&#x26;</span><span>k</span><span>>=</span><span>2</span><span>*</span><span>d[i]) </span><span>add</span><span>(f[i][j][k],(j</span><span>-</span><span>1</span><span>)</span><span>*</span><span>f[i</span><span>-</span><span>1</span><span>][j</span><span>-</span><span>1</span><span>][k</span><span>-</span><span>2</span><span>*</span><span>d[i]]);</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (k</span><span>=</span><span>0</span><span>;k</span><span>&#x3C;=</span><span>cnt;k</span><span>++</span><span>) </span><span>if</span><span> (f[n][</span><span>0</span><span>][k]) </span><span>add</span><span>(ans,f[n][</span><span>0</span><span>][k]</span><span>*</span><span>C</span><span>(m</span><span>-</span><span>k</span><span>+</span><span>n,n));</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%lld</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/10/26/P6622-%E7%9C%81%E9%80%89%E8%81%94%E8%80%83-2020-AB-%E5%8D%B7-%E4%BF%A1%E5%8F%B7%E4%BC%A0%E9%80%92/"><span>← 较早一篇</span><strong>P6622 [省选联考 2020 AB 卷] 信号传递</strong></a><a href="/2023/10/27/P6961-NEERC2017-Journey-from-Petersburg-to-Moscow/"><span>较新一篇 →</span><strong>P6961 [NEERC2017] Journey from Petersburg to Moscow</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

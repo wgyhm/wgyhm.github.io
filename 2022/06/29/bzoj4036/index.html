@@ -1,341 +1,48 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Solution设 JOI 三个字母的前缀个数分别为 $(a,b,c)$。 若要三个字母个数相同，则有 $(b_i-a_i,c_i-a_i)&#x3D;(b_j-a_i,c_j-a_i)$ 。 map 统计即可。 code: 1234567891011121314151617181920212223242526272829303132333435363738#include&lt;bits&#x2F;std">
-<meta property="og:type" content="article">
-<meta property="og:title" content="bzoj4036">
-<meta property="og:url" content="http://www.yqzheng.top/2022/06/29/bzoj4036/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="Solution设 JOI 三个字母的前缀个数分别为 $(a,b,c)$。 若要三个字母个数相同，则有 $(b_i-a_i,c_i-a_i)&#x3D;(b_j-a_i,c_j-a_i)$ 。 map 统计即可。 code: 1234567891011121314151617181920212223242526272829303132333435363738#include&lt;bits&#x2F;std">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-29T10:59:31.000Z">
-<meta property="article:modified_time" content="2022-06-29T11:07:04.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="bzoj">
-<meta property="article:tag" content="暴力">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>bzoj4036</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2022/06/29/bzoj4238/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2022/06/29/bzoj4012/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2022/06/29/bzoj4036/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&text=bzoj4036"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&is_video=false&description=bzoj4036"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj4036&body=Check out this article: http://www.yqzheng.top/2022/06/29/bzoj4036/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&name=bzoj4036&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2022/06/29/bzoj4036/&t=bzoj4036"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Solution"><span class="toc-number">1.</span> <span class="toc-text">Solution</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        bzoj4036
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-06-29T10:59:31.000Z" class="dt-published" itemprop="datePublished">2022-06-29</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="p-category" href="/tags/%E6%9A%B4%E5%8A%9B/" rel="tag">暴力</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>设 JOI 三个字母的前缀个数分别为 $(a,b,c)$。</p>
-<p>若要三个字母个数相同，则有 $(b_i-a_i,c_i-a_i)&#x3D;(b_j-a_i,c_j-a_i)$ 。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="bzoj4036"><link rel="canonical" href="https://www.yqzheng.top/2022/06/29/bzoj4036/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>bzoj4036 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>bzoj4036</h1><div class="article-meta"><time datetime="2022-06-29">2022.06.29</time><span>·</span><span>1 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E6%9A%B4%E5%8A%9B/">#暴力</a><a class="chip" href="/tags/bzoj/">#BZOJ</a></div></header><div class="prose" data-post-body><span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h4 id="solution">Solution</h4>
+<p>设 JOI 三个字母的前缀个数分别为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,b,c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span>。</p>
+<p>若要三个字母个数相同，则有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>i</mi></msub><mo>−</mo><msub><mi>a</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>c</mi><mi>i</mi></msub><mo>−</mo><msub><mi>a</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo>−</mo><msub><mi>a</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>c</mi><mi>j</mi></msub><mo>−</mo><msub><mi>a</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b_i-a_i,c_i-a_i)=(b_j-a_i,c_j-a_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 。</p>
 <p>map 统计即可。</p>
 <p>code:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">	<span class="type">int</span> x,y;</span><br><span class="line">	<span class="built_in">node</span>(<span class="type">int</span> a=<span class="number">0</span>,<span class="type">int</span> b=<span class="number">0</span>) &#123;x=a;y=b;&#125;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span> &lt;(<span class="type">const</span> node &amp;a) <span class="type">const</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (x^a.x) <span class="keyword">return</span> x&lt;a.x;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">return</span> y&lt;a.y; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;node,<span class="type">int</span> &gt;mp;</span><br><span class="line"><span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	<span class="type">int</span> i,sum1=<span class="number">0</span>,sum2=<span class="number">0</span>;string s;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	cin&gt;&gt;s;</span><br><span class="line">	mp[<span class="built_in">node</span>(<span class="number">0</span>,<span class="number">0</span>)]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s[i]==<span class="string">&#x27;J&#x27;</span>) sum1--,sum2--;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (s[i]==<span class="string">&#x27;O&#x27;</span>) sum1++;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (s[i]==<span class="string">&#x27;I&#x27;</span>) sum2++;</span><br><span class="line">		<span class="keyword">if</span> (!mp[<span class="built_in">node</span>(sum1,sum2)]) mp[<span class="built_in">node</span>(sum1,sum2)]=i<span class="number">+2</span>;</span><br><span class="line">		<span class="keyword">else</span> ans=<span class="built_in">max</span>(ans,i<span class="number">+1</span>-mp[<span class="built_in">node</span>(sum1,sum2)]<span class="number">+1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Solution"><span class="toc-number">1.</span> <span class="toc-text">Solution</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2022/06/29/bzoj4036/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&text=bzoj4036"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&is_video=false&description=bzoj4036"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj4036&body=Check out this article: http://www.yqzheng.top/2022/06/29/bzoj4036/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&title=bzoj4036"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2022/06/29/bzoj4036/&name=bzoj4036&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2022/06/29/bzoj4036/&t=bzoj4036"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> maxn</span></span>
+<span class="line"><span>#define</span><span> ll</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>inline</span><span> void</span><span> read</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>){</span></span>
+<span class="line"><span>	int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>	while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>	while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>	x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> n;</span></span>
+<span class="line"><span>struct</span><span> node</span><span>{</span></span>
+<span class="line"><span>	int</span><span> x,y;</span></span>
+<span class="line"><span>	node</span><span>(</span><span>int</span><span> a</span><span>=</span><span>0</span><span>,</span><span>int</span><span> b</span><span>=</span><span>0</span><span>) {x</span><span>=</span><span>a;y</span><span>=</span><span>b;}</span></span>
+<span class="line"><span>	bool</span><span> operator</span><span> &#x3C;</span><span>(</span><span>const</span><span> node</span><span> &#x26;</span><span>a</span><span>) </span><span>const</span><span> {</span></span>
+<span class="line"><span>		if</span><span> (x</span><span>^</span><span>a.x) </span><span>return</span><span> x</span><span>&#x3C;</span><span>a.x;</span></span>
+<span class="line"><span>		else</span><span> return</span><span> y</span><span>&#x3C;</span><span>a.y; </span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span>map</span><span>&#x3C;</span><span>node,</span><span>int</span><span> ></span><span>mp;</span></span>
+<span class="line"><span>int</span><span> ans</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>//	freopen("1.in","r",stdin);</span></span>
+<span class="line"><span>	int</span><span> i,sum1</span><span>=</span><span>0</span><span>,sum2</span><span>=</span><span>0</span><span>;</span><span>string</span><span> s;</span></span>
+<span class="line"><span>	read</span><span>(n);</span></span>
+<span class="line"><span>	cin</span><span>>></span><span>s;</span></span>
+<span class="line"><span>	mp[</span><span>node</span><span>(</span><span>0</span><span>,</span><span>0</span><span>)]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		if</span><span> (s[i]</span><span>==</span><span>'J'</span><span>) sum1</span><span>--</span><span>,sum2</span><span>--</span><span>;</span></span>
+<span class="line"><span>		else</span><span> if</span><span> (s[i]</span><span>==</span><span>'O'</span><span>) sum1</span><span>++</span><span>;</span></span>
+<span class="line"><span>		else</span><span> if</span><span> (s[i]</span><span>==</span><span>'I'</span><span>) sum2</span><span>++</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (</span><span>!</span><span>mp[</span><span>node</span><span>(sum1,sum2)]) mp[</span><span>node</span><span>(sum1,sum2)]</span><span>=</span><span>i</span><span>+</span><span>2</span><span>;</span></span>
+<span class="line"><span>		else</span><span> ans</span><span>=</span><span>max</span><span>(ans,i</span><span>+</span><span>1</span><span>-</span><span>mp[</span><span>node</span><span>(sum1,sum2)]</span><span>+</span><span>1</span><span>);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%d</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2022/06/29/bzoj4238/"><span>← 较早一篇</span><strong>bzoj4238</strong></a><a href="/2022/06/29/bzoj4012/"><span>较新一篇 →</span><strong>bzoj4012</strong></a></nav></article></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

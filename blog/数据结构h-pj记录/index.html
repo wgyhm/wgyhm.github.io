@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="数据结构H PJ记录"><link rel="canonical" href="https://www.yqzheng.top/blog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84h-pj%E8%AE%B0%E5%BD%95/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>数据结构H PJ记录 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 技术</p><h1>数据结构H PJ记录</h1><div class="article-meta"><time datetime="2026-05-10">2026.05.10</time><span>·</span><span>7 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/">#大学课程</a><a class="chip" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#pj">PJ</a></li><li><a href="#lab1">lab1</a></li><li><a href="#lab2">lab2</a></li></ul></details><div class="prose" data-post-body><span id="PJ" class="legacy-anchor" aria-hidden="true"></span><h2 id="pj">PJ</h2>
+<span id="lab1" class="legacy-anchor" aria-hidden="true"></span><h3 id="lab1">lab1</h3>
+<span id="V1-swiss-table" class="legacy-anchor" aria-hidden="true"></span><h4 id="v1-swiss_table">V1 swiss_table</h4>
+<p>design philosophy:</p>
+<ul>
+<li>我干不过现有的库</li>
+</ul>
+<p>跑起来被同学代码薄纱，且有抄袭原有库的可能。</p>
+<p>自己不怎么看得懂代码，codex写出来的代码有很多冗余，优化空间比较小。</p>
+<span id="V2-朴素手写开放寻址" class="legacy-anchor" aria-hidden="true"></span><h4 id="v2-朴素手写开放寻址">V2 朴素手写开放寻址</h4>
+<p>design philosophy:</p>
+<ul>
+<li>我要掌握自己的代码，我要手写</li>
+<li>开放寻址，优化空间主要在于哈希函数</li>
+</ul>
+<p>problem：指令集用处不大（？）</p>
+<span id="V2-1" class="legacy-anchor" aria-hidden="true"></span><h4 id="v2_1">V2_1</h4>
+<p>design philosophy:</p>
+<ul>
+<li>没有其他方法，尝试优化空间</li>
+<li>如果空间开到不是 2 的幂次方呢？</li>
+</ul>
+<p>如果一组在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><msup><mn>2</mn><mn>64</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[0,2^{64})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">64</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的哈希值被认为是均匀分布的，尝试 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>∗</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo stretchy="false">)</mo><mo>></mo><mo>></mo><mn>64</mn></mrow><annotation encoding="application/x-tex">(n*key)>>64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mord mathnormal" style="margin-right:0.0359em;">ey</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">>></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">64</span></span></span></span>，这样也可以认为是均匀分布的。</p>
+<p>problem：还是干不过他们啊。</p>
+<span id="V3" class="legacy-anchor" aria-hidden="true"></span><h4 id="v3">V3</h4>
+<p>来源于赛后助教下发的PPT。</p>
+<p>design philosophy:</p>
+<ul>
+<li>开放地址法+SIMD指令集进行查找</li>
+<li>节省内存，不使用控制字节，采用所有数据集没有的一个uint64来作为空槽标志（这个做法在 lab2 被 ban 了）</li>
+<li>冲突比较少，哈希函数的效率很重要。哈希函数使用内置的 _mm_crc32_u64。</li>
+<li>申请内存会进行内存对齐，使用 huge page</li>
+<li>对分支预测添加hints来减少分支预测错误导致的bubble。不过我觉得用处不大。</li>
+</ul>
+<span id="lab2" class="legacy-anchor" aria-hidden="true"></span><h3 id="lab2">lab2</h3>
+<p>我们需要关注 PJ 条件的特殊性，这是我们能优于现有的库的关键：</p>
+<ul>
+<li>只需要实现动态插入，查询，区间查询，不需要实现删除和更新</li>
+<li>仅支持单线程</li>
+<li>key 和 value 都是 uint64_t 类型，key 互不相同</li>
+<li>bulk load 不算时间</li>
+</ul>
+<p>调研了各种学习性索引，考虑到PJ要求是动态插入，区间查询，单线程，所以排除了一些：</p>
+<p><strong>ART</strong>：最稳妥的传统基线，随机数据和从 0 在线长起来都很稳、点查和插入都强，但区间查找通常不如叶链式结构直接，综合上是“最不容易翻车”的方案。</p>
+<p><strong>B+Tree</strong>：最经典、最均衡、最容易保证正确性的方案，区间查找天然友好、尾延迟稳定，但点查和插入常数通常不如优秀的内存型结构或 learned index 激进。</p>
+<p><strong>ALEX</strong>：对这个题目最对口的 learned index 之一，内部节点模型路由 + 叶子 gap array + 叶链扫描，使它在单线程 mixed workload 且带 range 的场景里很强，但分布不友好时稳定性和 range 局部性会变差。</p>
+<p><strong>HIRE</strong>：如果按“你的题目背景”来选，它是最贴题的新一代 mixed-workload learned index，因为它专门强化了 range、稳定性和尾延迟，但实现复杂度明显高于 ALEX，完整版还强依赖后台重训练机制。需要多线程。</p>
+<p><strong>DILI</strong>：适合做为 ALEX 之后最值得补的 learned index，支持动态插入并试图减少叶内最后一步搜索，对点查和插入很有潜力，但论文对 range 的系统性证据不如 ALEX/HIRE 充分。</p>
+<p><strong>LIPP</strong>：点查和插入都可能很猛，因为它追求精确位置、几乎不做叶内纠错，但它为了这个牺牲了数据局部性和叶链式连续扫描，所以对你这种带区间查找的题目通常不合适。不能区间查询。</p>
+<p><strong>PGM / DPGM</strong>：更适合读多或纯写更重的模式，尤其 DPGM 对持续插入很友好，但它们的缓冲/多层合并会让 range 和 mixed workload 的综合表现吃亏，不是你这个题的主选。慢。</p>
+<p><strong>MAB+tree</strong>：属于能做、也能支持 range 的中间路线，整体思路比 ALEX 更保守，但在你这个随机数据 + mixed workload 的设定下，通常没有 ALEX 那么值得优先投入。慢。</p>
+<p><strong>LiBox</strong>：如果硬件有 AVX-512，它在 mixed workload 下可能很强，但它对指令集条件比较挑，而且论文自己也承认 range 上没有特别稳定的明显优势，所以更像“高风险高收益的后手”。区间查询慢。</p>
+<p>学习性索引：ALEX ，HYPER</p>
+<p>传统索引：B+Tree</p>
+<span id="学习性索引" class="legacy-anchor" aria-hidden="true"></span><h4 id="学习性索引">学习性索引</h4>
+<span id="V1" class="legacy-anchor" aria-hidden="true"></span><h4 id="v1">V1</h4>
+<p>design philosophy:</p>
+<ul>
+<li>codex 很牛</li>
+<li>Alex 很牛</li>
+</ul>
+<p>带着 codex 读了一下论文，让他写点东西，效果略逊 B+Tree。</p>
+<p>problem:</p>
+<ul>
+<li>codex 没有那么牛</li>
+<li>Alex 的库函数实现包括了很多细节，比如计算需要 expand 还是 split 的 cost 函数，fanout 取多少...</li>
+</ul>
+<span id="V1-2" class="legacy-anchor" aria-hidden="true"></span><h4 id="v1_2">V1_2</h4>
+<p>design philosophy:</p>
+<ul>
+<li>codex 不牛，我需要看懂思路，自己写一个出来</li>
+<li>阅读 alex 核心库</li>
+</ul>
+<p>尝试阅读原库，过于工程，且总代码有 6k 多行，烧 token 巨快。放弃实现。</p>
+<span id="V2" class="legacy-anchor" aria-hidden="true"></span><h4 id="v2">V2</h4>
+<p>design philosophy:</p>
+<ul>
+<li>尝试实现 HYPER?</li>
+</ul>
+<p>或许性价比不高，已经不想卷了。</p>
+<span id="传统索引-B-Tree" class="legacy-anchor" aria-hidden="true"></span><h4 id="传统索引---btree">传统索引 - B+Tree</h4>
+<span id="V3-1" class="legacy-anchor" aria-hidden="true"></span><h4 id="v3-1">V3</h4>
+<p>design philosophy:</p>
+<ul>
+<li>参考 PJ1，需要自己掌握代码，我要看懂代码，最好能自己写出来</li>
+<li>分析库函数的 B+ 树效率欠佳的原因，考虑优化方向：
+<ul>
+<li>完全不考虑 delete 操作，减少代码复杂度并优化内存</li>
+<li>牺牲一点空间，进行节点内存预分配</li>
+<li>针对内存排布优化（leaf/internal 分离优化内存，key/value 分离优化SIMD)</li>
+<li>分叉数</li>
+<li>对于查找时，可以分析线性查找/SIMD（AVX2/AVX512)/二分/SIMD结合别的效果</li>
+<li>64B 对齐，优化 cache miss</li>
+<li>huge page 优化 TLP miss</li>
+<li><code>memmove</code> 处理插入移动</li>
+<li>CSB+Tree 风格 child 连续分配（待求证），child group 连续分配等</li>
+</ul>
+</li>
+</ul>
+<h4 id="v3_1">V3_1</h4>
+<p>problem:</p>
+<ul>
+<li><code>keys[]</code> 没有真正 64B 对齐 -> 舍弃一点点内存</li>
+<li>bulkload 叶子填满效率不高，可以考虑变成 70 到 90 填充</li>
+<li>internal _max 可以和 leaf_max 不一样，例如 32/64， 64/96/128 的组合</li>
+<li>内存池管理写的非常丑陋-> 尝试去掉 mmap</li>
+<li>parent 可以用 path</li>
+<li>指针可以用内存池下标优化</li>
+</ul>
+<p>接下来先尝试加 AVX2 ，去掉 mmap-> 去掉 mmap 和 huge page之后，效率下降。</p>
+<p>AVX2 效果比 AVX512 好的多。</p>
+<span id="V4" class="legacy-anchor" aria-hidden="true"></span><h4 id="v4">V4</h4>
+<p>read_cnt=0, insert_cnt=0, update_cnt=0, scan_cnt=999257, lower_bound_cnt=99000743, delete_cnt=0</p>
+<p>read_cnt=0, insert_cnt=0, update_cnt=0, scan_cnt=20000000, lower_bound_cnt=0, delete_cnt=0</p>
+<p>read_cnt=23748912, insert_cnt=99999060, update_cnt=0, scan_cnt=1252028, lower_bound_cnt=0, delete_cnt=0</p>
+<p>read_cnt=95004975, insert_cnt=99997714, update_cnt=0, scan_cnt=4997311, lower_bound_cnt=0, delete_cnt=0</p>
+<p>read_cnt=379947315, insert_cnt=100000000, update_cnt=0, scan_cnt=19991264, lower_bound_cnt=0, delete_cnt=0</p>
+<p>read_cnt=0, insert_cnt=98999063, update_cnt=0, scan_cnt=1000937, lower_bound_cnt=0, delete_cnt=0</p>
+<p>design philosophy:</p>
+<ul>
+<li>单 b 树没有前途，尝试多数据结构结合？</li>
+<li>对于 workload1，没有插入，考虑优化静态建树（bulk_load)</li>
+<li>对于 workload3,4,5，考虑 hash, 并且是要在有 insert 的时候做。</li>
+</ul>
+<span id="V4-1" class="legacy-anchor" aria-hidden="true"></span><h4 id="v4_1">V4_1</h4>
+<p>design philosophy:</p>
+<p>先优化静态建树，考虑 CSB+Tree 风格，让 children 连续。</p>
+<ol>
+<li>先修 <strong>find_leaf</strong> 单叶/空树边界：*<em>if (cur->is_leaf) return static_cast&#x3C;LeafNode</em>>(cur);**。这是正确性优化，不改布局。</li>
+<li>不要在插入开始就关闭静态模式；至少推迟到第一次 <strong>split_leaf/split_internal</strong>。只要没有 split，物理连续性仍然成立。</li>
+<li>更进一步可以做“静态上层 + 动态下层”的 hybrid：叶子 split 后只禁用最后一跳 CSB，根和高层仍用 <strong>children[0] + pos</strong>。这对混合 workload 比全局 <strong>is_static=false</strong> 更有价值，也不改节点布局。</li>
+</ol>
+<p>此外，考虑 prefetch B+Tree 风格:</p>
+<ol>
+<li>
+<p>在 find_leaf 和 scan 中预取 internal_node 和 next_leaf。</p>
+</li>
+<li>
+<p>scan 里可以预取 <strong>next_leaf->keys, next_leaf->values</strong>，而不只是 <strong>next_leaf</strong> 指针本身；<strong>scan_num=100</strong> 时这类小优化能吃到。</p>
+</li>
+</ol>
+<p>method:</p>
+<ol>
+<li>bulk_load 时候将每一层连续排布，children 连续排布，吃到 CSB+Tree 风格的收益。加了 children_base 字段，并且提前 prefetch。在节点静态时候取代 children[pos] 直接转跳，减小 cache miss.</li>
+<li>find_leaf 中 prefetch_internal 提前预取 children_base, keys, values</li>
+<li>scan 中 prefetch values, keys, next_leaf</li>
+</ol>
+<p>observation:</p>
+<ol>
+<li>prefetch 只有在之后一段时间之后<strong>要用到</strong>的操作才有效果，不然可能是负优化</li>
+<li>prefetch_internal 把所有 cache 的 key 都取进来效果并不好</li>
+<li>scan 的 next_leaf 的 cache miss 是主要瓶颈，考虑到 leaf_max=128 但是 scan_num 最大只有 100，提前预取 1 个即可</li>
+</ol>
+<span id="V4-2" class="legacy-anchor" aria-hidden="true"></span><h4 id="v4_2">V4_2</h4>
+<p>祝老师指出，可以尝试拟合数据集，并给AI充足的上下文来高效 vibe coding。</p>
+<p>observation:</p>
+<p>尝试发掘数据集构造的方式，并由此来做一些优化：</p>
+<ol>
+<li>动态 workload 中 <code>init_table_ratio=0.5</code>，但这 50% 是从全量 key 打乱后取样，所以近似是全量分布的随机样本。</li>
+<li>后续 insert 来自剩余 50% key，key 不重复。</li>
+<li>bulk_load 中，w1/2 的 num 大约 200M 左右，w3456 大约 100M 左右</li>
+</ol>
+<p>design philosophy:</p>
+<ol>
+<li>用 AI 尝试数据结构的加成
+<ol>
+<li>静态采用线性数组，做 delta b+tree</li>
+<li>上层学习性索引，下层 b+tree</li>
+</ol>
+</li>
+<li>根据 bulkload 来判断是 workload:
+<ol>
+<li>如果是 bulkload 前面，则把 bulk_load_leaf = leaf_max，起码可以降空间和降树高</li>
+<li>否则调整因子大小</li>
+</ol>
+</li>
+</ol>
+<p>method:</p>
+<ol>
+<li>线性数组的 lower_bound 还没有我的 b+tree 快。可能 cache miss 过多，跨度过大。</li>
+<li>太累了。放弃调教 AI.</li>
+<li>调整 leaf_max 和 internal_max 收益不如波动，所以选择空间比较小的配置</li>
+<li>如果 bulkload 是动态，即使根据“后续插入的大小是 bulkload 的大小，且分布近似随机” 这一特性，负载因子调整到 0.4~0.6 除了空间变大没有任何优点。</li>
+</ol>
+<p>final:</p>
+<ol>
+<li>根据 bulk_load_num 来区分 workload，相应调整分配空间和负载因子</li>
+<li>leaf_max=128, internal_max=64</li>
+<li>负载因子依旧 0.85~0.9，换取空间</li>
+</ol>
+<p>reference:</p>
+<ul>
+<li>Effect of Node Size on the Performance of Cache-Conscious B+-trees</li>
+<li>Improving Index Performance through Prefetching</li>
+</ul>
+<p>感想：</p>
+<ul>
+<li>上下文还是很重要，虽然真很浪费 token。</li>
+<li>AI 在具体实现上可能不如人工精细（比如 prefetch / 指令集会乱用），但是如果提出新的结构，将是很厉害。</li>
+<li>要成为最会使用 AI 的人。</li>
+</ul></div><nav class="article-next" aria-label="相邻文章"><a href="/blog/%E4%BA%B2%E7%88%B1%E7%9A%84codex-%E6%88%91%E5%A5%BD%E6%83%B3%E4%BD%A0/"><span>← 较早一篇</span><strong>亲爱的codex，我好想你</strong></a><a href="/blog/cann%E6%AF%94%E8%B5%9B%E7%AE%97%E5%AD%90%E6%80%BB%E7%BB%93/"><span>较新一篇 →</span><strong>CANN比赛算子总结</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#pj">PJ</a></li><li class="indent"><a href="#lab1">lab1</a></li><li class="indent"><a href="#lab2">lab2</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

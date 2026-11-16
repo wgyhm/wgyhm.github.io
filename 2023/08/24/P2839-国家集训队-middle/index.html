@@ -1,341 +1,85 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[国家集训队] middleDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P2839 但是关于题面，$b$ 应该是从大到小排序。 Solution考虑中位数的经典套路，二分答案，大于等于这个数的设为 $1$，小于这个数的设为 $-1$。序列之和为 $\ge 0$ 将右端点移到中点，反之移动左端点。 现在应用这个套路。将权值作为主席树的下标，每次单点修改。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="P2839 [国家集训队] middle">
-<meta property="og:url" content="http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="[国家集训队] middleDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P2839 但是关于题面，$b$ 应该是从大到小排序。 Solution考虑中位数的经典套路，二分答案，大于等于这个数的设为 $1$，小于这个数的设为 $-1$。序列之和为 $\ge 0$ 将右端点移到中点，反之移动左端点。 现在应用这个套路。将权值作为主席树的下标，每次单点修改。">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-08-23T23:30:16.000Z">
-<meta property="article:modified_time" content="2023-08-23T23:30:54.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="主席树">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>P2839 [国家集训队] middle</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/08/24/P3350-ZJOI2016-%E6%97%85%E8%A1%8C%E8%80%85/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&text=P2839 [国家集训队] middle"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&is_video=false&description=P2839 [国家集训队] middle"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P2839 [国家集训队] middle&body=Check out this article: http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&name=P2839 [国家集训队] middle&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&t=P2839 [国家集训队] middle"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle"><span class="toc-number">1.</span> <span class="toc-text">[国家集训队] middle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        P2839 [国家集训队] middle
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-08-23T23:30:16.000Z" class="dt-published" itemprop="datePublished">2023-08-24</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" rel="tag">主席树</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="国家集训队-middle"><a href="#国家集训队-middle" class="headerlink" title="[国家集训队] middle"></a>[国家集训队] middle</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2839">https://www.luogu.com.cn/problem/P2839</a></p>
-<p>但是关于题面，$b$ 应该是从大到小排序。</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>考虑中位数的经典套路，二分答案，大于等于这个数的设为 $1$，小于这个数的设为 $-1$。序列之和为 $\ge 0$ 将右端点移到中点，反之移动左端点。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="P2839 [国家集训队] middle"><link rel="canonical" href="https://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>P2839 [国家集训队] middle · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>P2839 [国家集训队] middle</h1><div class="article-meta"><time datetime="2023-08-24">2023.08.24</time><span>·</span><span>3 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/">#主席树</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle">[国家集训队] middle</a></li><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ul></details><div class="prose" data-post-body><span id="国家集训队-middle" class="legacy-anchor" aria-hidden="true"></span><h1 id="国家集训队-middle">[国家集训队] middle</h1>
+<span id="Description" class="legacy-anchor" aria-hidden="true"></span><h2 id="description">Description</h2>
+<p><a href="https://www.luogu.com.cn/problem/P2839">https://www.luogu.com.cn/problem/P2839</a></p>
+<p>但是关于题面，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> 应该是从大到小排序。</p>
+<span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h2 id="solution">Solution</h2>
+<p>考虑中位数的经典套路，二分答案，大于等于这个数的设为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，小于这个数的设为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>。序列之和为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\ge 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> 将右端点移到中点，反之移动左端点。</p>
 <p>现在应用这个套路。将权值作为主席树的下标，每次单点修改。</p>
 <p>问题关键在于不强制但可以选的那一部分。因为我们要中位数最大，做前缀最大和和后缀最大和即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 50005</span></span><br><span class="line"><span class="type">int</span> n,q;</span><br><span class="line"><span class="type">int</span> a[maxn],g[maxn],tot,cnt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">yyy</span>&#123;</span><br><span class="line">	<span class="type">int</span> ls,rs,sum,lsum,rsum;</span><br><span class="line">	<span class="built_in">yyy</span>(<span class="type">int</span> a=<span class="number">0</span>,<span class="type">int</span> b=<span class="number">0</span>,<span class="type">int</span> c=<span class="number">0</span>) &#123;sum=a,lsum=b,rsum=c;&#125;</span><br><span class="line">&#125;f[maxn*<span class="number">20</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">calc</span><span class="params">(yyy x,yyy y,yyy &amp;ans)</span> </span>&#123;</span><br><span class="line">	ans.sum=x.sum+y.sum;</span><br><span class="line">	ans.lsum=<span class="built_in">max</span>(x.lsum,x.sum+y.lsum);</span><br><span class="line">	ans.rsum=<span class="built_in">max</span>(y.rsum,x.rsum+y.sum);</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Update</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> pre,<span class="type">int</span> head,<span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> rt=++cnt;f[rt]=f[pre];</span><br><span class="line">	<span class="keyword">if</span> (l==r) <span class="keyword">return</span> f[rt].sum=f[rt].lsum=f[rt].rsum=k,rt;</span><br><span class="line">	<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=mid) f[rt].ls=<span class="built_in">Update</span>(l,mid,f[rt].ls,head,k); </span><br><span class="line">	<span class="keyword">else</span> f[rt].rs=<span class="built_in">Update</span>(mid<span class="number">+1</span>,r,f[rt].rs,head,k);</span><br><span class="line">	<span class="built_in">calc</span>(f[f[rt].ls],f[f[rt].rs],f[rt]);</span><br><span class="line">	<span class="keyword">return</span> rt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> inf=<span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> yyy <span class="title">Query</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt,<span class="type">int</span> head,<span class="type">int</span> tail)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!rt) <span class="keyword">return</span> <span class="built_in">yyy</span>(-inf,-inf,-inf);</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=l&amp;&amp;r&lt;=tail) <span class="keyword">return</span> f[rt];</span><br><span class="line">	<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=mid&amp;&amp;mid&lt;tail) &#123;</span><br><span class="line">		yyy tmp1=<span class="built_in">Query</span>(l,mid,f[rt].ls,head,tail);</span><br><span class="line">		yyy tmp2=<span class="built_in">Query</span>(mid<span class="number">+1</span>,r,f[rt].rs,head,tail);</span><br><span class="line">		yyy tmp3;<span class="built_in">calc</span>(tmp1,tmp2,tmp3);</span><br><span class="line">		<span class="keyword">return</span> tmp3;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (head&lt;=mid) <span class="keyword">return</span> <span class="built_in">Query</span>(l,mid,f[rt].ls,head,tail);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (tail&gt;mid)  <span class="keyword">return</span> <span class="built_in">Query</span>(mid<span class="number">+1</span>,r,f[rt].rs,head,tail);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> root[maxn],id[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;<span class="keyword">return</span> a[x]&lt;a[y];&#125;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;O[maxn];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(a[i]),g[i]=a[i];</span><br><span class="line">	<span class="built_in">sort</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+n);</span><br><span class="line">	tot=<span class="built_in">unique</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+n)-g<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) a[i]=<span class="built_in">lower_bound</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+n,a[i])-g,O[a[i]].<span class="built_in">push_back</span>(i);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) root[<span class="number">0</span>]=<span class="built_in">Update</span>(<span class="number">1</span>,n,root[<span class="number">0</span>],i,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=tot;i++) &#123;</span><br><span class="line">		root[i]=root[i<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> tmp:O[i<span class="number">-1</span>]) </span><br><span class="line">			root[i]=<span class="built_in">Update</span>(<span class="number">1</span>,n,root[i],tmp,<span class="number">-1</span>);</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="built_in">read</span>(q);</span><br><span class="line">	<span class="type">int</span> las=<span class="number">0</span>,tmp1,tmp2,tmp3,tmp4,s1,s2,s3;</span><br><span class="line">	<span class="keyword">while</span> (q--) &#123;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">4</span>;i++) <span class="built_in">read</span>(id[i]),id[i]=(id[i]+las)%n<span class="number">+1</span>;</span><br><span class="line">		<span class="built_in">sort</span>(id<span class="number">+1</span>,id<span class="number">+5</span>);</span><br><span class="line">		tmp1=id[<span class="number">1</span>],tmp2=id[<span class="number">2</span>],tmp3=id[<span class="number">3</span>],tmp4=id[<span class="number">4</span>];</span><br><span class="line">		<span class="type">int</span> l=<span class="number">0</span>,r=tot<span class="number">+1</span>,mid;</span><br><span class="line">		<span class="keyword">while</span> (l<span class="number">+1</span>&lt;r) &#123;</span><br><span class="line">			mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">			s1=s2=s3=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (tmp1&lt;tmp2) s1=<span class="built_in">Query</span>(<span class="number">1</span>,n,root[mid],tmp1,tmp2).rsum;</span><br><span class="line">			<span class="keyword">if</span> (tmp2<span class="number">+1</span>&lt;tmp3) s2=<span class="built_in">Query</span>(<span class="number">1</span>,n,root[mid],tmp2<span class="number">+1</span>,tmp3<span class="number">-1</span>).sum;</span><br><span class="line">			<span class="keyword">if</span> (tmp3&lt;tmp4) s3=<span class="built_in">Query</span>(<span class="number">1</span>,n,root[mid],tmp3,tmp4).lsum;</span><br><span class="line">			<span class="keyword">if</span> (s1+s2+s3&gt;=<span class="number">0</span>) l=mid;</span><br><span class="line">			<span class="keyword">else</span> r=mid;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,las=g[l]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle"><span class="toc-number">1.</span> <span class="toc-text">[国家集训队] middle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&text=P2839 [国家集训队] middle"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&is_video=false&description=P2839 [国家集训队] middle"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P2839 [国家集训队] middle&body=Check out this article: http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&title=P2839 [国家集训队] middle"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&name=P2839 [国家集训队] middle&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/&t=P2839 [国家集训队] middle"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#define</span><span> maxn</span><span> 50005</span></span>
+<span class="line"><span>int</span><span> n,q;</span></span>
+<span class="line"><span>int</span><span> a[maxn],g[maxn],tot,cnt;</span></span>
+<span class="line"><span>struct</span><span> yyy</span><span>{</span></span>
+<span class="line"><span>	int</span><span> ls,rs,sum,lsum,rsum;</span></span>
+<span class="line"><span>	yyy</span><span>(</span><span>int</span><span> a</span><span>=</span><span>0</span><span>,</span><span>int</span><span> b</span><span>=</span><span>0</span><span>,</span><span>int</span><span> c</span><span>=</span><span>0</span><span>) {sum</span><span>=</span><span>a,lsum</span><span>=</span><span>b,rsum</span><span>=</span><span>c;}</span></span>
+<span class="line"><span>}f[maxn</span><span>*</span><span>20</span><span>];</span></span>
+<span class="line"><span>inline</span><span> void</span><span> calc</span><span>(</span><span>yyy</span><span> x</span><span>,</span><span>yyy</span><span> y</span><span>,</span><span>yyy</span><span> &#x26;</span><span>ans</span><span>) {</span></span>
+<span class="line"><span>	ans.sum</span><span>=</span><span>x.sum</span><span>+</span><span>y.sum;</span></span>
+<span class="line"><span>	ans.lsum</span><span>=</span><span>max</span><span>(x.lsum,x.sum</span><span>+</span><span>y.lsum);</span></span>
+<span class="line"><span>	ans.rsum</span><span>=</span><span>max</span><span>(y.rsum,x.rsum</span><span>+</span><span>y.sum);</span></span>
+<span class="line"><span>	return</span><span> ;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>inline</span><span> int</span><span> Update</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> pre</span><span>,</span><span>int</span><span> head</span><span>,</span><span>int</span><span> k</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> rt</span><span>=++</span><span>cnt;f[rt]</span><span>=</span><span>f[pre];</span></span>
+<span class="line"><span>	if</span><span> (l</span><span>==</span><span>r) </span><span>return</span><span> f[rt].sum</span><span>=</span><span>f[rt].lsum</span><span>=</span><span>f[rt].rsum</span><span>=</span><span>k,rt;</span></span>
+<span class="line"><span>	int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>mid) f[rt].ls</span><span>=</span><span>Update</span><span>(l,mid,f[rt].ls,head,k); </span></span>
+<span class="line"><span>	else</span><span> f[rt].rs</span><span>=</span><span>Update</span><span>(mid</span><span>+</span><span>1</span><span>,r,f[rt].rs,head,k);</span></span>
+<span class="line"><span>	calc</span><span>(f[f[rt].ls],f[f[rt].rs],f[rt]);</span></span>
+<span class="line"><span>	return</span><span> rt;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>const</span><span> int</span><span> inf</span><span>=</span><span>1</span><span>e</span><span>9</span><span>;</span></span>
+<span class="line"><span>inline</span><span> yyy</span><span> Query</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> rt</span><span>,</span><span>int</span><span> head</span><span>,</span><span>int</span><span> tail</span><span>) {</span></span>
+<span class="line"><span>	if</span><span> (</span><span>!</span><span>rt) </span><span>return</span><span> yyy</span><span>(</span><span>-</span><span>inf,</span><span>-</span><span>inf,</span><span>-</span><span>inf);</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>l</span><span>&#x26;&#x26;</span><span>r</span><span>&#x3C;=</span><span>tail) </span><span>return</span><span> f[rt];</span></span>
+<span class="line"><span>	int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>mid</span><span>&#x26;&#x26;</span><span>mid</span><span>&#x3C;</span><span>tail) {</span></span>
+<span class="line"><span>		yyy</span><span> tmp1</span><span>=</span><span>Query</span><span>(l,mid,f[rt].ls,head,tail);</span></span>
+<span class="line"><span>		yyy</span><span> tmp2</span><span>=</span><span>Query</span><span>(mid</span><span>+</span><span>1</span><span>,r,f[rt].rs,head,tail);</span></span>
+<span class="line"><span>		yyy</span><span> tmp3;</span><span>calc</span><span>(tmp1,tmp2,tmp3);</span></span>
+<span class="line"><span>		return</span><span> tmp3;</span></span>
+<span class="line"><span>	} </span></span>
+<span class="line"><span>	else</span><span> if</span><span> (head</span><span>&#x3C;=</span><span>mid) </span><span>return</span><span> Query</span><span>(l,mid,f[rt].ls,head,tail);</span></span>
+<span class="line"><span>	else</span><span> if</span><span> (tail</span><span>></span><span>mid)  </span><span>return</span><span> Query</span><span>(mid</span><span>+</span><span>1</span><span>,r,f[rt].rs,head,tail);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> root[maxn],id[maxn];</span></span>
+<span class="line"><span>inline</span><span> bool</span><span> cmp</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>) {</span><span>return</span><span> a[x]</span><span>&#x3C;</span><span>a[y];}</span></span>
+<span class="line"><span>vector</span><span>&#x3C;int></span><span>O[maxn];</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> i;</span></span>
+<span class="line"><span>	read</span><span>(n);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(a[i]),g[i]</span><span>=</span><span>a[i];</span></span>
+<span class="line"><span>	sort</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>n);</span></span>
+<span class="line"><span>	tot</span><span>=</span><span>unique</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>n)</span><span>-</span><span>g</span><span>-</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) a[i]</span><span>=</span><span>lower_bound</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>n,a[i])</span><span>-</span><span>g,O[a[i]].</span><span>push_back</span><span>(i);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) root[</span><span>0</span><span>]</span><span>=</span><span>Update</span><span>(</span><span>1</span><span>,n,root[</span><span>0</span><span>],i,</span><span>1</span><span>);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>tot;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		root[i]</span><span>=</span><span>root[i</span><span>-</span><span>1</span><span>];</span></span>
+<span class="line"><span>		for</span><span> (</span><span>auto</span><span> tmp:O[i</span><span>-</span><span>1</span><span>]) </span></span>
+<span class="line"><span>			root[i]</span><span>=</span><span>Update</span><span>(</span><span>1</span><span>,n,root[i],tmp,</span><span>-</span><span>1</span><span>);</span></span>
+<span class="line"><span>	} </span></span>
+<span class="line"><span>	read</span><span>(q);</span></span>
+<span class="line"><span>	int</span><span> las</span><span>=</span><span>0</span><span>,tmp1,tmp2,tmp3,tmp4,s1,s2,s3;</span></span>
+<span class="line"><span>	while</span><span> (q</span><span>--</span><span>) {</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>4</span><span>;i</span><span>++</span><span>) </span><span>read</span><span>(id[i]),id[i]</span><span>=</span><span>(id[i]</span><span>+</span><span>las)</span><span>%</span><span>n</span><span>+</span><span>1</span><span>;</span></span>
+<span class="line"><span>		sort</span><span>(id</span><span>+</span><span>1</span><span>,id</span><span>+</span><span>5</span><span>);</span></span>
+<span class="line"><span>		tmp1</span><span>=</span><span>id[</span><span>1</span><span>],tmp2</span><span>=</span><span>id[</span><span>2</span><span>],tmp3</span><span>=</span><span>id[</span><span>3</span><span>],tmp4</span><span>=</span><span>id[</span><span>4</span><span>];</span></span>
+<span class="line"><span>		int</span><span> l</span><span>=</span><span>0</span><span>,r</span><span>=</span><span>tot</span><span>+</span><span>1</span><span>,mid;</span></span>
+<span class="line"><span>		while</span><span> (l</span><span>+</span><span>1</span><span>&#x3C;</span><span>r) {</span></span>
+<span class="line"><span>			mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>			s1</span><span>=</span><span>s2</span><span>=</span><span>s3</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>			if</span><span> (tmp1</span><span>&#x3C;</span><span>tmp2) s1</span><span>=</span><span>Query</span><span>(</span><span>1</span><span>,n,root[mid],tmp1,tmp2).rsum;</span></span>
+<span class="line"><span>			if</span><span> (tmp2</span><span>+</span><span>1</span><span>&#x3C;</span><span>tmp3) s2</span><span>=</span><span>Query</span><span>(</span><span>1</span><span>,n,root[mid],tmp2</span><span>+</span><span>1</span><span>,tmp3</span><span>-</span><span>1</span><span>).sum;</span></span>
+<span class="line"><span>			if</span><span> (tmp3</span><span>&#x3C;</span><span>tmp4) s3</span><span>=</span><span>Query</span><span>(</span><span>1</span><span>,n,root[mid],tmp3,tmp4).lsum;</span></span>
+<span class="line"><span>			if</span><span> (s1</span><span>+</span><span>s2</span><span>+</span><span>s3</span><span>>=</span><span>0</span><span>) l</span><span>=</span><span>mid;</span></span>
+<span class="line"><span>			else</span><span> r</span><span>=</span><span>mid;</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		printf</span><span>(</span><span>"</span><span>%d\n</span><span>"</span><span>,las</span><span>=</span><span>g[l]);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/08/24/P3350-ZJOI2016-%E6%97%85%E8%A1%8C%E8%80%85/"><span>← 较早一篇</span><strong>P3350 [ZJOI2016] 旅行者</strong></a><a href="/2023/08/24/CF1830D-Mex-Tree/"><span>较新一篇 →</span><strong>CF1830D Mex Tree</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle">[国家集训队] middle</a></li><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

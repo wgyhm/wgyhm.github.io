@@ -1,343 +1,91 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[ZJOI2012] 灾难https:&#x2F;&#x2F;hydro.ac&#x2F;d&#x2F;bzoj&#x2F;p&#x2F;2815 Solution如果 $x$ 能供给 $y$，则连 $(x,y)$。 我们想要把它变成一个支配树的形式，新建图连向深度最深的且支配它一个点。比如 $(1,2),(1,3),(2,4),(3,4)$。则有 $(1,2),(1,3),(1,4)$。 在拓扑排序的过程中，观察到如果一个点它的入边的父亲都确定了，则这个">
-<meta property="og:type" content="article">
-<meta property="og:title" content="bzoj2815 [ZJOI2012] 灾难">
-<meta property="og:url" content="http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="[ZJOI2012] 灾难https:&#x2F;&#x2F;hydro.ac&#x2F;d&#x2F;bzoj&#x2F;p&#x2F;2815 Solution如果 $x$ 能供给 $y$，则连 $(x,y)$。 我们想要把它变成一个支配树的形式，新建图连向深度最深的且支配它一个点。比如 $(1,2),(1,3),(2,4),(3,4)$。则有 $(1,2),(1,3),(1,4)$。 在拓扑排序的过程中，观察到如果一个点它的入边的父亲都确定了，则这个">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-18T12:08:54.000Z">
-<meta property="article:modified_time" content="2023-10-18T12:09:46.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="bzoj">
-<meta property="article:tag" content="拓扑排序">
-<meta property="article:tag" content="支配树">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>bzoj2815 [ZJOI2012] 灾难</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/10/18/%E6%9C%80%E5%B0%8F%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/10/18/10-18-NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B-byMQY/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&text=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&is_video=false&description=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj2815 [ZJOI2012] 灾难&body=Check out this article: http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&name=bzoj2815 [ZJOI2012] 灾难&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&t=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ZJOI2012-%E7%81%BE%E9%9A%BE"><span class="toc-number">1.</span> <span class="toc-text">[ZJOI2012] 灾难</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.1.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        bzoj2815 [ZJOI2012] 灾难
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-10-18T12:08:54.000Z" class="dt-published" itemprop="datePublished">2023-10-18</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="p-category" href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" rel="tag">拓扑排序</a>, <a class="p-category" href="/tags/%E6%94%AF%E9%85%8D%E6%A0%91/" rel="tag">支配树</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="ZJOI2012-灾难"><a href="#ZJOI2012-灾难" class="headerlink" title="[ZJOI2012] 灾难"></a>[ZJOI2012] 灾难</h1><p><a target="_blank" rel="noopener" href="https://hydro.ac/d/bzoj/p/2815">https://hydro.ac/d/bzoj/p/2815</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>如果 $x$ 能供给 $y$，则连 $(x,y)$。</p>
-<p>我们想要把它变成一个支配树的形式，新建图连向深度最深的且支配它一个点。比如 $(1,2),(1,3),(2,4),(3,4)$。则有 $(1,2),(1,3),(1,4)$。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="bzoj2815 [ZJOI2012] 灾难"><link rel="canonical" href="https://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>bzoj2815 [ZJOI2012] 灾难 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>bzoj2815 [ZJOI2012] 灾难</h1><div class="article-meta"><time datetime="2023-10-18">2023.10.18</time><span>·</span><span>3 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/bzoj/">#BZOJ</a><a class="chip" href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">#拓扑排序</a><a class="chip" href="/tags/%E6%94%AF%E9%85%8D%E6%A0%91/">#支配树</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#zjoi2012-%E7%81%BE%E9%9A%BE">[ZJOI2012] 灾难</a></li><li><a href="#solution">Solution</a></li></ul></details><div class="prose" data-post-body><span id="ZJOI2012-灾难" class="legacy-anchor" aria-hidden="true"></span><h1 id="zjoi2012-灾难">[ZJOI2012] 灾难</h1>
+<p><a href="https://hydro.ac/d/bzoj/p/2815">https://hydro.ac/d/bzoj/p/2815</a></p>
+<span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h2 id="solution">Solution</h2>
+<p>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 能供给 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span>，则连 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span></span></span></span>。</p>
+<p>我们想要把它变成一个支配树的形式，新建图连向深度最深的且支配它一个点。比如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1,2),(1,3),(2,4),(3,4)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">)</span></span></span></span>。则有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1,2),(1,3),(1,4)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">)</span></span></span></span>。</p>
 <p>在拓扑排序的过程中，观察到如果一个点它的入边的父亲都确定了，则这个点的父亲就是他们的 lca。</p>
 <p>动态加边做 lca，倍增即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span><span class="number">+7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;to[maxn],O[maxn],e[maxn];</span><br><span class="line"><span class="type">int</span> fa[maxn][<span class="number">21</span>];</span><br><span class="line"><span class="type">int</span> n,m,lg[maxn],in[maxn],deep[maxn];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (deep[x]&lt;deep[y]) <span class="built_in">swap</span>(x,y);</span><br><span class="line">	<span class="keyword">while</span> (deep[x]&gt;deep[y]) x=fa[x][lg[deep[x]-deep[y]]];</span><br><span class="line">	<span class="keyword">if</span> (x==y) <span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=lg[deep[x]];i&gt;=<span class="number">0</span>;i--) <span class="keyword">if</span> (fa[x][i]^fa[y][i]) x=fa[x][i],y=fa[y][i];</span><br><span class="line">	<span class="keyword">return</span> fa[x][<span class="number">0</span>]; </span><br><span class="line">&#125;</span><br><span class="line">queue&lt;<span class="type">int</span>&gt;q;</span><br><span class="line"><span class="type">int</span> siz[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	siz[x]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> y:O[x]) <span class="built_in">dfs</span>(y),siz[x]+=siz[y];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i,x;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">2</span>;i&lt;=n;i++) lg[i]=lg[i/<span class="number">2</span>]<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="built_in">read</span>(x);</span><br><span class="line">		<span class="keyword">while</span> (x) &#123;</span><br><span class="line">			to[x].<span class="built_in">push_back</span>(i);</span><br><span class="line">			e[i].<span class="built_in">push_back</span>(x);</span><br><span class="line">			in[i]++;</span><br><span class="line">			<span class="built_in">read</span>(x);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span> (!in[i]) q.<span class="built_in">push</span>(i),deep[i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">		x=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="type">int</span> tmp=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> y:e[x]) &#123;</span><br><span class="line">			<span class="keyword">if</span> (tmp==<span class="number">-1</span>) tmp=y;</span><br><span class="line">			<span class="keyword">else</span> tmp=<span class="built_in">query</span>(tmp,y);</span><br><span class="line">		&#125;</span><br><span class="line">		tmp=<span class="built_in">max</span>(tmp,<span class="number">0</span>);</span><br><span class="line">		fa[x][<span class="number">0</span>]=tmp;deep[x]=deep[tmp]<span class="number">+1</span>;</span><br><span class="line">		O[tmp].<span class="built_in">push_back</span>(x);</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=lg[deep[x]];i++) fa[x][i]=fa[fa[x][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> y:to[x]) <span class="keyword">if</span> (!--in[y]) q.<span class="built_in">push</span>(y);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,siz[i]<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ZJOI2012-%E7%81%BE%E9%9A%BE"><span class="toc-number">1.</span> <span class="toc-text">[ZJOI2012] 灾难</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.1.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&text=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&is_video=false&description=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj2815 [ZJOI2012] 灾难&body=Check out this article: http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&title=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&name=bzoj2815 [ZJOI2012] 灾难&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/10/18/bzoj2815-ZJOI2012-%E7%81%BE%E9%9A%BE/&t=bzoj2815 [ZJOI2012] 灾难"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> ll</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 100005</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>void</span><span> read</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	Tp </span><span>ostream</span><span>&#x26;</span><span> operator</span><span>&#x3C;&#x3C;</span><span>(</span><span>ostream</span><span>&#x26;</span><span> os</span><span>,</span><span>vector</span><span>&#x3C;</span><span>Ty</span><span>></span><span>&#x26;</span><span> V</span><span>){os</span><span>&#x3C;&#x3C;</span><span>"["</span><span>;</span><span>for</span><span>(</span><span>auto&#x26;</span><span> vv:V) os</span><span>&#x3C;&#x3C;</span><span>vv</span><span>&#x3C;&#x3C;</span><span>","</span><span>;os</span><span>&#x3C;&#x3C;</span><span>"]"</span><span>;</span><span>return</span><span> os;}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>const</span><span> int</span><span> mod</span><span>=</span><span>1</span><span>e</span><span>9</span><span>+</span><span>7</span><span>;</span></span>
+<span class="line"><span>int</span><span> power</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>=</span><span>mod</span><span>-</span><span>2</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> sum</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (y) {</span></span>
+<span class="line"><span>		if</span><span> (y</span><span>&#x26;</span><span>1</span><span>) sum</span><span>=</span><span>sum</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		x</span><span>=</span><span>x</span><span>*</span><span>x</span><span>%</span><span>mod;y</span><span>>>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>vector</span><span>&#x3C;int></span><span>to[maxn],O[maxn],e[maxn];</span></span>
+<span class="line"><span>int</span><span> fa[maxn][</span><span>21</span><span>];</span></span>
+<span class="line"><span>int</span><span> n,m,lg[maxn],in[maxn],deep[maxn];</span></span>
+<span class="line"><span>int</span><span> query</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>) {</span></span>
+<span class="line"><span>	if</span><span> (deep[x]</span><span>&#x3C;</span><span>deep[y]) </span><span>swap</span><span>(x,y);</span></span>
+<span class="line"><span>	while</span><span> (deep[x]</span><span>></span><span>deep[y]) x</span><span>=</span><span>fa[x][lg[deep[x]</span><span>-</span><span>deep[y]]];</span></span>
+<span class="line"><span>	if</span><span> (x</span><span>==</span><span>y) </span><span>return</span><span> x;</span></span>
+<span class="line"><span>	for</span><span> (</span><span>int</span><span> i</span><span>=</span><span>lg[deep[x]];i</span><span>>=</span><span>0</span><span>;i</span><span>--</span><span>) </span><span>if</span><span> (fa[x][i]</span><span>^</span><span>fa[y][i]) x</span><span>=</span><span>fa[x][i],y</span><span>=</span><span>fa[y][i];</span></span>
+<span class="line"><span>	return</span><span> fa[x][</span><span>0</span><span>]; </span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>queue</span><span>&#x3C;int></span><span>q;</span></span>
+<span class="line"><span>int</span><span> siz[maxn];</span></span>
+<span class="line"><span>void</span><span> dfs</span><span>(</span><span>int</span><span> x</span><span>) {</span></span>
+<span class="line"><span>	siz[x]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (</span><span>auto</span><span> y:O[x]) </span><span>dfs</span><span>(y),siz[x]</span><span>+=</span><span>siz[y];</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> i,x;</span></span>
+<span class="line"><span>	read</span><span>(n);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>2</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) lg[i]</span><span>=</span><span>lg[i</span><span>/</span><span>2</span><span>]</span><span>+</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		read</span><span>(x);</span></span>
+<span class="line"><span>		while</span><span> (x) {</span></span>
+<span class="line"><span>			to[x].</span><span>push_back</span><span>(i);</span></span>
+<span class="line"><span>			e[i].</span><span>push_back</span><span>(x);</span></span>
+<span class="line"><span>			in[i]</span><span>++</span><span>;</span></span>
+<span class="line"><span>			read</span><span>(x);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>if</span><span> (</span><span>!</span><span>in[i]) q.</span><span>push</span><span>(i),deep[i]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (</span><span>!</span><span>q.</span><span>empty</span><span>()) {</span></span>
+<span class="line"><span>		x</span><span>=</span><span>q.</span><span>front</span><span>();q.</span><span>pop</span><span>();</span></span>
+<span class="line"><span>		int</span><span> tmp</span><span>=-</span><span>1</span><span>;</span></span>
+<span class="line"><span>		for</span><span> (</span><span>auto</span><span> y:e[x]) {</span></span>
+<span class="line"><span>			if</span><span> (tmp</span><span>==-</span><span>1</span><span>) tmp</span><span>=</span><span>y;</span></span>
+<span class="line"><span>			else</span><span> tmp</span><span>=</span><span>query</span><span>(tmp,y);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		tmp</span><span>=</span><span>max</span><span>(tmp,</span><span>0</span><span>);</span></span>
+<span class="line"><span>		fa[x][</span><span>0</span><span>]</span><span>=</span><span>tmp;deep[x]</span><span>=</span><span>deep[tmp]</span><span>+</span><span>1</span><span>;</span></span>
+<span class="line"><span>		O[tmp].</span><span>push_back</span><span>(x);</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>lg[deep[x]];i</span><span>++</span><span>) fa[x][i]</span><span>=</span><span>fa[fa[x][i</span><span>-</span><span>1</span><span>]][i</span><span>-</span><span>1</span><span>];</span></span>
+<span class="line"><span>		for</span><span> (</span><span>auto</span><span> y:to[x]) </span><span>if</span><span> (</span><span>!--</span><span>in[y]) q.</span><span>push</span><span>(y);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	dfs</span><span>(</span><span>0</span><span>);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>printf</span><span>(</span><span>"</span><span>%d\n</span><span>"</span><span>,siz[i]</span><span>-</span><span>1</span><span>);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/10/18/P6344-CCO2017-Vera-%E4%B8%8E%E7%8E%B0%E4%BB%A3%E8%89%BA%E6%9C%AF/"><span>← 较早一篇</span><strong>P6344 [CCO2017] Vera 与现代艺术</strong></a><a href="/2023/10/18/%E6%9C%80%E5%B0%8F%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span>较新一篇 →</span><strong>最小斯坦纳树学习笔记</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#zjoi2012-%E7%81%BE%E9%9A%BE">[ZJOI2012] 灾难</a></li><li><a href="#solution">Solution</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

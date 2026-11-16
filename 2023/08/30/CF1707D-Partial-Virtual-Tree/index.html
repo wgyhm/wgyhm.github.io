@@ -1,353 +1,96 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="CF1707D Partial Virtual TreesDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1707D Solution学到容斥了，感觉妙妙。 感觉这个 $S_i\not &#x3D; S_{i+1}$ 很烦，考虑容斥，令 $g_i$ 表示答案序列，$f_i$ 表示不考虑 $S_i\not &#x3D; S_{i+1}$ 的限制，结尾为 $">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CF1707D Partial Virtual Tree">
-<meta property="og:url" content="http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="CF1707D Partial Virtual TreesDescriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF1707D Solution学到容斥了，感觉妙妙。 感觉这个 $S_i\not &#x3D; S_{i+1}$ 很烦，考虑容斥，令 $g_i$ 表示答案序列，$f_i$ 表示不考虑 $S_i\not &#x3D; S_{i+1}$ 的限制，结尾为 $">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-08-30T08:59:51.000Z">
-<meta property="article:modified_time" content="2023-08-30T10:13:28.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="dp">
-<meta property="article:tag" content="容斥">
-<meta property="article:tag" content="计数">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>CF1707D Partial Virtual Tree</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/08/30/P9377-THUPC-2023-%E5%86%B3%E8%B5%9B-%E7%99%BE%E5%90%88/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/08/30/P3343-ZJOI2015-%E5%9C%B0%E9%9C%87%E5%90%8E%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&text=CF1707D Partial Virtual Tree"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&is_video=false&description=CF1707D Partial Virtual Tree"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CF1707D Partial Virtual Tree&body=Check out this article: http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&name=CF1707D Partial Virtual Tree&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&t=CF1707D Partial Virtual Tree"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CF1707D-Partial-Virtual-Trees"><span class="toc-number">1.</span> <span class="toc-text">CF1707D Partial Virtual Trees</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">1.3.</span> <span class="toc-text">Code</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        CF1707D Partial Virtual Tree
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-08-30T08:59:51.000Z" class="dt-published" itemprop="datePublished">2023-08-30</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/dp/" rel="tag">dp</a>, <a class="p-category" href="/tags/%E5%AE%B9%E6%96%A5/" rel="tag">容斥</a>, <a class="p-category" href="/tags/%E8%AE%A1%E6%95%B0/" rel="tag">计数</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="CF1707D-Partial-Virtual-Trees"><a href="#CF1707D-Partial-Virtual-Trees" class="headerlink" title="CF1707D Partial Virtual Trees"></a>CF1707D Partial Virtual Trees</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1707D">https://www.luogu.com.cn/problem/CF1707D</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>学到容斥了，感觉妙妙。</p>
-<p>感觉这个 $S_i\not &#x3D; S_{i+1}$ 很烦，考虑容斥，令 $g_i$ 表示答案序列，$f_i$ 表示不考虑 $S_i\not &#x3D; S_{i+1}$ 的限制，结尾为 ${1}$，且满足题目限制的方案数。</p>
-<p>有 $f_i&#x3D;\sum\limits_{j\le i} \dbinom{i}{j} g_j$，根据二项式反演，有 $g_i&#x3D;\sum\limits_{j\le i} (-1)^{i-j}\dbinom{i}{j}f_i$ 。只需要求出 $f$ 即可。</p>
-<p>令 $f_{i,j}$ 表示时刻 $j$ 在 $i$ 的子树中仍然有点被选中的方案数。如果一个点有至少两个互不相同的子树中存在被选中的点，那么这个点一定要被选中。否则随便。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="CF1707D Partial Virtual Tree"><link rel="canonical" href="https://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>CF1707D Partial Virtual Tree · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>CF1707D Partial Virtual Tree</h1><div class="article-meta"><time datetime="2023-08-30">2023.08.30</time><span>·</span><span>3 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a><a class="chip" href="/tags/%E8%AE%A1%E6%95%B0/">#计数</a><a class="chip" href="/tags/%E5%AE%B9%E6%96%A5/">#容斥</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#cf1707d-partial-virtual-trees">CF1707D Partial Virtual Trees</a></li><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li><li><a href="#code">Code</a></li></ul></details><div class="prose" data-post-body><span id="CF1707D-Partial-Virtual-Trees" class="legacy-anchor" aria-hidden="true"></span><h1 id="cf1707d-partial-virtual-trees">CF1707D Partial Virtual Trees</h1>
+<span id="Description" class="legacy-anchor" aria-hidden="true"></span><h2 id="description">Description</h2>
+<p><a href="https://www.luogu.com.cn/problem/CF1707D">https://www.luogu.com.cn/problem/CF1707D</a></p>
+<span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h2 id="solution">Solution</h2>
+<p>学到容斥了，感觉妙妙。</p>
+<p>感觉这个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>i</mi></msub><mo>≠</mo><msub><mi>S</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">S_i\not = S_{i+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span> 很烦，考虑容斥，令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">g_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示答案序列，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示不考虑 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>i</mi></msub><mo>≠</mo><msub><mi>S</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">S_i\not = S_{i+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span> 的限制，结尾为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{1\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mclose">}</span></span></span></span>，且满足题目限制的方案数。</p>
+<p>有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>j</mi><mo>≤</mo><mi>i</mi></mrow></munder><mstyle scriptlevel="0" displaystyle="true"><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mi>i</mi><mi>j</mi></mfrac><mo fence="true">)</mo></mrow></mstyle><msub><mi>g</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">f_i=\sum\limits_{j\le i} \dbinom{i}{j} g_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.5638em;vertical-align:-1.1138em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.1223em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mrel mtight">≤</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3365em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>，根据二项式反演，有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>i</mi></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>j</mi><mo>≤</mo><mi>i</mi></mrow></munder><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mrow><mi>i</mi><mo>−</mo><mi>j</mi></mrow></msup><mstyle scriptlevel="0" displaystyle="true"><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mi>i</mi><mi>j</mi></mfrac><mo fence="true">)</mo></mrow></mstyle><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">g_i=\sum\limits_{j\le i} (-1)^{i-j}\dbinom{i}{j}f_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.5638em;vertical-align:-1.1138em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.1223em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mrel mtight">≤</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1138em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3365em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 。只需要求出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span> 即可。</p>
+<p>令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> 表示时刻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span> 在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 的子树中仍然有点被选中的方案数。如果一个点有至少两个互不相同的子树中存在被选中的点，那么这个点一定要被选中。否则随便。</p>
 <p>分两种情况考虑：</p>
 <ul>
-<li><p>$i$ 在集合中</p>
-<p>则子树的内可以任意选。<br>$$<br>f_{i,j}&#x3D;\prod\limits_{y\in son_i} \sum\limits_{k\le j} f_{y,j}<br>$$<br>令 $s_{y,j}&#x3D;\sum\limits_{k\le j} f_{y,k}$，前缀和优化一下是简单的。</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 在集合中</p>
+<p>则子树的内可以任意选。</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>=</mo><munder><mo>∏</mo><mrow><mi>y</mi><mo>∈</mo><mi>s</mi><mi>o</mi><msub><mi>n</mi><mi>i</mi></msub></mrow></munder><munder><mo>∑</mo><mrow><mi>k</mi><mo>≤</mo><mi>j</mi></mrow></munder><msub><mi>f</mi><mrow><mi>y</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j}=\prod\limits_{y\in son_i} \sum\limits_{k\le j} f_{y,j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4882em;vertical-align:-1.4382em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.9em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight">so</span><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∏</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3861em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mrel mtight">≤</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4382em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span>
+<p>令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mrow><mi>y</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>k</mi><mo>≤</mo><mi>j</mi></mrow></munder><msub><mi>f</mi><mrow><mi>y</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">s_{y,j}=\sum\limits_{k\le j} f_{y,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.8882em;vertical-align:-1.1382em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.0979em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mrel mtight">≤</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1382em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>，前缀和优化一下是简单的。</p>
 </li>
-<li><p>$i$ 不在集合中</p>
-<p>则枚举 $i$ 在 $p$ 到 $p+1$ 的时间熄灭。<br>$$<br>f_{i,j}&#x3D;\sum_{p&lt;j}\sum_{x\in son_i} f_{x,j}\prod_{y\in son_i,y\not &#x3D; x} s_{y,p}<br>$$<br>预处理一些东西，前后缀积什么的，可以做到全局 $O(n^2)$。</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 不在集合中</p>
+<p>则枚举 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">p+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 的时间熄灭。</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>p</mi><mo>&#x3C;</mo><mi>j</mi></mrow></munder><munder><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><mi>s</mi><mi>o</mi><msub><mi>n</mi><mi>i</mi></msub></mrow></munder><msub><mi>f</mi><mrow><mi>x</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><munder><mo>∏</mo><mrow><mi>y</mi><mo>∈</mo><mi>s</mi><mi>o</mi><msub><mi>n</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>y</mi><mo>≠</mo><mi>x</mi></mrow></munder><msub><mi>s</mi><mrow><mi>y</mi><mo separator="true">,</mo><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j}=\sum_{p&#x3C;j}\sum_{x\in son_i} f_{x,j}\prod_{y\in son_i,y\not = x} s_{y,p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4882em;vertical-align:-1.4382em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mrel mtight">&#x3C;</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.9em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight">so</span><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3501em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight">so</span><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span><span class="mrel mtight"><span class="mord vbox mtight"><span class="thinbox mtight"><span class="rlap mtight"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord mtight"><span class="mrel mtight"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak mtight"></span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">x</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∏</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4382em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span>
+<p>预处理一些东西，前后缀积什么的，可以做到全局 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
 </li>
 </ul>
-<p>注意最后一个集合一定为 ${1}$。需要特判一下。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 2005</span></span><br><span class="line"><span class="type">int</span> mod;</span><br><span class="line"><span class="type">int</span> c[maxn][maxn];</span><br><span class="line"><span class="type">int</span> n,dp[maxn][maxn],s[maxn][maxn],fs[maxn][maxn],fp[maxn][maxn],ft[maxn],g[maxn],o[maxn];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;to[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;x,<span class="type">int</span> y)</span> </span>&#123;x=(x+y)%mod;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> id=<span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> pre)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i,j,y;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> y:to[x]) <span class="keyword">if</span> (y^pre) <span class="built_in">solve</span>(y,x);</span><br><span class="line">	<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) dp[x][j]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (x!=id) &#123;</span><br><span class="line">		<span class="type">int</span> nums=to[x].<span class="built_in">size</span>(),tot=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;nums;i++) </span><br><span class="line">			<span class="keyword">if</span> ((y=to[x][i])^pre) &#123;</span><br><span class="line">				o[y]=++tot;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) dp[x][j]=dp[x][j]*s[y][j]%mod;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (tot&gt;<span class="number">0</span>) fs[tot][j]=fs[tot<span class="number">-1</span>][j]*s[y][j]%mod;</span><br><span class="line">					<span class="keyword">else</span> fs[tot][j]=s[y][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">for</span> (i=nums<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) <span class="keyword">if</span> ((y=to[x][i])^pre) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) </span><br><span class="line">				<span class="keyword">if</span> (o[y]&lt;tot) fp[o[y]][j]=fp[o[y]<span class="number">+1</span>][j]*s[y][j]%mod;</span><br><span class="line">				<span class="keyword">else</span> fp[o[y]][j]=s[y][j]; </span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> y:to[x]) <span class="keyword">if</span> (y^pre) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=n;j++) ft[j]=(o[y]?fs[o[y]<span class="number">-1</span>][j]:<span class="number">1</span>)*(o[y]&lt;tot?fp[o[y]<span class="number">+1</span>][j]:<span class="number">1</span>)%mod;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">add</span>(ft[j],ft[j<span class="number">-1</span>]),<span class="built_in">add</span>(dp[x][j],dp[y][j]*ft[j<span class="number">-1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> y:to[x]) <span class="keyword">if</span> (y^pre) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) dp[x][j]=dp[x][j]*s[y][j<span class="number">-1</span>]%mod;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	s[x][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">add</span>(s[x][j],s[x][j<span class="number">-1</span>]+dp[x][j]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	<span class="type">int</span> i,j,x,y;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(mod);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		c[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=i;j++) c[i][j]=(c[i<span class="number">-1</span>][j<span class="number">-1</span>]+c[i<span class="number">-1</span>][j])%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) dp[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">		<span class="built_in">read</span>(x),<span class="built_in">read</span>(y);</span><br><span class="line">		to[x].<span class="built_in">push_back</span>(y);</span><br><span class="line">		to[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">solve</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=i;j++) &#123;</span><br><span class="line">			<span class="type">int</span> sum=c[i][j]*dp[id][j]%mod;</span><br><span class="line">			<span class="keyword">if</span> ((i-j)%<span class="number">2</span>==<span class="number">0</span>) <span class="built_in">add</span>(g[i],sum);</span><br><span class="line">			<span class="keyword">else</span> <span class="built_in">add</span>(g[i],mod-sum);</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%lld &quot;</span>,g[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CF1707D-Partial-Virtual-Trees"><span class="toc-number">1.</span> <span class="toc-text">CF1707D Partial Virtual Trees</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">1.3.</span> <span class="toc-text">Code</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&text=CF1707D Partial Virtual Tree"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&is_video=false&description=CF1707D Partial Virtual Tree"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CF1707D Partial Virtual Tree&body=Check out this article: http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&title=CF1707D Partial Virtual Tree"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&name=CF1707D Partial Virtual Tree&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/08/30/CF1707D-Partial-Virtual-Tree/&t=CF1707D Partial Virtual Tree"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<p>注意最后一个集合一定为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{1\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mclose">}</span></span></span></span>。需要特判一下。</p>
+<span id="Code" class="legacy-anchor" aria-hidden="true"></span><h2 id="code">Code</h2>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#define</span><span> int</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 2005</span></span>
+<span class="line"><span>int</span><span> mod;</span></span>
+<span class="line"><span>int</span><span> c[maxn][maxn];</span></span>
+<span class="line"><span>int</span><span> n,dp[maxn][maxn],s[maxn][maxn],fs[maxn][maxn],fp[maxn][maxn],ft[maxn],g[maxn],o[maxn];</span></span>
+<span class="line"><span>vector</span><span>&#x3C;int></span><span>to[maxn];</span></span>
+<span class="line"><span>void</span><span> add</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>,</span><span>int</span><span> y</span><span>) {x</span><span>=</span><span>(x</span><span>+</span><span>y)</span><span>%</span><span>mod;}</span></span>
+<span class="line"><span>const</span><span> int</span><span> id</span><span>=</span><span>1</span><span>; </span></span>
+<span class="line"><span>void</span><span> solve</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> pre</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> i,j,y;</span></span>
+<span class="line"><span>	for</span><span> (</span><span>auto</span><span> y:to[x]) </span><span>if</span><span> (y</span><span>^</span><span>pre) </span><span>solve</span><span>(y,x);</span></span>
+<span class="line"><span>	for</span><span> (j</span><span>=</span><span>0</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) dp[x][j]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	if</span><span> (x</span><span>!=</span><span>id) {</span></span>
+<span class="line"><span>		int</span><span> nums</span><span>=</span><span>to[x].</span><span>size</span><span>(),tot</span><span>=-</span><span>1</span><span>;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>nums;i</span><span>++</span><span>) </span></span>
+<span class="line"><span>			if</span><span> ((y</span><span>=</span><span>to[x][i])</span><span>^</span><span>pre) {</span></span>
+<span class="line"><span>				o[y]</span><span>=++</span><span>tot;</span></span>
+<span class="line"><span>				for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) dp[x][j]</span><span>=</span><span>dp[x][j]</span><span>*</span><span>s[y][j]</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>				for</span><span> (j</span><span>=</span><span>0</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) {</span></span>
+<span class="line"><span>					if</span><span> (tot</span><span>></span><span>0</span><span>) fs[tot][j]</span><span>=</span><span>fs[tot</span><span>-</span><span>1</span><span>][j]</span><span>*</span><span>s[y][j]</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>					else</span><span> fs[tot][j]</span><span>=</span><span>s[y][j];</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>nums</span><span>-</span><span>1</span><span>;i</span><span>>=</span><span>0</span><span>;i</span><span>--</span><span>) </span><span>if</span><span> ((y</span><span>=</span><span>to[x][i])</span><span>^</span><span>pre) {</span></span>
+<span class="line"><span>			for</span><span> (j</span><span>=</span><span>0</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) </span></span>
+<span class="line"><span>				if</span><span> (o[y]</span><span>&#x3C;</span><span>tot) fp[o[y]][j]</span><span>=</span><span>fp[o[y]</span><span>+</span><span>1</span><span>][j]</span><span>*</span><span>s[y][j]</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>				else</span><span> fp[o[y]][j]</span><span>=</span><span>s[y][j]; </span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		</span></span>
+<span class="line"><span>		for</span><span> (</span><span>auto</span><span> y:to[x]) </span><span>if</span><span> (y</span><span>^</span><span>pre) {</span></span>
+<span class="line"><span>			for</span><span> (j</span><span>=</span><span>0</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) ft[j]</span><span>=</span><span>(o[y]</span><span>?</span><span>fs[o[y]</span><span>-</span><span>1</span><span>][j]</span><span>:</span><span>1</span><span>)</span><span>*</span><span>(o[y]</span><span>&#x3C;</span><span>tot</span><span>?</span><span>fp[o[y]</span><span>+</span><span>1</span><span>][j]</span><span>:</span><span>1</span><span>)</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>			for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) </span><span>add</span><span>(ft[j],ft[j</span><span>-</span><span>1</span><span>]),</span><span>add</span><span>(dp[x][j],dp[y][j]</span><span>*</span><span>ft[j</span><span>-</span><span>1</span><span>]);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	else</span><span> {</span></span>
+<span class="line"><span>		for</span><span> (</span><span>auto</span><span> y:to[x]) </span><span>if</span><span> (y</span><span>^</span><span>pre) {</span></span>
+<span class="line"><span>			for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) dp[x][j]</span><span>=</span><span>dp[x][j]</span><span>*</span><span>s[y][j</span><span>-</span><span>1</span><span>]</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	s[x][</span><span>0</span><span>]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) </span><span>add</span><span>(s[x][j],s[x][j</span><span>-</span><span>1</span><span>]</span><span>+</span><span>dp[x][j]);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>//	freopen("1.in","r",stdin);</span></span>
+<span class="line"><span>	int</span><span> i,j,x,y;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(mod);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		c[i][</span><span>0</span><span>]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>i;j</span><span>++</span><span>) c[i][j]</span><span>=</span><span>(c[i</span><span>-</span><span>1</span><span>][j</span><span>-</span><span>1</span><span>]</span><span>+</span><span>c[i</span><span>-</span><span>1</span><span>][j])</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) dp[i][</span><span>0</span><span>]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		read</span><span>(x),</span><span>read</span><span>(y);</span></span>
+<span class="line"><span>		to[x].</span><span>push_back</span><span>(y);</span></span>
+<span class="line"><span>		to[y].</span><span>push_back</span><span>(x);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	solve</span><span>(</span><span>1</span><span>,</span><span>0</span><span>);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>)</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>i;j</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			int</span><span> sum</span><span>=</span><span>c[i][j]</span><span>*</span><span>dp[id][j]</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>			if</span><span> ((i</span><span>-</span><span>j)</span><span>%</span><span>2</span><span>==</span><span>0</span><span>) </span><span>add</span><span>(g[i],sum);</span></span>
+<span class="line"><span>			else</span><span> add</span><span>(g[i],mod</span><span>-</span><span>sum);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) </span><span>printf</span><span>(</span><span>"</span><span>%lld</span><span> "</span><span>,g[i]);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/08/30/P2109-NOI2007-%E7%94%9F%E6%88%90%E6%A0%91%E8%AE%A1%E6%95%B0/"><span>← 较早一篇</span><strong>P2109 [NOI2007] 生成树计数</strong></a><a href="/2023/08/31/P9388-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%85%88%E4%BA%BA%E7%B1%BB%E7%9A%84%E4%BA%BA%E7%B1%BB%E9%80%89%E5%88%AB/"><span>较新一篇 →</span><strong>P9388 [THUPC 2023 决赛] 先人类的人类选别</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#cf1707d-partial-virtual-trees">CF1707D Partial Virtual Trees</a></li><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li><li><a href="#code">Code</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

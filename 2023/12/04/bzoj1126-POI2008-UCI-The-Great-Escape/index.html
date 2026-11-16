@@ -1,354 +1,79 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3473 Solution还是一些细节没想清楚啊。 观察到每次相当于切割一次矩阵，我们令 $f_{i,j,k,l,0&#x2F;1&#x2F;2&#x2F;3}$ 表示矩阵的左下角的为 $(i,j)$，右上角为 $(k,l)$，接下来要往 上&#x2F;右&#x2F;下&#x2F;左 走。 先不考虑有障碍的情">
-<meta property="og:type" content="article">
-<meta property="og:title" content="bzoj1126 [POI2008] UCI-The Great Escape">
-<meta property="og:url" content="http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3473 Solution还是一些细节没想清楚啊。 观察到每次相当于切割一次矩阵，我们令 $f_{i,j,k,l,0&#x2F;1&#x2F;2&#x2F;3}$ 表示矩阵的左下角的为 $(i,j)$，右上角为 $(k,l)$，接下来要往 上&#x2F;右&#x2F;下&#x2F;左 走。 先不考虑有障碍的情">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s2.loli.net/2023/12/04/3fVLPtuDhZ4lkIX.png">
-<meta property="article:published_time" content="2023-12-04T11:16:46.000Z">
-<meta property="article:modified_time" content="2023-12-04T11:18:32.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="bzoj">
-<meta property="article:tag" content="dp">
-<meta property="article:tag" content="递推">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2023/12/04/3fVLPtuDhZ4lkIX.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>bzoj1126 [POI2008] UCI-The Great Escape</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/12/04/bzoj1132-POI2008-KUP-Plot-purchase/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/12/04/ABC216G-01Sequence/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&text=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&is_video=false&description=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj1126 [POI2008] UCI-The Great Escape&body=Check out this article: http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&name=bzoj1126 [POI2008] UCI-The Great Escape&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&t=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        bzoj1126 [POI2008] UCI-The Great Escape
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-12-04T11:16:46.000Z" class="dt-published" itemprop="datePublished">2023-12-04</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="p-category" href="/tags/dp/" rel="tag">dp</a>, <a class="p-category" href="/tags/%E9%80%92%E6%8E%A8/" rel="tag">递推</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3473">https://www.luogu.com.cn/problem/P3473</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>还是一些细节没想清楚啊。</p>
-<p>观察到每次相当于切割一次矩阵，我们令 $f_{i,j,k,l,0&#x2F;1&#x2F;2&#x2F;3}$ 表示矩阵的左下角的为 $(i,j)$，右上角为 $(k,l)$，接下来要往 上&#x2F;右&#x2F;下&#x2F;左 走。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="bzoj1126 [POI2008] UCI-The Great Escape"><link rel="canonical" href="https://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>bzoj1126 [POI2008] UCI-The Great Escape · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>bzoj1126 [POI2008] UCI-The Great Escape</h1><div class="article-meta"><time datetime="2023-12-04">2023.12.04</time><span>·</span><span>4 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/bzoj/">#BZOJ</a><a class="chip" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a><a class="chip" href="/tags/%E9%80%92%E6%8E%A8/">#递推</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ul></details><div class="prose" data-post-body><span id="Description" class="legacy-anchor" aria-hidden="true"></span><h2 id="description">Description</h2>
+<p><a href="https://www.luogu.com.cn/problem/P3473">https://www.luogu.com.cn/problem/P3473</a></p>
+<span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h2 id="solution">Solution</h2>
+<p>还是一些细节没想清楚啊。</p>
+<p>观察到每次相当于切割一次矩阵，我们令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k,l,0/1/2/3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0496em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">0/1/2/3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span></span></span></span> 表示矩阵的左下角的为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">)</span></span></span></span>，右上角为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(k,l)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mclose">)</span></span></span></span>，接下来要往 上/右/下/左 走。</p>
 <p>先不考虑有障碍的情况。</p>
-<p>感觉从 $(1,1)$ 开始不好赋初值啊，于是我们考虑从 $(sx,sy)$ 开始倒着走，也就是每次左转。比如我们以往上走为例子：</p>
-<p><img src="https://s2.loli.net/2023/12/04/3fVLPtuDhZ4lkIX.png" alt="image-20231204191533649"></p>
-<p>$f_{i,j,k,l,0}\gets f_{r,j+1,k,l,1}$。</p>
+<p>感觉从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 开始不好赋初值啊，于是我们考虑从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>s</mi><mi>x</mi><mo separator="true">,</mo><mi>s</mi><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(sx,sy)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">sy</span><span class="mclose">)</span></span></span></span> 开始倒着走，也就是每次左转。比如我们以往上走为例子：</p>
+<p><span class="image-placeholder" data-missing-image="">图片暂缺 · image-20231204191533649</span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>0</mn></mrow></msub><mo>←</mo><msub><mi>f</mi><mrow><mi>r</mi><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k,l,0}\gets f_{r,j+1,k,l,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>。</p>
 <p>考虑用已经递推出来的来化简这个东西：</p>
-<p>$f_{i,j,k,l,0}\gets f_{i+1,j,k,l,0}+f_{i,j+1,k,l,1}$。</p>
-<p>可以发现新加入的一条是列为 $j$，行 $[i,k]$ 的一列值，只需要判断这一段上没有障碍就可以转移。</p>
-<p>同样的可以扩展到剩下 $3$ 种情况。</p>
-<p>最初状态 $f_{sx,sy,sx,sy,i}&#x3D;1$。</p>
-<p>然后考虑转移方向，观察到每次让矩形的半周长增加 $1$。所以我们先枚举矩形半周长即可。</p>
-<p>这样就可以 $O(n^4)$ 递推了。空间需要滚动数组优化，复杂度为 $O(n^3)$，有 $8$ 倍的常数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 105</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename T&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename T,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function">Tp <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,T t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,T x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">int</span> n,m,mod;</span><br><span class="line"><span class="type">int</span> r[maxn][maxn],c[maxn][maxn],a[maxn][maxn];</span><br><span class="line"><span class="type">int</span> sx,sy,ans;</span><br><span class="line"><span class="type">int</span> f[<span class="number">2</span>][maxn][maxn][maxn][<span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i,j,k,l,o,s,lenx,leny;<span class="type">char</span> ch;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);<span class="built_in">read</span>(mod);</span><br><span class="line">	<span class="built_in">read</span>(sy);<span class="built_in">read</span>(sx);sx=n-sx<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=n;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">		cin&gt;&gt;ch;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=m;j++,ch=<span class="built_in">getchar</span>()) a[i][j]=(ch==<span class="string">&#x27;*&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=m;j++) c[i][j]=c[i][j<span class="number">-1</span>]+a[i][j],r[i][j]=r[i<span class="number">-1</span>][j]+a[i][j];</span><br><span class="line">	<span class="keyword">for</span> (s=<span class="number">2</span>;s&lt;=n+m;s++) &#123;</span><br><span class="line">		<span class="type">int</span> now=s&amp;<span class="number">1</span>,pre=now^<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">memset</span>(f[now],<span class="number">0</span>,<span class="built_in">sizeof</span>(f[now]));</span><br><span class="line">		<span class="keyword">for</span> (lenx=<span class="number">1</span>;lenx&lt;s;lenx++) &#123;<span class="comment">//x的长度</span></span><br><span class="line">			leny=s-lenx;</span><br><span class="line">			<span class="keyword">for</span> (i=<span class="number">1</span>,k=lenx;i&lt;=sx&amp;&amp;k&lt;=n;i++,k++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">1</span>,l=leny;j&lt;=sy&amp;&amp;l&lt;=m;j++,l++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (k&lt;sx||l&lt;sy) <span class="keyword">continue</span>;</span><br><span class="line">					f[now][j][k][l][<span class="number">0</span>]=(f[pre][j][k][l][<span class="number">0</span>]+f[pre][j<span class="number">+1</span>][k][l][<span class="number">1</span>]+(i==sx&amp;&amp;j==sy&amp;&amp;k==sx&amp;&amp;l==sy))*(r[i<span class="number">-1</span>][j]==r[k][j])%mod;</span><br><span class="line">					f[now][j][k][l][<span class="number">1</span>]=(f[pre][j<span class="number">+1</span>][k][l][<span class="number">1</span>]+f[pre][j][k<span class="number">-1</span>][l][<span class="number">2</span>]+(i==sx&amp;&amp;j==sy&amp;&amp;k==sx&amp;&amp;l==sy))*(c[k][j<span class="number">-1</span>]==c[k][l])%mod;</span><br><span class="line">					f[now][j][k][l][<span class="number">2</span>]=(f[pre][j][k<span class="number">-1</span>][l][<span class="number">2</span>]+f[pre][j][k][l<span class="number">-1</span>][<span class="number">3</span>]+(i==sx&amp;&amp;j==sy&amp;&amp;k==sx&amp;&amp;l==sy))*(r[i<span class="number">-1</span>][l]==r[k][l])%mod;</span><br><span class="line">					f[now][j][k][l][<span class="number">3</span>]=(f[pre][j][k][l<span class="number">-1</span>][<span class="number">3</span>]+f[pre][j][k][l][<span class="number">0</span>]+(i==sx&amp;&amp;j==sy&amp;&amp;k==sx&amp;&amp;l==sy))*(c[i][j<span class="number">-1</span>]==c[i][l])%mod;</span><br><span class="line">					<span class="comment">// gdb(i,j,k,l,f[i][j][k][l][0],f[i][j][k][l][1],f[i][j][k][l][2],f[i][j][k][l][3]);</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			ans=(ans+f[now][<span class="number">1</span>][lenx][leny][<span class="number">0</span>])%mod;<span class="comment">//统计答案</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// for (k=sx;k&lt;=n;k++) for (l=sy;l&lt;=m;l++) ans=(ans+f[(k+l)&amp;1][1][k][l][0])%mod;</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//i=begin &amp;&amp; g++ $i.cpp -o $i -std=c++14 &amp;&amp; ./$i</span></span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&text=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&is_video=false&description=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj1126 [POI2008] UCI-The Great Escape&body=Check out this article: http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&title=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&name=bzoj1126 [POI2008] UCI-The Great Escape&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/&t=bzoj1126 [POI2008] UCI-The Great Escape"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>0</mn></mrow></msub><mo>←</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>0</mn></mrow></msub><mo>+</mo><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k,l,0}\gets f_{i+1,j,k,l,0}+f_{i,j+1,k,l,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>。</p>
+<p>可以发现新加入的一条是列为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span>，行 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>i</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[i,k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">]</span></span></span></span> 的一列值，只需要判断这一段上没有障碍就可以转移。</p>
+<p>同样的可以扩展到剩下 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 种情况。</p>
+<p>最初状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>s</mi><mi>x</mi><mo separator="true">,</mo><mi>s</mi><mi>y</mi><mo separator="true">,</mo><mi>s</mi><mi>x</mi><mo separator="true">,</mo><mi>s</mi><mi>y</mi><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f_{sx,sy,sx,sy,i}=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">sy</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">sy</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p>然后考虑转移方向，观察到每次让矩形的半周长增加 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。所以我们先枚举矩形半周长即可。</p>
+<p>这样就可以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>4</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^4)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 递推了。空间需要滚动数组优化，复杂度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>3</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span> 倍的常数。</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> ll</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 105</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>Tp </span><span>void</span><span> read</span><span>(T </span><span>&#x26;</span><span>x){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>int</span><span> n,m,mod;</span></span>
+<span class="line"><span>int</span><span> r[maxn][maxn],c[maxn][maxn],a[maxn][maxn];</span></span>
+<span class="line"><span>int</span><span> sx,sy,ans;</span></span>
+<span class="line"><span>int</span><span> f[</span><span>2</span><span>][maxn][maxn][maxn][</span><span>4</span><span>];</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> i,j,k,l,o,s,lenx,leny;</span><span>char</span><span> ch;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(m);</span><span>read</span><span>(mod);</span></span>
+<span class="line"><span>	read</span><span>(sy);</span><span>read</span><span>(sx);sx</span><span>=</span><span>n</span><span>-</span><span>sx</span><span>+</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>n;i</span><span>>=</span><span>1</span><span>;i</span><span>--</span><span>) {</span></span>
+<span class="line"><span>		cin</span><span>>></span><span>ch;</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>m;j</span><span>++</span><span>,ch</span><span>=</span><span>getchar</span><span>()) a[i][j]</span><span>=</span><span>(ch</span><span>==</span><span>'*'</span><span>);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>m;j</span><span>++</span><span>) c[i][j]</span><span>=</span><span>c[i][j</span><span>-</span><span>1</span><span>]</span><span>+</span><span>a[i][j],r[i][j]</span><span>=</span><span>r[i</span><span>-</span><span>1</span><span>][j]</span><span>+</span><span>a[i][j];</span></span>
+<span class="line"><span>	for</span><span> (s</span><span>=</span><span>2</span><span>;s</span><span>&#x3C;=</span><span>n</span><span>+</span><span>m;s</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		int</span><span> now</span><span>=</span><span>s</span><span>&#x26;</span><span>1</span><span>,pre</span><span>=</span><span>now</span><span>^</span><span>1</span><span>;</span></span>
+<span class="line"><span>		memset</span><span>(f[now],</span><span>0</span><span>,</span><span>sizeof</span><span>(f[now]));</span></span>
+<span class="line"><span>		for</span><span> (lenx</span><span>=</span><span>1</span><span>;lenx</span><span>&#x3C;</span><span>s;lenx</span><span>++</span><span>) {</span><span>//x的长度</span></span>
+<span class="line"><span>			leny</span><span>=</span><span>s</span><span>-</span><span>lenx;</span></span>
+<span class="line"><span>			for</span><span> (i</span><span>=</span><span>1</span><span>,k</span><span>=</span><span>lenx;i</span><span>&#x3C;=</span><span>sx</span><span>&#x26;&#x26;</span><span>k</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>,k</span><span>++</span><span>) {</span></span>
+<span class="line"><span>				for</span><span> (j</span><span>=</span><span>1</span><span>,l</span><span>=</span><span>leny;j</span><span>&#x3C;=</span><span>sy</span><span>&#x26;&#x26;</span><span>l</span><span>&#x3C;=</span><span>m;j</span><span>++</span><span>,l</span><span>++</span><span>) {</span></span>
+<span class="line"><span>					if</span><span> (k</span><span>&#x3C;</span><span>sx</span><span>||</span><span>l</span><span>&#x3C;</span><span>sy) </span><span>continue</span><span>;</span></span>
+<span class="line"><span>					f[now][j][k][l][</span><span>0</span><span>]</span><span>=</span><span>(f[pre][j][k][l][</span><span>0</span><span>]</span><span>+</span><span>f[pre][j</span><span>+</span><span>1</span><span>][k][l][</span><span>1</span><span>]</span><span>+</span><span>(i</span><span>==</span><span>sx</span><span>&#x26;&#x26;</span><span>j</span><span>==</span><span>sy</span><span>&#x26;&#x26;</span><span>k</span><span>==</span><span>sx</span><span>&#x26;&#x26;</span><span>l</span><span>==</span><span>sy))</span><span>*</span><span>(r[i</span><span>-</span><span>1</span><span>][j]</span><span>==</span><span>r[k][j])</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>					f[now][j][k][l][</span><span>1</span><span>]</span><span>=</span><span>(f[pre][j</span><span>+</span><span>1</span><span>][k][l][</span><span>1</span><span>]</span><span>+</span><span>f[pre][j][k</span><span>-</span><span>1</span><span>][l][</span><span>2</span><span>]</span><span>+</span><span>(i</span><span>==</span><span>sx</span><span>&#x26;&#x26;</span><span>j</span><span>==</span><span>sy</span><span>&#x26;&#x26;</span><span>k</span><span>==</span><span>sx</span><span>&#x26;&#x26;</span><span>l</span><span>==</span><span>sy))</span><span>*</span><span>(c[k][j</span><span>-</span><span>1</span><span>]</span><span>==</span><span>c[k][l])</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>					f[now][j][k][l][</span><span>2</span><span>]</span><span>=</span><span>(f[pre][j][k</span><span>-</span><span>1</span><span>][l][</span><span>2</span><span>]</span><span>+</span><span>f[pre][j][k][l</span><span>-</span><span>1</span><span>][</span><span>3</span><span>]</span><span>+</span><span>(i</span><span>==</span><span>sx</span><span>&#x26;&#x26;</span><span>j</span><span>==</span><span>sy</span><span>&#x26;&#x26;</span><span>k</span><span>==</span><span>sx</span><span>&#x26;&#x26;</span><span>l</span><span>==</span><span>sy))</span><span>*</span><span>(r[i</span><span>-</span><span>1</span><span>][l]</span><span>==</span><span>r[k][l])</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>					f[now][j][k][l][</span><span>3</span><span>]</span><span>=</span><span>(f[pre][j][k][l</span><span>-</span><span>1</span><span>][</span><span>3</span><span>]</span><span>+</span><span>f[pre][j][k][l][</span><span>0</span><span>]</span><span>+</span><span>(i</span><span>==</span><span>sx</span><span>&#x26;&#x26;</span><span>j</span><span>==</span><span>sy</span><span>&#x26;&#x26;</span><span>k</span><span>==</span><span>sx</span><span>&#x26;&#x26;</span><span>l</span><span>==</span><span>sy))</span><span>*</span><span>(c[i][j</span><span>-</span><span>1</span><span>]</span><span>==</span><span>c[i][l])</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>					// gdb(i,j,k,l,f[i][j][k][l][0],f[i][j][k][l][1],f[i][j][k][l][2],f[i][j][k][l][3]);</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>			ans</span><span>=</span><span>(ans</span><span>+</span><span>f[now][</span><span>1</span><span>][lenx][leny][</span><span>0</span><span>])</span><span>%</span><span>mod;</span><span>//统计答案</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	// for (k=sx;k&#x3C;=n;k++) for (l=sy;l&#x3C;=m;l++) ans=(ans+f[(k+l)&#x26;1][1][k][l][0])%mod;</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%d\n</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>//i=begin &#x26;&#x26; g++ $i.cpp -o $i -std=c++14 &#x26;&#x26; ./$i</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/12/04/bzoj1132-POI2008-KUP-Plot-purchase/"><span>← 较早一篇</span><strong>bzoj1127 [POI2008] KUP-Plot purchase</strong></a><a href="/2023/12/04/bzoj1125-POI2008-POC-Trains/"><span>较新一篇 →</span><strong>bzoj1125-POI2008-POC-Trains</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

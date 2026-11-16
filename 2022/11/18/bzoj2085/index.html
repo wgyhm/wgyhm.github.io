@@ -1,345 +1,93 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Solution令 $f[i][j]$ 表示包含了 $i$ 个字符串且最后一个时第 $j$ 个字符串时，所需要的最少字符数。 容易转移 $f[i][j]&#x3D;\min f[i-1][k]+w(k,j)$ 然后我们用矩阵乘法优化一下即可。 现在考虑求出 $w(k,j)$。因为 $n$ 比较小，考虑直接枚举 $i,j$。 然后用 $kmp$ 或者哈希直接枚举求就好了。 $O(\sum\sum \">
-<meta property="og:type" content="article">
-<meta property="og:title" content="bzoj2085">
-<meta property="og:url" content="http://www.yqzheng.top/2022/11/18/bzoj2085/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="Solution令 $f[i][j]$ 表示包含了 $i$ 个字符串且最后一个时第 $j$ 个字符串时，所需要的最少字符数。 容易转移 $f[i][j]&#x3D;\min f[i-1][k]+w(k,j)$ 然后我们用矩阵乘法优化一下即可。 现在考虑求出 $w(k,j)$。因为 $n$ 比较小，考虑直接枚举 $i,j$。 然后用 $kmp$ 或者哈希直接枚举求就好了。 $O(\sum\sum \">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-18T01:00:39.000Z">
-<meta property="article:modified_time" content="2022-11-18T01:01:12.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="bzoj">
-<meta property="article:tag" content="dp">
-<meta property="article:tag" content="哈希">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>bzoj2085</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2022/11/18/bzoj2079-Poi2010-Guilds/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2022/11/17/bzoj1797/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2022/11/18/bzoj2085/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&text=bzoj2085"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&is_video=false&description=bzoj2085"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj2085&body=Check out this article: http://www.yqzheng.top/2022/11/18/bzoj2085/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&name=bzoj2085&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2022/11/18/bzoj2085/&t=bzoj2085"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">2.</span> <span class="toc-text">Code</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        bzoj2085
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-11-18T01:00:39.000Z" class="dt-published" itemprop="datePublished">2022-11-18</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/bzoj/" rel="tag">bzoj</a>, <a class="p-category" href="/tags/dp/" rel="tag">dp</a>, <a class="p-category" href="/tags/%E5%93%88%E5%B8%8C/" rel="tag">哈希</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>令 $f[i][j]$ 表示包含了 $i$ 个字符串且最后一个时第 $j$ 个字符串时，所需要的最少字符数。</p>
-<p>容易转移 $f[i][j]&#x3D;\min f[i-1][k]+w(k,j)$</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="bzoj2085"><link rel="canonical" href="https://www.yqzheng.top/2022/11/18/bzoj2085/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>bzoj2085 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>bzoj2085</h1><div class="article-meta"><time datetime="2022-11-18">2022.11.18</time><span>·</span><span>3 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/bzoj/">#BZOJ</a><a class="chip" href="/tags/%E5%93%88%E5%B8%8C/">#哈希</a><a class="chip" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#solution">Solution</a></li><li><a href="#code">Code</a></li></ul></details><div class="prose" data-post-body><span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h3 id="solution">Solution</h3>
+<p>令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">f[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">]</span></span></span></span> 表示包含了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 个字符串且最后一个时第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span> 个字符串时，所需要的最少字符数。</p>
+<p>容易转移 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>min</mi><mo>⁡</mo><mi>f</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>+</mo><mi>w</mi><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f[i][j]=\min f[i-1][k]+w(k,j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">)</span></span></span></span></p>
 <p>然后我们用矩阵乘法优化一下即可。</p>
-<p>现在考虑求出 $w(k,j)$。因为 $n$ 比较小，考虑直接枚举 $i,j$。</p>
-<p>然后用 $kmp$ 或者哈希直接枚举求就好了。</p>
-<p>$O(\sum\sum \min(len_i,len_j)\le O(\sum\sum len_i+len_j)&#x3D;O(n\sum len_i)$</p>
+<p>现在考虑求出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">w(k,j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">)</span></span></span></span>。因为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 比较小，考虑直接枚举 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow><annotation encoding="application/x-tex">i,j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span>。</p>
+<p>然后用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mi>m</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">kmp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mord mathnormal">m</span><span class="mord mathnormal">p</span></span></span></span> 或者哈希直接枚举求就好了。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mo>∑</mo><mo>∑</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>l</mi><mi>e</mi><msub><mi>n</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>l</mi><mi>e</mi><msub><mi>n</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>≤</mo><mi>O</mi><mo stretchy="false">(</mo><mo>∑</mo><mo>∑</mo><mi>l</mi><mi>e</mi><msub><mi>n</mi><mi>i</mi></msub><mo>+</mo><mi>l</mi><mi>e</mi><msub><mi>n</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo>∑</mo><mi>l</mi><mi>e</mi><msub><mi>n</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(\sum\sum \min(len_i,len_j)\le O(\sum\sum len_i+len_j)=O(n\sum len_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
 <p>左边第一个是 哈希 的复杂度，第二个是 kmp 的复杂度。</p>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 205</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxm 100005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> debug() return puts(<span class="string">&quot;1&quot;</span>),0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="type">int</span> pw[maxm],ipw[maxm];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;suf[maxn],pre[maxn];</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> base=<span class="number">131</span>,mod=<span class="number">1e9</span><span class="number">+7</span>,MAXLEN=<span class="number">1e5</span>,inf=<span class="number">1e18</span>;</span><br><span class="line"><span class="type">int</span> n,m,len[maxn],Ans=inf;</span><br><span class="line">string s[maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Mat</span> &#123;</span><br><span class="line">	<span class="type">int</span> a[maxn][maxn];</span><br><span class="line">	<span class="built_in">Mat</span> (<span class="type">void</span>) &#123;<span class="built_in">memset</span>(a,<span class="number">0x3f</span>,<span class="built_in">sizeof</span>(a));&#125;	</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">clear</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) a[i][i]=<span class="number">0</span>;&#125;</span><br><span class="line">	Mat <span class="keyword">operator</span> *(<span class="type">const</span> Mat &amp;x) <span class="type">const</span> &#123;</span><br><span class="line">		<span class="type">int</span> i,j,k;Mat ans;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			 	<span class="keyword">for</span> (k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">			 	 	ans.a[i][j]=<span class="built_in">min</span>(ans.a[i][j],a[i][k]+x.a[k][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;tmp;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) ans=ans*x%mod;</span><br><span class="line">		y&gt;&gt;=<span class="number">1</span>;x=x*x%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">W</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> l,<span class="type">int</span> r)</span> </span>&#123;<span class="keyword">return</span> (suf[i][r]-suf[i][l<span class="number">-1</span>]+mod)*ipw[l]%mod;&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line"><span class="comment">//  freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	<span class="type">int</span> i,j,k;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);</span><br><span class="line">	<span class="keyword">for</span> (pw[<span class="number">0</span>]=<span class="number">1</span>,i=<span class="number">1</span>;i&lt;=MAXLEN;i++) pw[i]=pw[i<span class="number">-1</span>]*base%mod;</span><br><span class="line">	<span class="keyword">for</span> (ipw[MAXLEN]=<span class="built_in">power</span>(pw[MAXLEN],mod<span class="number">-2</span>),i=MAXLEN;i&gt;=<span class="number">1</span>;i--) ipw[i<span class="number">-1</span>]=ipw[i]*base%mod;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		cin&gt;&gt;s[i];len[i]=s[i].<span class="built_in">size</span>();s[i]=<span class="string">&#x27;_&#x27;</span>+s[i];</span><br><span class="line">		suf[i].<span class="built_in">resize</span>(len[i]<span class="number">+5</span>);pre[i].<span class="built_in">resize</span>(len[i]<span class="number">+5</span>);</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=len[i];j++) suf[i][j]=(suf[i][j<span class="number">-1</span>]+pw[j]*(s[i][j]-<span class="string">&#x27;a&#x27;</span><span class="number">+1</span>))%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) </span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) &#123;</span><br><span class="line">			tmp.a[i][j]=len[j];</span><br><span class="line">			<span class="keyword">for</span> (k=<span class="built_in">min</span>(len[j],len[i])<span class="number">-1</span>;k&gt;=<span class="number">1</span>;k--) </span><br><span class="line">				<span class="keyword">if</span> (<span class="built_in">W</span>(i,len[i]-k<span class="number">+1</span>,len[i])==<span class="built_in">W</span>(j,<span class="number">1</span>,k)) &#123;tmp.a[i][j]-=k;<span class="keyword">break</span>;&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	m--;Mat ans;ans.<span class="built_in">clear</span>();</span><br><span class="line">	<span class="keyword">while</span> (m) &#123;</span><br><span class="line">		<span class="keyword">if</span> (m&amp;<span class="number">1</span>) ans=ans*tmp;</span><br><span class="line">		tmp=tmp*tmp;m&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">		 	Ans=<span class="built_in">min</span>(Ans,ans.a[i][j]+len[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,Ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">2.</span> <span class="toc-text">Code</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2022/11/18/bzoj2085/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&text=bzoj2085"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&is_video=false&description=bzoj2085"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=bzoj2085&body=Check out this article: http://www.yqzheng.top/2022/11/18/bzoj2085/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&title=bzoj2085"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2022/11/18/bzoj2085/&name=bzoj2085&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2022/11/18/bzoj2085/&t=bzoj2085"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<span id="Code" class="legacy-anchor" aria-hidden="true"></span><h3 id="code">Code</h3>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> int</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 205</span></span>
+<span class="line"><span>#define</span><span> maxm</span><span> 100005</span></span>
+<span class="line"><span>#define</span><span> debug</span><span>() </span><span>return</span><span> puts</span><span>(</span><span>"1"</span><span>),</span><span>0</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>inline</span><span> void</span><span> read</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	Tp </span><span>ostream</span><span>&#x26;</span><span> operator</span><span>&#x3C;&#x3C;</span><span>(</span><span>ostream</span><span>&#x26;</span><span> os</span><span>,</span><span>vector</span><span>&#x3C;</span><span>Ty</span><span>></span><span>&#x26;</span><span> V</span><span>){os</span><span>&#x3C;&#x3C;</span><span>"["</span><span>;</span><span>for</span><span>(</span><span>auto&#x26;</span><span> vv:V) os</span><span>&#x3C;&#x3C;</span><span>vv</span><span>&#x3C;&#x3C;</span><span>","</span><span>;os</span><span>&#x3C;&#x3C;</span><span>"]"</span><span>;</span><span>return</span><span> os;}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>int</span><span> pw[maxm],ipw[maxm];</span></span>
+<span class="line"><span>vector</span><span>&#x3C;int></span><span>suf[maxn],pre[maxn];</span></span>
+<span class="line"><span>const</span><span> int</span><span> base</span><span>=</span><span>131</span><span>,mod</span><span>=</span><span>1</span><span>e</span><span>9</span><span>+</span><span>7</span><span>,MAXLEN</span><span>=</span><span>1</span><span>e</span><span>5</span><span>,inf</span><span>=</span><span>1</span><span>e</span><span>18</span><span>;</span></span>
+<span class="line"><span>int</span><span> n,m,len[maxn],Ans</span><span>=</span><span>inf;</span></span>
+<span class="line"><span>string</span><span> s[maxn];</span></span>
+<span class="line"><span>struct</span><span> Mat</span><span> {</span></span>
+<span class="line"><span>	int</span><span> a[maxn][maxn];</span></span>
+<span class="line"><span>	Mat</span><span> (</span><span>void</span><span>) {</span><span>memset</span><span>(a,</span><span>0x</span><span>3f</span><span>,</span><span>sizeof</span><span>(a));}	</span></span>
+<span class="line"><span>	inline</span><span> void</span><span> clear</span><span>(</span><span>void</span><span>) {</span><span>for</span><span> (</span><span>int</span><span> i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) a[i][i]</span><span>=</span><span>0</span><span>;}</span></span>
+<span class="line"><span>	Mat</span><span> operator</span><span> *</span><span>(</span><span>const</span><span> Mat</span><span> &#x26;</span><span>x</span><span>) </span><span>const</span><span> {</span></span>
+<span class="line"><span>		int</span><span> i,j,k;Mat ans;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>)</span></span>
+<span class="line"><span>			 	for</span><span> (k</span><span>=</span><span>1</span><span>;k</span><span>&#x3C;=</span><span>n;k</span><span>++</span><span>)</span></span>
+<span class="line"><span>			 	 	ans.a[i][j]</span><span>=</span><span>min</span><span>(ans.a[i][j],a[i][k]</span><span>+</span><span>x.a[k][j]);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		return</span><span> ans;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}tmp;</span></span>
+<span class="line"><span>inline</span><span> int</span><span> power</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> ans</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (y) {</span></span>
+<span class="line"><span>		if</span><span> (y</span><span>&#x26;</span><span>1</span><span>) ans</span><span>=</span><span>ans</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		y</span><span>>>=</span><span>1</span><span>;x</span><span>=</span><span>x</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> ans;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>inline</span><span> int</span><span> W</span><span>(</span><span>int</span><span> i</span><span>,</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>) {</span><span>return</span><span> (suf[i][r]</span><span>-</span><span>suf[i][l</span><span>-</span><span>1</span><span>]</span><span>+</span><span>mod)</span><span>*</span><span>ipw[l]</span><span>%</span><span>mod;}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>//  freopen("1.in","r",stdin);</span></span>
+<span class="line"><span>	int</span><span> i,j,k;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(m);</span></span>
+<span class="line"><span>	for</span><span> (pw[</span><span>0</span><span>]</span><span>=</span><span>1</span><span>,i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>MAXLEN;i</span><span>++</span><span>) pw[i]</span><span>=</span><span>pw[i</span><span>-</span><span>1</span><span>]</span><span>*</span><span>base</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>	for</span><span> (ipw[MAXLEN]</span><span>=</span><span>power</span><span>(pw[MAXLEN],mod</span><span>-</span><span>2</span><span>),i</span><span>=</span><span>MAXLEN;i</span><span>>=</span><span>1</span><span>;i</span><span>--</span><span>) ipw[i</span><span>-</span><span>1</span><span>]</span><span>=</span><span>ipw[i]</span><span>*</span><span>base</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		cin</span><span>>></span><span>s[i];len[i]</span><span>=</span><span>s[i].</span><span>size</span><span>();s[i]</span><span>=</span><span>'_'</span><span>+</span><span>s[i];</span></span>
+<span class="line"><span>		suf[i].</span><span>resize</span><span>(len[i]</span><span>+</span><span>5</span><span>);pre[i].</span><span>resize</span><span>(len[i]</span><span>+</span><span>5</span><span>);</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>len[i];j</span><span>++</span><span>) suf[i][j]</span><span>=</span><span>(suf[i][j</span><span>-</span><span>1</span><span>]</span><span>+</span><span>pw[j]</span><span>*</span><span>(s[i][j]</span><span>-</span><span>'a'</span><span>+</span><span>1</span><span>))</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			tmp.a[i][j]</span><span>=</span><span>len[j];</span></span>
+<span class="line"><span>			for</span><span> (k</span><span>=</span><span>min</span><span>(len[j],len[i])</span><span>-</span><span>1</span><span>;k</span><span>>=</span><span>1</span><span>;k</span><span>--</span><span>) </span></span>
+<span class="line"><span>				if</span><span> (</span><span>W</span><span>(i,len[i]</span><span>-</span><span>k</span><span>+</span><span>1</span><span>,len[i])</span><span>==</span><span>W</span><span>(j,</span><span>1</span><span>,k)) {tmp.a[i][j]</span><span>-=</span><span>k;</span><span>break</span><span>;}</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	m</span><span>--</span><span>;Mat ans;ans.</span><span>clear</span><span>();</span></span>
+<span class="line"><span>	while</span><span> (m) {</span></span>
+<span class="line"><span>		if</span><span> (m</span><span>&#x26;</span><span>1</span><span>) ans</span><span>=</span><span>ans</span><span>*</span><span>tmp;</span></span>
+<span class="line"><span>		tmp</span><span>=</span><span>tmp</span><span>*</span><span>tmp;m</span><span>>>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>)</span></span>
+<span class="line"><span>		 	Ans</span><span>=</span><span>min</span><span>(Ans,ans.a[i][j]</span><span>+</span><span>len[i]);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%lld</span><span>"</span><span>,Ans);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2022/11/18/bzoj4435-CERC2015-Juice-Junctions/"><span>← 较早一篇</span><strong>bzoj4435 [CERC2015]Juice Junctions</strong></a><a href="/2022/11/18/bzoj2079-Poi2010-Guilds/"><span>较新一篇 →</span><strong>bzoj2079 [Poi2010] Guilds</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li class="indent"><a href="#solution">Solution</a></li><li class="indent"><a href="#code">Code</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

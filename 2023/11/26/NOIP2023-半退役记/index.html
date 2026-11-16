@@ -1,182 +1,16 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="NOIP2023 半退役记Day -1喜欢疯狂星期四。 晚上 xyh 和 ctz 摆烂被抓了，老爷立下没考到全省前 100 就别进第四机房的 flag。感觉像腾哈赫不让桑乔进食堂。 晚上帮 ZJ 调板子，第一次知道标记永久化怎么写（flag）。 喜欢国足，喜欢韦世豪。 Day 0喜欢疯狂星期五。 上午在机房 vp CF，状态全无。警戒！ 然后打了一些模板。 下午就去杭州了，车上农了三把。 酒店式全">
-<meta property="og:type" content="article">
-<meta property="og:title" content="NOIP2023 半退役记">
-<meta property="og:url" content="http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="NOIP2023 半退役记Day -1喜欢疯狂星期四。 晚上 xyh 和 ctz 摆烂被抓了，老爷立下没考到全省前 100 就别进第四机房的 flag。感觉像腾哈赫不让桑乔进食堂。 晚上帮 ZJ 调板子，第一次知道标记永久化怎么写（flag）。 喜欢国足，喜欢韦世豪。 Day 0喜欢疯狂星期五。 上午在机房 vp CF，状态全无。警戒！ 然后打了一些模板。 下午就去杭州了，车上农了三把。 酒店式全">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-11-26T08:27:56.000Z">
-<meta property="article:modified_time" content="2023-11-26T08:28:54.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="游记">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>NOIP2023 半退役记</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/11/26/P3731-HAOI2017-%E6%96%B0%E5%9E%8B%E5%9F%8E%E5%B8%82%E5%8C%96/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/11/16/CF1866G-Grouped-Carriages/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&text=NOIP2023 半退役记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&is_video=false&description=NOIP2023 半退役记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=NOIP2023 半退役记&body=Check out this article: http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&name=NOIP2023 半退役记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&t=NOIP2023 半退役记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">NOIP2023 半退役记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Day-1"><span class="toc-number">1.1.</span> <span class="toc-text">Day -1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Day-0"><span class="toc-number">1.2.</span> <span class="toc-text">Day 0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Day-1-1"><span class="toc-number">1.3.</span> <span class="toc-text">Day 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-26"><span class="toc-number">1.4.</span> <span class="toc-text">11.26</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        NOIP2023 半退役记
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-11-26T08:27:56.000Z" class="dt-published" itemprop="datePublished">2023-11-26</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="NOIP2023-半退役记"><a href="#NOIP2023-半退役记" class="headerlink" title="NOIP2023 半退役记"></a>NOIP2023 半退役记</h1><h3 id="Day-1"><a href="#Day-1" class="headerlink" title="Day -1"></a>Day -1</h3><p>喜欢疯狂星期四。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="NOIP2023 半退役记"><link rel="canonical" href="https://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>NOIP2023 半退役记 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/">技术笔记</a><a href="/essays/" aria-current="page">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/essays/">← 随笔</a><p class="eyebrow">WRITING / 随笔</p><h1>NOIP2023 半退役记</h1><div class="article-meta"><time datetime="2023-11-26">2023.11.26</time><span>·</span><span>5 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E6%B8%B8%E8%AE%B0/">#游记</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#noip2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0">NOIP2023 半退役记</a></li><li><a href="#day--1">Day -1</a></li><li><a href="#day-0">Day 0</a></li><li><a href="#day-1">Day 1</a></li><li><a href="#1126">11.26</a></li></ul></details><div class="prose" data-post-body><span id="NOIP2023-半退役记" class="legacy-anchor" aria-hidden="true"></span><h1 id="noip2023-半退役记">NOIP2023 半退役记</h1>
+<span id="Day-1" class="legacy-anchor" aria-hidden="true"></span><h3 id="day--1">Day -1</h3>
+<p>喜欢疯狂星期四。</p>
 <p>晚上 xyh 和 ctz 摆烂被抓了，老爷立下没考到全省前 100 就别进第四机房的 flag。感觉像腾哈赫不让桑乔进食堂。</p>
 <p>晚上帮 ZJ 调板子，第一次知道标记永久化怎么写（flag）。</p>
 <p>喜欢国足，喜欢韦世豪。</p>
-<h3 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h3><p>喜欢疯狂星期五。</p>
+<span id="Day-0" class="legacy-anchor" aria-hidden="true"></span><h3 id="day-0">Day 0</h3>
+<p>喜欢疯狂星期五。</p>
 <p>上午在机房 vp CF，状态全无。警戒！</p>
 <p>然后打了一些模板。</p>
 <p>下午就去杭州了，车上农了三把。</p>
@@ -187,8 +21,9 @@
 <p>回去以后又和 czh 下了两把象棋。澡也懒得洗了，十点半就睡了。</p>
 <p>整个过程一直很焦虑，总感觉明天考完就退役而且不敢回去以后面对 whk 生活。哈哈。</p>
 <p>编辑了一下退役感言，在明天 12：00 发出来。</p>
-<h3 id="Day-1-1"><a href="#Day-1-1" class="headerlink" title="Day 1"></a>Day 1</h3><p>早上是五点半醒来的，可能是着凉了，也可能是做了退役的噩梦。糟糕。</p>
-<p>肚子痛，糟糕。每次考前肠胃就不舒服，上一次确乎是吃 xjz 的火锅，这次可能真的是太紧张了吧。考前老叶一直说考到 300 分才用冲省队的希望。而我比去年联赛稍微简单的模拟赛都没有几次 300+，况且在机房的状态时好时差，近十场模拟赛挂分最少是 20。如果是为了冲省队的话机会渺茫，不退役的概率确乎只有挂分 $\le 10$，而且考的题目和我科技树撞的比较近，才可能有点希望罢。</p>
+<span id="Day-1-1" class="legacy-anchor" aria-hidden="true"></span><h3 id="day-1">Day 1</h3>
+<p>早上是五点半醒来的，可能是着凉了，也可能是做了退役的噩梦。糟糕。</p>
+<p>肚子痛，糟糕。每次考前肠胃就不舒服，上一次确乎是吃 xjz 的火锅，这次可能真的是太紧张了吧。考前老叶一直说考到 300 分才用冲省队的希望。而我比去年联赛稍微简单的模拟赛都没有几次 300+，况且在机房的状态时好时差，近十场模拟赛挂分最少是 20。如果是为了冲省队的话机会渺茫，不退役的概率确乎只有挂分 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">\le 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span>，而且考的题目和我科技树撞的比较近，才可能有点希望罢。</p>
 <p>最近一个星期都在胡思乱想，心态很不稳定。</p>
 <p>很快收拾东西吃完早饭就上大巴了，真快啊。早饭还听不错的，就是肚子有点难受。</p>
 <p>又是经典杭师大，这次不敢拍照了。</p>
@@ -201,12 +36,12 @@
 <p>然后去看 T2，手玩了一下最后建个树出来。再玩了以下样例 2 发现还有基环树。</p>
 <p>T2 写完过样例，时间是 9:15。没做过这么顺过，感觉像梦一样，去上个厕所冷静一下。</p>
 <p>开 T3 一眼就感觉不太可做，然后看 T4 发现 “啊？这不是线性 dp 然后线段树优化以下就好了？” 手玩一下样例以后确认没看错以后直接开始码，中间一个小细节调了一下以后 10：00 左右就过了。再加个离散化以后 10：15 就过了所有样例。两个小时不到 3 题，未曾想过的梦幻开局。</p>
-<p>然后又去厕所冷静一下，回来看 T3，发现 $O(Tn^2)$ 是送的，而且常数很小可以过 $2000$。</p>
-<p>开始搓特殊性质，先把两个序列倒过来然后发现后缀最小值的性质？按着思路写发现一遍过样例？有点慌啊。复杂度是 $O(Tn\log n)$ ，如果询问是像贪吃蛇一样真的是互相独立的，感觉怎么都优化不了。就开始拍，拍了快 5w 组都没问题啊，感觉很稳啊，起码 $55$ 应该拿得到。</p>
+<p>然后又去厕所冷静一下，回来看 T3，发现 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>T</mi><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(Tn^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 是送的，而且常数很小可以过 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2000</mn></mrow><annotation encoding="application/x-tex">2000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2000</span></span></span></span>。</p>
+<p>开始搓特殊性质，先把两个序列倒过来然后发现后缀最小值的性质？按着思路写发现一遍过样例？有点慌啊。复杂度是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>T</mi><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(Tn\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> ，如果询问是像贪吃蛇一样真的是互相独立的，感觉怎么都优化不了。就开始拍，拍了快 5w 组都没问题啊，感觉很稳啊，起码 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>55</mn></mrow><annotation encoding="application/x-tex">55</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">55</span></span></span></span> 应该拿得到。</p>
 <p>回想起来去年的 NOIP 的败北，于是在还有接近 1.5h 就开始疯狂查错对拍。倒是查出来了 T1 有个地方写挂了。改完以后把 T4 换成标记永久化卡下常然后就开始拍拍拍查查查。好像就结束了？</p>
 <p>结束了？</p>
 <p>在考试的时候就感觉 AK 的人应该挺多的，出来就听到很多，fxt 和 zj 应该是 K 了，还听到有人做过 T3 原题，糟糕。</p>
-<p>期望得分 $100+100+[55,70]+100&#x3D;[355,370]$。如果没挂分，算是最好的结局吧。</p>
+<p>期望得分 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>+</mo><mn>100</mn><mo>+</mo><mo stretchy="false">[</mo><mn>55</mn><mo separator="true">,</mo><mn>70</mn><mo stretchy="false">]</mo><mo>+</mo><mn>100</mn><mo>=</mo><mo stretchy="false">[</mo><mn>355</mn><mo separator="true">,</mo><mn>370</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">100+100+[55,70]+100=[355,370]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">100</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">100</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">55</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">70</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">355</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">370</span><span class="mclose">]</span></span></span></span>。如果没挂分，算是最好的结局吧。</p>
 <hr>
 <p>回来的大巴上吃的是麦当劳，感觉赛过 KFC。</p>
 <p>大巴上农到有点晕车。糟糕。</p>
@@ -219,168 +54,9 @@
 <p>狗哥好像挂分了，可惜。</p>
 <p>fxt 和 zj 都 AK 了，感觉预定省队了啊。</p>
 <p>希望可以去 WC 玩。那就这样？</p>
-<h3 id="11-26"><a href="#11-26" class="headerlink" title="11.26"></a>11.26</h3><p>写在最后。</p>
+<span id="11-26" class="legacy-anchor" aria-hidden="true"></span><h3 id="1126">11.26</h3>
+<p>写在最后。</p>
 <p>最后成绩是 100+100+55+100。这次 T3 数据挺强的，好多人 T3 被卡常了。</p>
 <p>逛了下谷群发现 T3 大家如果特殊性质想出来的话就都做出来了。事后看来感觉还是有点可惜，策略上过于求稳了（因为去年有点激进就挂没了）。不过遗憾也是生活比不缺少的一部分。</p>
 <p>回归了一个星期文化课也都跟的上，还是喜欢寝室的氛围。</p>
-<p>好了，找一找状态，ZJOI2024 看看能不能翻盘吧。省选加油！</p>
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">NOIP2023 半退役记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Day-1"><span class="toc-number">1.1.</span> <span class="toc-text">Day -1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Day-0"><span class="toc-number">1.2.</span> <span class="toc-text">Day 0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Day-1-1"><span class="toc-number">1.3.</span> <span class="toc-text">Day 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-26"><span class="toc-number">1.4.</span> <span class="toc-text">11.26</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&text=NOIP2023 半退役记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&is_video=false&description=NOIP2023 半退役记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=NOIP2023 半退役记&body=Check out this article: http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&title=NOIP2023 半退役记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&name=NOIP2023 半退役记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/11/26/NOIP2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0/&t=NOIP2023 半退役记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<p>好了，找一找状态，ZJOI2024 看看能不能翻盘吧。省选加油！</p></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/10/22/CSP2023%E6%B8%B8%E8%AE%B0/"><span>← 较早一篇</span><strong>CSP2023游记</strong></a><a href="/2025/01/14/fduwc%E6%B8%B8%E8%AE%B0/"><span>较新一篇 →</span><strong>fduwc游记</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#noip2023-%E5%8D%8A%E9%80%80%E5%BD%B9%E8%AE%B0">NOIP2023 半退役记</a></li><li class="indent"><a href="#day--1">Day -1</a></li><li class="indent"><a href="#day-0">Day 0</a></li><li class="indent"><a href="#day-1">Day 1</a></li><li class="indent"><a href="#1126">11.26</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

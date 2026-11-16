@@ -1,336 +1,126 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="BLOG 相邻两棵树的关系是以下几种之一：  $h_i&#x3D;h_j,v_i&#x3D;v_j$ 永远相等，我们称为 万能边 $h_i&#x3D;h_j,v_i\not &#x3D; v_j$ 永远不相等。 $t&#x3D;\dfrac{h_i-h_j}{v_j-v_i}$，两棵树当且仅当在时刻 $t$ 时相等。如果时刻 $t&lt;0$ ，那么永远不相等。否则，我们把两棵树的边权设为 $t$">
-<meta property="og:type" content="article">
-<meta property="og:title" content="P6405 [COCI2014-2015#2] ŠUMA">
-<meta property="og:url" content="http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="BLOG 相邻两棵树的关系是以下几种之一：  $h_i&#x3D;h_j,v_i&#x3D;v_j$ 永远相等，我们称为 万能边 $h_i&#x3D;h_j,v_i\not &#x3D; v_j$ 永远不相等。 $t&#x3D;\dfrac{h_i-h_j}{v_j-v_i}$，两棵树当且仅当在时刻 $t$ 时相等。如果时刻 $t&lt;0$ ，那么永远不相等。否则，我们把两棵树的边权设为 $t$">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-10-17T07:50:02.000Z">
-<meta property="article:modified_time" content="2022-10-17T07:54:08.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="并查集">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>P6405 [COCI2014-2015#2] ŠUMA</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2022/10/19/CF1634F/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2022/10/13/%E7%AE%80%E5%8D%95dp%E9%80%89%E8%AE%B2/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&text=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&is_video=false&description=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P6405 [COCI2014-2015#2] ŠUMA&body=Check out this article: http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&name=P6405 [COCI2014-2015#2] ŠUMA&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&t=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        P6405 [COCI2014-2015#2] ŠUMA
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-10-17T07:50:02.000Z" class="dt-published" itemprop="datePublished">2022-10-17</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag">并查集</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <p><a target="_blank" rel="noopener" href="https://wgyhm.cf/2022/10/17/P6405-COCI2014-2015-2-SUMA/">BLOG</a></p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="P6405 [COCI2014-2015#2] ŠUMA"><link rel="canonical" href="https://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>P6405 [COCI2014-2015#2] ŠUMA · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>P6405 [COCI2014-2015#2] ŠUMA</h1><div class="article-meta"><time datetime="2022-10-17">2022.10.17</time><span>·</span><span>5 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">#并查集</a></div></header><div class="prose" data-post-body><p><a href="https://wgyhm.cf/2022/10/17/P6405-COCI2014-2015-2-SUMA/">BLOG</a></p>
 <p>相邻两棵树的关系是以下几种之一：</p>
 <ul>
-<li>$h_i&#x3D;h_j,v_i&#x3D;v_j$ 永远相等，我们称为 <strong>万能边</strong></li>
-<li>$h_i&#x3D;h_j,v_i\not &#x3D; v_j$ 永远不相等。</li>
-<li>$t&#x3D;\dfrac{h_i-h_j}{v_j-v_i}$，两棵树当且仅当在时刻 $t$ 时相等。如果时刻 $t&lt;0$ ，那么永远不相等。否则，我们把两棵树的边权设为 $t$。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mi>i</mi></msub><mo>=</mo><msub><mi>h</mi><mi>j</mi></msub><mo separator="true">,</mo><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><msub><mi>v</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">h_i=h_j,v_i=v_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> 永远相等，我们称为 <strong>万能边</strong></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mi>i</mi></msub><mo>=</mo><msub><mi>h</mi><mi>j</mi></msub><mo separator="true">,</mo><msub><mi>v</mi><mi>i</mi></msub><mo>≠</mo><msub><mi>v</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">h_i=h_j,v_i\not = v_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> 永远不相等。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><msub><mi>h</mi><mi>i</mi></msub><mo>−</mo><msub><mi>h</mi><mi>j</mi></msub></mrow><mrow><msub><mi>v</mi><mi>j</mi></msub><mo>−</mo><msub><mi>v</mi><mi>i</mi></msub></mrow></mfrac></mstyle></mrow><annotation encoding="application/x-tex">t=\dfrac{h_i-h_j}{v_j-v_i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3435em;vertical-align:-0.9721em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，两棵树当且仅当在时刻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span> 时相等。如果时刻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>&#x3C;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t&#x3C;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x3C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> ，那么永远不相等。否则，我们把两棵树的边权设为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span>。</li>
 </ul>
-<p>我们把万能边用并查集缩成一个点，并重新建图。然后把所有的两个数相等的时刻 $t$ 离散化，方便枚举。</p>
-<p>枚举时刻 $t$，将所有边权为 $t$ 的两个点合并。并判断最大的连通块。</p>
-<p>每个非万能边最多枚举一次。万能边已经缩没了。所以复杂度时 $O(cn^2)$，其中 $c$ 是并查集的复杂度。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 705</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug(#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="type">int</span> h[maxn][maxn],v[maxn][maxn],n,m;</span><br><span class="line"><span class="type">int</span> he[maxn*maxn],head=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">yyy</span>&#123;</span><br><span class="line">	<span class="type">int</span> to,z,wx,wy;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> val,<span class="type">int</span> vall)</span> </span>&#123;</span><br><span class="line">		to=y;z=he[x];he[x]=head;wx=val;wy=vall;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;a[maxn*maxn*<span class="number">8</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edges</span> &#123;</span><br><span class="line">	<span class="type">int</span> x,y;</span><br><span class="line">	<span class="built_in">edges</span>(<span class="type">int</span> a=<span class="number">0</span>,<span class="type">int</span> b=<span class="number">0</span>) &#123;x=a;y=b;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> fx[<span class="number">5</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">int</span> fy[<span class="number">5</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">vector&lt;edges&gt;e[maxn*maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">id</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;<span class="keyword">return</span> (x<span class="number">-1</span>)*n+y;&#125;</span><br><span class="line"><span class="type">int</span> size[maxn*maxn],fa[maxn*maxn],vis[maxn*maxn],nsize[maxn*maxn],tr[maxn*maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getfa</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;<span class="keyword">return</span> x==fa[x]?x:fa[x]=<span class="built_in">getfa</span>(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	x=<span class="built_in">getfa</span>(x),y=<span class="built_in">getfa</span>(y);</span><br><span class="line">	<span class="keyword">if</span> (x^y) fa[x]=y,size[y]+=size[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> cur)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i;vis[x]=<span class="number">1</span>,<span class="built_in">merge</span>(x,cur);</span><br><span class="line">	<span class="keyword">for</span> (i=he[x];i;i=a[i].z) <span class="keyword">if</span> (a[i].wx==<span class="number">-1</span>&amp;&amp;a[i].wy==<span class="number">-1</span>&amp;&amp;!vis[a[i].to]) <span class="built_in">dfs</span>(a[i].to,cur);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> tot,ans;</span><br><span class="line">ll g[maxn*maxn*<span class="number">4</span>];</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> base=<span class="number">1e6</span>;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i,j,k,x,y,gg;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">read</span>(h[i][j]);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">read</span>(v[i][j]);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (k=<span class="number">1</span>;k&lt;=<span class="number">4</span>;k++) &#123;</span><br><span class="line">				x=i+fx[k],y=j+fy[k];</span><br><span class="line">				<span class="keyword">if</span> (x&gt;=<span class="number">1</span>&amp;&amp;x&lt;=n&amp;&amp;y&gt;=<span class="number">1</span>&amp;&amp;y&lt;=n) ;<span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span> (v[i][j]==v[x][y]) &#123;</span><br><span class="line">					<span class="keyword">if</span> (h[i][j]==h[x][y]) a[++head].<span class="built_in">add</span>(<span class="built_in">id</span>(i,j),<span class="built_in">id</span>(x,y),<span class="number">-1</span>,<span class="number">-1</span>);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (h[i][j]==h[x][y]) a[++head].<span class="built_in">add</span>(<span class="built_in">id</span>(i,j),<span class="built_in">id</span>(x,y),<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">				<span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="type">int</span> tmpy=h[x][y]-h[i][j],tmpx=v[i][j]-v[x][y];</span><br><span class="line">					<span class="keyword">if</span> (<span class="number">1ll</span>*tmpx*tmpy&lt;<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">					tmpy=<span class="built_in">abs</span>(tmpy),tmpx=<span class="built_in">abs</span>(tmpx);gg=__gcd(tmpx,tmpy);</span><br><span class="line">					a[++head].<span class="built_in">add</span>(<span class="built_in">id</span>(i,j),<span class="built_in">id</span>(x,y),tmpy/gg,tmpx/gg);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) size[<span class="built_in">id</span>(i,j)]=<span class="number">1</span>,fa[<span class="built_in">id</span>(i,j)]=<span class="built_in">id</span>(i,j);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="keyword">if</span> (!vis[<span class="built_in">id</span>(i,j)]) <span class="built_in">dfs</span>(<span class="built_in">id</span>(i,j),<span class="built_in">id</span>(i,j));<span class="comment">//,gdb(i,j,size[getfa(id(i,j))]);</span></span><br><span class="line">	<span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) <span class="keyword">if</span> (fa[<span class="built_in">id</span>(i,j)]==<span class="built_in">id</span>(i,j)) tr[<span class="built_in">id</span>(i,j)]=++cnt,nsize[cnt]=size[<span class="built_in">id</span>(i,j)];<span class="comment">//,gdb(i,j,cnt,nsize[cnt]);</span></span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) &#123;</span><br><span class="line">			<span class="type">int</span> pus=<span class="built_in">getfa</span>(<span class="built_in">id</span>(i,j));</span><br><span class="line">			<span class="keyword">for</span> (k=he[pus];k;k=a[k].z) &#123;</span><br><span class="line">				<span class="type">int</span> now=<span class="built_in">getfa</span>(a[k].to);</span><br><span class="line">				<span class="keyword">if</span> (tr[now]!=tr[pus])<span class="built_in">assert</span>(a[k].wx!=<span class="number">-1</span>),g[++tot]=<span class="number">1ll</span>*a[k].wx*base+a[k].wy;</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">sort</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot);</span><br><span class="line">	tot=<span class="built_in">unique</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot)-g<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n;j++) &#123;</span><br><span class="line">			<span class="type">int</span> pus=<span class="built_in">getfa</span>(<span class="built_in">id</span>(i,j));</span><br><span class="line">			<span class="keyword">for</span> (k=he[pus];k;k=a[k].z) &#123;</span><br><span class="line">				<span class="type">int</span> now=<span class="built_in">getfa</span>(a[k].to);</span><br><span class="line">				<span class="keyword">if</span> (tr[now]!=tr[pus]) &#123;</span><br><span class="line">					<span class="type">int</span> w=<span class="built_in">lower_bound</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot,<span class="number">1ll</span>*a[k].wx*base+a[k].wy)-g;</span><br><span class="line">					e[w].<span class="built_in">push_back</span>(<span class="built_in">edges</span>(tr[pus],tr[now]));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=cnt;i++) fa[i]=i,size[i]=nsize[i];</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=tot;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> tmp:e[i]) &#123;</span><br><span class="line">			<span class="built_in">merge</span>(tmp.x,tmp.y);</span><br><span class="line">			ans=<span class="built_in">max</span>(ans,size[<span class="built_in">getfa</span>(tmp.x)]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> tmp:e[i]) fa[tmp.x]=tmp.x,size[tmp.x]=nsize[tmp.x],fa[tmp.y]=tmp.y,size[tmp.y]=nsize[tmp.y];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&text=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&is_video=false&description=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P6405 [COCI2014-2015#2] ŠUMA&body=Check out this article: http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&title=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&name=P6405 [COCI2014-2015#2] ŠUMA&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2022/10/17/P6405-COCI2014-2015-2-SUMA/&t=P6405 [COCI2014-2015#2] ŠUMA"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<p>我们把万能边用并查集缩成一个点，并重新建图。然后把所有的两个数相等的时刻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span> 离散化，方便枚举。</p>
+<p>枚举时刻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span>，将所有边权为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span> 的两个点合并。并判断最大的连通块。</p>
+<p>每个非万能边最多枚举一次。万能边已经缩没了。所以复杂度时 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>c</mi><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(cn^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> 是并查集的复杂度。</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> ll</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 705</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>inline</span><span> void</span><span> read</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	Tp </span><span>ostream</span><span>&#x26;</span><span> operator</span><span>&#x3C;&#x3C;</span><span>(</span><span>ostream</span><span>&#x26;</span><span> os</span><span>,</span><span>vector</span><span>&#x3C;</span><span>Ty</span><span>></span><span>&#x26;</span><span> V</span><span>){os</span><span>&#x3C;&#x3C;</span><span>"["</span><span>;</span><span>for</span><span>(</span><span>auto&#x26;</span><span> vv:V) os</span><span>&#x3C;&#x3C;</span><span>vv</span><span>&#x3C;&#x3C;</span><span>","</span><span>;os</span><span>&#x3C;&#x3C;</span><span>"]"</span><span>;</span><span>return</span><span> os;}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>(#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>int</span><span> h[maxn][maxn],v[maxn][maxn],n,m;</span></span>
+<span class="line"><span>int</span><span> he[maxn</span><span>*</span><span>maxn],head</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>struct</span><span> yyy</span><span>{</span></span>
+<span class="line"><span>	int</span><span> to,z,wx,wy;</span></span>
+<span class="line"><span>	inline</span><span> void</span><span> add</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>,</span><span>int</span><span> val</span><span>,</span><span>int</span><span> vall</span><span>) {</span></span>
+<span class="line"><span>		to</span><span>=</span><span>y;z</span><span>=</span><span>he[x];he[x]</span><span>=</span><span>head;wx</span><span>=</span><span>val;wy</span><span>=</span><span>vall;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}a[maxn</span><span>*</span><span>maxn</span><span>*</span><span>8</span><span>];</span></span>
+<span class="line"><span>struct</span><span> edges</span><span> {</span></span>
+<span class="line"><span>	int</span><span> x,y;</span></span>
+<span class="line"><span>	edges</span><span>(</span><span>int</span><span> a</span><span>=</span><span>0</span><span>,</span><span>int</span><span> b</span><span>=</span><span>0</span><span>) {x</span><span>=</span><span>a;y</span><span>=</span><span>b;}</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span>int</span><span> fx[</span><span>5</span><span>]</span><span>=</span><span>{</span><span>0</span><span>,</span><span>1</span><span>,</span><span>-</span><span>1</span><span>,</span><span>0</span><span>,</span><span>0</span><span>};</span></span>
+<span class="line"><span>int</span><span> fy[</span><span>5</span><span>]</span><span>=</span><span>{</span><span>0</span><span>,</span><span>0</span><span>,</span><span>0</span><span>,</span><span>1</span><span>,</span><span>-</span><span>1</span><span>};</span></span>
+<span class="line"><span>vector</span><span>&#x3C;</span><span>edges</span><span>></span><span>e[maxn</span><span>*</span><span>maxn];</span></span>
+<span class="line"><span>inline</span><span> int</span><span> id</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>) {</span><span>return</span><span> (x</span><span>-</span><span>1</span><span>)</span><span>*</span><span>n</span><span>+</span><span>y;}</span></span>
+<span class="line"><span>int</span><span> size[maxn</span><span>*</span><span>maxn],fa[maxn</span><span>*</span><span>maxn],vis[maxn</span><span>*</span><span>maxn],nsize[maxn</span><span>*</span><span>maxn],tr[maxn</span><span>*</span><span>maxn];</span></span>
+<span class="line"><span>inline</span><span> int</span><span> getfa</span><span>(</span><span>int</span><span> x</span><span>) {</span><span>return</span><span> x</span><span>==</span><span>fa[x]</span><span>?</span><span>x</span><span>:</span><span>fa[x]</span><span>=</span><span>getfa</span><span>(fa[x]);}</span></span>
+<span class="line"><span>inline</span><span> void</span><span> merge</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>) {</span></span>
+<span class="line"><span>	x</span><span>=</span><span>getfa</span><span>(x),y</span><span>=</span><span>getfa</span><span>(y);</span></span>
+<span class="line"><span>	if</span><span> (x</span><span>^</span><span>y) fa[x]</span><span>=</span><span>y,size[y]</span><span>+=</span><span>size[x];</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>inline</span><span> void</span><span> dfs</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> cur</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> i;vis[x]</span><span>=</span><span>1</span><span>,</span><span>merge</span><span>(x,cur);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>he[x];i;i</span><span>=</span><span>a[i].z) </span><span>if</span><span> (a[i].wx</span><span>==-</span><span>1</span><span>&#x26;&#x26;</span><span>a[i].wy</span><span>==-</span><span>1</span><span>&#x26;&#x26;!</span><span>vis[a[i].to]) </span><span>dfs</span><span>(a[i].to,cur);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> tot,ans;</span></span>
+<span class="line"><span>ll g[maxn</span><span>*</span><span>maxn</span><span>*</span><span>4</span><span>];</span></span>
+<span class="line"><span>const</span><span> int</span><span> base</span><span>=</span><span>1</span><span>e</span><span>6</span><span>;</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> i,j,k,x,y,gg;</span></span>
+<span class="line"><span>	read</span><span>(n);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) </span><span>read</span><span>(h[i][j]);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) </span><span>read</span><span>(v[i][j]);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			for</span><span> (k</span><span>=</span><span>1</span><span>;k</span><span>&#x3C;=</span><span>4</span><span>;k</span><span>++</span><span>) {</span></span>
+<span class="line"><span>				x</span><span>=</span><span>i</span><span>+</span><span>fx[k],y</span><span>=</span><span>j</span><span>+</span><span>fy[k];</span></span>
+<span class="line"><span>				if</span><span> (x</span><span>>=</span><span>1</span><span>&#x26;&#x26;</span><span>x</span><span>&#x3C;=</span><span>n</span><span>&#x26;&#x26;</span><span>y</span><span>>=</span><span>1</span><span>&#x26;&#x26;</span><span>y</span><span>&#x3C;=</span><span>n) ;</span><span>else</span><span> continue</span><span>;</span></span>
+<span class="line"><span>				if</span><span> (v[i][j]</span><span>==</span><span>v[x][y]) {</span></span>
+<span class="line"><span>					if</span><span> (h[i][j]</span><span>==</span><span>h[x][y]) a[</span><span>++</span><span>head].</span><span>add</span><span>(</span><span>id</span><span>(i,j),</span><span>id</span><span>(x,y),</span><span>-</span><span>1</span><span>,</span><span>-</span><span>1</span><span>);</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>				else</span><span> if</span><span> (h[i][j]</span><span>==</span><span>h[x][y]) a[</span><span>++</span><span>head].</span><span>add</span><span>(</span><span>id</span><span>(i,j),</span><span>id</span><span>(x,y),</span><span>0</span><span>,</span><span>0</span><span>);</span></span>
+<span class="line"><span>				else</span><span> {</span></span>
+<span class="line"><span>					int</span><span> tmpy</span><span>=</span><span>h[x][y]</span><span>-</span><span>h[i][j],tmpx</span><span>=</span><span>v[i][j]</span><span>-</span><span>v[x][y];</span></span>
+<span class="line"><span>					if</span><span> (</span><span>1</span><span>ll*</span><span>tmpx</span><span>*</span><span>tmpy</span><span>&#x3C;</span><span>0</span><span>) </span><span>continue</span><span>;</span></span>
+<span class="line"><span>					tmpy</span><span>=</span><span>abs</span><span>(tmpy),tmpx</span><span>=</span><span>abs</span><span>(tmpx);gg</span><span>=</span><span>__gcd</span><span>(tmpx,tmpy);</span></span>
+<span class="line"><span>					a[</span><span>++</span><span>head].</span><span>add</span><span>(</span><span>id</span><span>(i,j),</span><span>id</span><span>(x,y),tmpy</span><span>/</span><span>gg,tmpx</span><span>/</span><span>gg);</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) size[</span><span>id</span><span>(i,j)]</span><span>=</span><span>1</span><span>,fa[</span><span>id</span><span>(i,j)]</span><span>=</span><span>id</span><span>(i,j);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) </span><span>if</span><span> (</span><span>!</span><span>vis[</span><span>id</span><span>(i,j)]) </span><span>dfs</span><span>(</span><span>id</span><span>(i,j),</span><span>id</span><span>(i,j));</span><span>//,gdb(i,j,size[getfa(id(i,j))]);</span></span>
+<span class="line"><span>	int</span><span> cnt</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) </span><span>if</span><span> (fa[</span><span>id</span><span>(i,j)]</span><span>==</span><span>id</span><span>(i,j)) tr[</span><span>id</span><span>(i,j)]</span><span>=++</span><span>cnt,nsize[cnt]</span><span>=</span><span>size[</span><span>id</span><span>(i,j)];</span><span>//,gdb(i,j,cnt,nsize[cnt]);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			int</span><span> pus</span><span>=</span><span>getfa</span><span>(</span><span>id</span><span>(i,j));</span></span>
+<span class="line"><span>			for</span><span> (k</span><span>=</span><span>he[pus];k;k</span><span>=</span><span>a[k].z) {</span></span>
+<span class="line"><span>				int</span><span> now</span><span>=</span><span>getfa</span><span>(a[k].to);</span></span>
+<span class="line"><span>				if</span><span> (tr[now]</span><span>!=</span><span>tr[pus])</span><span>assert</span><span>(a[k].wx</span><span>!=-</span><span>1</span><span>),g[</span><span>++</span><span>tot]</span><span>=</span><span>1</span><span>ll*</span><span>a[k].wx</span><span>*</span><span>base</span><span>+</span><span>a[k].wy;</span></span>
+<span class="line"><span>			} </span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	sort</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot);</span></span>
+<span class="line"><span>	tot</span><span>=</span><span>unique</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot)</span><span>-</span><span>g</span><span>-</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>1</span><span>;j</span><span>&#x3C;=</span><span>n;j</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			int</span><span> pus</span><span>=</span><span>getfa</span><span>(</span><span>id</span><span>(i,j));</span></span>
+<span class="line"><span>			for</span><span> (k</span><span>=</span><span>he[pus];k;k</span><span>=</span><span>a[k].z) {</span></span>
+<span class="line"><span>				int</span><span> now</span><span>=</span><span>getfa</span><span>(a[k].to);</span></span>
+<span class="line"><span>				if</span><span> (tr[now]</span><span>!=</span><span>tr[pus]) {</span></span>
+<span class="line"><span>					int</span><span> w</span><span>=</span><span>lower_bound</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot,</span><span>1</span><span>ll*</span><span>a[k].wx</span><span>*</span><span>base</span><span>+</span><span>a[k].wy)</span><span>-</span><span>g;</span></span>
+<span class="line"><span>					e[w].</span><span>push_back</span><span>(</span><span>edges</span><span>(tr[pus],tr[now]));</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			} </span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>cnt;i</span><span>++</span><span>) fa[i]</span><span>=</span><span>i,size[i]</span><span>=</span><span>nsize[i];</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>tot;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		for</span><span> (</span><span>auto</span><span> tmp:e[i]) {</span></span>
+<span class="line"><span>			merge</span><span>(tmp.x,tmp.y);</span></span>
+<span class="line"><span>			ans</span><span>=</span><span>max</span><span>(ans,size[</span><span>getfa</span><span>(tmp.x)]);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		for</span><span> (</span><span>auto</span><span> tmp:e[i]) fa[tmp.x]</span><span>=</span><span>tmp.x,size[tmp.x]</span><span>=</span><span>nsize[tmp.x],fa[tmp.y]</span><span>=</span><span>tmp.y,size[tmp.y]</span><span>=</span><span>nsize[tmp.y];</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%d</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2022/10/13/%E7%AE%80%E5%8D%95dp%E9%80%89%E8%AE%B2/"><span>← 较早一篇</span><strong>简单dp选讲</strong></a><a href="/2022/10/19/NOIOnline-2022-%E8%AE%A8%E8%AE%BA/"><span>较新一篇 →</span><strong>NOIOnline 2022 讨论</strong></a></nav></article></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

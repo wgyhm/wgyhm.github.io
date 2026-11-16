@@ -1,192 +1,29 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="12.02～12.04 *12.02 是星期六，12.03 有模拟赛。 P2546 [POI2008] SZK - Mirror trap首先答案是 n&#x2F;2。 然后构造不会啊。看题解都是基于矩形的周长暴力求出来，但是为什么这样的复杂度是可以接受的？ P3465 [POI2008] CLO-Toll如果每个连通块里有一个环那么就一定可以。 然后 dfs 树跑出来找一个返租边就行了。 P34">
-<meta property="og:type" content="article">
-<meta property="og:title" content="POI2008合集">
-<meta property="og:url" content="http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="12.02～12.04 *12.02 是星期六，12.03 有模拟赛。 P2546 [POI2008] SZK - Mirror trap首先答案是 n&#x2F;2。 然后构造不会啊。看题解都是基于矩形的周长暴力求出来，但是为什么这样的复杂度是可以接受的？ P3465 [POI2008] CLO-Toll如果每个连通块里有一个环那么就一定可以。 然后 dfs 树跑出来找一个返租边就行了。 P34">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-12-07T11:17:38.000Z">
-<meta property="article:modified_time" content="2023-12-07T11:20:54.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="POI">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>POI2008合集</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/12/07/POI2009%E5%90%88%E9%9B%86/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&text=POI2008合集"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&is_video=false&description=POI2008合集"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=POI2008合集&body=Check out this article: http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&name=POI2008合集&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&t=POI2008合集"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P2546-POI2008-SZK-Mirror-trap"><span class="toc-number">1.</span> <span class="toc-text">P2546 [POI2008] SZK - Mirror trap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3465-POI2008-CLO-Toll"><span class="toc-number">2.</span> <span class="toc-text">P3465 [POI2008] CLO-Toll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3466-POI2008-KLO-Building-blocks"><span class="toc-number">3.</span> <span class="toc-text">P3466 [POI2008] KLO-Building blocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3467-POI2008-PLA-Postering"><span class="toc-number">4.</span> <span class="toc-text">P3467 [POI2008] PLA-Postering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3470-POI2008-BBB-BBB"><span class="toc-number">5.</span> <span class="toc-text">P3470 [POI2008] BBB-BBB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3471-POI2008-POC-Trains"><span class="toc-number">6.</span> <span class="toc-text">P3471 [POI2008] POC-Trains</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3472-POI2008-MAF-Mafia"><span class="toc-number">7.</span> <span class="toc-text">P3472 [POI2008] MAF-Mafia</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3473-POI2008-UCI-The-Great-Escape"><span class="toc-number">8.</span> <span class="toc-text">P3473 [POI2008] UCI-The Great Escape</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3474-POI2008-KUP-Plot-purchase"><span class="toc-number">9.</span> <span class="toc-text">P3474 [POI2008] KUP-Plot purchase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3475-POI2008-POD-Subdivision-of-Kingdom"><span class="toc-number">10.</span> <span class="toc-text">P3475 [POI2008] POD-Subdivision of Kingdom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3476-POI2008-TRO-Triangles"><span class="toc-number">11.</span> <span class="toc-text">P3476 [POI2008] TRO-Triangles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3478-POI2008-STA-Station"><span class="toc-number">12.</span> <span class="toc-text">P3478 [POI2008] STA-Station</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        POI2008合集
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-12-07T11:17:38.000Z" class="dt-published" itemprop="datePublished">2023-12-07</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/POI/" rel="tag">POI</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <p>12.02～12.04</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="POI2008合集"><link rel="canonical" href="https://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>POI2008合集 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>POI2008合集</h1><div class="article-meta"><time datetime="2023-12-07">2023.12.07</time><span>·</span><span>5 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/POI/">#POI</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#p2546-poi2008-szk---mirror-trap">P2546 [POI2008] SZK - Mirror trap</a></li><li><a href="#p3465-poi2008-clo-toll">P3465 [POI2008] CLO-Toll</a></li><li><a href="#p3466-poi2008-klo-building-blocks">P3466 [POI2008] KLO-Building blocks</a></li><li><a href="#p3467-poi2008-pla-postering">P3467 [POI2008] PLA-Postering</a></li><li><a href="#p3470-poi2008-bbb-bbb">P3470 [POI2008] BBB-BBB</a></li><li><a href="#p3471-poi2008-poc-trains">P3471 [POI2008] POC-Trains</a></li><li><a href="#p3472-poi2008-maf-mafia">P3472 [POI2008] MAF-Mafia</a></li><li><a href="#p3473-poi2008-uci-the-great-escape">P3473 [POI2008] UCI-The Great Escape</a></li><li><a href="#p3474-poi2008-kup-plot-purchase">P3474 [POI2008] KUP-Plot purchase</a></li><li><a href="#p3475-poi2008-pod-subdivision-of-kingdom">P3475 [POI2008] POD-Subdivision of Kingdom</a></li><li><a href="#p3476-poi2008-tro-triangles">P3476 [POI2008] TRO-Triangles</a></li><li><a href="#p3478-poi2008-sta-station">P3478 [POI2008] STA-Station</a></li></ul></details><div class="prose" data-post-body><p>12.02～12.04</p>
 <p>*12.02 是星期六，12.03 有模拟赛。</p>
-<h3 id="P2546-POI2008-SZK-Mirror-trap"><a href="#P2546-POI2008-SZK-Mirror-trap" class="headerlink" title="P2546 [POI2008] SZK - Mirror trap"></a>P2546 [POI2008] SZK - Mirror trap</h3><p>首先答案是 n&#x2F;2。</p>
+<span id="P2546-POI2008-SZK-Mirror-trap" class="legacy-anchor" aria-hidden="true"></span><h3 id="p2546-poi2008-szk---mirror-trap">P2546 [POI2008] SZK - Mirror trap</h3>
+<p>首先答案是 n/2。</p>
 <p>然后构造不会啊。看题解都是基于矩形的周长暴力求出来，但是为什么这样的复杂度是可以接受的？</p>
-<h3 id="P3465-POI2008-CLO-Toll"><a href="#P3465-POI2008-CLO-Toll" class="headerlink" title="P3465 [POI2008] CLO-Toll"></a>P3465 [POI2008] CLO-Toll</h3><p>如果每个连通块里有一个环那么就一定可以。</p>
+<span id="P3465-POI2008-CLO-Toll" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3465-poi2008-clo-toll">P3465 [POI2008] CLO-Toll</h3>
+<p>如果每个连通块里有一个环那么就一定可以。</p>
 <p>然后 dfs 树跑出来找一个返租边就行了。</p>
-<h3 id="P3466-POI2008-KLO-Building-blocks"><a href="#P3466-POI2008-KLO-Building-blocks" class="headerlink" title="P3466 [POI2008] KLO-Building blocks"></a>P3466 [POI2008] KLO-Building blocks</h3><p>发现最优的点是中位数。算贡献就平衡树一类的就可以了。</p>
+<span id="P3466-POI2008-KLO-Building-blocks" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3466-poi2008-klo-building-blocks">P3466 [POI2008] KLO-Building blocks</h3>
+<p>发现最优的点是中位数。算贡献就平衡树一类的就可以了。</p>
 <p>如果是现在的我会写权值线段树。</p>
-<h3 id="P3467-POI2008-PLA-Postering"><a href="#P3467-POI2008-PLA-Postering" class="headerlink" title="P3467 [POI2008] PLA-Postering"></a>P3467 [POI2008] PLA-Postering</h3><p>如果两个点可以用一张海报同时解决就称产生了 $-1$ 的贡献。</p>
+<span id="P3467-POI2008-PLA-Postering" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3467-poi2008-pla-postering">P3467 [POI2008] PLA-Postering</h3>
+<p>如果两个点可以用一张海报同时解决就称产生了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span> 的贡献。</p>
 <p>发现如果两个点大小相等，且之间的高度都大于这两个点就会产生贡献。</p>
-<p>ST 表太蠢了不是吗。所以笛卡尔树搞一搞。复杂度 $O(n)$。</p>
-<h3 id="P3470-POI2008-BBB-BBB"><a href="#P3470-POI2008-BBB-BBB" class="headerlink" title="P3470 [POI2008] BBB-BBB"></a>P3470 [POI2008] BBB-BBB</h3><p>观察到先进行 $2$ 操作，再进行 $1$ 操作和两个交替进行是等价的。</p>
-<p>然后把序列复制一遍，相当于滑动窗口。找到至少需要几个最前面的 $-1$ 改为 $1$，然后再做 $p+S_n&#x3D;q$ 限制调整一下。</p>
-<p>复杂度 $O(n)$。</p>
-<h3 id="P3471-POI2008-POC-Trains"><a href="#P3471-POI2008-POC-Trains" class="headerlink" title="P3471 [POI2008] POC-Trains"></a>P3471 [POI2008] POC-Trains</h3><p>数据结构学傻了。算是小清新数据结构题？</p>
+<p>ST 表太蠢了不是吗。所以笛卡尔树搞一搞。复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<span id="P3470-POI2008-BBB-BBB" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3470-poi2008-bbb-bbb">P3470 [POI2008] BBB-BBB</h3>
+<p>观察到先进行 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 操作，再进行 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 操作和两个交替进行是等价的。</p>
+<p>然后把序列复制一遍，相当于滑动窗口。找到至少需要几个最前面的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span> 改为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，然后再做 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>+</mo><msub><mi>S</mi><mi>n</mi></msub><mo>=</mo><mi>q</mi></mrow><annotation encoding="application/x-tex">p+S_n=q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">q</span></span></span></span> 限制调整一下。</p>
+<p>复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<span id="P3471-POI2008-POC-Trains" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3471-poi2008-poc-trains">P3471 [POI2008] POC-Trains</h3>
+<p>数据结构学傻了。算是小清新数据结构题？</p>
 <p>判断相同考虑哈希。</p>
 <p>我们对每个哈希值维护一个集合，集合按加入时间排序（所以为什么不叫序列呢），集合中的每个点带权表示当这个点加入时刻下的集合大小。我们删除一个点时查询这个点在原来所在集合中的后缀最大值。也就是我们要在线维护：</p>
 <ul>
@@ -195,207 +32,53 @@
 </ul>
 <p>显然可以用平衡树搞一搞，那这样不是太平凡了吗？</p>
 <p>考虑带权并查集，每次把一个点加入集合时把他作为这个集合的根。查询时做路径压缩的时候，把到根的权值的最大值和自己本身取最大。这样每个点的后缀最大值信息就维护好了。</p>
-<p>如果自己写哈希表的话可以做到 $O(nl+m)$。但我比较懒用 <code>unordered_map</code>。</p>
-<h3 id="P3472-POI2008-MAF-Mafia"><a href="#P3472-POI2008-MAF-Mafia" class="headerlink" title="P3472 [POI2008] MAF-Mafia"></a>P3472 [POI2008] MAF-Mafia</h3><p>先以 $(i,a_i)$ 建一颗内向基环树。</p>
+<p>如果自己写哈希表的话可以做到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mo>+</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nl+m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span>。但我比较懒用 <code>unordered_map</code>。</p>
+<span id="P3472-POI2008-MAF-Mafia" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3472-poi2008-maf-mafia">P3472 [POI2008] MAF-Mafia</h3>
+<p>先以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,a_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 建一颗内向基环树。</p>
 <p>考虑先计算最多的情况。</p>
-<p>观察到如果一棵基环树只有环，那么最多能<strong>存活</strong> $1$ 个，否则除了入度为 $0$ 的点一定能杀光。还要特判只有一个自环的情况，这种情况这个点也可以被自己杀死。</p>
+<p>观察到如果一棵基环树只有环，那么最多能<strong>存活</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 个，否则除了入度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> 的点一定能杀光。还要特判只有一个自环的情况，这种情况这个点也可以被自己杀死。</p>
 <p>然后计算最少的情况。</p>
 <p>考虑最优策略有：如果一个人一定被杀死，那么就不要让他在杀别人之前被杀。</p>
-<p>先把树的部分处理出来。这样环上就成了一些一定要被杀死的点和不被确定的点。如果环上存在一定被杀死的点，则被分为许多不被确定的链，一条长度为 $x$ 的链最少被杀死的人数是 $\lfloor\dfrac{x}{2}\rfloor$；如果环上都是不被确定的点，令环的长度为 $x$，则最少被杀死的人数是 $\lceil \dfrac{x}{2} \rceil$。</p>
-<p>复杂度 $O(n)$。</p>
-<h3 id="P3473-POI2008-UCI-The-Great-Escape"><a href="#P3473-POI2008-UCI-The-Great-Escape" class="headerlink" title="P3473 [POI2008] UCI-The Great Escape"></a>P3473 [POI2008] UCI-The Great Escape</h3><p>还是一些细节没想好啊。</p>
-<p>观察到每次相当于切割一次矩阵，我们令 $f_{i,j,k,l,0&#x2F;1&#x2F;2&#x2F;3}$ 表示矩阵的左下角的为 $(i,j)$，右上角为 $(k,l)$，接下来要往 上&#x2F;右&#x2F;下&#x2F;左 走。</p>
+<p>先把树的部分处理出来。这样环上就成了一些一定要被杀死的点和不被确定的点。如果环上存在一定被杀死的点，则被分为许多不被确定的链，一条长度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 的链最少被杀死的人数是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌊</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>x</mi><mn>2</mn></mfrac></mstyle><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">\lfloor\dfrac{x}{2}\rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.7936em;vertical-align:-0.686em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌋</span></span></span></span>；如果环上都是不被确定的点，令环的长度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>，则最少被杀死的人数是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌈</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>x</mi><mn>2</mn></mfrac></mstyle><mo stretchy="false">⌉</mo></mrow><annotation encoding="application/x-tex">\lceil \dfrac{x}{2} \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.7936em;vertical-align:-0.686em;"></span><span class="mopen">⌈</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌉</span></span></span></span>。</p>
+<p>复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<span id="P3473-POI2008-UCI-The-Great-Escape" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3473-poi2008-uci-the-great-escape">P3473 [POI2008] UCI-The Great Escape</h3>
+<p>还是一些细节没想好啊。</p>
+<p>观察到每次相当于切割一次矩阵，我们令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k,l,0/1/2/3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0496em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">0/1/2/3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span></span></span></span> 表示矩阵的左下角的为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">)</span></span></span></span>，右上角为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(k,l)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mclose">)</span></span></span></span>，接下来要往 上/右/下/左 走。</p>
 <p>先不考虑有障碍的情况。</p>
-<p>感觉从 $(1,1)$ 开始不好赋初值啊，于是我们考虑从 $(sx,sy)$ 开始倒着走，也就是每次左转。比如我们以往上走为例子：</p>
-<p>$f_{i,j,k,l,0}\gets f_{r,j+1,k,l,1}$。</p>
+<p>感觉从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 开始不好赋初值啊，于是我们考虑从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>s</mi><mi>x</mi><mo separator="true">,</mo><mi>s</mi><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(sx,sy)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">sy</span><span class="mclose">)</span></span></span></span> 开始倒着走，也就是每次左转。比如我们以往上走为例子：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>0</mn></mrow></msub><mo>←</mo><msub><mi>f</mi><mrow><mi>r</mi><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k,l,0}\gets f_{r,j+1,k,l,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>。</p>
 <p>考虑用已经递推出来的来化简这个东西：</p>
-<p>$f_{i,j,k,l,0}\gets f_{i+1,j,k,l,0}+f_{i,j+1,k,l,1}$。</p>
-<p>可以发现新加入的一条是列为 $j$，行 $[i,k]$ 的一列值，只需要判断这一段上没有障碍就可以转移。</p>
-<p>同样的可以扩展到剩下 $3$ 种情况。</p>
-<p>最初状态 $f_{sx,sy,sx,sy,i}&#x3D;1$。</p>
-<p>然后考虑转移方向，观察到每次让矩形的半周长增加 $1$。所以我们先枚举矩形半周长即可。</p>
-<p>这样就可以 $O(n^4)$ 递推了。空间需要滚动数组优化，复杂度为 $O(n^3)$，有 $8$ 倍的常数。</p>
-<h3 id="P3474-POI2008-KUP-Plot-purchase"><a href="#P3474-POI2008-KUP-Plot-purchase" class="headerlink" title="P3474 [POI2008] KUP-Plot purchase"></a>P3474 [POI2008] KUP-Plot purchase</h3><p>这题的关键在于用到 $[k,2k]$ 和 $&lt;k$ 的关系。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>0</mn></mrow></msub><mo>←</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>0</mn></mrow></msub><mo>+</mo><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo separator="true">,</mo><mi>l</mi><mo separator="true">,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k,l,0}\gets f_{i+1,j,k,l,0}+f_{i,j+1,k,l,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>。</p>
+<p>可以发现新加入的一条是列为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span>，行 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>i</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[i,k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">]</span></span></span></span> 的一列值，只需要判断这一段上没有障碍就可以转移。</p>
+<p>同样的可以扩展到剩下 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 种情况。</p>
+<p>最初状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>s</mi><mi>x</mi><mo separator="true">,</mo><mi>s</mi><mi>y</mi><mo separator="true">,</mo><mi>s</mi><mi>x</mi><mo separator="true">,</mo><mi>s</mi><mi>y</mi><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f_{sx,sy,sx,sy,i}=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">sy</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">sy</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p>然后考虑转移方向，观察到每次让矩形的半周长增加 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。所以我们先枚举矩形半周长即可。</p>
+<p>这样就可以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>4</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^4)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 递推了。空间需要滚动数组优化，复杂度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>3</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span> 倍的常数。</p>
+<span id="P3474-POI2008-KUP-Plot-purchase" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3474-poi2008-kup-plot-purchase">P3474 [POI2008] KUP-Plot purchase</h3>
+<p>这题的关键在于用到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>k</mi><mo separator="true">,</mo><mn>2</mn><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[k,2k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">]</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x3C;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">&#x3C;k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&#x3C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 的关系。</p>
 <p>显然如果一个点：</p>
 <ul>
-<li>$&gt;2k$，那么这个点一定不能被选。</li>
-<li>$k\le a_{i,j}\le 2k$，这个点就可以作为答案。</li>
-<li>$&lt;k$。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>></mo><mn>2</mn><mi>k</mi></mrow><annotation encoding="application/x-tex">>2k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>，那么这个点一定不能被选。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>≤</mo><msub><mi>a</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>≤</mo><mn>2</mn><mi>k</mi></mrow><annotation encoding="application/x-tex">k\le a_{i,j}\le 2k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9221em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>，这个点就可以作为答案。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x3C;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">&#x3C;k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&#x3C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>。</li>
 </ul>
-<p>把上面两种判掉，那么转化为我们要选一个只有 $&lt;k$ 的点组成的矩阵，满足矩阵元素之和在 $[k,2k]$ 之间。</p>
-<p>观察到如果一个矩阵仅有 $&lt;k$ 的组成，如果这个矩阵的和 $\ge k$，那么一定有解。</p>
+<p>把上面两种判掉，那么转化为我们要选一个只有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x3C;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">&#x3C;k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&#x3C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 的点组成的矩阵，满足矩阵元素之和在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>k</mi><mo separator="true">,</mo><mn>2</mn><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[k,2k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">]</span></span></span></span> 之间。</p>
+<p>观察到如果一个矩阵仅有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x3C;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">&#x3C;k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&#x3C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 的组成，如果这个矩阵的和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\ge k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>，那么一定有解。</p>
 <ul>
-<li>如果矩阵的和 $\le 2k$，它就是答案。</li>
-<li>否则如果矩阵的第一行 $&lt;k$，那么删掉这一行。</li>
-<li>如果矩阵的第一行 $\ge k$，那么只保留这一行，并不断删数删到这一行的和 $\le 2k$ 为止。</li>
+<li>如果矩阵的和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo><mn>2</mn><mi>k</mi></mrow><annotation encoding="application/x-tex">\le 2k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>，它就是答案。</li>
+<li>否则如果矩阵的第一行 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x3C;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">&#x3C;k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&#x3C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>，那么删掉这一行。</li>
+<li>如果矩阵的第一行 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\ge k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>，那么只保留这一行，并不断删数删到这一行的和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo><mn>2</mn><mi>k</mi></mrow><annotation encoding="application/x-tex">\le 2k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 为止。</li>
 </ul>
-<p>因为我们选出的这个矩阵中的所有元素都 $&lt;k$，所以一定可以删到 $[k,2k]$ 之间。</p>
-<p>要找一个满足条件且 $\ge k$ 的矩阵，等价于找一个只包含 $&lt;k$ 元素的最大子矩阵。悬线法即可。复杂度 $O(n^2)$。</p>
-<h3 id="P3475-POI2008-POD-Subdivision-of-Kingdom"><a href="#P3475-POI2008-POD-Subdivision-of-Kingdom" class="headerlink" title="P3475 [POI2008] POD-Subdivision of Kingdom"></a>P3475 [POI2008] POD-Subdivision of Kingdom</h3><p>观察到状态很少，考虑直接搜。</p>
-<p>关于 $O(1)$ 计算状态，考虑在搜的时候计算出一个数从一个集合移到另外一个集合的变化量，状压以后计算状态里 $1$ 的个数。</p>
-<p>直接 $2^{26}$ 预处理计算是不现实的，可以计算前 $13$ 位和后 $13$ 位的 $1$ 的个数的和。</p>
-<h3 id="P3476-POI2008-TRO-Triangles"><a href="#P3476-POI2008-TRO-Triangles" class="headerlink" title="P3476 [POI2008] TRO-Triangles"></a>P3476 [POI2008] TRO-Triangles</h3><p>计算几何入门题。</p>
-<p>如果直接枚举三角形的一个点 $A$，发现叉积的绝对值不好去。如果要去的话要 360 度的极角排序后双指针。考虑更高妙的枚举方式。</p>
-<p>观察到我们只需要先将所有点按 $A$ 排个序，每次只枚举这个点后面的点那么就只用 180 度的极角排序，按叉积排序就好了。排完序以后做个后缀向量和叉积即可。</p>
-<p>复杂度 $O(n^2\log n)$，瓶颈在排序。</p>
-<h3 id="P3478-POI2008-STA-Station"><a href="#P3478-POI2008-STA-Station" class="headerlink" title="P3478 [POI2008] STA-Station"></a>P3478 [POI2008] STA-Station</h3><p>简单树形换根。</p>
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P2546-POI2008-SZK-Mirror-trap"><span class="toc-number">1.</span> <span class="toc-text">P2546 [POI2008] SZK - Mirror trap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3465-POI2008-CLO-Toll"><span class="toc-number">2.</span> <span class="toc-text">P3465 [POI2008] CLO-Toll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3466-POI2008-KLO-Building-blocks"><span class="toc-number">3.</span> <span class="toc-text">P3466 [POI2008] KLO-Building blocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3467-POI2008-PLA-Postering"><span class="toc-number">4.</span> <span class="toc-text">P3467 [POI2008] PLA-Postering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3470-POI2008-BBB-BBB"><span class="toc-number">5.</span> <span class="toc-text">P3470 [POI2008] BBB-BBB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3471-POI2008-POC-Trains"><span class="toc-number">6.</span> <span class="toc-text">P3471 [POI2008] POC-Trains</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3472-POI2008-MAF-Mafia"><span class="toc-number">7.</span> <span class="toc-text">P3472 [POI2008] MAF-Mafia</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3473-POI2008-UCI-The-Great-Escape"><span class="toc-number">8.</span> <span class="toc-text">P3473 [POI2008] UCI-The Great Escape</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3474-POI2008-KUP-Plot-purchase"><span class="toc-number">9.</span> <span class="toc-text">P3474 [POI2008] KUP-Plot purchase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3475-POI2008-POD-Subdivision-of-Kingdom"><span class="toc-number">10.</span> <span class="toc-text">P3475 [POI2008] POD-Subdivision of Kingdom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3476-POI2008-TRO-Triangles"><span class="toc-number">11.</span> <span class="toc-text">P3476 [POI2008] TRO-Triangles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P3478-POI2008-STA-Station"><span class="toc-number">12.</span> <span class="toc-text">P3478 [POI2008] STA-Station</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&text=POI2008合集"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&is_video=false&description=POI2008合集"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=POI2008合集&body=Check out this article: http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&title=POI2008合集"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&name=POI2008合集&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/12/07/POI2008%E5%90%88%E9%9B%86/&t=POI2008合集"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<p>因为我们选出的这个矩阵中的所有元素都 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x3C;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">&#x3C;k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&#x3C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>，所以一定可以删到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>k</mi><mo separator="true">,</mo><mn>2</mn><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[k,2k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">]</span></span></span></span> 之间。</p>
+<p>要找一个满足条件且 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\ge k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 的矩阵，等价于找一个只包含 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x3C;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">&#x3C;k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&#x3C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 元素的最大子矩阵。悬线法即可。复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<span id="P3475-POI2008-POD-Subdivision-of-Kingdom" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3475-poi2008-pod-subdivision-of-kingdom">P3475 [POI2008] POD-Subdivision of Kingdom</h3>
+<p>观察到状态很少，考虑直接搜。</p>
+<p>关于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 计算状态，考虑在搜的时候计算出一个数从一个集合移到另外一个集合的变化量，状压以后计算状态里 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 的个数。</p>
+<p>直接 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>26</mn></msup></mrow><annotation encoding="application/x-tex">2^{26}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">26</span></span></span></span></span></span></span></span></span></span></span></span> 预处理计算是不现实的，可以计算前 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>13</mn></mrow><annotation encoding="application/x-tex">13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span> 位和后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>13</mn></mrow><annotation encoding="application/x-tex">13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span> 位的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 的个数的和。</p>
+<span id="P3476-POI2008-TRO-Triangles" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3476-poi2008-tro-triangles">P3476 [POI2008] TRO-Triangles</h3>
+<p>计算几何入门题。</p>
+<p>如果直接枚举三角形的一个点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span>，发现叉积的绝对值不好去。如果要去的话要 360 度的极角排序后双指针。考虑更高妙的枚举方式。</p>
+<p>观察到我们只需要先将所有点按 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> 排个序，每次只枚举这个点后面的点那么就只用 180 度的极角排序，按叉积排序就好了。排完序以后做个后缀向量和叉积即可。</p>
+<p>复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，瓶颈在排序。</p>
+<span id="P3478-POI2008-STA-Station" class="legacy-anchor" aria-hidden="true"></span><h3 id="p3478-poi2008-sta-station">P3478 [POI2008] STA-Station</h3>
+<p>简单树形换根。</p></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/12/07/POI2009%E5%90%88%E9%9B%86/"><span>← 较早一篇</span><strong>POI2009合集</strong></a><a href="/2023/12/07/P6775-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81/"><span>较新一篇 →</span><strong>P6775 [NOI2020] 制作菜品</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li class="indent"><a href="#p2546-poi2008-szk---mirror-trap">P2546 [POI2008] SZK - Mirror trap</a></li><li class="indent"><a href="#p3465-poi2008-clo-toll">P3465 [POI2008] CLO-Toll</a></li><li class="indent"><a href="#p3466-poi2008-klo-building-blocks">P3466 [POI2008] KLO-Building blocks</a></li><li class="indent"><a href="#p3467-poi2008-pla-postering">P3467 [POI2008] PLA-Postering</a></li><li class="indent"><a href="#p3470-poi2008-bbb-bbb">P3470 [POI2008] BBB-BBB</a></li><li class="indent"><a href="#p3471-poi2008-poc-trains">P3471 [POI2008] POC-Trains</a></li><li class="indent"><a href="#p3472-poi2008-maf-mafia">P3472 [POI2008] MAF-Mafia</a></li><li class="indent"><a href="#p3473-poi2008-uci-the-great-escape">P3473 [POI2008] UCI-The Great Escape</a></li><li class="indent"><a href="#p3474-poi2008-kup-plot-purchase">P3474 [POI2008] KUP-Plot purchase</a></li><li class="indent"><a href="#p3475-poi2008-pod-subdivision-of-kingdom">P3475 [POI2008] POD-Subdivision of Kingdom</a></li><li class="indent"><a href="#p3476-poi2008-tro-triangles">P3476 [POI2008] TRO-Triangles</a></li><li class="indent"><a href="#p3478-poi2008-sta-station">P3478 [POI2008] STA-Station</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

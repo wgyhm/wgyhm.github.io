@@ -1,365 +1,233 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="包含口胡成分。 T4 离散化写错调了 1h 没调出来。这种低级错误能不能少一点啊啊啊！ T1https:&#x2F;&#x2F;yundouxueyuan.com&#x2F;p&#x2F;5289?tid&#x3D;654477590123557c779ff907 容易发现合法的点的子树大小一定 $\ge \dfrac{n}{2}$，而这些点在树上形成一条链。 省事的话可以二分做到 $O(n\log n)$。感觉应该有实现好的 $O(n)$ 做法">
-<meta property="og:type" content="article">
-<meta property="og:title" content="11.12 NOIP云斗模拟赛">
-<meta property="og:url" content="http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="包含口胡成分。 T4 离散化写错调了 1h 没调出来。这种低级错误能不能少一点啊啊啊！ T1https:&#x2F;&#x2F;yundouxueyuan.com&#x2F;p&#x2F;5289?tid&#x3D;654477590123557c779ff907 容易发现合法的点的子树大小一定 $\ge \dfrac{n}{2}$，而这些点在树上形成一条链。 省事的话可以二分做到 $O(n\log n)$。感觉应该有实现好的 $O(n)$ 做法">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-11-13T09:40:43.000Z">
-<meta property="article:modified_time" content="2023-11-13T13:14:56.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="NOIP模拟赛">
-<meta property="article:tag" content="dp">
-<meta property="article:tag" content="数位dp">
-<meta property="article:tag" content="数据结构">
-<meta property="article:tag" content="线段树">
-<meta property="article:tag" content="贪心">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>11.12 NOIP云斗模拟赛</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/11/13/CF1548C-The-Three-Little-Pigs/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/11/12/bzoj2217-POI2011-LIZ-Lollipop/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&text=11.12 NOIP云斗模拟赛"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&is_video=false&description=11.12 NOIP云斗模拟赛"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=11.12 NOIP云斗模拟赛&body=Check out this article: http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&name=11.12 NOIP云斗模拟赛&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&t=11.12 NOIP云斗模拟赛"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1"><span class="toc-number">1.</span> <span class="toc-text">T1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2"><span class="toc-number">2.</span> <span class="toc-text">T2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3"><span class="toc-number">3.</span> <span class="toc-text">T3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T4"><span class="toc-number">4.</span> <span class="toc-text">T4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F"><span class="toc-number">4.1.</span> <span class="toc-text">观察</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4"><span class="toc-number">4.2.</span> <span class="toc-text">维护</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        11.12 NOIP云斗模拟赛
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-11-13T09:40:43.000Z" class="dt-published" itemprop="datePublished">2023-11-13</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B/" rel="tag">NOIP模拟赛</a>, <a class="p-category" href="/tags/dp/" rel="tag">dp</a>, <a class="p-category" href="/tags/%E6%95%B0%E4%BD%8Ddp/" rel="tag">数位dp</a>, <a class="p-category" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a>, <a class="p-category" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag">线段树</a>, <a class="p-category" href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag">贪心</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <p>包含口胡成分。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="11.12 NOIP云斗模拟赛"><link rel="canonical" href="https://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>11.12 NOIP云斗模拟赛 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>11.12 NOIP云斗模拟赛</h1><div class="article-meta"><time datetime="2023-11-13">2023.11.13</time><span>·</span><span>7 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/NOIP%E6%A8%A1%E6%8B%9F%E8%B5%9B/">#NOIP模拟赛</a><a class="chip" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a><a class="chip" href="/tags/%E6%95%B0%E4%BD%8D%20DP/">#数位 DP</a><a class="chip" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a><a class="chip" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">#线段树</a><a class="chip" href="/tags/%E8%B4%AA%E5%BF%83/">#贪心</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#t1">T1</a></li><li><a href="#t2">T2</a></li><li><a href="#t3">T3</a></li><li><a href="#t4">T4</a></li><li><a href="#%E8%A7%82%E5%AF%9F">观察</a></li><li><a href="#%E7%BB%B4%E6%8A%A4">维护</a></li></ul></details><div class="prose" data-post-body><p>包含口胡成分。</p>
 <p>T4 离散化写错调了 1h 没调出来。这种低级错误能不能少一点啊啊啊！</p>
-<h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><p><a target="_blank" rel="noopener" href="https://yundouxueyuan.com/p/5289?tid=654477590123557c779ff907">https://yundouxueyuan.com/p/5289?tid=654477590123557c779ff907</a></p>
-<p>容易发现合法的点的子树大小一定 $\ge \dfrac{n}{2}$，而这些点在树上形成一条链。</p>
-<p>省事的话可以二分做到 $O(n\log n)$。感觉应该有实现好的 $O(n)$ 做法。</p>
+<span id="T1" class="legacy-anchor" aria-hidden="true"></span><h2 id="t1">T1</h2>
+<p><a href="https://yundouxueyuan.com/p/5289?tid=654477590123557c779ff907">https://yundouxueyuan.com/p/5289?tid=654477590123557c779ff907</a></p>
+<p>容易发现合法的点的子树大小一定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>n</mi><mn>2</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\ge \dfrac{n}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.7936em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，而这些点在树上形成一条链。</p>
+<p>省事的话可以二分做到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。感觉应该有实现好的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> 做法。</p>
 <p>代码没写。</p>
-<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p><a target="_blank" rel="noopener" href="https://yundouxueyuan.com/p/5292?tid=654477590123557c779ff907">https://yundouxueyuan.com/p/5292?tid=654477590123557c779ff907</a></p>
-<p>感觉就是二分要删除的区间的大小，然后贪心放 $0$ 即可。</p>
+<span id="T2" class="legacy-anchor" aria-hidden="true"></span><h2 id="t2">T2</h2>
+<p><a href="https://yundouxueyuan.com/p/5292?tid=654477590123557c779ff907">https://yundouxueyuan.com/p/5292?tid=654477590123557c779ff907</a></p>
+<p>感觉就是二分要删除的区间的大小，然后贪心放 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> 即可。</p>
 <p>代码没写。</p>
-<h2 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h2><p><a target="_blank" rel="noopener" href="https://yundouxueyuan.com/p/5288?tid=654477590123557c779ff907">https://yundouxueyuan.com/p/5288?tid=654477590123557c779ff907</a></p>
-<p>如果 $n&#x3D;1$ 的话，考虑数位 dp，记录 dp 到第 $i$ 位，当前模 $m$ 的值，是否顶到上界，这一位是 $0&#x2F;1$。</p>
-<p>现在 $n$ 不为 $1$ 了，发现 $n$ 很小，状压是否顶到第 $i$ 个数的上界，按低位到高位转移。</p>
-<p>递推转移，初值要把所有是否顶到上界的状态都设为 $1$。</p>
-<p>复杂度 $O(nm2^n\log w)$ ，应该还有一个 $4$ 的常数。感觉出题人脑子坏掉了出毫无意义的卡常题目。</p>
+<span id="T3" class="legacy-anchor" aria-hidden="true"></span><h2 id="t3">T3</h2>
+<p><a href="https://yundouxueyuan.com/p/5288?tid=654477590123557c779ff907">https://yundouxueyuan.com/p/5288?tid=654477590123557c779ff907</a></p>
+<p>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 的话，考虑数位 dp，记录 dp 到第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 位，当前模 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> 的值，是否顶到上界，这一位是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">0/1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0/1</span></span></span></span>。</p>
+<p>现在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 不为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 了，发现 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 很小，状压是否顶到第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 个数的上界，按低位到高位转移。</p>
+<p>递推转移，初值要把所有是否顶到上界的状态都设为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p>复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>m</mi><msup><mn>2</mn><mi>n</mi></msup><mi>log</mi><mo>⁡</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nm2^n\log w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">nm</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="mclose">)</span></span></span></span> ，应该还有一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 的常数。感觉出题人脑子坏掉了出毫无意义的卡常题目。</p>
 <p>放下被卡的代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename T&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename T,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function">Tp <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,T t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,T x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span><span class="number">+7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n,m,a[<span class="number">25</span>];</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> base=<span class="number">31</span>;</span><br><span class="line"><span class="type">int</span> f[<span class="number">2</span>][<span class="number">16</span>][<span class="number">21</span>][(<span class="number">1</span>&lt;&lt;<span class="number">15</span>)<span class="number">+5</span>][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;x,<span class="type">int</span> y)</span> </span>&#123;(x+=y)&gt;=mod&amp;&amp;(x-=mod);&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen(&quot;sample5.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	<span class="type">int</span> i,j,k,l,s;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);</span><br><span class="line">	<span class="type">int</span> N=(<span class="number">1</span>&lt;&lt;n);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="keyword">for</span> (s=<span class="number">0</span>;s&lt;N;s++) f[<span class="number">0</span>][n<span class="number">-1</span>][<span class="number">0</span>][s][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (k=<span class="number">1</span>;k&lt;=base;k++) &#123;<span class="comment">//第k位</span></span><br><span class="line">		<span class="type">int</span> now=k&amp;<span class="number">1</span>,pre=now^<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">memset</span>(f[now],<span class="number">0</span>,<span class="built_in">sizeof</span>(f[now]));</span><br><span class="line">		<span class="type">int</span> tmp=(<span class="number">1</span>&lt;&lt;k<span class="number">-1</span>)%m;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++) &#123;<span class="comment">//第i个数</span></span><br><span class="line">			<span class="type">int</span> nums=(a[i]&gt;&gt;k<span class="number">-1</span>)%<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;m;j++) &#123;<span class="comment">//模m=j</span></span><br><span class="line">				<span class="keyword">for</span> (s=<span class="number">0</span>;s&lt;N;s++) &#123;<span class="comment">//是否顶到上界</span></span><br><span class="line">					<span class="type">int</span> lim=(s&gt;&gt;i)&amp;<span class="number">1</span>;</span><br><span class="line">					<span class="keyword">for</span> (l=<span class="number">0</span>;l&lt;=(lim?nums:<span class="number">1</span>);l++) &#123;</span><br><span class="line">						<span class="type">int</span> t=s;</span><br><span class="line">						<span class="keyword">if</span> (lim&amp;&amp;l!=nums) t^=(<span class="number">1ll</span>&lt;&lt;i);<span class="comment">//更新状态</span></span><br><span class="line">						<span class="keyword">if</span> (s&lt;t) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">						<span class="keyword">if</span> (i==<span class="number">0</span>) &#123;</span><br><span class="line">							<span class="built_in">add</span>(f[now][i][j][s][l],f[pre][n<span class="number">-1</span>][(j-l*tmp+m)%m][t][<span class="number">0</span>]);</span><br><span class="line">							<span class="built_in">add</span>(f[now][i][j][s][l],f[pre][n<span class="number">-1</span>][(j-l*tmp+m)%m][t][<span class="number">1</span>]);</span><br><span class="line">						&#125;<span class="comment">//如果是第一个数，则从上一层转移</span></span><br><span class="line">						<span class="keyword">else</span> &#123;</span><br><span class="line">							<span class="built_in">add</span>(f[now][i][j][s][l],f[now][i<span class="number">-1</span>][(j-l*tmp+m)%m][t][<span class="number">0</span>]);</span><br><span class="line">							<span class="built_in">add</span>(f[now][i][j][s][<span class="number">1</span>^l],f[now][i<span class="number">-1</span>][(j+l*tmp+m)%m][t][<span class="number">1</span>]);</span><br><span class="line">						&#125;<span class="comment">//否则从这一层的上一个数转移</span></span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,f[base&amp;<span class="number">1</span>][n<span class="number">-1</span>][<span class="number">0</span>][N<span class="number">-1</span>][<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h2><p>赛后发现离散化的时候数组下标位置写错了。哈哈。</p>
-<h3 id="观察"><a href="#观察" class="headerlink" title="观察"></a>观察</h3><p>显然先把 $b\gets \max(b,100)$。不取 $a$ 的原因是 $a$ 可能会变。</p>
-<p>从手玩一下 $n&#x3D;2,n&#x3D;3$ 的情况，发现 $a,b$ 独立且 $a,b$ 分别从小到大排完序以后，答案为 $\sum \max(a_i,b_i)$。具体感觉可以数学归纳一下。</p>
-<h3 id="维护"><a href="#维护" class="headerlink" title="维护"></a>维护</h3><p>因为跟顺序没关系，考虑放到值域上考虑。先观察值域很小的点。</p>
-<p>令 $na_i&#x3D;\sum [a_j\ge i],nb_i&#x3D;\sum [a_j\ge i]$ ，在值 $i$ 的贡献为 $\max{na_i,nb_i}$。</p>
-<p>感觉这样子就容易很多了麻！我们的操作有区间加，查询全局的贡献和。每个 $na_i$ 关于操作一定是单调不降的，也就是只会超过 $nb_i$ 一次。维护差的最小值然后暴力更新就好了。</p>
-<p>值域更大的情况可以离散化。复杂度 $O((n+q)\log n)$。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 600005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename T&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename T,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function">Tp <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,T t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,T x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span><span class="number">+7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> a[maxn],b[maxn],c[maxn],n,q;</span><br><span class="line"><span class="type">int</span> g[maxn],tot,d[maxn],ans;</span><br><span class="line">pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;e[maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">yyy</span> &#123;</span><br><span class="line">	<span class="type">int</span> Min,siz,lazy,tag,sum,id;</span><br><span class="line">	<span class="built_in">yyy</span>(<span class="type">int</span> a=<span class="number">0</span>,<span class="type">int</span> b=<span class="number">0</span>,<span class="type">int</span> c=<span class="number">0</span>,<span class="type">int</span> d=<span class="number">0</span>,<span class="type">int</span> e=<span class="number">0</span>,<span class="type">int</span> f=<span class="number">0</span>) &#123;</span><br><span class="line">		Min=a,siz=b,lazy=c,tag=d,sum=e,id=f;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;f[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> rt)</span> </span>&#123;</span><br><span class="line">	f[rt].Min=<span class="built_in">min</span>(f[rt&lt;&lt;<span class="number">1</span>].Min,f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].Min);</span><br><span class="line">	<span class="keyword">if</span> (f[rt].Min==f[rt&lt;&lt;<span class="number">1</span>].Min) f[rt].id=f[rt&lt;&lt;<span class="number">1</span>].id;</span><br><span class="line">	<span class="keyword">else</span> f[rt].id=f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].id;</span><br><span class="line">	f[rt].siz=f[rt&lt;&lt;<span class="number">1</span>].siz+f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].siz;</span><br><span class="line">	f[rt].sum=f[rt&lt;&lt;<span class="number">1</span>].sum+f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> rt)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (f[rt].lazy) &#123;</span><br><span class="line">		<span class="type">int</span> k=f[rt].lazy;f[rt].lazy=<span class="number">0</span>;</span><br><span class="line">		f[rt&lt;&lt;<span class="number">1</span>].sum+=k*f[rt&lt;&lt;<span class="number">1</span>].siz,f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum+=k*f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].siz;</span><br><span class="line">		f[rt&lt;&lt;<span class="number">1</span>].lazy+=k,f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].lazy+=k;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (f[rt].tag) &#123;</span><br><span class="line">		<span class="type">int</span> k=f[rt].tag;f[rt].tag=<span class="number">0</span>;</span><br><span class="line">		f[rt&lt;&lt;<span class="number">1</span>].Min+=k,f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].Min+=k;</span><br><span class="line">		f[rt&lt;&lt;<span class="number">1</span>].tag+=k,f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].tag+=k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> inf=<span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Update</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt,<span class="type">int</span> head,<span class="type">int</span> tail,yyy k)</span> </span>&#123;	</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=l&amp;&amp;r&lt;=tail) &#123;</span><br><span class="line">		<span class="keyword">if</span> (k.Min) f[rt].Min=inf;</span><br><span class="line">		<span class="keyword">if</span> (k.siz) f[rt].siz+=k.siz;</span><br><span class="line">		<span class="keyword">if</span> (k.lazy) f[rt].lazy+=k.lazy,f[rt].sum+=f[rt].siz*k.lazy;</span><br><span class="line">		<span class="keyword">if</span> (k.tag) f[rt].Min+=k.tag,f[rt].tag+=k.tag;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">pushdown</span>(rt);</span><br><span class="line">	<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=mid) <span class="built_in">Update</span>(l,mid,rt&lt;&lt;<span class="number">1</span>,head,tail,k);</span><br><span class="line">	<span class="keyword">if</span> (tail&gt;mid)  <span class="built_in">Update</span>(mid<span class="number">+1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,head,tail,k);</span><br><span class="line">	<span class="built_in">pushup</span>(rt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Build</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l==r) &#123;</span><br><span class="line">		f[rt].Min=d[l];</span><br><span class="line">		f[rt].id=l;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">Build</span>(l,mid,rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">Build</span>(mid<span class="number">+1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">pushup</span>(rt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">check</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (f[<span class="number">1</span>].Min&lt;<span class="number">0</span>) &#123;</span><br><span class="line">		<span class="type">int</span> id=f[<span class="number">1</span>].id;</span><br><span class="line">		<span class="built_in">Update</span>(<span class="number">1</span>,tot,<span class="number">1</span>,id,id,<span class="built_in">yyy</span>(inf,g[id]-g[id<span class="number">-1</span>],<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> o[maxn];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(q);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(a[i]),c[i]=a[i],o[i]=c[i];</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(b[i]),b[i]=<span class="built_in">max</span>(b[i],<span class="number">100ll</span>);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) g[++tot]=a[i],g[++tot]=b[i];</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=q;i++) &#123;</span><br><span class="line">		<span class="built_in">read</span>(e[i].fi),<span class="built_in">read</span>(e[i].se);</span><br><span class="line">		c[e[i].fi]+=e[i].se;</span><br><span class="line">		g[++tot]=c[e[i].fi];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">sort</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot);</span><br><span class="line">	tot=<span class="built_in">unique</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot)-g<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		ans+=b[i];</span><br><span class="line">		a[i]=<span class="built_in">lower_bound</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot,a[i])-g;</span><br><span class="line">		b[i]=<span class="built_in">lower_bound</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot,b[i])-g;</span><br><span class="line">		d[b[i]]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=tot;i&gt;=<span class="number">1</span>;i--) d[i]+=d[i<span class="number">+1</span>];</span><br><span class="line">	<span class="built_in">Build</span>(<span class="number">1</span>,tot,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="built_in">Update</span>(<span class="number">1</span>,tot,<span class="number">1</span>,<span class="number">1</span>,a[i],<span class="built_in">yyy</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>));</span><br><span class="line">		<span class="built_in">check</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[<span class="number">1</span>].sum+ans);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=q;i++) &#123;</span><br><span class="line">		<span class="type">int</span> tmpl=<span class="built_in">lower_bound</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot,o[e[i].fi])-g;</span><br><span class="line">		o[e[i].fi]+=e[i].se;</span><br><span class="line">		<span class="type">int</span> tmp=<span class="built_in">lower_bound</span>(g<span class="number">+1</span>,g<span class="number">+1</span>+tot,o[e[i].fi])-g;</span><br><span class="line">		<span class="built_in">Update</span>(<span class="number">1</span>,tot,<span class="number">1</span>,tmpl<span class="number">+1</span>,tmp,<span class="built_in">yyy</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>));</span><br><span class="line">		<span class="built_in">check</span>();</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[<span class="number">1</span>].sum+ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1"><span class="toc-number">1.</span> <span class="toc-text">T1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2"><span class="toc-number">2.</span> <span class="toc-text">T2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3"><span class="toc-number">3.</span> <span class="toc-text">T3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T4"><span class="toc-number">4.</span> <span class="toc-text">T4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F"><span class="toc-number">4.1.</span> <span class="toc-text">观察</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4"><span class="toc-number">4.2.</span> <span class="toc-text">维护</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&text=11.12 NOIP云斗模拟赛"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&is_video=false&description=11.12 NOIP云斗模拟赛"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=11.12 NOIP云斗模拟赛&body=Check out this article: http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&title=11.12 NOIP云斗模拟赛"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&name=11.12 NOIP云斗模拟赛&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/11/13/11-12-NOIP%E4%BA%91%E6%96%97%E6%A8%A1%E6%8B%9F%E8%B5%9B/&t=11.12 NOIP云斗模拟赛"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> ll</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>Tp </span><span>void</span><span> read</span><span>(T </span><span>&#x26;</span><span>x){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>const</span><span> int</span><span> mod</span><span>=</span><span>1</span><span>e</span><span>9</span><span>+</span><span>7</span><span>;</span></span>
+<span class="line"><span>int</span><span> power</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>=</span><span>mod</span><span>-</span><span>2</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> sum</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (y) {</span></span>
+<span class="line"><span>		if</span><span> (y</span><span>&#x26;</span><span>1</span><span>) sum</span><span>=</span><span>sum</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		x</span><span>=</span><span>x</span><span>*</span><span>x</span><span>%</span><span>mod;y</span><span>>>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> n,m,a[</span><span>25</span><span>];</span></span>
+<span class="line"><span>const</span><span> int</span><span> base</span><span>=</span><span>31</span><span>;</span></span>
+<span class="line"><span>int</span><span> f[</span><span>2</span><span>][</span><span>16</span><span>][</span><span>21</span><span>][(</span><span>1</span><span>&#x3C;&#x3C;</span><span>15</span><span>)</span><span>+</span><span>5</span><span>][</span><span>2</span><span>];</span></span>
+<span class="line"><span>void</span><span> add</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>,</span><span>int</span><span> y</span><span>) {(x</span><span>+=</span><span>y)</span><span>>=</span><span>mod</span><span>&#x26;&#x26;</span><span>(x</span><span>-=</span><span>mod);}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>//	freopen("sample5.in","r",stdin);</span></span>
+<span class="line"><span>	int</span><span> i,j,k,l,s;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(m);</span></span>
+<span class="line"><span>	int</span><span> N</span><span>=</span><span>(</span><span>1</span><span>&#x3C;&#x3C;</span><span>n);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(a[i]);</span></span>
+<span class="line"><span>	for</span><span> (s</span><span>=</span><span>0</span><span>;s</span><span>&#x3C;</span><span>N;s</span><span>++</span><span>) f[</span><span>0</span><span>][n</span><span>-</span><span>1</span><span>][</span><span>0</span><span>][s][</span><span>0</span><span>]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (k</span><span>=</span><span>1</span><span>;k</span><span>&#x3C;=</span><span>base;k</span><span>++</span><span>) {</span><span>//第k位</span></span>
+<span class="line"><span>		int</span><span> now</span><span>=</span><span>k</span><span>&#x26;</span><span>1</span><span>,pre</span><span>=</span><span>now</span><span>^</span><span>1</span><span>;</span></span>
+<span class="line"><span>		memset</span><span>(f[now],</span><span>0</span><span>,</span><span>sizeof</span><span>(f[now]));</span></span>
+<span class="line"><span>		int</span><span> tmp</span><span>=</span><span>(</span><span>1</span><span>&#x3C;&#x3C;</span><span>k</span><span>-</span><span>1</span><span>)</span><span>%</span><span>m;</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) {</span><span>//第i个数</span></span>
+<span class="line"><span>			int</span><span> nums</span><span>=</span><span>(a[i]</span><span>>></span><span>k</span><span>-</span><span>1</span><span>)</span><span>%</span><span>2</span><span>;</span></span>
+<span class="line"><span>			for</span><span> (j</span><span>=</span><span>0</span><span>;j</span><span>&#x3C;</span><span>m;j</span><span>++</span><span>) {</span><span>//模m=j</span></span>
+<span class="line"><span>				for</span><span> (s</span><span>=</span><span>0</span><span>;s</span><span>&#x3C;</span><span>N;s</span><span>++</span><span>) {</span><span>//是否顶到上界</span></span>
+<span class="line"><span>					int</span><span> lim</span><span>=</span><span>(s</span><span>>></span><span>i)</span><span>&#x26;</span><span>1</span><span>;</span></span>
+<span class="line"><span>					for</span><span> (l</span><span>=</span><span>0</span><span>;l</span><span>&#x3C;=</span><span>(lim</span><span>?</span><span>nums</span><span>:</span><span>1</span><span>);l</span><span>++</span><span>) {</span></span>
+<span class="line"><span>						int</span><span> t</span><span>=</span><span>s;</span></span>
+<span class="line"><span>						if</span><span> (lim</span><span>&#x26;&#x26;</span><span>l</span><span>!=</span><span>nums) t</span><span>^=</span><span>(</span><span>1</span><span>ll&#x3C;&#x3C;</span><span>i);</span><span>//更新状态</span></span>
+<span class="line"><span>						if</span><span> (s</span><span>&#x3C;</span><span>t) </span><span>return</span><span> 1</span><span>;</span></span>
+<span class="line"><span>						if</span><span> (i</span><span>==</span><span>0</span><span>) {</span></span>
+<span class="line"><span>							add</span><span>(f[now][i][j][s][l],f[pre][n</span><span>-</span><span>1</span><span>][(j</span><span>-</span><span>l</span><span>*</span><span>tmp</span><span>+</span><span>m)</span><span>%</span><span>m][t][</span><span>0</span><span>]);</span></span>
+<span class="line"><span>							add</span><span>(f[now][i][j][s][l],f[pre][n</span><span>-</span><span>1</span><span>][(j</span><span>-</span><span>l</span><span>*</span><span>tmp</span><span>+</span><span>m)</span><span>%</span><span>m][t][</span><span>1</span><span>]);</span></span>
+<span class="line"><span>						}</span><span>//如果是第一个数，则从上一层转移</span></span>
+<span class="line"><span>						else</span><span> {</span></span>
+<span class="line"><span>							add</span><span>(f[now][i][j][s][l],f[now][i</span><span>-</span><span>1</span><span>][(j</span><span>-</span><span>l</span><span>*</span><span>tmp</span><span>+</span><span>m)</span><span>%</span><span>m][t][</span><span>0</span><span>]);</span></span>
+<span class="line"><span>							add</span><span>(f[now][i][j][s][</span><span>1</span><span>^</span><span>l],f[now][i</span><span>-</span><span>1</span><span>][(j</span><span>+</span><span>l</span><span>*</span><span>tmp</span><span>+</span><span>m)</span><span>%</span><span>m][t][</span><span>1</span><span>]);</span></span>
+<span class="line"><span>						}</span><span>//否则从这一层的上一个数转移</span></span>
+<span class="line"><span>					}</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%d</span><span>"</span><span>,f[base</span><span>&#x26;</span><span>1</span><span>][n</span><span>-</span><span>1</span><span>][</span><span>0</span><span>][N</span><span>-</span><span>1</span><span>][</span><span>0</span><span>]);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<span id="T4" class="legacy-anchor" aria-hidden="true"></span><h2 id="t4">T4</h2>
+<p>赛后发现离散化的时候数组下标位置写错了。哈哈。</p>
+<span id="观察" class="legacy-anchor" aria-hidden="true"></span><h3 id="观察">观察</h3>
+<p>显然先把 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>←</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>b</mi><mo separator="true">,</mo><mn>100</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">b\gets \max(b,100)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">100</span><span class="mclose">)</span></span></span></span>。不取 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> 的原因是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> 可能会变。</p>
+<p>从手玩一下 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2</mn><mo separator="true">,</mo><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n=2,n=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 的情况，发现 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a,b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span></span></span></span> 独立且 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a,b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span></span></span></span> 分别从小到大排完序以后，答案为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∑</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sum \max(a_i,b_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。具体感觉可以数学归纳一下。</p>
+<span id="维护" class="legacy-anchor" aria-hidden="true"></span><h3 id="维护">维护</h3>
+<p>因为跟顺序没关系，考虑放到值域上考虑。先观察值域很小的点。</p>
+<p>令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><mo>∑</mo><mo stretchy="false">[</mo><msub><mi>a</mi><mi>j</mi></msub><mo>≥</mo><mi>i</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>n</mi><msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mo>∑</mo><mo stretchy="false">[</mo><msub><mi>a</mi><mi>j</mi></msub><mo>≥</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">na_i=\sum [a_j\ge i],nb_i=\sum [a_j\ge i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span> ，在值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 的贡献为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>max</mi><mo>⁡</mo><mo stretchy="false">{</mo><mi>n</mi><msub><mi>a</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>n</mi><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\max\{na_i,nb_i\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">{</span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>。</p>
+<p>感觉这样子就容易很多了麻！我们的操作有区间加，查询全局的贡献和。每个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">na_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 关于操作一定是单调不降的，也就是只会超过 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">nb_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 一次。维护差的最小值然后暴力更新就好了。</p>
+<p>值域更大的情况可以离散化。复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>q</mi><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O((n+q)\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">((</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> int</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 600005</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>Tp </span><span>void</span><span> read</span><span>(T </span><span>&#x26;</span><span>x){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>const</span><span> int</span><span> mod</span><span>=</span><span>1</span><span>e</span><span>9</span><span>+</span><span>7</span><span>;</span></span>
+<span class="line"><span>int</span><span> power</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>=</span><span>mod</span><span>-</span><span>2</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> sum</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (y) {</span></span>
+<span class="line"><span>		if</span><span> (y</span><span>&#x26;</span><span>1</span><span>) sum</span><span>=</span><span>sum</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		x</span><span>=</span><span>x</span><span>*</span><span>x</span><span>%</span><span>mod;y</span><span>>>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> a[maxn],b[maxn],c[maxn],n,q;</span></span>
+<span class="line"><span>int</span><span> g[maxn],tot,d[maxn],ans;</span></span>
+<span class="line"><span>pair</span><span>&#x3C;int</span><span>,</span><span>int></span><span>e[maxn];</span></span>
+<span class="line"><span>struct</span><span> yyy</span><span> {</span></span>
+<span class="line"><span>	int</span><span> Min,siz,lazy,tag,sum,id;</span></span>
+<span class="line"><span>	yyy</span><span>(</span><span>int</span><span> a</span><span>=</span><span>0</span><span>,</span><span>int</span><span> b</span><span>=</span><span>0</span><span>,</span><span>int</span><span> c</span><span>=</span><span>0</span><span>,</span><span>int</span><span> d</span><span>=</span><span>0</span><span>,</span><span>int</span><span> e</span><span>=</span><span>0</span><span>,</span><span>int</span><span> f</span><span>=</span><span>0</span><span>) {</span></span>
+<span class="line"><span>		Min</span><span>=</span><span>a,siz</span><span>=</span><span>b,lazy</span><span>=</span><span>c,tag</span><span>=</span><span>d,sum</span><span>=</span><span>e,id</span><span>=</span><span>f;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}f[maxn</span><span>&#x3C;&#x3C;</span><span>2</span><span>];</span></span>
+<span class="line"><span>void</span><span> pushup</span><span>(</span><span>int</span><span> rt</span><span>) {</span></span>
+<span class="line"><span>	f[rt].Min</span><span>=</span><span>min</span><span>(f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].Min,f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].Min);</span></span>
+<span class="line"><span>	if</span><span> (f[rt].Min</span><span>==</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].Min) f[rt].id</span><span>=</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].id;</span></span>
+<span class="line"><span>	else</span><span> f[rt].id</span><span>=</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].id;</span></span>
+<span class="line"><span>	f[rt].siz</span><span>=</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].siz</span><span>+</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].siz;</span></span>
+<span class="line"><span>	f[rt].sum</span><span>=</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].sum</span><span>+</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> pushdown</span><span>(</span><span>int</span><span> rt</span><span>) {</span></span>
+<span class="line"><span>	if</span><span> (f[rt].lazy) {</span></span>
+<span class="line"><span>		int</span><span> k</span><span>=</span><span>f[rt].lazy;f[rt].lazy</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>		f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].sum</span><span>+=</span><span>k</span><span>*</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].siz,f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].sum</span><span>+=</span><span>k</span><span>*</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].siz;</span></span>
+<span class="line"><span>		f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].lazy</span><span>+=</span><span>k,f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].lazy</span><span>+=</span><span>k;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	if</span><span> (f[rt].tag) {</span></span>
+<span class="line"><span>		int</span><span> k</span><span>=</span><span>f[rt].tag;f[rt].tag</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>		f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].Min</span><span>+=</span><span>k,f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].Min</span><span>+=</span><span>k;</span></span>
+<span class="line"><span>		f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].tag</span><span>+=</span><span>k,f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].tag</span><span>+=</span><span>k;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>const</span><span> int</span><span> inf</span><span>=</span><span>1</span><span>e</span><span>9</span><span>;</span></span>
+<span class="line"><span>void</span><span> Update</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> rt</span><span>,</span><span>int</span><span> head</span><span>,</span><span>int</span><span> tail</span><span>,</span><span>yyy</span><span> k</span><span>) {	</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>l</span><span>&#x26;&#x26;</span><span>r</span><span>&#x3C;=</span><span>tail) {</span></span>
+<span class="line"><span>		if</span><span> (k.Min) f[rt].Min</span><span>=</span><span>inf;</span></span>
+<span class="line"><span>		if</span><span> (k.siz) f[rt].siz</span><span>+=</span><span>k.siz;</span></span>
+<span class="line"><span>		if</span><span> (k.lazy) f[rt].lazy</span><span>+=</span><span>k.lazy,f[rt].sum</span><span>+=</span><span>f[rt].siz</span><span>*</span><span>k.lazy;</span></span>
+<span class="line"><span>		if</span><span> (k.tag) f[rt].Min</span><span>+=</span><span>k.tag,f[rt].tag</span><span>+=</span><span>k.tag;</span></span>
+<span class="line"><span>		return</span><span> ;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	pushdown</span><span>(rt);</span></span>
+<span class="line"><span>	int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>mid) </span><span>Update</span><span>(l,mid,rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>,head,tail,k);</span></span>
+<span class="line"><span>	if</span><span> (tail</span><span>></span><span>mid)  </span><span>Update</span><span>(mid</span><span>+</span><span>1</span><span>,r,rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>,head,tail,k);</span></span>
+<span class="line"><span>	pushup</span><span>(rt);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> Build</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> rt</span><span>) {</span></span>
+<span class="line"><span>	if</span><span> (l</span><span>==</span><span>r) {</span></span>
+<span class="line"><span>		f[rt].Min</span><span>=</span><span>d[l];</span></span>
+<span class="line"><span>		f[rt].id</span><span>=</span><span>l;</span></span>
+<span class="line"><span>		return</span><span> ;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>	Build</span><span>(l,mid,rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>);</span></span>
+<span class="line"><span>	Build</span><span>(mid</span><span>+</span><span>1</span><span>,r,rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>);</span></span>
+<span class="line"><span>	pushup</span><span>(rt);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> check</span><span>(</span><span>void</span><span>) {</span></span>
+<span class="line"><span>	while</span><span> (f[</span><span>1</span><span>].Min</span><span>&#x3C;</span><span>0</span><span>) {</span></span>
+<span class="line"><span>		int</span><span> id</span><span>=</span><span>f[</span><span>1</span><span>].id;</span></span>
+<span class="line"><span>		Update</span><span>(</span><span>1</span><span>,tot,</span><span>1</span><span>,id,id,</span><span>yyy</span><span>(inf,g[id]</span><span>-</span><span>g[id</span><span>-</span><span>1</span><span>],</span><span>1</span><span>,</span><span>0</span><span>,</span><span>0</span><span>,</span><span>0</span><span>));</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> o[maxn];</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> i;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(q);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(a[i]),c[i]</span><span>=</span><span>a[i],o[i]</span><span>=</span><span>c[i];</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(b[i]),b[i]</span><span>=</span><span>max</span><span>(b[i],</span><span>100</span><span>ll</span><span>);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) g[</span><span>++</span><span>tot]</span><span>=</span><span>a[i],g[</span><span>++</span><span>tot]</span><span>=</span><span>b[i];</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>q;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		read</span><span>(e[i].fi),</span><span>read</span><span>(e[i].se);</span></span>
+<span class="line"><span>		c[e[i].fi]</span><span>+=</span><span>e[i].se;</span></span>
+<span class="line"><span>		g[</span><span>++</span><span>tot]</span><span>=</span><span>c[e[i].fi];</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	sort</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot);</span></span>
+<span class="line"><span>	tot</span><span>=</span><span>unique</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot)</span><span>-</span><span>g</span><span>-</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		ans</span><span>+=</span><span>b[i];</span></span>
+<span class="line"><span>		a[i]</span><span>=</span><span>lower_bound</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot,a[i])</span><span>-</span><span>g;</span></span>
+<span class="line"><span>		b[i]</span><span>=</span><span>lower_bound</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot,b[i])</span><span>-</span><span>g;</span></span>
+<span class="line"><span>		d[b[i]]</span><span>++</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>tot;i</span><span>>=</span><span>1</span><span>;i</span><span>--</span><span>) d[i]</span><span>+=</span><span>d[i</span><span>+</span><span>1</span><span>];</span></span>
+<span class="line"><span>	Build</span><span>(</span><span>1</span><span>,tot,</span><span>1</span><span>);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		Update</span><span>(</span><span>1</span><span>,tot,</span><span>1</span><span>,</span><span>1</span><span>,a[i],</span><span>yyy</span><span>(</span><span>0</span><span>,</span><span>0</span><span>,</span><span>1</span><span>,</span><span>-</span><span>1</span><span>,</span><span>0</span><span>,</span><span>0</span><span>));</span></span>
+<span class="line"><span>		check</span><span>();</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%lld\n</span><span>"</span><span>,f[</span><span>1</span><span>].sum</span><span>+</span><span>ans);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>q;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		int</span><span> tmpl</span><span>=</span><span>lower_bound</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot,o[e[i].fi])</span><span>-</span><span>g;</span></span>
+<span class="line"><span>		o[e[i].fi]</span><span>+=</span><span>e[i].se;</span></span>
+<span class="line"><span>		int</span><span> tmp</span><span>=</span><span>lower_bound</span><span>(g</span><span>+</span><span>1</span><span>,g</span><span>+</span><span>1</span><span>+</span><span>tot,o[e[i].fi])</span><span>-</span><span>g;</span></span>
+<span class="line"><span>		Update</span><span>(</span><span>1</span><span>,tot,</span><span>1</span><span>,tmpl</span><span>+</span><span>1</span><span>,tmp,</span><span>yyy</span><span>(</span><span>0</span><span>,</span><span>0</span><span>,</span><span>1</span><span>,</span><span>-</span><span>1</span><span>,</span><span>0</span><span>,</span><span>0</span><span>));</span></span>
+<span class="line"><span>		check</span><span>();</span></span>
+<span class="line"><span>		printf</span><span>(</span><span>"</span><span>%lld\n</span><span>"</span><span>,f[</span><span>1</span><span>].sum</span><span>+</span><span>ans);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/11/13/CF1548C-The-Three-Little-Pigs/"><span>← 较早一篇</span><strong>CF1548C The Three Little Pigs</strong></a><a href="/2023/11/14/P8277-USACO22OPEN-Up-Down-Subsequence-P/"><span>较新一篇 →</span><strong>P8277 [USACO22OPEN] Up Down Subsequence P</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#t1">T1</a></li><li><a href="#t2">T2</a></li><li><a href="#t3">T3</a></li><li><a href="#t4">T4</a></li><li class="indent"><a href="#%E8%A7%82%E5%AF%9F">观察</a></li><li class="indent"><a href="#%E7%BB%B4%E6%8A%A4">维护</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

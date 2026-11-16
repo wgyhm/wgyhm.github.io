@@ -1,365 +1,143 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="wqs 二分小结简介wqs二分 是神仙 王钦石 在 2012 年论文中提出的一类二分方式。基本是用来处理一类带有限制的问题的。比较明显的标志就是 恰好选 K 个 等。使用 wqs二分 有一个前提：原问题具有凹凸性。 举个例子，比如我们的函数是上凸的。 那么根据定义，它的斜率肯定单调递减。 于是，我们可以二分这个斜率，然后快速算出它切这个凸包会切在哪里。 对于点 $(x,F(x))$，其实际意义在于">
-<meta property="og:type" content="article">
-<meta property="og:title" content="wqs二分小结">
-<meta property="og:url" content="http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="wqs 二分小结简介wqs二分 是神仙 王钦石 在 2012 年论文中提出的一类二分方式。基本是用来处理一类带有限制的问题的。比较明显的标志就是 恰好选 K 个 等。使用 wqs二分 有一个前提：原问题具有凹凸性。 举个例子，比如我们的函数是上凸的。 那么根据定义，它的斜率肯定单调递减。 于是，我们可以二分这个斜率，然后快速算出它切这个凸包会切在哪里。 对于点 $(x,F(x))$，其实际意义在于">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-08-23T23:30:24.000Z">
-<meta property="article:modified_time" content="2023-08-23T23:31:16.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="wqs二分">
-<meta property="article:tag" content="决策单调性">
-<meta property="article:tag" content="学习笔记">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>wqs二分小结</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/08/24/CF1830D-Mex-Tree/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/08/24/P2839-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-middle/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&text=wqs二分小结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&is_video=false&description=wqs二分小结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=wqs二分小结&body=Check out this article: http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&name=wqs二分小结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&t=wqs二分小结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#wqs-%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">wqs 二分小结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">一些小问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-Tree-I"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. [国家集训队] Tree I</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%80%E5%B0%8F%E5%BA%A6%E9%99%90%E5%88%B6%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.  最小度限制生成树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-CF125E-MST-Company"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. CF125E MST Company</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-CF802O-April-Fools%E2%80%99-Problem-hard"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. CF802O April Fools’ Problem (hard)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-P4983-%E5%BF%98%E6%83%85"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. P4983 忘情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-IOI2000-%E9%82%AE%E5%B1%80-%E5%8A%A0%E5%BC%BA%E7%89%88"><span class="toc-number">1.3.6.</span> <span class="toc-text">6.  [IOI2000] 邮局 加强版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-P5308-COCI2018-2019-4-Akvizna"><span class="toc-number">1.3.7.</span> <span class="toc-text">7. P5308 [COCI2018-2019#4] Akvizna</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">1.4.</span> <span class="toc-text">写在最后</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        wqs二分小结
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-08-23T23:30:24.000Z" class="dt-published" itemprop="datePublished">2023-08-24</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/wqs%E4%BA%8C%E5%88%86/" rel="tag">wqs二分</a>, <a class="p-category" href="/tags/%E5%86%B3%E7%AD%96%E5%8D%95%E8%B0%83%E6%80%A7/" rel="tag">决策单调性</a>, <a class="p-category" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="wqs-二分小结"><a href="#wqs-二分小结" class="headerlink" title="wqs 二分小结"></a>wqs 二分小结</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>wqs二分 是神仙 王钦石 在 2012 年论文中提出的一类二分方式。<br>基本是用来处理一类带有限制的问题的。比较明显的标志就是 <code>恰好选 K 个</code> 等。<br>使用 wqs二分 有一个前提：<strong>原问题具有凹凸性</strong>。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="wqs二分小结"><link rel="canonical" href="https://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>wqs二分小结 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>wqs二分小结</h1><div class="article-meta"><time datetime="2023-08-24">2023.08.24</time><span>·</span><span>5 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">#学习笔记</a><a class="chip" href="/tags/wqs%E4%BA%8C%E5%88%86/">#wqs二分</a><a class="chip" href="/tags/%E5%86%B3%E7%AD%96%E5%8D%95%E8%B0%83%E6%80%A7/">#决策单调性</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#wqs-%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93">wqs 二分小结</a></li><li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li><li><a href="#%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98">一些小问题</a></li><li><a href="#%E4%BE%8B%E9%A2%98">例题</a></li><li><a href="#1-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-tree-i">1. [国家集训队] Tree I</a></li><li><a href="#2--%E6%9C%80%E5%B0%8F%E5%BA%A6%E9%99%90%E5%88%B6%E7%94%9F%E6%88%90%E6%A0%91">2.  最小度限制生成树</a></li><li><a href="#3-cf125e-mst-company">3. CF125E MST Company</a></li><li><a href="#4-cf802o-april-fools-problem-hard">4. CF802O April Fools&#39; Problem (hard)</a></li><li><a href="#5-p4983-%E5%BF%98%E6%83%85">5. P4983 忘情</a></li><li><a href="#6--ioi2000-%E9%82%AE%E5%B1%80-%E5%8A%A0%E5%BC%BA%E7%89%88">6.  [IOI2000] 邮局 加强版</a></li><li><a href="#7-p5308-coci2018-20194-akvizna">7. P5308 [COCI2018-2019#4] Akvizna</a></li><li><a href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E">写在最后</a></li></ul></details><div class="prose" data-post-body><span id="wqs-二分小结" class="legacy-anchor" aria-hidden="true"></span><h1 id="wqs-二分小结">wqs 二分小结</h1>
+<span id="简介" class="legacy-anchor" aria-hidden="true"></span><h2 id="简介">简介</h2>
+<p>wqs二分 是神仙 王钦石 在 2012 年论文中提出的一类二分方式。
+基本是用来处理一类带有限制的问题的。比较明显的标志就是 <code>恰好选 K 个</code> 等。
+使用 wqs二分 有一个前提：<strong>原问题具有凹凸性</strong>。</p>
 <p>举个例子，比如我们的函数是上凸的。</p>
 <p>那么根据定义，它的斜率肯定单调递减。</p>
 <p>于是，我们可以二分这个斜率，然后快速算出它切这个凸包会切在哪里。</p>
-<p>对于点 $(x,F(x))$，其实际意义在于恰好选 $x$ 个，其最大价值为 $F(x)$。二分求的是斜率的截距最小的。令二分的斜率为 $k$。</p>
-<p>截距 $b&#x3D;F(x)-x\times k$，由于恰好选 $x$ 个，$-k$ 可以减到所有点的权值上。那么二分这个斜率的实际意义为，每个权值减去 $-k$ 之后，找到这个斜率下在凸包上最优是哪个点，也就是恰好选几个。只需要在每次二分判断的时候记录最优的时候选了几个。</p>
-<h2 id="一些小问题"><a href="#一些小问题" class="headerlink" title="一些小问题"></a>一些小问题</h2><p>考虑三点共线的情况。所以每次二分权值的时候，强制令相同优的情况下，选择最多&#x2F;最少的个数。我习惯于选择最多的个数，实现看代码。</p>
+<p>对于点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,F(x))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">))</span></span></span></span>，其实际意义在于恰好选 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 个，其最大价值为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span>。二分求的是斜率的截距最小的。令二分的斜率为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>。</p>
+<p>截距 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mi>x</mi><mo>×</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">b=F(x)-x\times k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>，由于恰好选 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 个，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">-k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 可以减到所有点的权值上。那么二分这个斜率的实际意义为，每个权值减去 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">-k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 之后，找到这个斜率下在凸包上最优是哪个点，也就是恰好选几个。只需要在每次二分判断的时候记录最优的时候选了几个。</p>
+<span id="一些小问题" class="legacy-anchor" aria-hidden="true"></span><h2 id="一些小问题">一些小问题</h2>
+<p>考虑三点共线的情况。所以每次二分权值的时候，强制令相同优的情况下，选择最多/最少的个数。我习惯于选择最多的个数，实现看代码。</p>
 <p>其实我自己都不知道我在讲什么，还是 zj 哥哥手把手教的更好。</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="1-国家集训队-Tree-I"><a href="#1-国家集训队-Tree-I" class="headerlink" title="1. [国家集训队] Tree I"></a>1. [国家集训队] Tree I</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2619">https://www.luogu.com.cn/problem/P2619</a></p>
-<p>为了满足最多的情况，强制在权值相同时，优先选择白边。复杂度 $O(n\log^2 n)$。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="type">int</span> n,m,K;</span><br><span class="line"><span class="type">int</span> fa[maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">yyy</span>&#123;</span><br><span class="line">	<span class="type">int</span> x,y,z,c;</span><br><span class="line">&#125;e[maxn],a[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(yyy x,yyy y)</span> </span>&#123;<span class="keyword">return</span> x.z==y.z?x.c&lt;y.c:x.z&lt;y.z;&#125;</span><br><span class="line"><span class="type">int</span> Value,ans=<span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getfa</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;<span class="keyword">return</span> x==fa[x]?x:fa[x]=<span class="built_in">getfa</span>(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Kruskal</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i,sum=<span class="number">0</span>;Value=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) fa[i]=i;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) </span><br><span class="line">		<span class="keyword">if</span> (e[i].c) a[i]=e[i];</span><br><span class="line">		<span class="keyword">else</span> a[i]=e[i],a[i].z+=val;</span><br><span class="line">	<span class="built_in">sort</span>(a<span class="number">+1</span>,a<span class="number">+1</span>+m,cmp);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">getfa</span>(a[i].x)^<span class="built_in">getfa</span>(a[i].y)) &#123;</span><br><span class="line">			fa[<span class="built_in">getfa</span>(a[i].x)]=<span class="built_in">getfa</span>(a[i].y);</span><br><span class="line">			Value+=a[i].z;</span><br><span class="line">			sum+=(a[i].c==<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i,x,y,z;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);<span class="built_in">read</span>(K);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++) &#123;</span><br><span class="line">		<span class="built_in">read</span>(e[i].x),<span class="built_in">read</span>(e[i].y),<span class="built_in">read</span>(e[i].z),<span class="built_in">read</span>(e[i].c);</span><br><span class="line">		e[i].x++,e[i].y++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> l=<span class="number">-101</span>,r=<span class="number">101</span>;</span><br><span class="line">	<span class="keyword">while</span> (l<span class="number">+1</span>&lt;r) &#123;</span><br><span class="line">		<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">Kruskal</span>(mid)&gt;=K) l=mid,ans=Value-K*mid;<span class="comment">//因为不一定二分到恰好选 k 个的情况，所以记录答案</span></span><br><span class="line">		<span class="keyword">else</span> r=m</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是观察到白边和黑边各自内部中的相对顺序并不会改变。可以提前排序两部分，后归并。复杂度就是 $O(n\log n)$。</p>
-<h3 id="2-最小度限制生成树"><a href="#2-最小度限制生成树" class="headerlink" title="2.  最小度限制生成树"></a>2.  最小度限制生成树</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5633">https://www.luogu.com.cn/problem/P5633</a></p>
-<p>优先选择与 $s$ 相邻的点。</p>
-<h3 id="3-CF125E-MST-Company"><a href="#3-CF125E-MST-Company" class="headerlink" title="3. CF125E MST Company"></a>3. CF125E MST Company</h3><p>双倍经验。</p>
-<h3 id="4-CF802O-April-Fools’-Problem-hard"><a href="#4-CF802O-April-Fools’-Problem-hard" class="headerlink" title="4. CF802O April Fools’ Problem (hard)"></a>4. CF802O April Fools’ Problem (hard)</h3><p>先判断是否有凸性。</p>
+<span id="例题" class="legacy-anchor" aria-hidden="true"></span><h2 id="例题">例题</h2>
+<span id="1-国家集训队-Tree-I" class="legacy-anchor" aria-hidden="true"></span><h3 id="1-国家集训队-tree-i">1. [国家集训队] Tree I</h3>
+<p><a href="https://www.luogu.com.cn/problem/P2619">https://www.luogu.com.cn/problem/P2619</a></p>
+<p>为了满足最多的情况，强制在权值相同时，优先选择白边。复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><msup><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n\log^2 n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1484em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8984em;"><span style="top:-3.1473em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> ll</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 100005</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>inline</span><span> void</span><span> read</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	Tp </span><span>ostream</span><span>&#x26;</span><span> operator</span><span>&#x3C;&#x3C;</span><span>(</span><span>ostream</span><span>&#x26;</span><span> os</span><span>,</span><span>vector</span><span>&#x3C;</span><span>Ty</span><span>></span><span>&#x26;</span><span> V</span><span>){os</span><span>&#x3C;&#x3C;</span><span>"["</span><span>;</span><span>for</span><span>(</span><span>auto&#x26;</span><span> vv:V) os</span><span>&#x3C;&#x3C;</span><span>vv</span><span>&#x3C;&#x3C;</span><span>","</span><span>;os</span><span>&#x3C;&#x3C;</span><span>"]"</span><span>;</span><span>return</span><span> os;}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>int</span><span> n,m,K;</span></span>
+<span class="line"><span>int</span><span> fa[maxn];</span></span>
+<span class="line"><span>struct</span><span> yyy</span><span>{</span></span>
+<span class="line"><span>	int</span><span> x,y,z,c;</span></span>
+<span class="line"><span>}e[maxn],a[maxn];</span></span>
+<span class="line"><span>inline</span><span> bool</span><span> cmp</span><span>(</span><span>yyy</span><span> x</span><span>,</span><span>yyy</span><span> y</span><span>) {</span><span>return</span><span> x.z</span><span>==</span><span>y.z</span><span>?</span><span>x.c</span><span>&#x3C;</span><span>y.c</span><span>:</span><span>x.z</span><span>&#x3C;</span><span>y.z;}</span></span>
+<span class="line"><span>int</span><span> Value,ans</span><span>=</span><span>1</span><span>e</span><span>9</span><span>;</span></span>
+<span class="line"><span>inline</span><span> int</span><span> getfa</span><span>(</span><span>int</span><span> x</span><span>) {</span><span>return</span><span> x</span><span>==</span><span>fa[x]</span><span>?</span><span>x</span><span>:</span><span>fa[x]</span><span>=</span><span>getfa</span><span>(fa[x]);}</span></span>
+<span class="line"><span>inline</span><span> int</span><span> Kruskal</span><span>(</span><span>int</span><span> val</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> i,sum</span><span>=</span><span>0</span><span>;Value</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) fa[i]</span><span>=</span><span>i;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>m;i</span><span>++</span><span>) </span></span>
+<span class="line"><span>		if</span><span> (e[i].c) a[i]</span><span>=</span><span>e[i];</span></span>
+<span class="line"><span>		else</span><span> a[i]</span><span>=</span><span>e[i],a[i].z</span><span>+=</span><span>val;</span></span>
+<span class="line"><span>	sort</span><span>(a</span><span>+</span><span>1</span><span>,a</span><span>+</span><span>1</span><span>+</span><span>m,cmp);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>m;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		if</span><span> (</span><span>getfa</span><span>(a[i].x)</span><span>^</span><span>getfa</span><span>(a[i].y)) {</span></span>
+<span class="line"><span>			fa[</span><span>getfa</span><span>(a[i].x)]</span><span>=</span><span>getfa</span><span>(a[i].y);</span></span>
+<span class="line"><span>			Value</span><span>+=</span><span>a[i].z;</span></span>
+<span class="line"><span>			sum</span><span>+=</span><span>(a[i].c</span><span>==</span><span>0</span><span>);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> i,x,y,z;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(m);</span><span>read</span><span>(K);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>m;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		read</span><span>(e[i].x),</span><span>read</span><span>(e[i].y),</span><span>read</span><span>(e[i].z),</span><span>read</span><span>(e[i].c);</span></span>
+<span class="line"><span>		e[i].x</span><span>++</span><span>,e[i].y</span><span>++</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	int</span><span> l</span><span>=-</span><span>101</span><span>,r</span><span>=</span><span>101</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (l</span><span>+</span><span>1</span><span>&#x3C;</span><span>r) {</span></span>
+<span class="line"><span>		int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (</span><span>Kruskal</span><span>(mid)</span><span>>=</span><span>K) l</span><span>=</span><span>mid,ans</span><span>=</span><span>Value</span><span>-</span><span>K</span><span>*</span><span>mid;</span><span>//因为不一定二分到恰好选 k 个的情况，所以记录答案</span></span>
+<span class="line"><span>		else</span><span> r</span><span>=</span><span>m</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%d</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>但是观察到白边和黑边各自内部中的相对顺序并不会改变。可以提前排序两部分，后归并。复杂度就是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<span id="2-最小度限制生成树" class="legacy-anchor" aria-hidden="true"></span><h3 id="2--最小度限制生成树">2.  最小度限制生成树</h3>
+<p><a href="https://www.luogu.com.cn/problem/P5633">https://www.luogu.com.cn/problem/P5633</a></p>
+<p>优先选择与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span> 相邻的点。</p>
+<span id="3-CF125E-MST-Company" class="legacy-anchor" aria-hidden="true"></span><h3 id="3-cf125e-mst-company">3. CF125E MST Company</h3>
+<p>双倍经验。</p>
+<span id="4-CF802O-April-Fools-Problem-hard" class="legacy-anchor" aria-hidden="true"></span><h3 id="4-cf802o-april-fools-problem-hard">4. CF802O April Fools' Problem (hard)</h3>
+<p>先判断是否有凸性。</p>
 <p>二分之后，考虑反悔贪心。有两种情况：</p>
 <ul>
-<li>从之前没配对 $a_x$ 中选一个，代价是 $b_i+a_x$。</li>
-<li>从之前的已经组成的 $(a_x,b_y)$ 拆掉，代价是 $b_i-b_y$</li>
+<li>从之前没配对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">a_x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 中选一个，代价是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mi>i</mi></msub><mo>+</mo><msub><mi>a</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">b_i+a_x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</li>
+<li>从之前的已经组成的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>x</mi></msub><mo separator="true">,</mo><msub><mi>b</mi><mi>y</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a_x,b_y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 拆掉，代价是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mi>i</mi></msub><mo>−</mo><msub><mi>b</mi><mi>y</mi></msub></mrow><annotation encoding="application/x-tex">b_i-b_y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></li>
 </ul>
-<p>强制权值最大的同时选的最多。复杂度 $O(n\log^2 n)$。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 500005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">int</span> n,K;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> inf=<span class="number">2e9</span>;</span><br><span class="line"><span class="type">int</span> a[maxn],b[maxn],c[maxn];</span><br><span class="line">priority_queue&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; &gt;q;</span><br><span class="line"><span class="type">int</span> Ans,sum,ans;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i;Ans=<span class="number">0</span>,sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) q.<span class="built_in">pop</span>();</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) c[i]=b[i]-val;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		q.<span class="built_in">push</span>(<span class="built_in">mk</span>(-a[i],<span class="number">1</span>));</span><br><span class="line">		<span class="keyword">if</span> (-q.<span class="built_in">top</span>().fi+c[i]&lt;=<span class="number">0</span>) &#123;</span><br><span class="line">			sum+=q.<span class="built_in">top</span>().se;</span><br><span class="line">			Ans+=c[i]-q.<span class="built_in">top</span>().fi;</span><br><span class="line">			q.<span class="built_in">pop</span>();</span><br><span class="line">			q.<span class="built_in">push</span>(<span class="built_in">mk</span>(c[i],<span class="number">0</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum&gt;=K;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(K);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(b[i]);</span><br><span class="line">	<span class="type">int</span> l=-inf,r=inf,mid;</span><br><span class="line">	<span class="keyword">while</span> (l<span class="number">+1</span>&lt;r) &#123;</span><br><span class="line">		mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">check</span>(mid)) r=mid,ans=Ans+mid*K;</span><br><span class="line">		<span class="keyword">else</span> l=mid;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-P4983-忘情"><a href="#5-P4983-忘情" class="headerlink" title="5. P4983 忘情"></a>5. P4983 忘情</h3><h3 id="6-IOI2000-邮局-加强版"><a href="#6-IOI2000-邮局-加强版" class="headerlink" title="6.  [IOI2000] 邮局 加强版"></a>6.  [IOI2000] 邮局 加强版</h3><p>判断时用决策单调性优化。</p>
-<h3 id="7-P5308-COCI2018-2019-4-Akvizna"><a href="#7-P5308-COCI2018-2019-4-Akvizna" class="headerlink" title="7. P5308 [COCI2018-2019#4] Akvizna"></a>7. P5308 [COCI2018-2019#4] Akvizna</h3><p>同上。</p>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>感觉这篇写的水了一点。但是要退役了，就当记录一下好了。</p>
-<p>其实也不大会有人看。</p>
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#wqs-%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">wqs 二分小结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">一些小问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-Tree-I"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. [国家集训队] Tree I</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%80%E5%B0%8F%E5%BA%A6%E9%99%90%E5%88%B6%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.  最小度限制生成树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-CF125E-MST-Company"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. CF125E MST Company</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-CF802O-April-Fools%E2%80%99-Problem-hard"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. CF802O April Fools’ Problem (hard)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-P4983-%E5%BF%98%E6%83%85"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. P4983 忘情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-IOI2000-%E9%82%AE%E5%B1%80-%E5%8A%A0%E5%BC%BA%E7%89%88"><span class="toc-number">1.3.6.</span> <span class="toc-text">6.  [IOI2000] 邮局 加强版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-P5308-COCI2018-2019-4-Akvizna"><span class="toc-number">1.3.7.</span> <span class="toc-text">7. P5308 [COCI2018-2019#4] Akvizna</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">1.4.</span> <span class="toc-text">写在最后</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&text=wqs二分小结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&is_video=false&description=wqs二分小结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=wqs二分小结&body=Check out this article: http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&title=wqs二分小结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&name=wqs二分小结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/08/24/wqs%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93/&t=wqs二分小结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<p>强制权值最大的同时选的最多。复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><msup><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n\log^2 n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1484em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8984em;"><span style="top:-3.1473em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#define</span><span> int</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 500005</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>int</span><span> n,K;</span></span>
+<span class="line"><span>const</span><span> int</span><span> inf</span><span>=</span><span>2</span><span>e</span><span>9</span><span>;</span></span>
+<span class="line"><span>int</span><span> a[maxn],b[maxn],c[maxn];</span></span>
+<span class="line"><span>priority_queue</span><span>&#x3C;</span><span>pair</span><span>&#x3C;int</span><span>,</span><span>int></span><span> ></span><span>q;</span></span>
+<span class="line"><span>int</span><span> Ans,sum,ans;</span></span>
+<span class="line"><span>inline</span><span> bool</span><span> check</span><span>(</span><span>int</span><span> val</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> i;Ans</span><span>=</span><span>0</span><span>,sum</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (</span><span>!</span><span>q.</span><span>empty</span><span>()) q.</span><span>pop</span><span>();</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) c[i]</span><span>=</span><span>b[i]</span><span>-</span><span>val;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		q.</span><span>push</span><span>(</span><span>mk</span><span>(</span><span>-</span><span>a[i],</span><span>1</span><span>));</span></span>
+<span class="line"><span>		if</span><span> (</span><span>-</span><span>q.</span><span>top</span><span>().fi</span><span>+</span><span>c[i]</span><span>&#x3C;=</span><span>0</span><span>) {</span></span>
+<span class="line"><span>			sum</span><span>+=</span><span>q.</span><span>top</span><span>().se;</span></span>
+<span class="line"><span>			Ans</span><span>+=</span><span>c[i]</span><span>-</span><span>q.</span><span>top</span><span>().fi;</span></span>
+<span class="line"><span>			q.</span><span>pop</span><span>();</span></span>
+<span class="line"><span>			q.</span><span>push</span><span>(</span><span>mk</span><span>(c[i],</span><span>0</span><span>));</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum</span><span>>=</span><span>K;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> i;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(K);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(a[i]);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>read</span><span>(b[i]);</span></span>
+<span class="line"><span>	int</span><span> l</span><span>=-</span><span>inf,r</span><span>=</span><span>inf,mid;</span></span>
+<span class="line"><span>	while</span><span> (l</span><span>+</span><span>1</span><span>&#x3C;</span><span>r) {</span></span>
+<span class="line"><span>		mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (</span><span>check</span><span>(mid)) r</span><span>=</span><span>mid,ans</span><span>=</span><span>Ans</span><span>+</span><span>mid</span><span>*</span><span>K;</span></span>
+<span class="line"><span>		else</span><span> l</span><span>=</span><span>mid;</span></span>
+<span class="line"><span>	} </span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%lld</span><span>"</span><span>,ans);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<span id="5-P4983-忘情" class="legacy-anchor" aria-hidden="true"></span><h3 id="5-p4983-忘情">5. P4983 忘情</h3>
+<span id="6-IOI2000-邮局-加强版" class="legacy-anchor" aria-hidden="true"></span><h3 id="6--ioi2000-邮局-加强版">6.  [IOI2000] 邮局 加强版</h3>
+<p>判断时用决策单调性优化。</p>
+<span id="7-P5308-COCI2018-2019-4-Akvizna" class="legacy-anchor" aria-hidden="true"></span><h3 id="7-p5308-coci2018-20194-akvizna">7. P5308 [COCI2018-2019#4] Akvizna</h3>
+<p>同上。</p>
+<span id="写在最后" class="legacy-anchor" aria-hidden="true"></span><h2 id="写在最后">写在最后</h2>
+<p>感觉这篇写的水了一点。但是要退役了，就当记录一下好了。</p>
+<p>其实也不大会有人看。</p></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/08/22/CF1677D-Tokitsukaze-and-Permutations/"><span>← 较早一篇</span><strong>CF1677D Tokitsukaze and Permutations</strong></a><a href="/2023/08/24/P3645-APIO2015-%E9%9B%85%E5%8A%A0%E8%BE%BE%E7%9A%84%E6%91%A9%E5%A4%A9%E6%A5%BC/"><span>较新一篇 →</span><strong>P3645 [APIO2015] 雅加达的摩天楼</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#wqs-%E4%BA%8C%E5%88%86%E5%B0%8F%E7%BB%93">wqs 二分小结</a></li><li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li><li><a href="#%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98">一些小问题</a></li><li><a href="#%E4%BE%8B%E9%A2%98">例题</a></li><li class="indent"><a href="#1-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-tree-i">1. [国家集训队] Tree I</a></li><li class="indent"><a href="#2--%E6%9C%80%E5%B0%8F%E5%BA%A6%E9%99%90%E5%88%B6%E7%94%9F%E6%88%90%E6%A0%91">2.  最小度限制生成树</a></li><li class="indent"><a href="#3-cf125e-mst-company">3. CF125E MST Company</a></li><li class="indent"><a href="#4-cf802o-april-fools-problem-hard">4. CF802O April Fools&#39; Problem (hard)</a></li><li class="indent"><a href="#5-p4983-%E5%BF%98%E6%83%85">5. P4983 忘情</a></li><li class="indent"><a href="#6--ioi2000-%E9%82%AE%E5%B1%80-%E5%8A%A0%E5%BC%BA%E7%89%88">6.  [IOI2000] 邮局 加强版</a></li><li class="indent"><a href="#7-p5308-coci2018-20194-akvizna">7. P5308 [COCI2018-2019#4] Akvizna</a></li><li><a href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E">写在最后</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

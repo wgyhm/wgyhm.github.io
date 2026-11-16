@@ -1,354 +1,79 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[THUPC 2023 决赛] 巧克力Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P9387 Solution首先推一下必胜情况的充要条件。 本图是有向无环图，公平的两人游戏，考虑用 sg 函数。 令当前操作的巧克力长度为 $x$，实际上 $SG(x)&#x3D;x$。  如果 $x\not &#x3D; 1$ ，显然可以先分为 $(0,x-1,1),…">
-<meta property="og:type" content="article">
-<meta property="og:title" content="P9387 [THUPC 2023 决赛] 巧克力">
-<meta property="og:url" content="http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="[THUPC 2023 决赛] 巧克力Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P9387 Solution首先推一下必胜情况的充要条件。 本图是有向无环图，公平的两人游戏，考虑用 sg 函数。 令当前操作的巧克力长度为 $x$，实际上 $SG(x)&#x3D;x$。  如果 $x\not &#x3D; 1$ ，显然可以先分为 $(0,x-1,1),…">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-08-30T23:23:58.000Z">
-<meta property="article:modified_time" content="2023-08-30T23:24:28.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="sg函数">
-<meta property="article:tag" content="博弈">
-<meta property="article:tag" content="数位dp">
-<meta property="article:tag" content="计数">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>P9387 [THUPC 2023 决赛] 巧克力</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/08/31/P9388-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%85%88%E4%BA%BA%E7%B1%BB%E7%9A%84%E4%BA%BA%E7%B1%BB%E9%80%89%E5%88%AB/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/08/30/P9377-THUPC-2023-%E5%86%B3%E8%B5%9B-%E7%99%BE%E5%90%88/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&text=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&is_video=false&description=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P9387 [THUPC 2023 决赛] 巧克力&body=Check out this article: http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&name=P9387 [THUPC 2023 决赛] 巧克力&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&t=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B"><span class="toc-number">1.</span> <span class="toc-text">[THUPC 2023 决赛] 巧克力</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        P9387 [THUPC 2023 决赛] 巧克力
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-08-30T23:23:58.000Z" class="dt-published" itemprop="datePublished">2023-08-31</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/sg%E5%87%BD%E6%95%B0/" rel="tag">sg函数</a>, <a class="p-category" href="/tags/%E5%8D%9A%E5%BC%88/" rel="tag">博弈</a>, <a class="p-category" href="/tags/%E6%95%B0%E4%BD%8Ddp/" rel="tag">数位dp</a>, <a class="p-category" href="/tags/%E8%AE%A1%E6%95%B0/" rel="tag">计数</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="THUPC-2023-决赛-巧克力"><a href="#THUPC-2023-决赛-巧克力" class="headerlink" title="[THUPC 2023 决赛] 巧克力"></a>[THUPC 2023 决赛] 巧克力</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9387">https://www.luogu.com.cn/problem/P9387</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>首先推一下必胜情况的充要条件。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="P9387 [THUPC 2023 决赛] 巧克力"><link rel="canonical" href="https://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>P9387 [THUPC 2023 决赛] 巧克力 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>P9387 [THUPC 2023 决赛] 巧克力</h1><div class="article-meta"><time datetime="2023-08-31">2023.08.31</time><span>·</span><span>3 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E6%95%B0%E4%BD%8D%20DP/">#数位 DP</a><a class="chip" href="/tags/%E8%AE%A1%E6%95%B0/">#计数</a><a class="chip" href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/">#博弈论</a><a class="chip" href="/tags/sg%E5%87%BD%E6%95%B0/">#sg函数</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#thupc-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B">[THUPC 2023 决赛] 巧克力</a></li><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ul></details><div class="prose" data-post-body><span id="THUPC-2023-决赛-巧克力" class="legacy-anchor" aria-hidden="true"></span><h1 id="thupc-2023-决赛-巧克力">[THUPC 2023 决赛] 巧克力</h1>
+<span id="Description" class="legacy-anchor" aria-hidden="true"></span><h2 id="description">Description</h2>
+<p><a href="https://www.luogu.com.cn/problem/P9387">https://www.luogu.com.cn/problem/P9387</a></p>
+<span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h2 id="solution">Solution</h2>
+<p>首先推一下必胜情况的充要条件。</p>
 <p>本图是有向无环图，公平的两人游戏，考虑用 sg 函数。</p>
-<p>令当前操作的巧克力长度为 $x$，实际上 $SG(x)&#x3D;x$。</p>
+<p>令当前操作的巧克力长度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>，实际上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">SG(x)=x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>。</p>
 <ul>
-<li>如果 $x\not &#x3D; 1$ ，显然可以先分为 $(0,x-1,1),…,(0,1,x-1)$，这样取 $\text{mex}$ 之后 sg 值已经为 $x$，所以有 $SG(x)\ge x$。</li>
-<li>如果分为 $(a,b,c),a+b+c&#x3D;x,b&gt;0$ 。原问题拆成两个独立的的子博弈 $a$ 和 $c$，又有 $a\bigoplus c\le a+c$，所以这里不会对 $SG$ 值有影响。</li>
+<li>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x\not = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> ，显然可以先分为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,x-1,1),...,(0,1,x-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，这样取 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>mex</mtext></mrow><annotation encoding="application/x-tex">\text{mex}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord text"><span class="mord">mex</span></span></span></span></span> 之后 sg 值已经为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>，所以有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≥</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">SG(x)\ge x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>。</li>
+<li>如果分为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>=</mo><mi>x</mi><mo separator="true">,</mo><mi>b</mi><mo>></mo><mn>0</mn></mrow><annotation encoding="application/x-tex">(a,b,c),a+b+c=x,b>0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> 。原问题拆成两个独立的的子博弈 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>，又有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⨁</mo><mi>c</mi><mo>≤</mo><mi>a</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a\bigoplus c\le a+c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨁</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>，所以这里不会对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">SG</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal">G</span></span></span></span> 值有影响。</li>
 </ul>
-<p>首先要全局的 $SG$ 异或和不为 $0$，保证先手不可能必败。令全局初始的异或和为 $N$。</p>
-<p>再用令要把 $x$ 拆分为 $(a,b,c),a+b+c&#x3D;x,b&gt;0$，若操作完以后先手必败（这时候是后手先手）应该有：<br>$$<br>a\bigoplus c\bigoplus x\bigoplus N&#x3D;0<br>$$<br>即现在的 $SG$ 的异或和为 $0$。</p>
-<p>移个项为：<br>$$<br>a\bigoplus c\bigoplus(a+b+c)&#x3D;N<br>$$<br>我们要求的是 $a+b+c\le n$ 或者 $a+b+c&#x3D;m$ 的方案数，令 $\le n$ 的方案数为 $F(n)$，那么答案为 $F(n)+F(m)-F(m-1)$。</p>
-<p>考虑数位 dp。一种的做法选择是从低位到高位 dp。记录当前在第 $i$ 位，低位到第 $i$ 进了 $j$ 位， $b$ 是否等于 $0$，$a+b+c$ 的后 $i$ 位是否大于 $N$ 的后 $i$ 位的方案数。</p>
-<p>另一种大概是从高到低位 dp。记录当前在第 $i$ 位，向低位借了 $j$ ，$b$ 是否为 $0$，是否大于 $N$。（这种是口胡的）。</p>
+<p>首先要全局的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">SG</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal">G</span></span></span></span> 异或和不为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，保证先手不可能必败。令全局初始的异或和为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span>。</p>
+<p>再用令要把 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 拆分为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>=</mo><mi>x</mi><mo separator="true">,</mo><mi>b</mi><mo>></mo><mn>0</mn></mrow><annotation encoding="application/x-tex">(a,b,c),a+b+c=x,b>0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，若操作完以后先手必败（这时候是后手先手）应该有：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>⨁</mo><mi>c</mi><mo>⨁</mo><mi>x</mi><mo>⨁</mo><mi>N</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a\bigoplus c\bigoplus x\bigoplus N=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.6em;vertical-align:-0.55em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">⨁</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">⨁</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">⨁</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>
+<p>即现在的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">SG</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal">G</span></span></span></span> 的异或和为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>。</p>
+<p>移个项为：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>⨁</mo><mi>c</mi><mo>⨁</mo><mo stretchy="false">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">a\bigoplus c\bigoplus(a+b+c)=N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.6em;vertical-align:-0.55em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">⨁</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">⨁</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span>
+<p>我们要求的是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>≤</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">a+b+c\le n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 或者 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>=</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">a+b+c=m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> 的方案数，令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">\le n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 的方案数为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，那么答案为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>+</mo><mi>F</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>−</mo><mi>F</mi><mo stretchy="false">(</mo><mi>m</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(n)+F(m)-F(m-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</p>
+<p>考虑数位 dp。一种的做法选择是从低位到高位 dp。记录当前在第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 位，低位到第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 进了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span> 位， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> 是否等于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a+b+c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> 的后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 位是否大于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span> 的后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 位的方案数。</p>
+<p>另一种大概是从高到低位 dp。记录当前在第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 位，向低位借了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span> ，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> 是否为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，是否大于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span>。（这种是口胡的）。</p>
 <p>实现是第一种。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">int</span> f[<span class="number">65</span>][<span class="number">4</span>][<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line"><span class="type">int</span> stat[<span class="number">65</span>],p[<span class="number">65</span>];</span><br><span class="line"><span class="type">int</span> cnt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;x,<span class="type">int</span> y)</span> </span>&#123;x=(x+y)%mod;&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="built_in">sizeof</span>(f));	</span><br><span class="line">	<span class="built_in">memset</span>(p,<span class="number">0</span>,<span class="built_in">sizeof</span>(p));</span><br><span class="line">	<span class="type">int</span> tot=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (n) p[++tot]=n%<span class="number">2</span>,n/=<span class="number">2</span>;</span><br><span class="line">	f[<span class="number">0</span>][<span class="number">0</span>][<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> i,j,k,l,a,b,c;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=<span class="number">60</span>;i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;=<span class="number">3</span>;j++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (k=<span class="number">0</span>;k&lt;=<span class="number">1</span>;k++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (l=<span class="number">0</span>;l&lt;=<span class="number">1</span>;l++) &#123;</span><br><span class="line">					<span class="keyword">for</span> (a=<span class="number">0</span>;a&lt;=<span class="number">1</span>;a++)</span><br><span class="line">						<span class="keyword">for</span> (b=<span class="number">0</span>;b&lt;=<span class="number">1</span>;b++)</span><br><span class="line">							<span class="keyword">for</span> (c=<span class="number">0</span>;c&lt;=<span class="number">1</span>;c++) &#123;</span><br><span class="line">								<span class="type">int</span> s=((a+b+c+j))%<span class="number">2</span>;</span><br><span class="line">								<span class="keyword">if</span> ((s^a^c)==stat[i<span class="number">+1</span>]) &#123;</span><br><span class="line">									<span class="type">int</span> pus=<span class="number">0</span>;</span><br><span class="line">									<span class="keyword">if</span> (s&gt;p[i<span class="number">+1</span>]||(l&amp;&amp;s==p[i<span class="number">+1</span>])) pus=<span class="number">1</span>;</span><br><span class="line">									<span class="built_in">add</span>(f[i<span class="number">+1</span>][(j+a+b+c)/<span class="number">2</span>][k&amp;(b==<span class="number">0</span>)][pus],f[i][j][k][l]);</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> f[<span class="number">60</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i,n,m,s=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);</span><br><span class="line">	<span class="built_in">memset</span>(stat,<span class="number">0</span>,<span class="built_in">sizeof</span>(stat));</span><br><span class="line">	s=m;</span><br><span class="line">	<span class="keyword">if</span> (n%<span class="number">4</span>&gt;=<span class="number">1</span>) s^=n;</span><br><span class="line">	<span class="keyword">if</span> (n%<span class="number">4</span>&gt;=<span class="number">2</span>) s^=(n<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">if</span> (n%<span class="number">4</span>&gt;=<span class="number">3</span>) s^=(n<span class="number">-2</span>);</span><br><span class="line">	<span class="keyword">if</span> (s==<span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;0&quot;</span>),<span class="built_in">void</span>();</span><br><span class="line">	cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (s) stat[++cnt]=s%<span class="number">2</span>,s/=<span class="number">2</span>;</span><br><span class="line">	<span class="type">int</span> tmp1,tmp2;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,(<span class="built_in">get</span>(n)+<span class="built_in">get</span>(m)-<span class="built_in">get</span>(m<span class="number">-1</span>)+mod)%mod);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> T;</span><br><span class="line">	<span class="built_in">read</span>(T);<span class="keyword">while</span> (T--) <span class="built_in">solve</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>没卡常之前不太能过。卡常就跟另外一篇题解一样循环展开之类的，效果很明显。</p>
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B"><span class="toc-number">1.</span> <span class="toc-text">[THUPC 2023 决赛] 巧克力</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&text=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&is_video=false&description=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P9387 [THUPC 2023 决赛] 巧克力&body=Check out this article: http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&title=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&name=P9387 [THUPC 2023 决赛] 巧克力&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/08/31/P9387-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B/&t=P9387 [THUPC 2023 决赛] 巧克力"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#define</span><span> int</span><span> long</span><span> long</span></span>
+<span class="line"><span>int</span><span> f[</span><span>65</span><span>][</span><span>4</span><span>][</span><span>2</span><span>][</span><span>2</span><span>];</span></span>
+<span class="line"><span>int</span><span> stat[</span><span>65</span><span>],p[</span><span>65</span><span>];</span></span>
+<span class="line"><span>int</span><span> cnt;</span></span>
+<span class="line"><span>void</span><span> add</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>,</span><span>int</span><span> y</span><span>) {x</span><span>=</span><span>(x</span><span>+</span><span>y)</span><span>%</span><span>mod;}</span></span>
+<span class="line"><span>int</span><span> get</span><span>(</span><span>int</span><span> n</span><span>) {</span></span>
+<span class="line"><span>	if</span><span> (n</span><span>==</span><span>0</span><span>) </span><span>return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>	memset</span><span>(f,</span><span>0</span><span>,</span><span>sizeof</span><span>(f));	</span></span>
+<span class="line"><span>	memset</span><span>(p,</span><span>0</span><span>,</span><span>sizeof</span><span>(p));</span></span>
+<span class="line"><span>	int</span><span> tot</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (n) p[</span><span>++</span><span>tot]</span><span>=</span><span>n</span><span>%</span><span>2</span><span>,n</span><span>/=</span><span>2</span><span>;</span></span>
+<span class="line"><span>	f[</span><span>0</span><span>][</span><span>0</span><span>][</span><span>1</span><span>][</span><span>0</span><span>]</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	int</span><span> i,j,k,l,a,b,c;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;=</span><span>60</span><span>;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>0</span><span>;j</span><span>&#x3C;=</span><span>3</span><span>;j</span><span>++</span><span>) {</span></span>
+<span class="line"><span>			for</span><span> (k</span><span>=</span><span>0</span><span>;k</span><span>&#x3C;=</span><span>1</span><span>;k</span><span>++</span><span>) {</span></span>
+<span class="line"><span>				for</span><span> (l</span><span>=</span><span>0</span><span>;l</span><span>&#x3C;=</span><span>1</span><span>;l</span><span>++</span><span>) {</span></span>
+<span class="line"><span>					for</span><span> (a</span><span>=</span><span>0</span><span>;a</span><span>&#x3C;=</span><span>1</span><span>;a</span><span>++</span><span>)</span></span>
+<span class="line"><span>						for</span><span> (b</span><span>=</span><span>0</span><span>;b</span><span>&#x3C;=</span><span>1</span><span>;b</span><span>++</span><span>)</span></span>
+<span class="line"><span>							for</span><span> (c</span><span>=</span><span>0</span><span>;c</span><span>&#x3C;=</span><span>1</span><span>;c</span><span>++</span><span>) {</span></span>
+<span class="line"><span>								int</span><span> s</span><span>=</span><span>((a</span><span>+</span><span>b</span><span>+</span><span>c</span><span>+</span><span>j))</span><span>%</span><span>2</span><span>;</span></span>
+<span class="line"><span>								if</span><span> ((s</span><span>^</span><span>a</span><span>^</span><span>c)</span><span>==</span><span>stat[i</span><span>+</span><span>1</span><span>]) {</span></span>
+<span class="line"><span>									int</span><span> pus</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>									if</span><span> (s</span><span>></span><span>p[i</span><span>+</span><span>1</span><span>]</span><span>||</span><span>(l</span><span>&#x26;&#x26;</span><span>s</span><span>==</span><span>p[i</span><span>+</span><span>1</span><span>])) pus</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>									add</span><span>(f[i</span><span>+</span><span>1</span><span>][(j</span><span>+</span><span>a</span><span>+</span><span>b</span><span>+</span><span>c)</span><span>/</span><span>2</span><span>][k</span><span>&#x26;</span><span>(b</span><span>==</span><span>0</span><span>)][pus],f[i][j][k][l]);</span></span>
+<span class="line"><span>								}</span></span>
+<span class="line"><span>							}</span></span>
+<span class="line"><span>				}</span></span>
+<span class="line"><span>			}</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> f[</span><span>60</span><span>][</span><span>0</span><span>][</span><span>0</span><span>][</span><span>0</span><span>];</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> solve</span><span>(</span><span>void</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> i,n,m,s</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(m);</span></span>
+<span class="line"><span>	memset</span><span>(stat,</span><span>0</span><span>,</span><span>sizeof</span><span>(stat));</span></span>
+<span class="line"><span>	s</span><span>=</span><span>m;</span></span>
+<span class="line"><span>	if</span><span> (n</span><span>%</span><span>4</span><span>>=</span><span>1</span><span>) s</span><span>^=</span><span>n;</span></span>
+<span class="line"><span>	if</span><span> (n</span><span>%</span><span>4</span><span>>=</span><span>2</span><span>) s</span><span>^=</span><span>(n</span><span>-</span><span>1</span><span>);</span></span>
+<span class="line"><span>	if</span><span> (n</span><span>%</span><span>4</span><span>>=</span><span>3</span><span>) s</span><span>^=</span><span>(n</span><span>-</span><span>2</span><span>);</span></span>
+<span class="line"><span>	if</span><span> (s</span><span>==</span><span>0</span><span>) </span><span>return</span><span> puts</span><span>(</span><span>"0"</span><span>),</span><span>void</span><span>();</span></span>
+<span class="line"><span>	cnt</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (s) stat[</span><span>++</span><span>cnt]</span><span>=</span><span>s</span><span>%</span><span>2</span><span>,s</span><span>/=</span><span>2</span><span>;</span></span>
+<span class="line"><span>	int</span><span> tmp1,tmp2;</span></span>
+<span class="line"><span>	printf</span><span>(</span><span>"</span><span>%lld\n</span><span>"</span><span>,(</span><span>get</span><span>(n)</span><span>+</span><span>get</span><span>(m)</span><span>-</span><span>get</span><span>(m</span><span>-</span><span>1</span><span>)</span><span>+</span><span>mod)</span><span>%</span><span>mod);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	int</span><span> T;</span></span>
+<span class="line"><span>	read</span><span>(T);</span><span>while</span><span> (T</span><span>--</span><span>) </span><span>solve</span><span>();</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>没卡常之前不太能过。卡常就跟另外一篇题解一样循环展开之类的，效果很明显。</p></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/08/31/P9388-THUPC-2023-%E5%86%B3%E8%B5%9B-%E5%85%88%E4%BA%BA%E7%B1%BB%E7%9A%84%E4%BA%BA%E7%B1%BB%E9%80%89%E5%88%AB/"><span>← 较早一篇</span><strong>P9388 [THUPC 2023 决赛] 先人类的人类选别</strong></a><a href="/2023/08/31/P4007-%E5%B0%8F-Y-%E5%92%8C%E6%81%90%E6%80%96%E7%9A%84%E5%A5%B4%E9%9A%B6%E4%B8%BB/"><span>较新一篇 →</span><strong>P4007 小 Y 和恐怖的奴隶主</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#thupc-2023-%E5%86%B3%E8%B5%9B-%E5%B7%A7%E5%85%8B%E5%8A%9B">[THUPC 2023 决赛] 巧克力</a></li><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

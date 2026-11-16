@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="bzoj1125-POI2008-POC-Trains"><link rel="canonical" href="https://www.yqzheng.top/2023/12/04/bzoj1125-POI2008-POC-Trains/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>bzoj1125-POI2008-POC-Trains · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>bzoj1125-POI2008-POC-Trains</h1><div class="article-meta"><time datetime="2023-12-04">2023.12.04</time><span>·</span><span>4 分钟阅读</span></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ul></details><div class="prose" data-post-body><span id="Description" class="legacy-anchor" aria-hidden="true"></span><h2 id="description">Description</h2>
+<p><a href="https://www.luogu.com.cn/problem/P3471">https://www.luogu.com.cn/problem/P3471</a></p>
+<span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h2 id="solution">Solution</h2>
+<p>数据结构学傻了。算是小清新数据结构题？</p>
+<p>判断相同考虑哈希。</p>
+<p>我们对每个哈希值维护一个集合，集合按加入时间排序（所以为什么不叫序列呢），集合中的每个点带权表示当这个点加入时刻下的集合大小。我们删除一个点时查询这个点在原来所在集合中的后缀最大值。也就是我们要在线维护：</p>
+<ul>
+<li>加入一个数。</li>
+<li>查询一个数在集合中的后缀最大值。</li>
+</ul>
+<p>显然可以用平衡树搞一搞，那这样不是太平凡了吗？</p>
+<p>考虑带权并查集，每次把一个点加入集合时把他作为这个集合的根。查询时做路径压缩的时候，把到根的权值的最大值和自己本身取最大。这样每个点的后缀最大值信息就维护好了。</p>
+<p>如果自己写哈希表的话可以做到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mo>+</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nl+m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span>。但我比较懒用 <code>unordered_map</code>。</p>
+<p>目前是最优解。</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> int</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>Tp </span><span>void</span><span> read</span><span>(T </span><span>&#x26;</span><span>x){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>const</span><span> int</span><span> mod</span><span>=</span><span>1</span><span>e</span><span>9</span><span>+</span><span>7</span><span>,base</span><span>=</span><span>137</span><span>;</span></span>
+<span class="line"><span>int</span><span> power</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>=</span><span>mod</span><span>-</span><span>2</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> sum</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (y) {</span></span>
+<span class="line"><span>		if</span><span> (y</span><span>&#x26;</span><span>1</span><span>) sum</span><span>=</span><span>sum</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		x</span><span>=</span><span>x</span><span>*</span><span>x</span><span>%</span><span>mod;y</span><span>>>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>char</span><span> s[</span><span>1005</span><span>][</span><span>105</span><span>];</span></span>
+<span class="line"><span>int</span><span> w[</span><span>1005</span><span>],pw[</span><span>105</span><span>],las[</span><span>1005</span><span>];</span></span>
+<span class="line"><span>int</span><span> ans[</span><span>1005</span><span>],n,m,l;</span></span>
+<span class="line"><span>unordered_map</span><span>&#x3C;int</span><span>,</span><span>int></span><span>mp;</span></span>
+<span class="line"><span>int</span><span> cnt;</span></span>
+<span class="line"><span>vector</span><span>&#x3C;</span><span>pair</span><span>&#x3C;int</span><span>,</span><span>int></span><span> ></span><span>fa[</span><span>110005</span><span>];</span><span>//fi->fa,se->suffix max</span></span>
+<span class="line"><span>int</span><span> root[</span><span>110005</span><span>],siz[</span><span>110005</span><span>];</span></span>
+<span class="line"><span>int</span><span> getfa</span><span>(</span><span>int</span><span> u</span><span>,</span><span>int</span><span> x</span><span>) {</span></span>
+<span class="line"><span>	// gdb(u,x,fa[u][x].fi,fa[u][x].se);</span></span>
+<span class="line"><span>	if</span><span> (fa[u][x].fi</span><span>==</span><span>x) </span><span>return</span><span> fa[u][x].se;</span></span>
+<span class="line"><span>	int</span><span> tmp</span><span>=</span><span>getfa</span><span>(u,fa[u][x].fi);</span></span>
+<span class="line"><span>	fa[u][x].fi</span><span>=</span><span>fa[u][fa[u][x].fi].fi;</span></span>
+<span class="line"><span>	return</span><span> fa[u][x].se</span><span>=</span><span>max</span><span>(fa[u][x].se,tmp);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> calc</span><span>(</span><span>int</span><span> x</span><span>) {</span></span>
+<span class="line"><span>	ans[x]</span><span>=</span><span>max</span><span>(ans[x],</span><span>getfa</span><span>(mp[w[x]],las[x]));</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> insert</span><span>(</span><span>int</span><span> u</span><span>,</span><span>int</span><span> x</span><span>,</span><span>int</span><span> s</span><span>) {</span></span>
+<span class="line"><span>	las[x]</span><span>=</span><span>fa[u].</span><span>size</span><span>();</span></span>
+<span class="line"><span>	// gdb(u,x,s,las[x]);</span></span>
+<span class="line"><span>	fa[u].</span><span>push_back</span><span>(</span><span>mk</span><span>(las[x],s));</span></span>
+<span class="line"><span>	if</span><span> (root[u]</span><span>>=</span><span>0</span><span>) fa[u][root[u]].fi</span><span>=</span><span>las[x];</span></span>
+<span class="line"><span>	root[u]</span><span>=</span><span>las[x];</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> add</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>,</span><span>int</span><span> y</span><span>) {x</span><span>=</span><span>(x</span><span>+</span><span>y)</span><span>%</span><span>mod;};</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	freopen</span><span>(</span><span>"1.in"</span><span>,</span><span>"r"</span><span>,stdin);</span></span>
+<span class="line"><span>	int</span><span> i,j,x,y,xx,yy;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(l);</span><span>read</span><span>(m);</span></span>
+<span class="line"><span>	for</span><span> (pw[</span><span>0</span><span>]</span><span>=</span><span>1</span><span>,i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>l;i</span><span>++</span><span>) pw[i]</span><span>=</span><span>pw[i</span><span>-</span><span>1</span><span>]</span><span>*</span><span>base</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>	memset</span><span>(root,</span><span>-</span><span>1</span><span>,</span><span>sizeof</span><span>(root));</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		scanf</span><span>(</span><span>"</span><span>%s</span><span>"</span><span>,s[i]);</span></span>
+<span class="line"><span>		for</span><span> (j</span><span>=</span><span>0</span><span>;j</span><span>&#x3C;</span><span>l;j</span><span>++</span><span>) w[i]</span><span>=</span><span>(w[i]</span><span>+</span><span>pw[j]</span><span>*</span><span>s[i][j])</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		if</span><span> (</span><span>!</span><span>mp[w[i]]) mp[w[i]]</span><span>=++</span><span>cnt;</span></span>
+<span class="line"><span>		siz[mp[w[i]]]</span><span>++</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		ans[i]</span><span>=</span><span>siz[mp[w[i]]];</span></span>
+<span class="line"><span>		insert</span><span>(mp[w[i]],i,siz[mp[w[i]]]);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	while</span><span> (m</span><span>--</span><span>) {</span></span>
+<span class="line"><span>		read</span><span>(x),</span><span>read</span><span>(xx),</span><span>read</span><span>(y),</span><span>read</span><span>(yy);</span></span>
+<span class="line"><span>		x</span><span>--</span><span>,xx</span><span>--</span><span>,y</span><span>--</span><span>,yy</span><span>--</span><span>;</span></span>
+<span class="line"><span>		calc</span><span>(x);</span><span>calc</span><span>(y);</span></span>
+<span class="line"><span>		siz[mp[w[x]]]</span><span>--</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (x</span><span>^</span><span>y) siz[mp[w[y]]]</span><span>--</span><span>;</span></span>
+<span class="line"><span>		add</span><span>(w[x],pw[xx]</span><span>*</span><span>(s[y][yy]</span><span>-</span><span>s[x][xx]</span><span>+</span><span>mod));</span></span>
+<span class="line"><span>		add</span><span>(w[y],pw[yy]</span><span>*</span><span>(s[x][xx]</span><span>-</span><span>s[y][yy]</span><span>+</span><span>mod));</span></span>
+<span class="line"><span>		swap</span><span>(s[x][xx],s[y][yy]);</span></span>
+<span class="line"><span>		if</span><span> (</span><span>!</span><span>mp[w[x]]) mp[w[x]]</span><span>=++</span><span>cnt;</span></span>
+<span class="line"><span>		siz[mp[w[x]]]</span><span>++</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (</span><span>!</span><span>mp[w[y]]) mp[w[y]]</span><span>=++</span><span>cnt;</span></span>
+<span class="line"><span>		if</span><span> (x</span><span>^</span><span>y) siz[mp[w[y]]]</span><span>++</span><span>;</span></span>
+<span class="line"><span>		insert</span><span>(mp[w[x]],x,siz[mp[w[x]]]);</span></span>
+<span class="line"><span>		insert</span><span>(mp[w[y]],y,siz[mp[w[y]]]);</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) </span><span>calc</span><span>(i);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>n;i</span><span>++</span><span>) </span><span>printf</span><span>(</span><span>"</span><span>%lld\n</span><span>"</span><span>,ans[i]);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>//i=begin &#x26;&#x26; g++ $i.cpp -o $i -std=c++14 &#x26;&#x26; ./$i</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/12/04/bzoj1126-POI2008-UCI-The-Great-Escape/"><span>← 较早一篇</span><strong>bzoj1126 [POI2008] UCI-The Great Escape</strong></a><a href="/2023/12/04/ABC216G-01Sequence/"><span>较新一篇 →</span><strong>ABC216G 01Sequence</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

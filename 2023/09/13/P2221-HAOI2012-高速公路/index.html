@@ -1,329 +1,100 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="怎么这种吊题都要想很久。果然是要退役了&#x2F;kk 考虑算每条道路的贡献，先把边的数值放到前一个点上，然后默认 $r\gets r-1$ ，要求的就是：$$\sum_{i&#x3D;l}^r a_i(r-i+1)(i-l+1)$$整理后，有：$$(r-l+1-rl)\sum a_i+(r+l)\sum a_i\times i-\sum a_i\times i^2$$线段树跑一跑就好了： 123">
-<meta property="og:type" content="article">
-<meta property="og:title" content="P2221 [HAOI2012] 高速公路">
-<meta property="og:url" content="http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="怎么这种吊题都要想很久。果然是要退役了&#x2F;kk 考虑算每条道路的贡献，先把边的数值放到前一个点上，然后默认 $r\gets r-1$ ，要求的就是：$$\sum_{i&#x3D;l}^r a_i(r-i+1)(i-l+1)$$整理后，有：$$(r-l+1-rl)\sum a_i+(r+l)\sum a_i\times i-\sum a_i\times i^2$$线段树跑一跑就好了： 123">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-13T11:14:50.000Z">
-<meta property="article:modified_time" content="2023-09-13T11:15:14.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="线段树">
-<meta property="article:tag" content="贡献">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>P2221 [HAOI2012] 高速公路</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/09/13/CF1267G-Game-Relics/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/09/10/QOJ5437-Graph-Completing-t/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&text=P2221 [HAOI2012] 高速公路"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&is_video=false&description=P2221 [HAOI2012] 高速公路"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P2221 [HAOI2012] 高速公路&body=Check out this article: http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&name=P2221 [HAOI2012] 高速公路&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&t=P2221 [HAOI2012] 高速公路"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        P2221 [HAOI2012] 高速公路
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-09-13T11:14:50.000Z" class="dt-published" itemprop="datePublished">2023-09-13</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag">线段树</a>, <a class="p-category" href="/tags/%E8%B4%A1%E7%8C%AE/" rel="tag">贡献</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <p>怎么这种吊题都要想很久。果然是要退役了&#x2F;kk</p>
-<p>考虑算每条道路的贡献，先把边的数值放到前一个点上，然后默认 $r\gets r-1$ ，要求的就是：<br>$$<br>\sum_{i&#x3D;l}^r a_i(r-i+1)(i-l+1)<br>$$<br>整理后，有：<br>$$<br>(r-l+1-rl)\sum a_i+(r+l)\sum a_i\times i-\sum a_i\times i^2<br>$$<br>线段树跑一跑就好了：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename Ty&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename Ty,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,Ty x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	Tp ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,vector&lt;Ty&gt;&amp; V)&#123;os&lt;&lt;<span class="string">&quot;[&quot;</span>;<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; vv:V) os&lt;&lt;vv&lt;&lt;<span class="string">&quot;,&quot;</span>;os&lt;&lt;<span class="string">&quot;]&quot;</span>;<span class="keyword">return</span> os;&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span><span class="number">+7</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">power</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> s[<span class="number">3</span>][maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">yyy</span>&#123;</span><br><span class="line">	<span class="type">int</span> sum[<span class="number">3</span>],lazy;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++) sum[i]=<span class="number">0</span>;&#125;</span><br><span class="line">&#125;f[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> rt)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++) f[rt].sum[i]=f[rt&lt;&lt;<span class="number">1</span>].sum[i]+f[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum[i];</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cover</span><span class="params">(<span class="type">int</span> rt,<span class="type">int</span> k,<span class="type">int</span> l,<span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++) f[rt].sum[i]+=k*(s[i][r]-s[i][l<span class="number">-1</span>]);</span><br><span class="line">	f[rt].lazy+=k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (f[rt].lazy) &#123;</span><br><span class="line">		<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">cover</span>(rt&lt;&lt;<span class="number">1</span>,f[rt].lazy,l,mid);</span><br><span class="line">		<span class="built_in">cover</span>(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,f[rt].lazy,mid<span class="number">+1</span>,r);</span><br><span class="line">		f[rt].lazy=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Update</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt,<span class="type">int</span> head,<span class="type">int</span> tail,<span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=l&amp;&amp;r&lt;=tail) <span class="keyword">return</span> <span class="built_in">cover</span>(rt,k,l,r),<span class="built_in">void</span>();</span><br><span class="line">	<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;<span class="built_in">pushdown</span>(l,r,rt);</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=mid) <span class="built_in">Update</span>(l,mid,rt&lt;&lt;<span class="number">1</span>,head,tail,k);</span><br><span class="line">	<span class="keyword">if</span> (tail&gt;mid)  <span class="built_in">Update</span>(mid<span class="number">+1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,head,tail,k);</span><br><span class="line">	<span class="built_in">pushup</span>(rt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">yyy <span class="title">Query</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt,<span class="type">int</span> head,<span class="type">int</span> tail)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=l&amp;&amp;r&lt;=tail) <span class="keyword">return</span> f[rt];</span><br><span class="line">	<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;<span class="built_in">pushdown</span>(l,r,rt);</span><br><span class="line">	yyy tmp1,tmp2;tmp<span class="number">1.</span><span class="built_in">clear</span>();tmp<span class="number">2.</span><span class="built_in">clear</span>();</span><br><span class="line">	<span class="keyword">if</span> (head&lt;=mid) tmp1=<span class="built_in">Query</span>(l,mid,rt&lt;&lt;<span class="number">1</span>,head,tail);</span><br><span class="line">	<span class="keyword">if</span> (tail&gt;mid)  tmp2=<span class="built_in">Query</span>(mid<span class="number">+1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,head,tail);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++) tmp<span class="number">1.</span>sum[i]+=tmp<span class="number">2.</span>sum[i];</span><br><span class="line">	<span class="keyword">return</span> tmp1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	<span class="type">int</span> i,l,r,x;<span class="type">char</span> ch;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(m);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) s[<span class="number">0</span>][i]=s[<span class="number">0</span>][i<span class="number">-1</span>]<span class="number">+1</span>,s[<span class="number">1</span>][i]=s[<span class="number">1</span>][i<span class="number">-1</span>]+i,s[<span class="number">2</span>][i]=s[<span class="number">2</span>][i<span class="number">-1</span>]+i*i;</span><br><span class="line">	<span class="keyword">while</span> (m--) &#123;</span><br><span class="line">		ch=<span class="built_in">getchar</span>();<span class="keyword">while</span> (ch!=<span class="string">&#x27;C&#x27;</span>&amp;&amp;ch!=<span class="string">&#x27;Q&#x27;</span>) ch=<span class="built_in">getchar</span>();</span><br><span class="line">		<span class="built_in">read</span>(l);<span class="built_in">read</span>(r);r--;</span><br><span class="line">		<span class="keyword">if</span> (ch==<span class="string">&#x27;C&#x27;</span>) <span class="built_in">read</span>(x),<span class="built_in">Update</span>(<span class="number">1</span>,n,<span class="number">1</span>,l,r,x);</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">auto</span> tmp=<span class="built_in">Query</span>(<span class="number">1</span>,n,<span class="number">1</span>,l,r);</span><br><span class="line">			<span class="type">int</span> ans=tmp.sum[<span class="number">0</span>]*(r-l<span class="number">+1</span>-r*l)+tmp.sum[<span class="number">1</span>]*(r+l)-tmp.sum[<span class="number">2</span>];</span><br><span class="line"><span class="comment">//			gdb(tmp.sum[0],tmp.sum[1],tmp.sum[2],ans);</span></span><br><span class="line">			<span class="type">int</span> pus=(r-l<span class="number">+2</span>)*(r-l<span class="number">+1</span>)/<span class="number">2</span>,g=__gcd(ans,pus);</span><br><span class="line">			<span class="keyword">if</span> (!ans) <span class="built_in">puts</span>(<span class="string">&quot;0/1&quot;</span>);</span><br><span class="line">			<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld/%lld\n&quot;</span>,ans/g,pus/g);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&text=P2221 [HAOI2012] 高速公路"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&is_video=false&description=P2221 [HAOI2012] 高速公路"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P2221 [HAOI2012] 高速公路&body=Check out this article: http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&title=P2221 [HAOI2012] 高速公路"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&name=P2221 [HAOI2012] 高速公路&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/&t=P2221 [HAOI2012] 高速公路"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="P2221 [HAOI2012] 高速公路"><link rel="canonical" href="https://www.yqzheng.top/2023/09/13/P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>P2221 [HAOI2012] 高速公路 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>P2221 [HAOI2012] 高速公路</h1><div class="article-meta"><time datetime="2023-09-13">2023.09.13</time><span>·</span><span>3 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E8%B4%A1%E7%8C%AE/">#贡献</a><a class="chip" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">#线段树</a></div></header><div class="prose" data-post-body><p>怎么这种吊题都要想很久。果然是要退役了/kk</p>
+<p>考虑算每条道路的贡献，先把边的数值放到前一个点上，然后默认 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>←</mo><mi>r</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r\gets r-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> ，要求的就是：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mi>l</mi></mrow><mi>r</mi></munderover><msub><mi>a</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>r</mi><mo>−</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sum_{i=l}^r a_i(r-i+1)(i-l+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.9535em;vertical-align:-1.3021em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7429em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>
+<p>整理后，有：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>−</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>−</mo><mi>r</mi><mi>l</mi><mo stretchy="false">)</mo><mo>∑</mo><msub><mi>a</mi><mi>i</mi></msub><mo>+</mo><mo stretchy="false">(</mo><mi>r</mi><mo>+</mo><mi>l</mi><mo stretchy="false">)</mo><mo>∑</mo><msub><mi>a</mi><mi>i</mi></msub><mo>×</mo><mi>i</mi><mo>−</mo><mo>∑</mo><msub><mi>a</mi><mi>i</mi></msub><mo>×</mo><msup><mi>i</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">(r-l+1-rl)\sum a_i+(r+l)\sum a_i\times i-\sum a_i\times i^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.6em;vertical-align:-0.55em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.6em;vertical-align:-0.55em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7429em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.6em;vertical-align:-0.55em;"></span><span class="mop op-symbol large-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>
+<p>线段树跑一跑就好了：</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> int</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 100005</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> Ty</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>void</span><span> read</span><span>(</span><span>int</span><span> &#x26;</span><span>x</span><span>){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,Ty x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	Tp </span><span>ostream</span><span>&#x26;</span><span> operator</span><span>&#x3C;&#x3C;</span><span>(</span><span>ostream</span><span>&#x26;</span><span> os</span><span>,</span><span>vector</span><span>&#x3C;</span><span>Ty</span><span>></span><span>&#x26;</span><span> V</span><span>){os</span><span>&#x3C;&#x3C;</span><span>"["</span><span>;</span><span>for</span><span>(</span><span>auto&#x26;</span><span> vv:V) os</span><span>&#x3C;&#x3C;</span><span>vv</span><span>&#x3C;&#x3C;</span><span>","</span><span>;os</span><span>&#x3C;&#x3C;</span><span>"]"</span><span>;</span><span>return</span><span> os;}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>const</span><span> int</span><span> mod</span><span>=</span><span>1</span><span>e</span><span>9</span><span>+</span><span>7</span><span>;</span></span>
+<span class="line"><span>int</span><span> power</span><span>(</span><span>int</span><span> x</span><span>,</span><span>int</span><span> y</span><span>=</span><span>mod</span><span>-</span><span>2</span><span>) {</span></span>
+<span class="line"><span>	int</span><span> sum</span><span>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	while</span><span> (y) {</span></span>
+<span class="line"><span>		if</span><span> (y</span><span>&#x26;</span><span>1</span><span>) sum</span><span>=</span><span>sum</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		x</span><span>=</span><span>x</span><span>*</span><span>x</span><span>%</span><span>mod;y</span><span>>>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> n,m;</span></span>
+<span class="line"><span>int</span><span> s[</span><span>3</span><span>][maxn];</span></span>
+<span class="line"><span>struct</span><span> yyy</span><span>{</span></span>
+<span class="line"><span>	int</span><span> sum[</span><span>3</span><span>],lazy;</span></span>
+<span class="line"><span>	void</span><span> clear</span><span>(</span><span>void</span><span>) {</span><span>for</span><span> (</span><span>int</span><span> i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>3</span><span>;i</span><span>++</span><span>) sum[i]</span><span>=</span><span>0</span><span>;}</span></span>
+<span class="line"><span>}f[maxn</span><span>&#x3C;&#x3C;</span><span>2</span><span>];</span></span>
+<span class="line"><span>void</span><span> pushup</span><span>(</span><span>int</span><span> rt</span><span>) {</span></span>
+<span class="line"><span>	for</span><span> (</span><span>int</span><span> i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>3</span><span>;i</span><span>++</span><span>) f[rt].sum[i]</span><span>=</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>].sum[i]</span><span>+</span><span>f[rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>].sum[i];</span></span>
+<span class="line"><span>} </span></span>
+<span class="line"><span>void</span><span> cover</span><span>(</span><span>int</span><span> rt</span><span>,</span><span>int</span><span> k</span><span>,</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>) {</span></span>
+<span class="line"><span>	for</span><span> (</span><span>int</span><span> i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>3</span><span>;i</span><span>++</span><span>) f[rt].sum[i]</span><span>+=</span><span>k</span><span>*</span><span>(s[i][r]</span><span>-</span><span>s[i][l</span><span>-</span><span>1</span><span>]);</span></span>
+<span class="line"><span>	f[rt].lazy</span><span>+=</span><span>k;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> pushdown</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> rt</span><span>) {</span></span>
+<span class="line"><span>	if</span><span> (f[rt].lazy) {</span></span>
+<span class="line"><span>		int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>		cover</span><span>(rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>,f[rt].lazy,l,mid);</span></span>
+<span class="line"><span>		cover</span><span>(rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>,f[rt].lazy,mid</span><span>+</span><span>1</span><span>,r);</span></span>
+<span class="line"><span>		f[rt].lazy</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>void</span><span> Update</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> rt</span><span>,</span><span>int</span><span> head</span><span>,</span><span>int</span><span> tail</span><span>,</span><span>int</span><span> k</span><span>) {</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>l</span><span>&#x26;&#x26;</span><span>r</span><span>&#x3C;=</span><span>tail) </span><span>return</span><span> cover</span><span>(rt,k,l,r),</span><span>void</span><span>();</span></span>
+<span class="line"><span>	int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span><span>pushdown</span><span>(l,r,rt);</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>mid) </span><span>Update</span><span>(l,mid,rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>,head,tail,k);</span></span>
+<span class="line"><span>	if</span><span> (tail</span><span>></span><span>mid)  </span><span>Update</span><span>(mid</span><span>+</span><span>1</span><span>,r,rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>,head,tail,k);</span></span>
+<span class="line"><span>	pushup</span><span>(rt);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>yyy</span><span> Query</span><span>(</span><span>int</span><span> l</span><span>,</span><span>int</span><span> r</span><span>,</span><span>int</span><span> rt</span><span>,</span><span>int</span><span> head</span><span>,</span><span>int</span><span> tail</span><span>) {</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>l</span><span>&#x26;&#x26;</span><span>r</span><span>&#x3C;=</span><span>tail) </span><span>return</span><span> f[rt];</span></span>
+<span class="line"><span>	int</span><span> mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span><span>pushdown</span><span>(l,r,rt);</span></span>
+<span class="line"><span>	yyy</span><span> tmp1,tmp2;tmp1.</span><span>clear</span><span>();tmp2.</span><span>clear</span><span>();</span></span>
+<span class="line"><span>	if</span><span> (head</span><span>&#x3C;=</span><span>mid) tmp1</span><span>=</span><span>Query</span><span>(l,mid,rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>,head,tail);</span></span>
+<span class="line"><span>	if</span><span> (tail</span><span>></span><span>mid)  tmp2</span><span>=</span><span>Query</span><span>(mid</span><span>+</span><span>1</span><span>,r,rt</span><span>&#x3C;&#x3C;</span><span>1</span><span>|</span><span>1</span><span>,head,tail);</span></span>
+<span class="line"><span>	for</span><span> (</span><span>int</span><span> i</span><span>=</span><span>0</span><span>;i</span><span>&#x3C;</span><span>3</span><span>;i</span><span>++</span><span>) tmp1.sum[i]</span><span>+=</span><span>tmp2.sum[i];</span></span>
+<span class="line"><span>	return</span><span> tmp1;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>//	freopen("1.in","r",stdin);</span></span>
+<span class="line"><span>	int</span><span> i,l,r,x;</span><span>char</span><span> ch;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(m);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) s[</span><span>0</span><span>][i]</span><span>=</span><span>s[</span><span>0</span><span>][i</span><span>-</span><span>1</span><span>]</span><span>+</span><span>1</span><span>,s[</span><span>1</span><span>][i]</span><span>=</span><span>s[</span><span>1</span><span>][i</span><span>-</span><span>1</span><span>]</span><span>+</span><span>i,s[</span><span>2</span><span>][i]</span><span>=</span><span>s[</span><span>2</span><span>][i</span><span>-</span><span>1</span><span>]</span><span>+</span><span>i</span><span>*</span><span>i;</span></span>
+<span class="line"><span>	while</span><span> (m</span><span>--</span><span>) {</span></span>
+<span class="line"><span>		ch</span><span>=</span><span>getchar</span><span>();</span><span>while</span><span> (ch</span><span>!=</span><span>'C'</span><span>&#x26;&#x26;</span><span>ch</span><span>!=</span><span>'Q'</span><span>) ch</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>		read</span><span>(l);</span><span>read</span><span>(r);r</span><span>--</span><span>;</span></span>
+<span class="line"><span>		if</span><span> (ch</span><span>==</span><span>'C'</span><span>) </span><span>read</span><span>(x),</span><span>Update</span><span>(</span><span>1</span><span>,n,</span><span>1</span><span>,l,r,x);</span></span>
+<span class="line"><span>		else</span><span> {</span></span>
+<span class="line"><span>			auto</span><span> tmp</span><span>=</span><span>Query</span><span>(</span><span>1</span><span>,n,</span><span>1</span><span>,l,r);</span></span>
+<span class="line"><span>			int</span><span> ans</span><span>=</span><span>tmp.sum[</span><span>0</span><span>]</span><span>*</span><span>(r</span><span>-</span><span>l</span><span>+</span><span>1</span><span>-</span><span>r</span><span>*</span><span>l)</span><span>+</span><span>tmp.sum[</span><span>1</span><span>]</span><span>*</span><span>(r</span><span>+</span><span>l)</span><span>-</span><span>tmp.sum[</span><span>2</span><span>];</span></span>
+<span class="line"><span>//			gdb(tmp.sum[0],tmp.sum[1],tmp.sum[2],ans);</span></span>
+<span class="line"><span>			int</span><span> pus</span><span>=</span><span>(r</span><span>-</span><span>l</span><span>+</span><span>2</span><span>)</span><span>*</span><span>(r</span><span>-</span><span>l</span><span>+</span><span>1</span><span>)</span><span>/</span><span>2</span><span>,g</span><span>=</span><span>__gcd</span><span>(ans,pus);</span></span>
+<span class="line"><span>			if</span><span> (</span><span>!</span><span>ans) </span><span>puts</span><span>(</span><span>"0/1"</span><span>);</span></span>
+<span class="line"><span>			else</span><span> printf</span><span>(</span><span>"</span><span>%lld</span><span>/</span><span>%lld\n</span><span>"</span><span>,ans</span><span>/</span><span>g,pus</span><span>/</span><span>g);</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2023/09/10/QOJ5437-Graph-Completing-t/"><span>← 较早一篇</span><strong>QOJ5437. Graph Completing.t</strong></a><a href="/2023/09/13/CF1267G-Game-Relics/"><span>较新一篇 →</span><strong>CF1267G Game Relics</strong></a></nav></article></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>

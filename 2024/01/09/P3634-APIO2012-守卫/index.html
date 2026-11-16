@@ -1,349 +1,116 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3634 Solution之前看了好久交了个差分约束上去，然后WA飞了。 先处理一些简单的情况：  $0$ 位置标记扔掉。 $1$ 的区间如果存在包含，则大的那个区间扔掉。 $l&#x3D;r$，则这个点一定有。  把包含的去掉以后。一个点必选，表示如果不选这个点则一定无解。 一种合法的最优的贪心就如果这个区">
-<meta property="og:type" content="article">
-<meta property="og:title" content="P3634 [APIO2012] 守卫">
-<meta property="og:url" content="http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/index.html">
-<meta property="og:site_name" content="wgyhm">
-<meta property="og:description" content="Descriptionhttps:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3634 Solution之前看了好久交了个差分约束上去，然后WA飞了。 先处理一些简单的情况：  $0$ 位置标记扔掉。 $1$ 的区间如果存在包含，则大的那个区间扔掉。 $l&#x3D;r$，则这个点一定有。  把包含的去掉以后。一个点必选，表示如果不选这个点则一定无解。 一种合法的最优的贪心就如果这个区">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-01-09T13:50:54.000Z">
-<meta property="article:modified_time" content="2024-01-09T13:52:44.000Z">
-<meta property="article:author" content="wgyhm">
-<meta property="article:tag" content="dp">
-<meta property="article:tag" content="贪心">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>P3634 [APIO2012] 守卫</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2024/01/09/P8519-IOI2021-%E9%92%A5%E5%8C%99/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2024/01/04/ARC096E-Everything-on-It/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&text=P3634 [APIO2012] 守卫"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&is_video=false&description=P3634 [APIO2012] 守卫"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P3634 [APIO2012] 守卫&body=Check out this article: http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&name=P3634 [APIO2012] 守卫&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&t=P3634 [APIO2012] 守卫"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        P3634 [APIO2012] 守卫
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">wgyhm</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2024-01-09T13:50:54.000Z" class="dt-published" itemprop="datePublished">2024-01-09</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/dp/" rel="tag">dp</a>, <a class="p-category" href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag">贪心</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3634">https://www.luogu.com.cn/problem/P3634</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>之前看了好久交了个差分约束上去，然后WA飞了。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="P3634 [APIO2012] 守卫"><link rel="canonical" href="https://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/"><link rel="icon" href="/mark.svg" type="image/svg+xml"><title>P3634 [APIO2012] 守卫 · wgyhm</title><script>
+    try {
+      const saved = localStorage.getItem('wgyhm-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch {}
+  </script><link rel="stylesheet" href="/_astro/_..Cp-YI5mj.css"><link rel="stylesheet" href="/_astro/Base.DoVDwkY5.css"></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">wgyhm</a><nav class="site-nav" aria-label="主导航"><a href="/notes/" aria-current="page">技术笔记</a><a href="/essays/">随笔</a><a href="/research/">研究</a></nav><div class="tools"><a class="icon-btn" href="/search/" aria-label="搜索" title="搜索"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg></a><button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色主题" title="切换主题"><span class="sun"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path></svg></span><span class="moon"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.7 14.6A9 9 0 0 1 9.4 3.3a9 9 0 1 0 11.3 11.3Z"></path></svg></span></button></div></div></header><main id="main" class="shell shell-wide"><div class="article-grid"><article class="article"><header class="article-head"><a class="text-link compact" href="/notes/">← 技术笔记</a><p class="eyebrow">WRITING / 算法</p><h1>P3634 [APIO2012] 守卫</h1><div class="article-meta"><time datetime="2024-01-09">2024.01.09</time><span>·</span><span>4 分钟阅读</span></div><div class="chips article-tags"><a class="chip" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a><a class="chip" href="/tags/%E8%B4%AA%E5%BF%83/">#贪心</a></div></header><details class="toc-mobile"><summary>文章目录</summary><ul><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ul></details><div class="prose" data-post-body><span id="Description" class="legacy-anchor" aria-hidden="true"></span><h2 id="description">Description</h2>
+<p><a href="https://www.luogu.com.cn/problem/P3634">https://www.luogu.com.cn/problem/P3634</a></p>
+<span id="Solution" class="legacy-anchor" aria-hidden="true"></span><h2 id="solution">Solution</h2>
+<p>之前看了好久交了个差分约束上去，然后WA飞了。</p>
 <p>先处理一些简单的情况：</p>
 <ul>
-<li>$0$ 位置标记扔掉。</li>
-<li>$1$ 的区间如果存在包含，则大的那个区间扔掉。</li>
-<li>$l&#x3D;r$，则这个点一定有。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> 位置标记扔掉。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 的区间如果存在包含，则大的那个区间扔掉。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mo>=</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">l=r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span>，则这个点一定有。</li>
 </ul>
 <p>把包含的去掉以后。一个点必选，表示如果不选这个点则一定无解。</p>
 <p>一种合法的最优的贪心就如果这个区间没有被覆盖则贪心的选取这个区间的右端点。也就是说必选点的集合一定是这些右端点的子集。</p>
-<p>考虑一个区间 $[l,r]$，在最优方案中我们选取了其右端点 $r$，同样的，次优的方案是选择 $r-1$。算出这种情况下最小的守卫数 $&gt;k$ 则 $r$ 一定要选。记 $f_i$ 表示从左到右覆盖前 $i$ 个区间最少需要选 $f_i$ 个，$g_i$ 表示从右到左。二分出最左边的区间 $l_p\ge r$，必选的充要条件在 $f_i+g_p&gt;k$。</p>
-<p>注意特判可以填的位置等于守卫个数的情况。复杂度 $O(n\log n)$。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> put() putchar(<span class="string">&#x27;\n&#x27;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Tp template<span class="string">&lt;typename T&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Ts template<span class="string">&lt;typename T,typename... Ar&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function">Tp <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>) &#123;<span class="keyword">if</span> (c==<span class="string">&#x27;-&#x27;</span>) f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span> (c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>) &#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Debug&#123;</span><br><span class="line">	Tp <span class="type">void</span> _debug(<span class="type">char</span>* f,T t)&#123;cerr&lt;&lt;f&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;t&lt;&lt;endl;&#125;</span><br><span class="line">	Ts <span class="type">void</span> _debug(<span class="type">char</span>* f,T x,Ar... y)&#123;<span class="keyword">while</span>(*f!=<span class="string">&#x27;,&#x27;</span>) cerr&lt;&lt;*f++;cerr&lt;&lt;<span class="string">&#x27;=&#x27;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,&quot;</span>;_debug(f<span class="number">+1</span>,y...);&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> gdb(...) _debug((char*)#__VA_ARGS__,__VA_ARGS__)</span></span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Debug;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mk make_pair</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">1e9</span><span class="number">+7</span>;</span><br><span class="line"><span class="function">ll <span class="title">power</span><span class="params">(ll x,<span class="type">int</span> y=mod<span class="number">-2</span>)</span> </span>&#123;</span><br><span class="line">	ll sum=<span class="number">1</span>;x%=mod;</span><br><span class="line">	<span class="keyword">while</span> (y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (y&amp;<span class="number">1</span>) sum=sum*x%mod;</span><br><span class="line">		x=x*x%mod;y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> nex[maxn],las[maxn];</span><br><span class="line"><span class="type">int</span> n,k,m;</span><br><span class="line"><span class="type">int</span> cnt,d[maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">	<span class="type">int</span> l,r;</span><br><span class="line">&#125;a[maxn];</span><br><span class="line"><span class="type">int</span> f[maxn],g[maxn],stac[maxn],tot;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(node x,node y)</span> </span>&#123;<span class="keyword">return</span> x.l==y.l?x.r&gt;y.r:x.l&lt;y.l;&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;1.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="type">int</span> i,op,l,r,nums=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">read</span>(n);<span class="built_in">read</span>(k);<span class="built_in">read</span>(m);</span><br><span class="line">	<span class="keyword">while</span> (m--) &#123;</span><br><span class="line">		<span class="built_in">read</span>(l);<span class="built_in">read</span>(r);<span class="built_in">read</span>(op);</span><br><span class="line">		<span class="keyword">if</span> (op==<span class="number">0</span>) d[l]++,d[r<span class="number">+1</span>]--;</span><br><span class="line">		<span class="keyword">else</span> a[++cnt]=(node)&#123;l,r&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) d[i]+=d[i<span class="number">-1</span>],nums+=(d[i]==<span class="number">0</span>);</span><br><span class="line">	nex[n<span class="number">+1</span>]=n<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">if</span> (nums==k) &#123;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span> (d[i]==<span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,i);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// gdb(d[99]);</span></span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span> (!d[i]) las[i]=i;<span class="keyword">else</span> las[i]=las[i<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">for</span> (i=n;i&gt;=<span class="number">1</span>;i--) <span class="keyword">if</span> (!d[i]) nex[i]=i;<span class="keyword">else</span> nex[i]=nex[i<span class="number">+1</span>];</span><br><span class="line">	<span class="comment">// for (i=1;i&lt;=n;i++) gdb(i,d[i],las[i],nex[i]);</span></span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=cnt;i++) a[i].l=nex[a[i].l],a[i].r=las[a[i].r];</span><br><span class="line">	<span class="built_in">sort</span>(a<span class="number">+1</span>,a<span class="number">+1</span>+cnt,cmp);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=cnt;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (a[i].l&gt;a[i].r) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">while</span> (tot&amp;&amp;a[stac[tot]].r&gt;=a[i].r) tot--;</span><br><span class="line">		stac[++tot]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	cnt=tot;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=tot;i++) a[i]=a[stac[i]];</span><br><span class="line">	<span class="comment">// for (i=1;i&lt;=tot;i++) gdb(a[i].l,a[i].r);</span></span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=tot;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (now&lt;a[i].l) f[i]=f[i<span class="number">-1</span>]<span class="number">+1</span>,now=a[i].r;</span><br><span class="line">		<span class="keyword">else</span> f[i]=f[i<span class="number">-1</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	now=n<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=tot;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (now&gt;a[i].r) g[i]=g[i<span class="number">+1</span>]<span class="number">+1</span>,now=a[i].l;</span><br><span class="line">		<span class="keyword">else</span> g[i]=g[i<span class="number">+1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> flag=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=tot;i++) &#123;</span><br><span class="line">		<span class="type">int</span> p,l=<span class="number">0</span>,r=tot<span class="number">+1</span>,mid;</span><br><span class="line">		<span class="comment">// gdb(a[i].l,a[i].r);</span></span><br><span class="line">		<span class="keyword">if</span> (a[i].l==a[i].r) &#123;flag=<span class="number">1</span>;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a[i].l);<span class="keyword">continue</span>;&#125;</span><br><span class="line">		<span class="keyword">if</span> (f[i]!=f[i<span class="number">-1</span>]<span class="number">+1</span>) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">while</span> (l<span class="number">+1</span>&lt;r) &#123;</span><br><span class="line">			mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (a[mid].l&gt;=a[i].r) r=mid;</span><br><span class="line">			<span class="keyword">else</span> l=mid; </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// assert(r&gt;i);</span></span><br><span class="line">		<span class="comment">// gdb(i,r,f[i],g[r]);</span></span><br><span class="line">		<span class="keyword">if</span> (f[i]+g[r]&gt;k) &#123;flag=<span class="number">1</span>;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a[i].r);<span class="keyword">continue</span>;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (!flag) <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//i=begin &amp;&amp; g++ $i.cpp -o $i -std=c++14 &amp;&amp; ./$i</span></span><br></pre></td></tr></table></figure>
-
-
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li>
-        
-          <li><a href="/search/">Search</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&text=P3634 [APIO2012] 守卫"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&is_video=false&description=P3634 [APIO2012] 守卫"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=P3634 [APIO2012] 守卫&body=Check out this article: http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&title=P3634 [APIO2012] 守卫"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&name=P3634 [APIO2012] 守卫&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.yqzheng.top/2024/01/09/P3634-APIO2012-%E5%AE%88%E5%8D%AB/&t=P3634 [APIO2012] 守卫"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021-2026
-    wgyhm
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/wgyhm">Projects</a></li><!--
-     --><!--
-       --><li><a href="/search/">Search</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
- 
-  <link
-    rel="preload"
-    href="/lib/font-awesome/css/all.min.css"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
-  />
-  <noscript
-    ><link
-      rel="stylesheet"
-      href="/lib/font-awesome/css/all.min.css"
-  /></noscript>
-
-
-    <!-- jquery -->
-
-  
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-
-
-
-<!-- clipboard -->
-
-  
-    
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-
-</body>
-</html>
+<p>考虑一个区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mclose">]</span></span></span></span>，在最优方案中我们选取了其右端点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span>，同样的，次优的方案是选择 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。算出这种情况下最小的守卫数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>></mo><mi>k</mi></mrow><annotation encoding="application/x-tex">>k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> 则 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> 一定要选。记 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示从左到右覆盖前 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 个区间最少需要选 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 个，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">g_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示从右到左。二分出最左边的区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>l</mi><mi>p</mi></msub><mo>≥</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">l_p\ge r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0197em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span>，必选的充要条件在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo>+</mo><msub><mi>g</mi><mi>p</mi></msub><mo>></mo><mi>k</mi></mrow><annotation encoding="application/x-tex">f_i+g_p>k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8252em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>。</p>
+<p>注意特判可以填的位置等于守卫个数的情况。复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<pre class="astro-code github-dark" tabindex="0" data-language="cpp"><code><span class="line"><span>#include</span><span>&#x3C;bits/stdc++.h></span></span>
+<span class="line"><span>#define</span><span> ll</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> ull</span><span> unsigned</span><span> long</span><span> long</span></span>
+<span class="line"><span>#define</span><span> maxn</span><span> 100005</span></span>
+<span class="line"><span>#define</span><span> put</span><span>() </span><span>putchar</span><span>(</span><span>'</span><span>\n</span><span>'</span><span>)</span></span>
+<span class="line"><span>#define</span><span> Tp</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>></span></span>
+<span class="line"><span>#define</span><span> Ts</span><span> template</span><span>&#x3C;</span><span>typename</span><span> T</span><span>,</span><span>typename</span><span>... </span><span>Ar</span><span>></span></span>
+<span class="line"><span>using</span><span> namespace</span><span> std</span><span>;</span></span>
+<span class="line"><span>Tp </span><span>void</span><span> read</span><span>(T </span><span>&#x26;</span><span>x){</span></span>
+<span class="line"><span>    int</span><span> f</span><span>=</span><span>1</span><span>;x</span><span>=</span><span>0</span><span>;</span><span>char</span><span> c</span><span>=</span><span>getchar</span><span>();</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>&#x3C;</span><span>'0'</span><span>||</span><span>c</span><span>></span><span>'9'</span><span>) {</span><span>if</span><span> (c</span><span>==</span><span>'-'</span><span>) f</span><span>=-</span><span>1</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    while</span><span> (c</span><span>>=</span><span>'0'</span><span>&#x26;&#x26;</span><span>c</span><span>&#x3C;=</span><span>'9'</span><span>) {x</span><span>=</span><span>x</span><span>*</span><span>10</span><span>+</span><span>c</span><span>-</span><span>'0'</span><span>;c</span><span>=</span><span>getchar</span><span>();}</span></span>
+<span class="line"><span>    x</span><span>*=</span><span>f;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>namespace</span><span> Debug</span><span>{</span></span>
+<span class="line"><span>	Tp </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T t){cerr</span><span>&#x3C;&#x3C;</span><span>f</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>t</span><span>&#x3C;&#x3C;</span><span>endl;}</span></span>
+<span class="line"><span>	Ts </span><span>void</span><span> _debug</span><span>(</span><span>char*</span><span> f,T x,Ar... y){</span><span>while</span><span>(</span><span>*</span><span>f</span><span>!=</span><span>','</span><span>) cerr</span><span>&#x3C;&#x3C;*</span><span>f</span><span>++</span><span>;cerr</span><span>&#x3C;&#x3C;</span><span>'='</span><span>&#x3C;&#x3C;</span><span>x</span><span>&#x3C;&#x3C;</span><span>","</span><span>;</span><span>_debug</span><span>(f</span><span>+</span><span>1</span><span>,y...);}</span></span>
+<span class="line"><span>	#define</span><span> gdb</span><span>(...) </span><span>_debug</span><span>((</span><span>char*</span><span>)#__VA_ARGS__,</span><span>__VA_ARGS__</span><span>)</span></span>
+<span class="line"><span>}</span><span>using</span><span> namespace</span><span> Debug</span><span>;</span></span>
+<span class="line"><span>#define</span><span> fi</span><span> first</span></span>
+<span class="line"><span>#define</span><span> se</span><span> second</span></span>
+<span class="line"><span>#define</span><span> mk</span><span> make_pair</span></span>
+<span class="line"><span>const</span><span> int</span><span> mod</span><span>=</span><span>1</span><span>e</span><span>9</span><span>+</span><span>7</span><span>;</span></span>
+<span class="line"><span>ll</span><span> power</span><span>(</span><span>ll</span><span> x</span><span>,</span><span>int</span><span> y</span><span>=</span><span>mod</span><span>-</span><span>2</span><span>) {</span></span>
+<span class="line"><span>	ll</span><span> sum</span><span>=</span><span>1</span><span>;x</span><span>%=</span><span>mod;</span></span>
+<span class="line"><span>	while</span><span> (y) {</span></span>
+<span class="line"><span>		if</span><span> (y</span><span>&#x26;</span><span>1</span><span>) sum</span><span>=</span><span>sum</span><span>*</span><span>x</span><span>%</span><span>mod;</span></span>
+<span class="line"><span>		x</span><span>=</span><span>x</span><span>*</span><span>x</span><span>%</span><span>mod;y</span><span>>>=</span><span>1</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return</span><span> sum;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>int</span><span> nex[maxn],las[maxn];</span></span>
+<span class="line"><span>int</span><span> n,k,m;</span></span>
+<span class="line"><span>int</span><span> cnt,d[maxn];</span></span>
+<span class="line"><span>struct</span><span> node</span><span> {</span></span>
+<span class="line"><span>	int</span><span> l,r;</span></span>
+<span class="line"><span>}a[maxn];</span></span>
+<span class="line"><span>int</span><span> f[maxn],g[maxn],stac[maxn],tot;</span></span>
+<span class="line"><span>bool</span><span> cmp</span><span>(</span><span>node</span><span> x</span><span>,</span><span>node</span><span> y</span><span>) {</span><span>return</span><span> x.l</span><span>==</span><span>y.l</span><span>?</span><span>x.r</span><span>></span><span>y.r</span><span>:</span><span>x.l</span><span>&#x3C;</span><span>y.l;}</span></span>
+<span class="line"><span>signed</span><span> main</span><span>(</span><span>void</span><span>){</span></span>
+<span class="line"><span>	freopen</span><span>(</span><span>"1.in"</span><span>,</span><span>"r"</span><span>,stdin);</span></span>
+<span class="line"><span>	int</span><span> i,op,l,r,nums</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	read</span><span>(n);</span><span>read</span><span>(k);</span><span>read</span><span>(m);</span></span>
+<span class="line"><span>	while</span><span> (m</span><span>--</span><span>) {</span></span>
+<span class="line"><span>		read</span><span>(l);</span><span>read</span><span>(r);</span><span>read</span><span>(op);</span></span>
+<span class="line"><span>		if</span><span> (op</span><span>==</span><span>0</span><span>) d[l]</span><span>++</span><span>,d[r</span><span>+</span><span>1</span><span>]</span><span>--</span><span>;</span></span>
+<span class="line"><span>		else</span><span> a[</span><span>++</span><span>cnt]</span><span>=</span><span>(node){l,r};</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) d[i]</span><span>+=</span><span>d[i</span><span>-</span><span>1</span><span>],nums</span><span>+=</span><span>(d[i]</span><span>==</span><span>0</span><span>);</span></span>
+<span class="line"><span>	nex[n</span><span>+</span><span>1</span><span>]</span><span>=</span><span>n</span><span>+</span><span>1</span><span>;</span></span>
+<span class="line"><span>	if</span><span> (nums</span><span>==</span><span>k) {</span></span>
+<span class="line"><span>		for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>if</span><span> (d[i]</span><span>==</span><span>0</span><span>) </span><span>printf</span><span>(</span><span>"</span><span>%d\n</span><span>"</span><span>,i);</span></span>
+<span class="line"><span>		return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	// gdb(d[99]);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>n;i</span><span>++</span><span>) </span><span>if</span><span> (</span><span>!</span><span>d[i]) las[i]</span><span>=</span><span>i;</span><span>else</span><span> las[i]</span><span>=</span><span>las[i</span><span>-</span><span>1</span><span>];</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>n;i</span><span>>=</span><span>1</span><span>;i</span><span>--</span><span>) </span><span>if</span><span> (</span><span>!</span><span>d[i]) nex[i]</span><span>=</span><span>i;</span><span>else</span><span> nex[i]</span><span>=</span><span>nex[i</span><span>+</span><span>1</span><span>];</span></span>
+<span class="line"><span>	// for (i=1;i&#x3C;=n;i++) gdb(i,d[i],las[i],nex[i]);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>cnt;i</span><span>++</span><span>) a[i].l</span><span>=</span><span>nex[a[i].l],a[i].r</span><span>=</span><span>las[a[i].r];</span></span>
+<span class="line"><span>	sort</span><span>(a</span><span>+</span><span>1</span><span>,a</span><span>+</span><span>1</span><span>+</span><span>cnt,cmp);</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>cnt;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		if</span><span> (a[i].l</span><span>></span><span>a[i].r) </span><span>continue</span><span>;</span></span>
+<span class="line"><span>		while</span><span> (tot</span><span>&#x26;&#x26;</span><span>a[stac[tot]].r</span><span>>=</span><span>a[i].r) tot</span><span>--</span><span>;</span></span>
+<span class="line"><span>		stac[</span><span>++</span><span>tot]</span><span>=</span><span>i;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	cnt</span><span>=</span><span>tot;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>tot;i</span><span>++</span><span>) a[i]</span><span>=</span><span>a[stac[i]];</span></span>
+<span class="line"><span>	// for (i=1;i&#x3C;=tot;i++) gdb(a[i].l,a[i].r);</span></span>
+<span class="line"><span>	int</span><span> now</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>tot;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		if</span><span> (now</span><span>&#x3C;</span><span>a[i].l) f[i]</span><span>=</span><span>f[i</span><span>-</span><span>1</span><span>]</span><span>+</span><span>1</span><span>,now</span><span>=</span><span>a[i].r;</span></span>
+<span class="line"><span>		else</span><span> f[i]</span><span>=</span><span>f[i</span><span>-</span><span>1</span><span>];</span></span>
+<span class="line"><span>	} </span></span>
+<span class="line"><span>	now</span><span>=</span><span>n</span><span>+</span><span>1</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>tot;i</span><span>>=</span><span>1</span><span>;i</span><span>--</span><span>) {</span></span>
+<span class="line"><span>		if</span><span> (now</span><span>></span><span>a[i].r) g[i]</span><span>=</span><span>g[i</span><span>+</span><span>1</span><span>]</span><span>+</span><span>1</span><span>,now</span><span>=</span><span>a[i].l;</span></span>
+<span class="line"><span>		else</span><span> g[i]</span><span>=</span><span>g[i</span><span>+</span><span>1</span><span>];</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	int</span><span> flag</span><span>=</span><span>0</span><span>;</span></span>
+<span class="line"><span>	for</span><span> (i</span><span>=</span><span>1</span><span>;i</span><span>&#x3C;=</span><span>tot;i</span><span>++</span><span>) {</span></span>
+<span class="line"><span>		int</span><span> p,l</span><span>=</span><span>0</span><span>,r</span><span>=</span><span>tot</span><span>+</span><span>1</span><span>,mid;</span></span>
+<span class="line"><span>		// gdb(a[i].l,a[i].r);</span></span>
+<span class="line"><span>		if</span><span> (a[i].l</span><span>==</span><span>a[i].r) {flag</span><span>=</span><span>1</span><span>;</span><span>printf</span><span>(</span><span>"</span><span>%d\n</span><span>"</span><span>,a[i].l);</span><span>continue</span><span>;}</span></span>
+<span class="line"><span>		if</span><span> (f[i]</span><span>!=</span><span>f[i</span><span>-</span><span>1</span><span>]</span><span>+</span><span>1</span><span>) </span><span>continue</span><span>;</span></span>
+<span class="line"><span>		while</span><span> (l</span><span>+</span><span>1</span><span>&#x3C;</span><span>r) {</span></span>
+<span class="line"><span>			mid</span><span>=</span><span>l</span><span>+</span><span>r</span><span>>></span><span>1</span><span>;</span></span>
+<span class="line"><span>			if</span><span> (a[mid].l</span><span>>=</span><span>a[i].r) r</span><span>=</span><span>mid;</span></span>
+<span class="line"><span>			else</span><span> l</span><span>=</span><span>mid; </span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		// assert(r>i);</span></span>
+<span class="line"><span>		// gdb(i,r,f[i],g[r]);</span></span>
+<span class="line"><span>		if</span><span> (f[i]</span><span>+</span><span>g[r]</span><span>></span><span>k) {flag</span><span>=</span><span>1</span><span>;</span><span>printf</span><span>(</span><span>"</span><span>%d\n</span><span>"</span><span>,a[i].r);</span><span>continue</span><span>;}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	if</span><span> (</span><span>!</span><span>flag) </span><span>puts</span><span>(</span><span>"-1"</span><span>);</span></span>
+<span class="line"><span>	return</span><span> 0</span><span>;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>//i=begin &#x26;&#x26; g++ $i.cpp -o $i -std=c++14 &#x26;&#x26; ./$i</span></span></code></pre></div><nav class="article-next" aria-label="相邻文章"><a href="/2024/01/09/P8519-IOI2021-%E9%92%A5%E5%8C%99/"><span>← 较早一篇</span><strong>P8519 [IOI2021] 钥匙</strong></a><a href="/2024/01/14/P8859-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"><span>较新一篇 →</span><strong>P8859 冒泡排序</strong></a></nav></article><aside class="toc"><nav aria-label="文章目录"><p class="eyebrow">ON THIS PAGE</p><h2>文章目录</h2><ol><li><a href="#description">Description</a></li><li><a href="#solution">Solution</a></li></ol></nav></aside></div></main><footer class="site-footer shell"><span>© 2026 wgyhm</span><div><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="https://github.com/wgyhm">GitHub ↗</a></div></footer><script type="module">document.querySelector(`.theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`||!e.dataset.theme&&matchMedia(`(prefers-color-scheme: dark)`).matches;e.dataset.theme=t?`light`:`dark`;try{localStorage.setItem(`wgyhm-theme`,e.dataset.theme)}catch{}});</script></body></html>
