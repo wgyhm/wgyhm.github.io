@@ -1,0 +1,1 @@
+import{t as e}from"./client.C5tmiID1.js";document.addEventListener(`astro:page-load`,()=>{let t=document.querySelector(`[data-legacy-tag-target]`);t&&e(t.href+location.hash,{history:`replace`})});
